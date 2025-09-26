@@ -1,0 +1,13 @@
+COMANDOS:
+
+- git clone [enlace_repo]: Descargar el repositorio (crear un repositorio con una rama remota).
+- git init: Crea un repositorio en la carpeta en la que estamos.
+- git add [fichero]: Añadir los cambios que hemos hecho en el repositorio (modificación/creación/eliminación de archivos) al área de 'staging'. Si en ligar de un fichero, ponemos el carácter '.', se añaden TODOS los cambios de todos los ficheros del repositorio.
+- git commit: Aplicar los cambios que hemos hecho indicando quién los ha hecho, y una descripción de los cambios.
+- git push: Subir el commit a la versión online del repositorio.
+- git log: Muestra el historial de cambios.
+- git fetch: Actualiza el repositorio local desde el remoto.
+- git merge origin/[nombre_rama]: Añade a la rama principal el contenido de una rama concreta.
+- git branch [nombre_rama]: Creamos una rama nueva.
+- git checkout -b [nombre_rama]: Creamos y cambiamos de rama.
+- git checkout [nombre_rama] / git switch [nombre_rama]: Comandos equivalentes -> Cambiar de rama.
