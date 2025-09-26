@@ -11,6 +11,8 @@ COMANDOS:
 - git branch [nombre_rama]: Creamos una rama nueva*.
 - git checkout -b [nombre_rama]: Creamos y cambiamos de rama.
 - git checkout [nombre_rama] / git switch [nombre_rama]: Comandos equivalentes -> Cambiar de rama.
+- git stash: Cuando tenemos ficheros sin terminar, para guardar los cambios de ese fichero, y poder hacer commit del resto.
+- git stash pop: Recuperar esos ficheros.
 
 
 
