@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gestorgastos.controller.InicioController"
+            prefHeight="250.0" prefWidth="400.0"
+            stylesheets="@style.css">
+
+   <children>
+      <!-- Título de la aplicación -->
+      <Label layoutX="100.0" layoutY="30.0" text="GESTOR DE GASTOS" styleClass="title-label"/>
+
+      <!-- Campo de texto para el nombre -->
+      <TextField fx:id="usuarioField" layoutX="100.0" layoutY="100.0" 
+                 prefWidth="200.0" promptText="Introduce tu nombre" 
+                 styleClass="text-field"/>
+
+      <!-- Botón de entrar -->
+      <Button layoutX="160.0" layoutY="150.0" text="Entrar" 
+              onAction="#handleEntrar" styleClass="button"/>
+   </children>
+</AnchorPane>
