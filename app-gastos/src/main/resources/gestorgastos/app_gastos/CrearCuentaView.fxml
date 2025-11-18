@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="gestorgastos.controller.CrearCuentaController"
+      spacing="20" alignment="CENTER" prefWidth="300" prefHeight="200">
+    
+    <Label text="Nombre de la cuenta:" />
+    <TextField fx:id="nombreCuentaField" promptText="Ej: Cuenta Ahorros" />
+    <Button fx:id="btnCrear" text="Crear" />
+</VBox>

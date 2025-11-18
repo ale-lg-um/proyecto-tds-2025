@@ -31,3 +31,10 @@
 .button:hover {
     -fx-background-color: #2b6cb0;
 }
+
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cbd5e0;
+    -fx-border-radius: 4px;
+}
+

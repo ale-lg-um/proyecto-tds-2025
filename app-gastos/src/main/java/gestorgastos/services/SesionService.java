@@ -1,11 +1,23 @@
 package gestorgastos.services;
 
-
 import gestorgastos.model.Usuario;
 
 public class SesionService {
+    private static SesionService instancia;   // única instancia
     private Usuario usuarioActivo;
 
+    // Constructor privado para que no se pueda instanciar desde fuera
+    private SesionService() {}
+
+    // Método para obtener la instancia única
+    public static SesionService getInstancia() {
+        if (instancia == null) {
+            instancia = new SesionService();
+        }
+        return instancia;
+    }
+
+    // Iniciar sesión
     public void iniciarSesion(String nombre) {
         if (nombre != null && !nombre.isBlank()) {
             this.usuarioActivo = new Usuario(nombre);
@@ -15,6 +27,7 @@ public class SesionService {
         }
     }
 
+    // Obtener usuario activo
     public Usuario getUsuarioActivo() {
         return usuarioActivo;
     }

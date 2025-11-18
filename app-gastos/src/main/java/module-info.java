@@ -1,7 +1,10 @@
 module gestorgastos.app_gastos {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.graphics;
 
-    exports gestorgastos.app_gastos; // ✅ permite que JavaFX acceda a App.java
-    opens gestorgastos.controller to javafx.fxml; // ✅ permite cargar controladores FXML
+    exports gestorgastos.app_gastos; // ← esto permite que JavaFX acceda a App
+    opens gestorgastos.controller to javafx.fxml;
+    opens gestorgastos.model to javafx.fxml;
+    opens gestorgastos.services to javafx.fxml;
 }
