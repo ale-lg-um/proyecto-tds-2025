@@ -11,6 +11,7 @@ import gestorgastos.model.Cuenta;
 import gestorgastos.services.SesionService;
 import gestorgastos.services.CuentaService;
 
+
 public class PrincipalController {
 
 	@FXML
@@ -19,10 +20,14 @@ public class PrincipalController {
 	private ListView<Cuenta> listaCuentas;
 	@FXML
 	private Button btnCrearCuenta;
-	@FXML
-	private Button btnCrearCuentaCompartida;
+
 	@FXML
 	private Button btnEntrarCuenta;
+	@FXML
+	private Button btnConfirmarCuentaCompartida;
+	@FXML
+	private ComboBox<String> tipoCuentaCompartidaBox;
+
 
 	private CuentaService cuentaService = CuentaService.getInstancia();
 
@@ -37,6 +42,12 @@ public class PrincipalController {
 			listaCuentas.getItems().clear();
 		}
 
+		// Aquí inicializas el ComboBox con las opciones
+	    tipoCuentaCompartidaBox.getItems().addAll(
+	        "Cuenta compartida",
+	        "Cuenta compartida especial"
+	    );
+	    
 		btnEntrarCuenta.setOnAction(e -> {
 			Cuenta seleccionada = listaCuentas.getSelectionModel().getSelectedItem();
 			if (seleccionada != null) {
@@ -81,9 +92,23 @@ public class PrincipalController {
 		});
 
 
-		btnCrearCuentaCompartida.setOnAction(e -> {
-			System.out.println("Crear cuenta compartida");
-		});
+		
+		
+		btnConfirmarCuentaCompartida.setOnAction(e -> {
+	        String seleccion = tipoCuentaCompartidaBox.getValue();
+	        Usuario usuario3 = SesionService.getInstancia().getUsuarioActivo();
+
+	        if (seleccion == null) {
+	            System.out.println("⚠️ No se ha seleccionado tipo de cuenta");
+	        } else {
+	            System.out.println("📝 Tipo de cuenta seleccionada: " + seleccion);
+	        }
+
+	        listaCuentas.getItems().setAll(cuentaService.getCuentasDe(usuario));
+	        listaCuentas.refresh();
+	    });
+		
+		
 	}
 
 }

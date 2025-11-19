@@ -24,4 +24,15 @@ public class CuentaService {
     public void crearCuenta(Usuario usuario, String nombreCuenta) {
         cuentasPorUsuario.computeIfAbsent(usuario, k -> new ArrayList<>()).add(new Cuenta(nombreCuenta));
     }
+    
+    public void crearCuentaCompartida(Usuario usuario) {
+        cuentasPorUsuario.computeIfAbsent(usuario, k -> new ArrayList<>())
+                         .add(new Cuenta("Compartida"));
+    }
+
+    public void crearCuentaCompartidaEspecial(Usuario usuario) {
+        cuentasPorUsuario.computeIfAbsent(usuario, k -> new ArrayList<>())
+                         .add(new Cuenta("Compartida Especial"));
+    }
+
 }
