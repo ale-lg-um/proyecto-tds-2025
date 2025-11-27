@@ -2,37 +2,48 @@ package gestorgastos.services;
 
 import gestorgastos.model.Cuenta;
 import gestorgastos.model.Usuario;
+import gestorgastos.repository.CuentaRepository;
+import gestorgastos.repository.CuentaRepositoryJson;
 
-import java.util.*;
+import java.util.List;
 
 public class CuentaService {
-    
-    // Patrón Singleton (Obligatorio según enunciado)
+
     private static CuentaService instancia;
     
-    // Simulación de base de datos en memoria (más adelante esto se conecta al Repository)
-    private Map<Usuario, List<Cuenta>> cuentasPorUsuario = new HashMap<>();
+    // Aquí guardamos la referencia al repositorio (el que maneja el archivo)
+    private CuentaRepository repositorio;
 
-    private CuentaService() {}
+    private CuentaService() {
+        // Inicializamos el repositorio con la implementación JSON
+        this.repositorio = new CuentaRepositoryJson();
+    }
 
     public static CuentaService getInstancia() {
         if (instancia == null) instancia = new CuentaService();
         return instancia;
     }
 
+    /**
+     * Recupera todas las cuentas del archivo JSON.
+     * Al ser una app monousuario, ignoramos el parámetro 'usuario' 
+     * y devolvemos todo lo que hay guardado.
+     */
     public List<Cuenta> getCuentasDe(Usuario usuario) {
-        return cuentasPorUsuario.getOrDefault(usuario, new ArrayList<>());
+        return repositorio.findAll();
     }
 
     /**
-     * Guarda una cuenta nueva asociada al usuario.
-     * Gracias al polimorfismo, 'cuenta' puede ser Personal, Compartida o Proporcional.
+     * Guarda una nueva cuenta en el archivo JSON.
      */
     public void agregarCuenta(Usuario usuario, Cuenta cuenta) {
-        cuentasPorUsuario.computeIfAbsent(usuario, k -> new ArrayList<>()).add(cuenta);
+        repositorio.save(cuenta);
     }
     
-    // He eliminado los métodos antiguos 'crearCuentaCompartida' etc.
-    // porque ahora la lógica de creación compleja está en el Controlador,
-    // y aquí solo recibimos el objeto ya creado para guardarlo.
+    /**
+     * Elimina una cuenta del archivo JSON (lo usarás más adelante).
+     */
+    public void eliminarCuenta(Cuenta cuenta) {
+        repositorio.delete(cuenta);
+    }
 }

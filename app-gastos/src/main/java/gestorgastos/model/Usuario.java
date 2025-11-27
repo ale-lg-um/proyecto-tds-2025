@@ -1,18 +1,21 @@
 package gestorgastos.model;
 
-
 public class Usuario {
-    private String nombre;
+	private String nombre;
 
-    public Usuario(String nombre) {
-        this.nombre = nombre;
-    }
+	// Constructor vacío para Jackson
+	public Usuario() {
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public Usuario(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }
