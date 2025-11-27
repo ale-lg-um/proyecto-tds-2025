@@ -2,33 +2,22 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" styleClass="list-view" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestorgastos.controller.PrincipalController">
 	<children>
 		<Label id="css" fx:id="saludoLabel" alignment="CENTER" layoutX="85.0" layoutY="70.0" styleClass="title-label" stylesheets="@style.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+		
 		<ListView fx:id="listaCuentas" layoutX="27.2" layoutY="77.60000000000001" prefWidth="283.0" AnchorPane.bottomAnchor="2.3999999999999773" AnchorPane.leftAnchor="27.2" AnchorPane.rightAnchor="337.2" AnchorPane.topAnchor="77.60000000000001" />
-		<VBox alignment="CENTER_LEFT" layoutX="321.0" layoutY="111.0" prefHeight="258.0" prefWidth="306.0" spacing="80.0" AnchorPane.bottomAnchor="37.0" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="111.0">
+		
+		<VBox alignment="CENTER" layoutX="321.0" layoutY="111.0" prefHeight="258.0" prefWidth="306.0" spacing="30.0" AnchorPane.bottomAnchor="37.0" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="111.0">
 			<children>
-				<Button fx:id="btnCrearCuenta" mnemonicParsing="false" prefHeight="31.0" prefWidth="180.0" text="Crear Cuenta" VBox.vgrow="ALWAYS" />
+				<Button fx:id="btnCrearCuenta" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Crear Cuenta" />
 
-				<HBox alignment="CENTER_LEFT" spacing="6.0" VBox.vgrow="ALWAYS">
-					<ComboBox fx:id="tipoCuentaCompartidaBox" prefWidth="220.0" promptText="Elige tipo cuenta compartida" HBox.hgrow="ALWAYS" />
-					<Button fx:id="btnConfirmarCuentaCompartida" prefWidth="80.0" text="Crear" HBox.hgrow="NEVER" />
-				</HBox>
-
-
-
-				<Button fx:id="btnEntrarCuenta" mnemonicParsing="false" prefHeight="31.0" prefWidth="180.0" text="Entrar Cuenta" VBox.vgrow="ALWAYS">
-					<VBox.margin>
-						<Insets />
-					</VBox.margin>
-				</Button>
+				<Button fx:id="btnEntrarCuenta" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Entrar Cuenta" />
 			</children>
 		</VBox>
 	</children>

@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="gestorgastos.controller.CrearCuentaController"
-      spacing="20" alignment="CENTER" prefWidth="300" prefHeight="200">
-    
-    <Label text="Nombre de la cuenta:" />
-    <TextField fx:id="nombreCuentaField" promptText="Ej: Cuenta Ahorros" />
-    <Button fx:id="btnCrear" text="Crear" />
+      spacing="15" alignment="TOP_CENTER" prefWidth="400" prefHeight="480">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Nueva Cuenta" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Nombre de la cuenta:" />
+        <TextField fx:id="nombreCuentaField" promptText="Ej: Casa de la Playa / Ahorros" />
+    </VBox>
+
+    <VBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Tipo de Cuenta:" />
+        <ComboBox fx:id="comboTipo" maxWidth="Infinity" /> 
+    </VBox>
+
+    <Separator />
+
+    <VBox fx:id="panelMiembros" spacing="10" VBox.vgrow="ALWAYS">
+        <Label text="Gestión de Miembros" style="-fx-font-weight: bold;"/>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="txtNuevoMiembro" promptText="Nombre amigo" HBox.hgrow="ALWAYS"/>
+            
+            <TextField fx:id="txtPorcentaje" promptText="\%" prefWidth="60"/>
+            
+            <Button fx:id="btnAnadirMiembro" text="Añadir" />
+        </HBox>
+
+        <Label fx:id="lblProgresoPorcentaje" text="Total asignado: 0%" 
+               textFill="BLUE" visible="false" style="-fx-font-size: 11px;"/>
+
+        <Label text="Lista de integrantes:" style="-fx-font-size: 10px;" textFill="GREY"/>
+        <ListView fx:id="listaMiembrosView" prefHeight="120" />
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS" />
+
+    <Label fx:id="lblError" textFill="RED" wrapText="true" alignment="CENTER"/>
+
+    <Button fx:id="btnCrear" text="Guardar Cuenta" maxWidth="Infinity" defaultButton="true" style="-fx-base: #4CAF50; -fx-text-fill: white;"/>
+
 </VBox>
