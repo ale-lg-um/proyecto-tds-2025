@@ -3,4 +3,65 @@
   "nombre" : "Cuenta",
   "gastos" : [ ],
   "tipo" : "PERSONAL"
+}, {
+  "id" : "845b2751-1abb-4c37-a5e8-e2b5aea79e6e",
+  "nombre" : "Compartida",
+  "gastos" : [ {
+    "id" : "18862d18-007a-4281-b26d-6a50021812c8",
+    "concepto" : "Cena",
+    "importe" : 30.0,
+    "fecha" : [ 2025, 12, 2 ],
+    "categoria" : {
+      "nombre" : "Navidad",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "uno"
+  }, {
+    "id" : "ee37962f-988b-42a1-a9b0-124e3a7fb9ea",
+    "concepto" : "Comida",
+    "importe" : 30.0,
+    "fecha" : [ 2025, 12, 2 ],
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : null,
+      "colorHex" : null
+    },
+    "pagador" : "dos"
+  } ],
+  "miembros" : [ "uno", "dos", "tres" ],
+  "tipo" : "COMPARTIDA"
+}, {
+  "id" : "e6dd176b-dc83-4ea3-87c2-09ee9e7a6715",
+  "nombre" : "Especial",
+  "gastos" : [ {
+    "id" : "2ae991d0-726d-4234-910c-c8cea043a74e",
+    "concepto" : "cena",
+    "importe" : 30.0,
+    "fecha" : [ 2025, 12, 2 ],
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : null,
+      "colorHex" : null
+    },
+    "pagador" : "Uno"
+  }, {
+    "id" : "c6b9af90-3112-425c-8040-7506dd4d04c2",
+    "concepto" : "comida",
+    "importe" : 30.0,
+    "fecha" : [ 2025, 12, 2 ],
+    "categoria" : {
+      "nombre" : "Año Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#FFFF00"
+    },
+    "pagador" : "Dos"
+  } ],
+  "miembros" : [ "Uno", "Dos", "Tres" ],
+  "porcentajes" : {
+    "Uno" : 50.0,
+    "Dos" : 25.0,
+    "Tres" : 25.0
+  },
+  "tipo" : "ESPECIAL"
 } ]

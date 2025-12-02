@@ -81,8 +81,30 @@ public class PrincipalController {
             return;
         }
 
-        System.out.println("Entrando en cuenta: " + cuentaSeleccionada.getNombre());
-        // AQUÍ ES DONDE IREMOS A LA PANTALLA DE DETALLES (Siguiente paso)
+        try {
+            // 1. Cargar el FXML de detalle
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
+            Parent root = loader.load();
+
+            // 2. Obtener el controlador y PASARLE LA CUENTA
+            DetalleCuentaController controller = loader.getController();
+            controller.setCuenta(cuentaSeleccionada);
+
+            // 3. Cambiar la escena (o abrir nueva ventana, depende de tu gusto)
+            // Opción A: Abrir nueva ventana (más fácil de gestionar ahora)
+            Stage stage = new Stage();
+            stage.setTitle("Gestión de: " + cuentaSeleccionada.getNombre());
+            stage.setScene(new Scene(root));
+            stage.setMaximized(true); // Se ve mejor en grande
+            stage.show();
+            
+            // Opcional: Cerrar la ventana principal actual si quieres
+            ((Stage) btnEntrarCuenta.getScene().getWindow()).close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error al abrir los detalles de la cuenta.");
+        }
     }
 
     private void mostrarAlerta(String mensaje) {

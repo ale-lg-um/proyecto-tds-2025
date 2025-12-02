@@ -1,5 +1,6 @@
 package gestorgastos.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -29,4 +30,30 @@ public class CuentaProporcional extends CuentaCompartida {
     }
     
     // Aquí podrías validar que los porcentajes sumen 100%
+    
+    
+    // Sobrescribimos el método del padre
+    @Override
+    public Map<String, Double> calcularSaldos() {
+        double totalGastado = gastos.stream()
+                                    .mapToDouble(Gasto::getImporte)
+                                    .sum();
+
+        Map<String, Double> saldos = new HashMap<>();
+        Map<String, Double> porcentajes = getPorcentajes(); // Asumo que tienes este getter
+
+        for (String miembro : super.miembros) {
+            double pagado = gastos.stream()
+                                  .filter(g -> miembro.equals(g.getPagador()))
+                                  .mapToDouble(Gasto::getImporte)
+                                  .sum();
+
+            // En la proporcional, mi cuota depende de mi porcentaje
+            double miPorcentaje = porcentajes.getOrDefault(miembro, 0.0);
+            double miCuota = totalGastado * (miPorcentaje / 100.0);
+
+            saldos.put(miembro, pagado - miCuota);
+        }
+        return saldos;
+    }
 }

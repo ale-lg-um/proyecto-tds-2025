@@ -1,43 +1,45 @@
 package gestorgastos.model;
 
 public class Categoria {
+    
+    private String nombre;
+    private String descripcion;
+    private String colorHex; // Nuevo campo para el color (ej: "#FFFFFF")
 
-	private String nombre;
-	private String descripcion; // Opcional, pero útil
+    public Categoria() {
+        // Constructor vacío para Jackson
+    }
+    
+    // Constructor simple (por defecto gris/blanco)
+    public Categoria(String nombre) {
+        this(nombre, "", "#FFFFFF"); 
+    }
 
-	// Constructor vacío para Jackson
-	public Categoria() {
-	}
+    public Categoria(String nombre, String descripcion, String colorHex) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.colorHex = colorHex == null ? "#FFFFFF" : colorHex;
+    }
 
-	public Categoria(String nombre) {
-		this.nombre = nombre;
-		this.descripcion = "";
-	}
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-	public Categoria(String nombre, String descripcion) {
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-	}
+    public String getDescripcion() { return descripcion; }
+    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getColorHex() { return colorHex; }
+    public void setColorHex(String colorHex) { this.colorHex = colorHex; }
 
-	// El toString es vital para que salga bien el nombre en los desplegables
-	// (ComboBox) de la vista
-	@Override
-	public String toString() {
-		return nombre;
-	}
+    @Override
+    public String toString() {
+        return nombre;
+    }
 
-	// Importante para comparar si dos categorías son iguales
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null || getClass() != obj.getClass())
-			return false;
-		Categoria categoria = (Categoria) obj;
-		return nombre.equals(categoria.nombre);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Categoria categoria = (Categoria) obj;
+        return nombre != null && nombre.equals(categoria.nombre);
+    }
 }
