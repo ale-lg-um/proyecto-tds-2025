@@ -6,76 +6,68 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-// CAMBIO CLAVE: Usamos EXISTING_PROPERTY. 
-// Esto dice: "El tipo no es mágico, es un método real de la clase llamado 'tipo'".
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "tipo", visible = true)
-@JsonSubTypes({ @JsonSubTypes.Type(value = CuentaPersonal.class, name = "PERSONAL"),
-		@JsonSubTypes.Type(value = CuentaCompartida.class, name = "COMPARTIDA"),
-		@JsonSubTypes.Type(value = CuentaProporcional.class, name = "ESPECIAL") })
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME, 
+    include = JsonTypeInfo.As.EXISTING_PROPERTY, 
+    property = "tipo", 
+    visible = true
+)
+@JsonSubTypes({ 
+    @JsonSubTypes.Type(value = CuentaPersonal.class, name = "PERSONAL"),
+    @JsonSubTypes.Type(value = CuentaCompartida.class, name = "COMPARTIDA"),
+    @JsonSubTypes.Type(value = CuentaProporcional.class, name = "ESPECIAL") 
+})
 public abstract class Cuenta {
 
-	protected String id;
-	protected String nombre;
-	protected List<Gasto> gastos;
+    protected String id;
+    protected String nombre;
+    protected List<Gasto> gastos;
+    
+    // NUEVO: Cada cuenta tiene su propia lista de categorías
+    protected List<Categoria> categorias;
 
-	public Cuenta() {
-		this.gastos = new ArrayList<>();
-	}
+    public Cuenta() {
+        this.gastos = new ArrayList<>();
+        this.categorias = new ArrayList<>();
+        // Inicializamos siempre con General para evitar errores
+        this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
+    }
 
-	public Cuenta(String nombre) {
-		this.id = UUID.randomUUID().toString();
-		this.nombre = nombre;
-		this.gastos = new ArrayList<>();
-	}
+    public Cuenta(String nombre) {
+        this.id = UUID.randomUUID().toString();
+        this.nombre = nombre;
+        this.gastos = new ArrayList<>();
+        this.categorias = new ArrayList<>();
+        // Categoría por defecto al crear cuenta nueva
+        this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
+    }
 
-	// --- EL TRUCO MAESTRO ---
-	// Obligamos a todas las cuentas a decir qué tipo son.
-	// Al ser un "getTipo", Jackson lo guardará en el JSON sí o sí.
-	public abstract String getTipo();
-	// ------------------------
+    public abstract String getTipo();
 
-	public void agregarGasto(Gasto gasto) {
-		this.gastos.add(gasto);
-	}
+    public void setTipo(String tipo) { }
 
-	public void eliminarGasto(Gasto gasto) {
-		this.gastos.remove(gasto);
-	}
+    public void agregarGasto(Gasto gasto) {
+        this.gastos.add(gasto);
+    }
 
-	public String getId() {
-		return id;
-	}
+    public void eliminarGasto(Gasto gasto) {
+        this.gastos.remove(gasto);
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    // Getters y Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	} // Setter necesario
+    public List<Gasto> getGastos() { return gastos; }
+    public void setGastos(List<Gasto> gastos) { this.gastos = gastos; }
 
-	public List<Gasto> getGastos() {
-		return gastos;
-	}
+    // NUEVOS GETTERS Y SETTERS PARA CATEGORÍAS (Vital para Jackson)
+    public List<Categoria> getCategorias() { return categorias; }
+    public void setCategorias(List<Categoria> categorias) { this.categorias = categorias; }
 
-	public void setGastos(List<Gasto> gastos) {
-		this.gastos = gastos;
-	} // Setter necesario
-
-	@Override
-	public String toString() {
-		return nombre;
-	}
-
-	// --- AÑADE ESTO PARA QUE JACKSON NO SE QUEJE AL LEER ---
-	public void setTipo(String tipo) {
-		// No hacemos nada con este dato, pero el método tiene que existir
-		// para que Jackson pueda "escribir" la propiedad al leer el JSON.
-	}
-
-	// ...
+    @Override
+    public String toString() { return nombre; }
 }
