@@ -1,7 +1,6 @@
 package gestorgastos.controller;
 
 import gestorgastos.model.*;
-import gestorgastos.services.CuentaService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -24,31 +23,31 @@ public class FormularioGastoController {
 
     private Gasto gastoResultado;
     private boolean esEdicion = false;
-    private Cuenta cuentaAsociada; // Necesario para saber los miembros
+    private Cuenta cuentaAsociada; // Necesario para saber los miembros y las categorías
 
     @FXML
     public void initialize() {
-        // ANTES: Tenías esto que creaba una lista falsa solo para esta ventana
-        // comboCategoria.getItems().add(new Categoria("General"));
-
-        // AHORA: Conectamos con la lista REAL del servicio (donde se guardan las nuevas)
-        comboCategoria.setItems(FXCollections.observableArrayList(
-            CuentaService.getInstancia().getCategorias()
-        ));
-
-        // Seleccionamos la primera por defecto para que no salga vacío
-        if (!comboCategoria.getItems().isEmpty()) {
-            comboCategoria.getSelectionModel().selectFirst();
-        }
-        
+        // En initialize SOLO configuramos cosas que no dependen de la cuenta
         dateFecha.setValue(LocalDate.now());
+        
+        // ¡IMPORTANTE!: Aquí NO cargamos las categorías todavía, 
+        // porque aún no sabemos qué cuenta es. Lo hacemos en initAttributes.
     }
 
     // Método para configurar la ventana según si es CREAR o EDITAR
     public void initAttributes(Cuenta cuenta, Gasto gastoAEditar) {
         this.cuentaAsociada = cuenta;
 
-        // 1. Configurar Visibilidad del Pagador (Lógica Compartida vs Personal)
+        // 1. CARGAR LAS CATEGORÍAS DE ESTA CUENTA ESPECÍFICA
+        // Esto es vital para que salgan las categorías propias de la cuenta y no las globales
+        comboCategoria.setItems(FXCollections.observableArrayList(cuenta.getCategorias()));
+
+        // Seleccionamos la primera por defecto para evitar nulos
+        if (!comboCategoria.getItems().isEmpty()) {
+            comboCategoria.getSelectionModel().selectFirst();
+        }
+
+        // 2. Configurar Visibilidad del Pagador (Lógica Compartida vs Personal)
         if (cuenta instanceof CuentaCompartida) {
             panelPagador.setVisible(true);
             panelPagador.setManaged(true);
@@ -60,7 +59,7 @@ public class FormularioGastoController {
             panelPagador.setManaged(false); 
         }
 
-        // 2. Rellenar datos si es EDICIÓN
+        // 3. Rellenar datos si es EDICIÓN
         if (gastoAEditar != null) {
             this.esEdicion = true;
             this.gastoResultado = gastoAEditar; // Referencia al objeto original
@@ -111,6 +110,10 @@ public class FormularioGastoController {
         }
         
         Categoria categoria = comboCategoria.getValue();
+        if (categoria == null) {
+            lblError.setText("Debes tener al menos una categoría"); // Validación extra
+            return;
+        }
         
         // Determinar quién paga
         String pagador;

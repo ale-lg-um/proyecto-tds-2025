@@ -2,6 +2,7 @@ package gestorgastos.controller;
 
 import gestorgastos.model.*;
 import gestorgastos.services.CuentaService;
+import javafx.collections.FXCollections;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,24 +11,34 @@ import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class GestionCategoriasController {
 
-    @FXML private Label lblTituloCuenta;
-
     @FXML private ListView<Categoria> listaCategorias;
     private CuentaService cuentaService = CuentaService.getInstancia();
-    private Cuenta cuentaActual; // Para poder volver a la pantalla de gastos
+    private Cuenta cuentaActual;
 
     public void setCuenta(Cuenta cuenta) {
         this.cuentaActual = cuenta;
+        
+        // Si por alguna razón la cuenta viene sin categorías, inicializamos
+        if (this.cuentaActual.getCategorias() == null) {
+            this.cuentaActual.setCategorias(new ArrayList<>()); // Aseguramos que la lista exista
+        }
+        if (this.cuentaActual.getCategorias().isEmpty()) {
+            this.cuentaActual.getCategorias().add(new Categoria("General", "Defecto", "#D3D3D3"));
+        }
+
+        // --- ESTA ES LA LÍNEA QUE TE FALTABA ---
+        // Ahora que ya tenemos la cuenta, ¡cargamos la lista visualmente!
+        cargarCategorias();
+        // ---------------------------------------
     }
 
     @FXML
     public void initialize() {
-        cargarCategorias();
-
-        // CellFactory para mostrar el círculo de color en la lista
+        // CellFactory para mostrar el círculo de color
         listaCategorias.setCellFactory(lv -> new ListCell<Categoria>() {
             @Override
             protected void updateItem(Categoria item, boolean empty) {
@@ -37,18 +48,28 @@ public class GestionCategoriasController {
                     setGraphic(null);
                 } else {
                     setText(item.getNombre());
-                    // Círculo de color
                     Circle circulo = new Circle(10);
-                    circulo.setFill(Color.web(item.getColorHex()));
+                    try {
+                        circulo.setFill(Color.web(item.getColorHex()));
+                    } catch (Exception e) { circulo.setFill(Color.GREY); }
                     circulo.setStroke(Color.BLACK);
                     setGraphic(circulo);
                 }
             }
         });
+        
+        // Esperamos a tener la cuenta para cargar (se hace en setCuenta o al mostrar)
+        // Pero como initialize corre antes de setCuenta, cargaremos en un método aparte o usaremos un listener si fuera necesario.
+        // En este caso, llamaremos a cargarCategorias() al final de setCuenta() mejor, 
+        // pero por seguridad si ya está seteado:
+        if (cuentaActual != null) cargarCategorias();
     }
-
-    private void cargarCategorias() {
-        listaCategorias.getItems().setAll(cuentaService.getCategorias());
+    
+    // Método auxiliar para refrescar la vista
+    public void cargarCategorias() {
+        if (cuentaActual != null) {
+            listaCategorias.setItems(FXCollections.observableArrayList(cuentaActual.getCategorias()));
+        }
     }
 
     @FXML
@@ -64,7 +85,13 @@ public class GestionCategoriasController {
             stage.showAndWait();
 
             if (controller.getCategoriaResultado() != null) {
-                cuentaService.agregarCategoria(controller.getCategoriaResultado());
+                // 1. Añadimos a LA CUENTA ACTUAL (No al servicio global)
+                cuentaActual.getCategorias().add(controller.getCategoriaResultado());
+                
+                // 2. Guardamos la cuenta en el JSON para persistir la nueva categoría
+                cuentaService.agregarCuenta(null, cuentaActual);
+                
+                // 3. Refrescamos
                 cargarCategorias();
             }
         } catch (IOException e) { e.printStackTrace(); }
@@ -82,52 +109,67 @@ public class GestionCategoriasController {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("¿Borrar '" + seleccionada.getNombre() + "'? Sus gastos pasarán a 'General'.");
+        
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
-            cuentaService.borrarCategoria(seleccionada);
+            // 1. Buscamos la categoría destino (General) dentro de ESTA cuenta
+            Categoria catGeneral = cuentaActual.getCategorias().stream()
+                    .filter(c -> "General".equals(c.getNombre()))
+                    .findFirst()
+                    .orElse(null);
+
+            if (catGeneral != null) {
+                // 2. Reasignamos los gastos de ESTA cuenta
+                for (Gasto g : cuentaActual.getGastos()) {
+                    if (g.getCategoria().equals(seleccionada)) {
+                        g.setCategoria(catGeneral);
+                    }
+                }
+            }
+
+            // 3. Borramos la categoría de la lista de la cuenta
+            cuentaActual.getCategorias().remove(seleccionada);
+            
+            // 4. Guardamos cambios en disco
+            cuentaService.agregarCuenta(null, cuentaActual);
+            
             cargarCategorias();
         }
     }
 
-    // NAVEGACIÓN
+    // --- NAVEGACIÓN ---
     @FXML
     private void irAGastos() {
         try {
-            // Volvemos a DetalleCuentaView pasándole la cuenta que teníamos
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
             Parent root = loader.load();
             DetalleCuentaController controller = loader.getController();
-            controller.setCuenta(cuentaActual); // ¡Importante pasar la cuenta!
+            controller.setCuenta(cuentaActual); // Mantenemos la cuenta
 
-            Stage stage = (Stage) listaCategorias.getScene().getWindow();
+            Stage stage = new Stage();
+            stage.setTitle("Gastos: " + cuentaActual.getNombre());
             stage.setScene(new Scene(root));
+            stage.setMaximized(true);
+            stage.show();
+            
+            ((Stage) listaCategorias.getScene().getWindow()).close();
         } catch (IOException e) { e.printStackTrace(); }
     }
     
- // En GestionCategoriasController.java añade al final:
     @FXML private void irAAlertas() { System.out.println("Ir a Alertas"); }
     @FXML private void irACMD() { System.out.println("Ir a Consola"); }
     @FXML private void irAVisualizacion() { System.out.println("Ir a Gráficos"); }
+    
     @FXML
     private void volverInicio() {
         try {
-            // 1. Cargar la vista Principal (Inicio)
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/PrincipalView.fxml"));
             Parent root = loader.load();
-
-            // 2. Crear y mostrar la ventana nueva
             Stage stage = new Stage();
             stage.setTitle("Gestor de Gastos - Mis Cuentas");
             stage.setScene(new Scene(root));
             stage.show();
-
-            // 3. Cerrar la ventana actual (Categorías)
-            // Usamos 'listaCategorias' para obtener la referencia a la ventana actual
-            Stage currentStage = (Stage) listaCategorias.getScene().getWindow();
-            currentStage.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            ((Stage) listaCategorias.getScene().getWindow()).close();
+        } catch (IOException e) { e.printStackTrace(); }
     }
 
     private void mostrarAlerta(String msg) {

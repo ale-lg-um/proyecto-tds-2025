@@ -1,94 +1,30 @@
 [ {
-  "id" : "8e912835-f646-43e0-9557-c147f062e136",
-  "nombre" : "Cuenta",
+  "id" : "fb3bb476-dfb4-4f17-9ff7-23cc6adc07ae",
+  "nombre" : "Personal",
   "gastos" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Navidad",
+    "descripcion" : "",
+    "colorHex" : "#FFFF00"
+  } ],
   "tipo" : "PERSONAL"
 }, {
-  "id" : "845b2751-1abb-4c37-a5e8-e2b5aea79e6e",
+  "id" : "988acff1-b769-44e7-8af8-ae1c02bd8b94",
   "nombre" : "Compartida",
-  "gastos" : [ {
-    "id" : "18862d18-007a-4281-b26d-6a50021812c8",
-    "concepto" : "Cena",
-    "importe" : 30.0,
-    "fecha" : [ 2025, 12, 2 ],
-    "categoria" : {
-      "nombre" : "Navidad",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    },
-    "pagador" : "uno"
+  "gastos" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
   }, {
-    "id" : "ee37962f-988b-42a1-a9b0-124e3a7fb9ea",
-    "concepto" : "Comida",
-    "importe" : 30.0,
-    "fecha" : [ 2025, 12, 2 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : null,
-      "colorHex" : null
-    },
-    "pagador" : "dos"
+    "nombre" : "Verano",
+    "descripcion" : "",
+    "colorHex" : "#00FFFF"
   } ],
-  "miembros" : [ "uno", "dos", "tres" ],
+  "miembros" : [ "Uno", "Dos" ],
   "tipo" : "COMPARTIDA"
-}, {
-  "id" : "e6dd176b-dc83-4ea3-87c2-09ee9e7a6715",
-  "nombre" : "Especial",
-  "gastos" : [ {
-    "id" : "2ae991d0-726d-4234-910c-c8cea043a74e",
-    "concepto" : "cena",
-    "importe" : 30.0,
-    "fecha" : [ 2025, 12, 2 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : null,
-      "colorHex" : null
-    },
-    "pagador" : "Uno"
-  }, {
-    "id" : "c6b9af90-3112-425c-8040-7506dd4d04c2",
-    "concepto" : "comida",
-    "importe" : 30.0,
-    "fecha" : [ 2025, 12, 2 ],
-    "categoria" : {
-      "nombre" : "Año Nuevo",
-      "descripcion" : "",
-      "colorHex" : "#FFFF00"
-    },
-    "pagador" : "Dos"
-  } ],
-  "miembros" : [ "Uno", "Dos", "Tres" ],
-  "porcentajes" : {
-    "Uno" : 50.0,
-    "Dos" : 25.0,
-    "Tres" : 25.0
-  },
-  "tipo" : "ESPECIAL"
-}, {
-  "id" : "d8d1b51d-a932-4633-adfc-53ae866e868b",
-  "nombre" : "nueva",
-  "gastos" : [ {
-    "id" : "d6aff983-4049-44a2-8d30-dc372bacb490",
-    "concepto" : "gasto1",
-    "importe" : 15.0,
-    "fecha" : [ 2025, 12, 9 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "c84f4f5b-cc5b-4a8a-8518-5fefb11ee87f",
-    "concepto" : "gasto2",
-    "importe" : 12.0,
-    "fecha" : [ 2025, 12, 17 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  } ],
-  "tipo" : "PERSONAL"
 } ]
