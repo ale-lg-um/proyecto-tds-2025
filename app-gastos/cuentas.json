@@ -91,4 +91,9 @@
     "pagador" : "Yo"
   } ],
   "tipo" : "PERSONAL"
+}, {
+  "id" : "08add2cd-36eb-459f-a23a-30b26d7ca159",
+  "nombre" : "person1",
+  "gastos" : [ ],
+  "tipo" : "PERSONAL"
 } ]
