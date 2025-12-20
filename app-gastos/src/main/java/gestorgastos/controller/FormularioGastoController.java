@@ -6,8 +6,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.time.LocalTime; // <--- Importar
 
 import java.time.LocalDate;
+
 
 public class FormularioGastoController {
 
@@ -20,6 +22,9 @@ public class FormularioGastoController {
     @FXML private VBox panelPagador;
     @FXML private ComboBox<String> comboPagador;
     @FXML private Label lblError;
+    
+    @FXML private Spinner<Integer> spinHora;
+    @FXML private Spinner<Integer> spinMinuto;
 
     private Gasto gastoResultado;
     private boolean esEdicion = false;
@@ -29,53 +34,67 @@ public class FormularioGastoController {
     public void initialize() {
         // En initialize SOLO configuramos cosas que no dependen de la cuenta
         dateFecha.setValue(LocalDate.now());
+        spinHora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 12));
+        spinMinuto.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
         
         // ¡IMPORTANTE!: Aquí NO cargamos las categorías todavía, 
         // porque aún no sabemos qué cuenta es. Lo hacemos en initAttributes.
     }
 
-    // Método para configurar la ventana según si es CREAR o EDITAR
+ // Método para configurar la ventana según si es CREAR o EDITAR
     public void initAttributes(Cuenta cuenta, Gasto gastoAEditar) {
         this.cuentaAsociada = cuenta;
 
-        // 1. CARGAR LAS CATEGORÍAS DE ESTA CUENTA ESPECÍFICA
-        // Esto es vital para que salgan las categorías propias de la cuenta y no las globales
+        // 1. CARGAR LAS CATEGORÍAS
         comboCategoria.setItems(FXCollections.observableArrayList(cuenta.getCategorias()));
 
-        // Seleccionamos la primera por defecto para evitar nulos
         if (!comboCategoria.getItems().isEmpty()) {
             comboCategoria.getSelectionModel().selectFirst();
         }
 
-        // 2. Configurar Visibilidad del Pagador (Lógica Compartida vs Personal)
+        // 2. Configurar Visibilidad del Pagador
         if (cuenta instanceof CuentaCompartida) {
             panelPagador.setVisible(true);
             panelPagador.setManaged(true);
-            // Cargamos los miembros en el combo
             comboPagador.setItems(FXCollections.observableArrayList(((CuentaCompartida) cuenta).getMiembros()));
         } else {
-            // Si es personal, ocultamos el selector
             panelPagador.setVisible(false);
             panelPagador.setManaged(false); 
         }
 
-        // 3. Rellenar datos si es EDICIÓN
+        // 3. Rellenar datos
         if (gastoAEditar != null) {
+            // --- MODO EDICIÓN ---
             this.esEdicion = true;
-            this.gastoResultado = gastoAEditar; // Referencia al objeto original
+            this.gastoResultado = gastoAEditar; 
             lblTitulo.setText("Editar Gasto");
             
             txtConcepto.setText(gastoAEditar.getConcepto());
             txtImporte.setText(String.valueOf(gastoAEditar.getImporte()));
             dateFecha.setValue(gastoAEditar.getFecha());
+            
+            // ---> AQUÍ CARGAMOS LA HORA GUARDADA <---
+            spinHora.getValueFactory().setValue(gastoAEditar.getHora().getHour());
+            spinMinuto.getValueFactory().setValue(gastoAEditar.getHora().getMinute());
+            // ----------------------------------------
+            
             comboCategoria.setValue(gastoAEditar.getCategoria());
             
             if (cuenta instanceof CuentaCompartida) {
                 comboPagador.setValue(gastoAEditar.getPagador());
             }
         } else {
+            // --- MODO CREAR (NUEVO) ---
             lblTitulo.setText("Nuevo Gasto");
-            // Si es compartido, seleccionamos al primer miembro por defecto para evitar nulos
+            
+            // ---> AQUÍ INICIALIZAMOS LA FECHA Y HORA ACTUALES <---
+            dateFecha.setValue(java.time.LocalDate.now()); // Ponemos fecha de hoy
+            
+            java.time.LocalTime ahora = java.time.LocalTime.now(); // Hora de ahora mismo
+            spinHora.getValueFactory().setValue(ahora.getHour());
+            spinMinuto.getValueFactory().setValue(ahora.getMinute());
+            // -----------------------------------------------------
+
             if (cuenta instanceof CuentaCompartida && !comboPagador.getItems().isEmpty()) {
                 comboPagador.getSelectionModel().selectFirst();
             }
@@ -88,7 +107,7 @@ public class FormularioGastoController {
 
     @FXML
     private void guardar() {
-        // Validaciones básicas
+        // 1. Validaciones básicas
         String concepto = txtConcepto.getText();
         if (concepto.isEmpty()) {
             lblError.setText("El concepto es obligatorio");
@@ -111,39 +130,43 @@ public class FormularioGastoController {
         
         Categoria categoria = comboCategoria.getValue();
         if (categoria == null) {
-            lblError.setText("Debes tener al menos una categoría"); // Validación extra
+            lblError.setText("Debes tener al menos una categoría");
             return;
         }
         
-        // Determinar quién paga
-        String pagador;
+        String pagador = "Yo";
         if (cuentaAsociada instanceof CuentaCompartida) {
             pagador = comboPagador.getValue();
             if (pagador == null) {
                 lblError.setText("Debes seleccionar quién pagó");
                 return;
             }
-        } else {
-            pagador = "Yo"; // Valor por defecto para cuentas personales
         }
 
-        // Crear o Actualizar el objeto
+        // 2. CREAR O EDITAR EL OBJETO
         if (esEdicion) {
-            // Actualizamos el objeto existente
             gastoResultado.setConcepto(concepto);
             gastoResultado.setImporte(importe);
             gastoResultado.setFecha(fecha);
             gastoResultado.setCategoria(categoria);
             gastoResultado.setPagador(pagador);
         } else {
-            // Creamos uno nuevo
+            // Al hacer esto, la hora se pone automáticamente a "AHORA MISMO" por defecto
             gastoResultado = new Gasto(concepto, importe, fecha, categoria, pagador);
         }
+
+        // --- IMPORTANTE: AQUÍ FORZAMOS LA HORA DE LOS SPINNERS ---
+        // Leemos lo que el usuario puso en las ruedecitas
+        int h = spinHora.getValue();
+        int m = spinMinuto.getValue();
+        
+        // Se lo asignamos al gasto (sobrescribiendo la hora por defecto)
+        gastoResultado.setHora(java.time.LocalTime.of(h, m));
+        // ---------------------------------------------------------
 
         // Cerrar ventana
         cerrarVentana();
     }
-
     @FXML
     private void cancelar() {
         gastoResultado = null; // Indicamos que no se hizo nada

@@ -34,11 +34,11 @@
          <DatePicker fx:id="dateHasta" promptText="Hasta..." />
          <Separator />
 
-         <Label text="Meses (Ctrl+Click):" />
+         <Label text="Meses (Ctrl+Click mul.selc):" />
          <ListView fx:id="listMeses" prefHeight="150.0" />
          <Separator />
 
-         <Label text="Categorías (Ctrl+Click):" />
+         <Label text="Categorías (Ctrl+Click mul.selc):" />
          <ListView fx:id="listCategorias" prefHeight="150.0" />
          
          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#aplicarFiltros" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="APLICAR FILTROS" />

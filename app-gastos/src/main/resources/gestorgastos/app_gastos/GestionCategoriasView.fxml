@@ -17,10 +17,10 @@
             <items>
                 <Button onAction="#irAGastos" text="Gastos" />
                 <Button style="-fx-font-weight: bold; -fx-base: #ddd;" text="Categorías" />
-                <Button onAction="#irAVisualizacion" text="Visualización" />
+                <Button onAction="#irAVisualizacion" text="Visualización (Gráficos)" />
                 
                 <Button onAction="#irAAlertas" text="Alertas" />
-                <Button onAction="#irACMD" text="Consola" /> 
+                <Button onAction="#irACMD" text="CMD" /> 
                 
                 <Pane HBox.hgrow="ALWAYS" />
                 <Button onAction="#volverInicio" style="-fx-text-fill: white; -fx-background-color: red;" text="Volver al Inicio" />

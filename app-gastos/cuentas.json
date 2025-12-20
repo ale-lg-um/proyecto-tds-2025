@@ -18,64 +18,6 @@
   "miembros" : [ "Uno", "Dos" ],
   "tipo" : "COMPARTIDA"
 }, {
-  "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
-  "nombre" : "Normal",
-  "gastos" : [ {
-    "id" : "e4cda559-6ac5-421f-a320-3a4daebeedd5",
-    "concepto" : "gasto1",
-    "importe" : 10.0,
-    "fecha" : [ 2025, 12, 20 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "7ca84417-ad83-469e-b051-03a8561fc821",
-    "concepto" : "gastoNavideño",
-    "importe" : 200.0,
-    "fecha" : [ 2025, 12, 20 ],
-    "categoria" : {
-      "nombre" : "Navidad-M",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "0833794f-28e5-47db-bd90-2f74d08f6f68",
-    "concepto" : "gastoBarato",
-    "importe" : 5.0,
-    "fecha" : [ 2025, 6, 8 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "a0a83e62-a5e3-4fc6-9070-305f9830b051",
-    "concepto" : "gastoVerano",
-    "importe" : 100.0,
-    "fecha" : [ 2025, 6, 28 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  } ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "Navidad-M",
-    "descripcion" : "",
-    "colorHex" : "#00FF00"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
   "id" : "7a7bbf99-ead2-484e-95a9-f021a9b10ab6",
   "nombre" : "Especial",
   "gastos" : [ {
@@ -83,6 +25,7 @@
     "concepto" : "gastoEspecial",
     "importe" : 60.0,
     "fecha" : [ 2025, 12, 20 ],
+    "hora" : "14:30",
     "categoria" : {
       "nombre" : "General",
       "descripcion" : "Gastos varios",
@@ -106,4 +49,102 @@
     "Tres" : 25.0
   },
   "tipo" : "ESPECIAL"
+}, {
+  "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
+  "nombre" : "Normal",
+  "gastos" : [ {
+    "id" : "e4cda559-6ac5-421f-a320-3a4daebeedd5",
+    "concepto" : "gasto1",
+    "importe" : 10.0,
+    "fecha" : [ 2025, 12, 20 ],
+    "hora" : "14:29",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "7ca84417-ad83-469e-b051-03a8561fc821",
+    "concepto" : "gastoNavideño",
+    "importe" : 200.0,
+    "fecha" : [ 2025, 12, 20 ],
+    "hora" : "14:29",
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0833794f-28e5-47db-bd90-2f74d08f6f68",
+    "concepto" : "gastoBarato",
+    "importe" : 5.0,
+    "fecha" : [ 2025, 6, 8 ],
+    "hora" : "14:29",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a0a83e62-a5e3-4fc6-9070-305f9830b051",
+    "concepto" : "gastoVerano",
+    "importe" : 100.0,
+    "fecha" : [ 2025, 6, 28 ],
+    "hora" : "14:29",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "196f382f-1746-47a6-af02-e562965f5eec",
+    "concepto" : "Año pasado",
+    "importe" : 50.0,
+    "fecha" : [ 2025, 1, 5 ],
+    "hora" : "14:30",
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "7ace9792-ccff-41b4-9ff3-2488b183c402",
+    "concepto" : "Gasolina-Año nuevo",
+    "importe" : 60.0,
+    "fecha" : [ 2025, 1, 1 ],
+    "hora" : "10:04",
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a9c6ded2-6c0d-4089-baa1-02a1e9e5b703",
+    "concepto" : "Cena-Año nuevo",
+    "importe" : 200.0,
+    "fecha" : [ 2025, 1, 2 ],
+    "hora" : "15:08",
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "Yo"
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Navidad-M",
+    "descripcion" : "",
+    "colorHex" : "#00FF00"
+  } ],
+  "tipo" : "PERSONAL"
 } ]

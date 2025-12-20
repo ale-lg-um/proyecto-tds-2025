@@ -16,29 +16,28 @@ import java.util.ArrayList;
 public class GestionCategoriasController {
 
     @FXML private ListView<Categoria> listaCategorias;
+    @FXML private Label lblTituloCuenta;
+
     private CuentaService cuentaService = CuentaService.getInstancia();
     private Cuenta cuentaActual;
 
     public void setCuenta(Cuenta cuenta) {
         this.cuentaActual = cuenta;
         
-        // Si por alguna razón la cuenta viene sin categorías, inicializamos
+        // Inicialización de seguridad
         if (this.cuentaActual.getCategorias() == null) {
-            this.cuentaActual.setCategorias(new ArrayList<>()); // Aseguramos que la lista exista
+            this.cuentaActual.setCategorias(new ArrayList<>());
         }
         if (this.cuentaActual.getCategorias().isEmpty()) {
             this.cuentaActual.getCategorias().add(new Categoria("General", "Defecto", "#D3D3D3"));
         }
 
-        // --- ESTA ES LA LÍNEA QUE TE FALTABA ---
-        // Ahora que ya tenemos la cuenta, ¡cargamos la lista visualmente!
         cargarCategorias();
-        // ---------------------------------------
     }
 
     @FXML
     public void initialize() {
-        // CellFactory para mostrar el círculo de color
+        // Configuración visual de la lista (Círculos de colores)
         listaCategorias.setCellFactory(lv -> new ListCell<Categoria>() {
             @Override
             protected void updateItem(Categoria item, boolean empty) {
@@ -58,14 +57,9 @@ public class GestionCategoriasController {
             }
         });
         
-        // Esperamos a tener la cuenta para cargar (se hace en setCuenta o al mostrar)
-        // Pero como initialize corre antes de setCuenta, cargaremos en un método aparte o usaremos un listener si fuera necesario.
-        // En este caso, llamaremos a cargarCategorias() al final de setCuenta() mejor, 
-        // pero por seguridad si ya está seteado:
         if (cuentaActual != null) cargarCategorias();
     }
     
-    // Método auxiliar para refrescar la vista
     public void cargarCategorias() {
         if (cuentaActual != null) {
             listaCategorias.setItems(FXCollections.observableArrayList(cuentaActual.getCategorias()));
@@ -85,13 +79,8 @@ public class GestionCategoriasController {
             stage.showAndWait();
 
             if (controller.getCategoriaResultado() != null) {
-                // 1. Añadimos a LA CUENTA ACTUAL (No al servicio global)
                 cuentaActual.getCategorias().add(controller.getCategoriaResultado());
-                
-                // 2. Guardamos la cuenta en el JSON para persistir la nueva categoría
                 cuentaService.agregarCuenta(null, cuentaActual);
-                
-                // 3. Refrescamos
                 cargarCategorias();
             }
         } catch (IOException e) { e.printStackTrace(); }
@@ -111,14 +100,11 @@ public class GestionCategoriasController {
         alert.setContentText("¿Borrar '" + seleccionada.getNombre() + "'? Sus gastos pasarán a 'General'.");
         
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
-            // 1. Buscamos la categoría destino (General) dentro de ESTA cuenta
             Categoria catGeneral = cuentaActual.getCategorias().stream()
                     .filter(c -> "General".equals(c.getNombre()))
-                    .findFirst()
-                    .orElse(null);
+                    .findFirst().orElse(null);
 
             if (catGeneral != null) {
-                // 2. Reasignamos los gastos de ESTA cuenta
                 for (Gasto g : cuentaActual.getGastos()) {
                     if (g.getCategoria().equals(seleccionada)) {
                         g.setCategoria(catGeneral);
@@ -126,17 +112,14 @@ public class GestionCategoriasController {
                 }
             }
 
-            // 3. Borramos la categoría de la lista de la cuenta
             cuentaActual.getCategorias().remove(seleccionada);
-            
-            // 4. Guardamos cambios en disco
             cuentaService.agregarCuenta(null, cuentaActual);
-            
             cargarCategorias();
         }
     }
 
     // --- NAVEGACIÓN ---
+
     @FXML
     private void irAGastos() {
         try {
@@ -155,10 +138,58 @@ public class GestionCategoriasController {
         } catch (IOException e) { e.printStackTrace(); }
     }
     
+    // --- AQUÍ ESTÁ LA NUEVA LÓGICA DE CMD ---
+    @FXML 
+    private void irACMD() { 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
+            Parent root = loader.load();
+
+            TerminalController controller = loader.getController();
+            controller.setCuenta(cuentaActual);
+
+            // Callback: Si pasa algo en la terminal, refrescamos la lista de categorías (por precaución)
+            controller.setOnUpdate(() -> {
+                cargarCategorias();
+            });
+
+            Stage stage = new Stage();
+            stage.setTitle("Terminal - " + cuentaActual.getNombre());
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error al abrir la terminal.");
+        }
+    }
+    // ----------------------------------------
+
+    @FXML
+    private void irAVisualizacion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/VisualizacionView.fxml"));
+            Parent root = loader.load();
+
+            VisualizacionController controller = loader.getController();
+            controller.setCuenta(cuentaActual); 
+
+            // --- CORRECCIÓN AQUÍ ---
+            // Usamos 'listaCategorias' para obtener la referencia a la ventana, 
+            // ya que 'lblTituloCuenta' parece no estar enlazado en este FXML.
+            Stage stage = (Stage) listaCategorias.getScene().getWindow();
+            // -----------------------
+
+            stage.setScene(new Scene(root, 1100, 750)); 
+            stage.centerOnScreen();
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML private void irAAlertas() { System.out.println("Ir a Alertas"); }
-    @FXML private void irACMD() { System.out.println("Ir a Consola"); }
-    @FXML private void irAVisualizacion() { System.out.println("Ir a Gráficos"); }
-    
+
     @FXML
     private void volverInicio() {
         try {

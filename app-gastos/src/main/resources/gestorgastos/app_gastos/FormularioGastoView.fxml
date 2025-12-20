@@ -4,50 +4,61 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="gestorgastos.controller.FormularioGastoController"
-      stylesheets="@style.css"
-      spacing="15" alignment="CENTER_LEFT" prefWidth="350" prefHeight="400">
+<VBox xmlns="http://javafx.com/javafx/25"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="gestorgastos.controller.FormularioGastoController"
+	stylesheets="@style.css" spacing="15" alignment="CENTER_LEFT"
+	prefWidth="350" prefHeight="400">
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+	<padding>
+		<Insets top="20" right="20" bottom="20" left="20" />
+	</padding>
 
-    <Label fx:id="lblTitulo" text="Nuevo Gasto" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+	<Label fx:id="lblTitulo" text="Nuevo Gasto"
+		style="-fx-font-size: 16px; -fx-font-weight: bold;" />
 
-    <VBox spacing="5">
-        <Label text="Concepto:" />
-        <TextField fx:id="txtConcepto" promptText="Ej: Cena, Gasolina..." />
-    </VBox>
+	<VBox spacing="5">
+		<Label text="Concepto:" />
+		<TextField fx:id="txtConcepto"
+			promptText="Ej: Cena, Gasolina..." />
+	</VBox>
 
-    <HBox spacing="10">
-        <VBox spacing="5" HBox.hgrow="ALWAYS">
-            <Label text="Importe (€):" />
-            <TextField fx:id="txtImporte" promptText="0.00" />
-        </VBox>
-        <VBox spacing="5" HBox.hgrow="ALWAYS">
-            <Label text="Fecha:" />
-            <DatePicker fx:id="dateFecha" />
-        </VBox>
-    </HBox>
+	<HBox spacing="10">
+		<VBox spacing="5" HBox.hgrow="ALWAYS">
+			<Label text="Importe (€):" />
+			<TextField fx:id="txtImporte" promptText="0.00" />
+		</VBox>
+		<VBox spacing="5" HBox.hgrow="ALWAYS">
+			<Label text="Fecha:" />
+			<DatePicker fx:id="dateFecha" />
+		</VBox>
+	</HBox>
 
-    <VBox spacing="5">
-        <Label text="Categoría:" />
-        <ComboBox fx:id="comboCategoria" maxWidth="Infinity" />
-    </VBox>
+	<HBox spacing="10" alignment="CENTER_LEFT">
+		<Label text="Hora:" />
+		<Spinner fx:id="spinHora" editable="true" prefWidth="70" />
+		<Label text=":" />
+		<Spinner fx:id="spinMinuto" editable="true" prefWidth="70" />
+	</HBox>
 
-    <VBox fx:id="panelPagador" spacing="5">
-        <Label text="¿Quién ha pagado?" style="-fx-text-fill: blue;" />
-        <ComboBox fx:id="comboPagador" maxWidth="Infinity" />
-    </VBox>
-    
-    <Label fx:id="lblError" textFill="RED" wrapText="true" />
+	<VBox spacing="5">
+		<Label text="Categoría:" />
+		<ComboBox fx:id="comboCategoria" maxWidth="Infinity" />
+	</VBox>
 
-    <Separator />
+	<VBox fx:id="panelPagador" spacing="5">
+		<Label text="¿Quién ha pagado?" style="-fx-text-fill: blue;" />
+		<ComboBox fx:id="comboPagador" maxWidth="Infinity" />
+	</VBox>
 
-    <HBox spacing="10" alignment="CENTER_RIGHT">
-        <Button text="Cancelar" onAction="#cancelar" />
-        <Button text="Guardar" onAction="#guardar" defaultButton="true" style="-fx-base: #4CAF50; -fx-text-fill: white;"/>
-    </HBox>
+	<Label fx:id="lblError" textFill="RED" wrapText="true" />
+
+	<Separator />
+
+	<HBox spacing="10" alignment="CENTER_RIGHT">
+		<Button text="Cancelar" onAction="#cancelar" />
+		<Button text="Guardar" onAction="#guardar" defaultButton="true"
+			style="-fx-base: #4CAF50; -fx-text-fill: white;" />
+	</HBox>
 
 </VBox>

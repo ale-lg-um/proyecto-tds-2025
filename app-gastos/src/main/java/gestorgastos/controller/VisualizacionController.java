@@ -175,7 +175,8 @@ public class VisualizacionController {
             Entry<String> entry = new Entry<>(g.getConcepto() + " (" + g.getImporte() + "€)");
             
             // Asignar fecha y una hora ficticia (ej: 10:00 AM) para que se vea en el día
-            entry.setInterval(g.getFecha(), LocalTime.of(10, 0), g.getFecha(), LocalTime.of(11, 0));
+           // entry.setInterval(g.getFecha(), LocalTime.of(10, 0), g.getFecha(), LocalTime.of(11, 0));
+            entry.setInterval(g.getFecha(), g.getHora(), g.getFecha(), g.getHora().plusHours(1));
             
             // Opcional: poner Full Day
             // entry.setFullDay(true); 

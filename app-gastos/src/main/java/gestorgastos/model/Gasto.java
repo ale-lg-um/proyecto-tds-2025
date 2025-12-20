@@ -3,12 +3,22 @@ package gestorgastos.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalTime; // <--- Importar
+
 public class Gasto {
 
 	private String id;
 	private String concepto; // Ej: "Cena", "Gasolina"
 	private double importe; // Ej: 50.0
 	private LocalDate fecha; // Ej: 2025-09-29
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+    private LocalTime hora = LocalTime.now();
+	
+
+	
 	private Categoria categoria; // El gasto pertenece a una categoría
 
 	// IMPORTANTE: Necesario para cuentas compartidas
@@ -82,4 +92,9 @@ public class Gasto {
 	public String toString() {
 		return fecha + ": " + concepto + " (" + importe + "€) - " + pagador;
 	}
+	
+	// --- NUEVOS GETTER Y SETTER (Necesarios para el calendario) ---
+    public LocalTime getHora() { return hora; }
+    public void setHora(LocalTime hora) { this.hora = hora; }
+    // --------------------------------------------------------------
 }
