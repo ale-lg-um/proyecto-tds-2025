@@ -3,6 +3,7 @@ module gestorgastos.app_gastos {
     requires javafx.fxml;
     requires javafx.graphics;
     requires javafx.base;
+    requires com.calendarfx.view;
     
     // Dependencias de Jackson
     requires com.fasterxml.jackson.core;

@@ -45,6 +45,12 @@
             <version>2.19.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.calendarfx</groupId>
+            <artifactId>view</artifactId>
+            <version>11.12.7</version> 
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

@@ -1,5 +1,6 @@
 package gestorgastos.controller;
 
+//import gestorgastos.cli.GestorCLI;
 import gestorgastos.model.*;
 import gestorgastos.services.CuentaService;
 import javafx.beans.property.SimpleObjectProperty;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class DetalleCuentaController {
@@ -44,6 +46,10 @@ public class DetalleCuentaController {
     private Cuenta cuentaActual;
     private CuentaService cuentaService = CuentaService.getInstancia();
 
+    // --- GESTIÓN DE CONSOLA (CLI) ---
+    //private GestorCLI gestorCLI;
+    //private Thread hiloCLI;
+
     @FXML
     public void initialize() {
         // 1. Configurar QUÉ datos van en cada columna (ValueFactory)
@@ -55,54 +61,38 @@ public class DetalleCuentaController {
         // El valor base de esta columna es el NOMBRE de la categoría
         colCategoria.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCategoria().getNombre()));
 
-        // --- LO NUEVO: Configurar CÓMO se ve la celda (CellFactory) para el COLOR ---
+        // --- Configurar CÓMO se ve la celda (CellFactory) para el COLOR ---
         colCategoria.setCellFactory(column -> new TableCell<Gasto, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
-                super.updateItem(item, empty); // Obligatorio llamar a super
-
+                super.updateItem(item, empty);
                 if (empty || item == null) {
-                    // Si la fila está vacía, limpiamos texto y gráficos
                     setText(null);
                     setGraphic(null);
                 } else {
-                    // 1. Ponemos el nombre de la categoría (texto)
                     setText(item);
-
-                    // 2. Intentamos obtener el objeto Gasto de esta fila para sacar el color
+                    // Círculo de color
                     if (getTableRow() != null && getTableRow().getItem() != null) {
                         Gasto gasto = (Gasto) getTableRow().getItem();
                         Categoria cat = gasto.getCategoria();
-
-                        // 3. Creamos el círculo visual
-                        Circle circle = new Circle(8); // Radio de 8px
+                        Circle circle = new Circle(8);
                         try {
-                            // Convertimos el String Hex (#FF0000) a Color de JavaFX
                             circle.setFill(Color.web(cat.getColorHex()));
-                            circle.setStroke(Color.DARKGRAY); // Un borde fino queda mejor
+                            circle.setStroke(Color.DARKGRAY);
                         } catch (Exception e) {
-                            // Si el color falla o es nulo, ponemos gris por defecto
                             circle.setFill(Color.LIGHTGRAY);
                         }
-                        
-                        // Añadimos el círculo a la celda
                         setGraphic(circle);
                     }
                 }
             }
         });
-        // ---------------------------------------------------------------------------
 
         // 2. Configurar acciones de los botones
         btnAnadirGasto.setOnAction(e -> abrirCrearGasto());
         btnEditarGasto.setOnAction(e -> abrirEditarGasto());
         btnBorrarGasto.setOnAction(e -> borrarGasto());
-        
-        // Funcionalidades futuras
         btnImportar.setOnAction(e -> System.out.println("Funcionalidad Importar pendiente..."));
-        
-        // Acciones del menú superior (asegúrate de que estos métodos existan en tu controller)
-        // Ejemplo: btnCategorias.setOnAction(e -> irACategorias());
     }
 
     /**
@@ -112,21 +102,50 @@ public class DetalleCuentaController {
         this.cuentaActual = cuenta;
         lblTituloCuenta.setText("Gastos: " + cuenta.getNombre());
 
+        // Aseguramos que la lista de categorías existe para evitar errores
+        if (this.cuentaActual.getCategorias() == null) {
+            this.cuentaActual.setCategorias(new ArrayList<>());
+        }
+        if (this.cuentaActual.getCategorias().isEmpty()) {
+            this.cuentaActual.getCategorias().add(new Categoria("General", "Defecto", "#D3D3D3"));
+        }
+
         actualizarTabla();
 
-        // Gestión del Panel de Saldos (Solo para Compartidas/Especiales)
+        // Gestión del Panel de Saldos
         if (cuenta instanceof CuentaCompartida) {
             panelSaldos.setVisible(true);
             calcularYMostrarSaldos((CuentaCompartida) cuenta);
         } else {
             panelSaldos.setVisible(false);
         }
+
+        // --- INICIAR HILO DE CONSOLA (CLI) ---
+       // iniciarCLI();
+    }
+    /*
+    // --- MÉTODOS CLI ---
+    private void iniciarCLI() {
+        // Solo iniciamos si no está ya corriendo
+        if (hiloCLI == null || !hiloCLI.isAlive()) {
+            gestorCLI = new GestorCLI(cuentaActual);
+            hiloCLI = new Thread(gestorCLI);
+            hiloCLI.setDaemon(true); // Se cierra si cierras la app principal
+            hiloCLI.start();
+        }
     }
 
-    // --- LÓGICA CRUD (Create, Read, Update, Delete) ---
+    private void detenerCLI() {
+        if (gestorCLI != null) {
+            gestorCLI.detener();
+        }
+    }
+    // -------------------
+    */
+
+    // --- LÓGICA CRUD ---
 
     private void abrirCrearGasto() {
-        // null indica que estamos creando uno nuevo
         abrirFormularioGasto(null);
     }
 
@@ -136,7 +155,6 @@ public class DetalleCuentaController {
             mostrarAlerta("Selecciona un gasto de la tabla para editarlo.");
             return;
         }
-        // Pasamos el gasto seleccionado para editarlo
         abrirFormularioGasto(seleccionado);
     }
 
@@ -146,25 +164,19 @@ public class DetalleCuentaController {
             Parent root = loader.load();
 
             FormularioGastoController controller = loader.getController();
-            // Le pasamos la cuenta (para saber quiénes son los miembros) y el gasto (si es edición)
             controller.initAttributes(cuentaActual, gastoEdicion);
 
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana de atrás
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setTitle(gastoEdicion == null ? "Nuevo Gasto" : "Editar Gasto");
             stage.setScene(new Scene(root));
-            stage.showAndWait(); // Espera a que se cierre
+            stage.showAndWait();
 
-            // Al volver, verificamos si hubo resultado
-            Gasto resultado = controller.getGastoResultado();
-            if (resultado != null) {
+            // Al volver, si hubo resultado, guardamos
+            if (controller.getGastoResultado() != null) {
                 if (gastoEdicion == null) {
-                    // Si era nuevo, lo añadimos a la lista
-                    cuentaActual.agregarGasto(resultado);
+                    cuentaActual.agregarGasto(controller.getGastoResultado());
                 }
-                // Si era edición, el objeto ya se modificó por referencia en el otro controlador.
-                
-                // GUARDAMOS Y REFRESCAMOS TODO
                 guardarCambiosYRefrescar();
             }
 
@@ -181,7 +193,6 @@ public class DetalleCuentaController {
             return;
         }
 
-        // Confirmación
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Borrar Gasto");
         confirm.setHeaderText(null);
@@ -193,17 +204,12 @@ public class DetalleCuentaController {
         }
     }
 
-    /**
-     * Método centralizado para guardar en JSON y actualizar la vista.
-     */
     private void guardarCambiosYRefrescar() {
-        // 1. Persistencia: Sobrescribimos la cuenta en el archivo JSON
+        // 1. Guardar en JSON
         cuentaService.agregarCuenta(null, cuentaActual);
-
-        // 2. Vista: Refrescamos la tabla
+        // 2. Refrescar Tabla
         actualizarTabla();
-
-        // 3. Saldos: Recalculamos si es necesario
+        // 3. Recalcular Saldos si es compartida
         if (cuentaActual instanceof CuentaCompartida) {
             calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
         }
@@ -216,16 +222,13 @@ public class DetalleCuentaController {
 
     private void calcularYMostrarSaldos(CuentaCompartida cuentaComp) {
         listaSaldos.getItems().clear();
-
-        // Cálculo usando Streams (definido en el Modelo)
         Map<String, Double> saldos = cuentaComp.calcularSaldos();
-
         saldos.forEach((persona, cantidad) -> {
             String texto = String.format("%s: %.2f €", persona, cantidad);
             listaSaldos.getItems().add(texto);
         });
 
-        // Formato visual: Rojo si debe, Verde si le deben
+        // Colores para deudores/acreedores
         listaSaldos.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -252,18 +255,18 @@ public class DetalleCuentaController {
 
     @FXML
     private void volverInicio() {
+        // DETENER LA CONSOLA AL SALIR
+        //detenerCLI();
+
         try {
-            // 1. Cargar de nuevo la vista Principal
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/PrincipalView.fxml"));
             Parent root = loader.load();
 
-            // 2. Crear la nueva ventana (Stage)
             Stage stage = new Stage();
             stage.setTitle("Gestor de Gastos - Mis Cuentas");
             stage.setScene(new Scene(root));
             stage.show();
 
-            // 3. Cerrar la ventana actual (Detalle de Gastos)
             Stage currentStage = (Stage) lblTituloCuenta.getScene().getWindow();
             currentStage.close();
 
@@ -272,22 +275,82 @@ public class DetalleCuentaController {
         }
     }
 
- // 1. Método para navegar a Categorías
     @FXML
     private void irACategorias() {
+        // DETENER LA CONSOLA AL CAMBIAR DE VISTA
+        //detenerCLI();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/GestionCategoriasView.fxml"));
             Parent root = loader.load();
             
             GestionCategoriasController controller = loader.getController();
-            controller.setCuenta(cuentaActual); // Le pasamos la cuenta para poder volver luego
+            controller.setCuenta(cuentaActual);
 
             Stage stage = (Stage) lblTituloCuenta.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) { e.printStackTrace(); }
     }
     
-    @FXML private void irAVisualizacion() { System.out.println("Ir a Gráficos"); }
+    @FXML
+    private void irAVisualizacion() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/VisualizacionView.fxml"));
+            Parent root = loader.load();
+
+            VisualizacionController controller = loader.getController();
+            controller.setCuenta(cuentaActual); // ¡Pasamos la cuenta!
+
+            Stage stage = (Stage) lblTituloCuenta.getScene().getWindow();
+            
+            // Hacemos la ventana más grande porque el calendario ocupa espacio
+            stage.setScene(new Scene(root, 1100, 750)); 
+            stage.centerOnScreen();
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @FXML private void irAAlertas() { System.out.println("Ir a Alertas"); }
-    @FXML private void irACMD() { System.out.println("Ir a Terminal"); }
+    /*
+    @FXML private void irACMD() { System.out.println("La consola ya está activa en segundo plano (mira tu IDE)."); }
+    */
+    @FXML
+    private void irACMD() {
+        try {
+            // 1. Cargar la vista de la Terminal
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
+            Parent root = loader.load();
+
+            // 2. Pasar la cuenta al controlador de la terminal
+            TerminalController controller = loader.getController();
+            controller.setCuenta(cuentaActual);
+
+            controller.setOnUpdate(() -> {
+                actualizarTabla(); // Refresca la tabla de gastos
+                
+                // Si es compartida, refresca también los saldos
+                if (cuentaActual instanceof CuentaCompartida) {
+                    calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
+                }
+            });
+
+            // 3. Abrir en una ventana nueva (Stage)
+            Stage stage = new Stage();
+            stage.setTitle("Terminal - " + cuentaActual.getNombre());
+            stage.setScene(new Scene(root));
+            
+            // Opcional: Hacer que sea modal (no puedes tocar la ventana de atrás)
+            // stage.initModality(Modality.APPLICATION_MODAL); 
+            
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error al abrir la terminal.");
+        }
+    }
 }
+
