@@ -1,58 +1,29 @@
 [ {
-  "id" : "fb3bb476-dfb4-4f17-9ff7-23cc6adc07ae",
-  "nombre" : "Personal",
+  "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
+  "nombre" : "Normal",
   "gastos" : [ ],
   "categorias" : [ {
     "nombre" : "General",
     "descripcion" : "Gastos varios",
     "colorHex" : "#D3D3D3"
   }, {
-    "nombre" : "Navidad",
+    "nombre" : "Navidad-M",
     "descripcion" : "",
-    "colorHex" : "#FFFF00"
+    "colorHex" : "#00FF00"
   } ],
   "tipo" : "PERSONAL"
 }, {
-  "id" : "988acff1-b769-44e7-8af8-ae1c02bd8b94",
-  "nombre" : "Compartida",
+  "id" : "7a7bbf99-ead2-484e-95a9-f021a9b10ab6",
+  "nombre" : "Especial",
   "gastos" : [ ],
   "categorias" : [ {
     "nombre" : "General",
     "descripcion" : "Gastos varios",
     "colorHex" : "#D3D3D3"
   }, {
-    "nombre" : "Verano",
+    "nombre" : "Verano-M",
     "descripcion" : "",
     "colorHex" : "#00FFFF"
-  } ],
-  "miembros" : [ "Uno", "Dos" ],
-  "tipo" : "COMPARTIDA"
-<<<<<<< HEAD
-}, {
-  "id" : "e6dd176b-dc83-4ea3-87c2-09ee9e7a6715",
-  "nombre" : "Especial",
-  "gastos" : [ {
-    "id" : "2ae991d0-726d-4234-910c-c8cea043a74e",
-    "concepto" : "cena",
-    "importe" : 30.0,
-    "fecha" : [ 2025, 12, 2 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : null,
-      "colorHex" : null
-    },
-    "pagador" : "Uno"
-  }, {
-    "id" : "c6b9af90-3112-425c-8040-7506dd4d04c2",
-    "concepto" : "comida",
-    "importe" : 30.0,
-    "fecha" : [ 2025, 12, 2 ],
-    "categoria" : {
-      "nombre" : "Año Nuevo",
-      "descripcion" : "",
-      "colorHex" : "#FFFF00"
-    },
-    "pagador" : "Dos"
   } ],
   "miembros" : [ "Uno", "Dos", "Tres" ],
   "porcentajes" : {
@@ -62,37 +33,18 @@
   },
   "tipo" : "ESPECIAL"
 }, {
-  "id" : "d8d1b51d-a932-4633-adfc-53ae866e868b",
-  "nombre" : "nueva",
-  "gastos" : [ {
-    "id" : "d6aff983-4049-44a2-8d30-dc372bacb490",
-    "concepto" : "gasto1",
-    "importe" : 15.0,
-    "fecha" : [ 2025, 12, 9 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "c84f4f5b-cc5b-4a8a-8518-5fefb11ee87f",
-    "concepto" : "gasto2",
-    "importe" : 12.0,
-    "fecha" : [ 2025, 12, 17 ],
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
-  "id" : "08add2cd-36eb-459f-a23a-30b26d7ca159",
-  "nombre" : "person1",
+  "id" : "d42fb559-4fbe-4d1d-a3d1-806267ab74df",
+  "nombre" : "Compartida",
   "gastos" : [ ],
-  "tipo" : "PERSONAL"
-=======
->>>>>>> ddfe39b7a810fe0db8650aaba7ed4ccd482d1197
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Comidas-M",
+    "descripcion" : "",
+    "colorHex" : "#FF0000"
+  } ],
+  "miembros" : [ "Uno", "Dos" ],
+  "tipo" : "COMPARTIDA"
 } ]
