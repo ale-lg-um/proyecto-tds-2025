@@ -136,6 +136,18 @@
       "colorHex" : "#00FF00"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "96579488-7c89-4283-832e-682ac2d4e183",
+    "concepto" : "nuevoGasto",
+    "importe" : 15.0,
+    "fecha" : [ 2025, 12, 23 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "categorias" : [ {
     "nombre" : "General",
