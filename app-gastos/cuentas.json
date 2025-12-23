@@ -18,38 +18,6 @@
   "miembros" : [ "Uno", "Dos" ],
   "tipo" : "COMPARTIDA"
 }, {
-  "id" : "7a7bbf99-ead2-484e-95a9-f021a9b10ab6",
-  "nombre" : "Especial",
-  "gastos" : [ {
-    "id" : "35a644b4-2f82-41bf-bb1d-4cd16e25a927",
-    "concepto" : "gastoEspecial",
-    "importe" : 60.0,
-    "fecha" : [ 2025, 12, 20 ],
-    "hora" : "14:30",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Tres"
-  } ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "Verano-M",
-    "descripcion" : "",
-    "colorHex" : "#00FFFF"
-  } ],
-  "miembros" : [ "Uno", "Dos", "Tres" ],
-  "porcentajes" : {
-    "Uno" : 50.0,
-    "Dos" : 25.0,
-    "Tres" : 25.0
-  },
-  "tipo" : "ESPECIAL"
-}, {
   "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
   "nombre" : "Normal",
   "gastos" : [ {
@@ -159,4 +127,24 @@
     "colorHex" : "#00FF00"
   } ],
   "tipo" : "PERSONAL"
+}, {
+  "id" : "7a7bbf99-ead2-484e-95a9-f021a9b10ab6",
+  "nombre" : "Especial",
+  "gastos" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Verano-M",
+    "descripcion" : "",
+    "colorHex" : "#00FFFF"
+  } ],
+  "miembros" : [ "Uno", "Dos", "Tres" ],
+  "porcentajes" : {
+    "Uno" : 50.0,
+    "Dos" : 25.0,
+    "Tres" : 25.0
+  },
+  "tipo" : "ESPECIAL"
 } ]
