@@ -217,16 +217,17 @@ public class TerminalController {
     // Si mensajeError tiene texto, significa que nos hemos pasado
     if (mensajeError != null) {
         // Mostramos el "Pop-up" versión texto
-        System.out.println("\n**************************************************");
-        System.out.println("⚠️  GASTO BLOQUEADO POR ALERTA");
-        System.out.println("--------------------------------------------------");
-        System.out.println(mensajeError);
-        System.out.println("--------------------------------------------------");
-        System.out.println("ℹ️  Se ha generado una notificación en tu cuenta.");
-        System.out.println("    El gasto NO se ha guardado.");
-        System.out.println("**************************************************\n");
+        imprimir("\n**************************************************");
+        imprimir("⚠️  GASTO BLOQUEADO POR ALERTA");
+        imprimir("--------------------------------------------------");
+        imprimir(mensajeError);
+        imprimir("--------------------------------------------------");
+        imprimir("ℹ️  Se ha generado una notificación en tu cuenta.");
+        imprimir("    El gasto NO se ha guardado.");
+        imprimir("**************************************************\n");
 
         // Reseteamos el flujo para volver al menú principal
+        guardarCambios();
         pasoActual = 0;
         reiniciarPrompt();
         

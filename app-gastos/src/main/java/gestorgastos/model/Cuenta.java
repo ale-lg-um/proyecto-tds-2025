@@ -101,8 +101,13 @@ public abstract class Cuenta {
 	}
 	
 	public void anadirNotificacion(String notificacion) {
-		Notificacion notific = new Notificacion(notificacion);
-		this.notificaciones.add(notific);
+		if (this.notificaciones == null) {
+	        this.notificaciones = new ArrayList<>();
+	        
+	    }
+		Notificacion n = new Notificacion(notificacion);
+		notificaciones.add(n);
+	    
 	}
 
 	@Override

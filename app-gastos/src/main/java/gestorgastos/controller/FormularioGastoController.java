@@ -30,6 +30,9 @@ public class FormularioGastoController {
     private Gasto gastoResultado;
     private boolean esEdicion = false;
     private Cuenta cuentaAsociada; // Necesario para saber los miembros y las categorías
+    private boolean guardadoConfirmado = false;
+
+
 
     @FXML
     public void initialize() {
@@ -168,7 +171,7 @@ private void guardar() {
 
 
     // ---------------------------------------------------
-    // 3. COMPROBAR ALERTAS (Lógica de Bloqueo)
+	// 3. COMPROBAR ALERTAS (Lógica de Bloqueo)
     // ---------------------------------------------------
     gestorgastos.services.ServicioAlertas servicioAlertas = new gestorgastos.services.ServicioAlertas();
     
@@ -193,7 +196,8 @@ private void guardar() {
     // ---------------------------------------------------
     
     if (!esEdicion) {
-        cuentaAsociada.agregarGasto(gastoResultado);
+        //cuentaAsociada.agregarGasto(gastoResultado);
+    	this.guardadoConfirmado = true;
     }
     
 
@@ -208,5 +212,9 @@ private void guardar() {
     private void cerrarVentana() {
         Stage stage = (Stage) txtConcepto.getScene().getWindow();
         stage.close();
+    }
+    
+    public boolean isGuardadoConfirmado() {
+        return guardadoConfirmado;
     }
 }

@@ -172,13 +172,22 @@ public class DetalleCuentaController {
             stage.setScene(new Scene(root));
             stage.showAndWait();
 
-            // Al volver, si hubo resultado, guardamos
-            if (controller.getGastoResultado() != null) {
+            // --- CAMBIO CLAVE AQUÍ ---
+            
+            // Antes tenías: if (controller.getGastoResultado() != null) {
+            
+            // Ahora ponemos esto:
+            if (controller.isGuardadoConfirmado() && controller.getGastoResultado() != null) {
+                
                 if (gastoEdicion == null) {
+                    // Solo añadimos si es nuevo. Si es edición, ya modificamos el objeto por referencia
                     cuentaActual.agregarGasto(controller.getGastoResultado());
                 }
+                
+                // Guardamos en el JSON
                 guardarCambiosYRefrescar();
             }
+            // Si cierra con X o cancela, 'isGuardadoConfirmado' será false y no entrará aquí.
 
         } catch (IOException e) {
             e.printStackTrace();

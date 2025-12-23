@@ -54,7 +54,23 @@
       "colorHex" : "#00FF00"
     }
   } ],
-  "notificaciones" : [ ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
+    "fecha" : "2025-12-23 14:07:46",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
+    "fecha" : "2025-12-23 14:08:24",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
+    "fecha" : "2025-12-23 14:08:28",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
+    "fecha" : "2025-12-23 14:29:40",
+    "leida" : false
+  } ],
   "categorias" : [ {
     "nombre" : "General",
     "descripcion" : "Gastos varios",
