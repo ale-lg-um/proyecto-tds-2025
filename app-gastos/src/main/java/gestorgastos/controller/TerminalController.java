@@ -200,21 +200,50 @@ public class TerminalController {
     }
 
     private void guardarGasto(Categoria cat, String pagador) {
-        // 1. Creamos el gasto (esto pone la fecha bien, pero la hora a "now" por defecto)
-        Gasto nuevo = new Gasto(tempConcepto, tempImporte, tempFecha, cat, pagador);
-        
-        // 2. SOBRESCRIBIMOS CON LA HORA QUE ELIGIÓ EL USUARIO
-        nuevo.setHora(tempHora);
+    // 1. Creamos el gasto
+    Gasto nuevo = new Gasto(tempConcepto, tempImporte, tempFecha, cat, pagador);
+    
+    // 2. SOBRESCRIBIMOS CON LA HORA QUE ELIGIÓ EL USUARIO
+    nuevo.setHora(tempHora);
 
-        new gestorgastos.services.ServicioAlertas().comprobarAlertas(cuentaActiva,nuevo); 
-        
-        cuentaActiva.agregarGasto(nuevo);
-        guardarCambios();
-        
-        imprimir("✓ Gasto guardado (" + tempFecha + " " + tempHora.toString().substring(0,5) + ").");
+    // ---------------------------------------------------------
+    // 3. COMPROBACIÓN DE ALERTAS (BLOQUEANTE)
+    // ---------------------------------------------------------
+    gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
+    
+    // Guardamos el resultado. Si hay alerta, el servicio ya creó la notificación internamente.
+    String mensajeError = servicio.comprobarAlertas(cuentaActiva, nuevo); 
+
+    // Si mensajeError tiene texto, significa que nos hemos pasado
+    if (mensajeError != null) {
+        // Mostramos el "Pop-up" versión texto
+        System.out.println("\n**************************************************");
+        System.out.println("⚠️  GASTO BLOQUEADO POR ALERTA");
+        System.out.println("--------------------------------------------------");
+        System.out.println(mensajeError);
+        System.out.println("--------------------------------------------------");
+        System.out.println("ℹ️  Se ha generado una notificación en tu cuenta.");
+        System.out.println("    El gasto NO se ha guardado.");
+        System.out.println("**************************************************\n");
+
+        // Reseteamos el flujo para volver al menú principal
         pasoActual = 0;
         reiniciarPrompt();
+        
+        // IMPORTANTE: Return para que NO ejecute el código de abajo (agregarGasto)
+        return; 
     }
+
+    // ---------------------------------------------------------
+    // 4. GUARDAR EN LA CUENTA (Solo llegamos aquí si mensajeError fue null)
+    // ---------------------------------------------------------
+    cuentaActiva.agregarGasto(nuevo);
+    guardarCambios();
+    
+    imprimir("✓ Gasto guardado (" + tempFecha + " " + tempHora.toString().substring(0,5) + ").");
+    pasoActual = 0;
+    reiniciarPrompt();
+}
     
     private void guardarCambios() {
         cuentaService.agregarCuenta(null, cuentaActiva);

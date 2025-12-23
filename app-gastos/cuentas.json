@@ -44,19 +44,7 @@
 }, {
   "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
   "nombre" : "Normal",
-  "gastos" : [ {
-    "id" : "2ee5a6b7-619f-455a-92ab-32805c8b2067",
-    "concepto" : "regalos",
-    "importe" : 200.0,
-    "fecha" : [ 2025, 12, 23 ],
-    "hora" : "13:15",
-    "categoria" : {
-      "nombre" : "Navidad-M",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    },
-    "pagador" : "Yo"
-  } ],
+  "gastos" : [ ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
     "limite" : 100.0,
