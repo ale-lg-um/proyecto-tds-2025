@@ -11,8 +11,7 @@ public class CuentaService {
 
     private static CuentaService instancia;
     
-    // Ya no hay lista global de categorías aquí.
-    
+   
     private CuentaRepository repositorio;
 
     private CuentaService() {

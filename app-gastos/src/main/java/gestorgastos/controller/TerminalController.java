@@ -204,7 +204,9 @@ public class TerminalController {
         Gasto nuevo = new Gasto(tempConcepto, tempImporte, tempFecha, cat, pagador);
         
         // 2. SOBRESCRIBIMOS CON LA HORA QUE ELIGIÓ EL USUARIO
-        nuevo.setHora(tempHora); 
+        nuevo.setHora(tempHora);
+
+        new gestorgastos.services.ServicioAlertas().comprobarAlertas(cuentaActiva,nuevo); 
         
         cuentaActiva.agregarGasto(nuevo);
         guardarCambios();

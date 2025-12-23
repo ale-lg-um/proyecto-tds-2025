@@ -1,6 +1,7 @@
 package gestorgastos.controller;
 
 import gestorgastos.model.*;
+import gestorgastos.services.ServicioAlertas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -154,6 +155,9 @@ public class FormularioGastoController {
             // Al hacer esto, la hora se pone automáticamente a "AHORA MISMO" por defecto
             gastoResultado = new Gasto(concepto, importe, fecha, categoria, pagador);
         }
+        
+        gestorgastos.services.ServicioAlertas servicioAlertas = new gestorgastos.services.ServicioAlertas();
+        servicioAlertas.comprobarAlertas(cuentaAsociada,gastoResultado);
 
         // --- IMPORTANTE: AQUÍ FORZAMOS LA HORA DE LOS SPINNERS ---
         // Leemos lo que el usuario puso en las ruedecitas

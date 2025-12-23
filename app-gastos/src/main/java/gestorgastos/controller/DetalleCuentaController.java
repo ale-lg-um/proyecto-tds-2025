@@ -313,7 +313,32 @@ public class DetalleCuentaController {
         }
     }
     
-    @FXML private void irAAlertas() { System.out.println("Ir a Alertas"); }
+    @FXML
+    private void irAAlertas() {
+        try {
+            // 1. Cargar la vista
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
+            Parent root = loader.load();
+
+            // 2. Obtener el controlador y pasarle los datos
+            AlertaController controller = loader.getController();
+            controller.setCuenta(cuentaActual); // ¡Importante! Pasamos la cuenta actual
+
+            // 3. Crear y mostrar la ventana
+            Stage stage = new Stage();
+            stage.setTitle("Configuración de Alertas - " + cuentaActual.getNombre());
+            stage.setScene(new Scene(root));
+            
+            // Usamos show() en vez de showAndWait() para que puedas ver las alertas 
+            // y la tabla de gastos a la vez (muy útil para comprobar cosas).
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Opcional: mostrar una alerta visual de error
+            new Alert(Alert.AlertType.ERROR, "Error al abrir la ventana de alertas.").show();
+        }
+    }
     /*
     @FXML private void irACMD() { System.out.println("La consola ya está activa en segundo plano (mira tu IDE)."); }
     */

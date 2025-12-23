@@ -6,68 +6,107 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME, 
-    include = JsonTypeInfo.As.EXISTING_PROPERTY, 
-    property = "tipo", 
-    visible = true
-)
-@JsonSubTypes({ 
-    @JsonSubTypes.Type(value = CuentaPersonal.class, name = "PERSONAL"),
-    @JsonSubTypes.Type(value = CuentaCompartida.class, name = "COMPARTIDA"),
-    @JsonSubTypes.Type(value = CuentaProporcional.class, name = "ESPECIAL") 
-})
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "tipo", visible = true)
+@JsonSubTypes({ @JsonSubTypes.Type(value = CuentaPersonal.class, name = "PERSONAL"),
+		@JsonSubTypes.Type(value = CuentaCompartida.class, name = "COMPARTIDA"),
+		@JsonSubTypes.Type(value = CuentaProporcional.class, name = "ESPECIAL") })
 public abstract class Cuenta {
 
-    protected String id;
-    protected String nombre;
-    protected List<Gasto> gastos;
-    
-    // NUEVO: Cada cuenta tiene su propia lista de categorías
-    protected List<Categoria> categorias;
+	protected String id;
+	protected String nombre;
+	protected List<Gasto> gastos;
+	private java.util.List<Alerta> alertas = new java.util.ArrayList<>();
+	private java.util.List<Notificacion> notificaciones = new java.util.ArrayList<>();
 
-    public Cuenta() {
-        this.gastos = new ArrayList<>();
-        this.categorias = new ArrayList<>();
-        // Inicializamos siempre con General para evitar errores
-        this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
-    }
+	// NUEVO: Cada cuenta tiene su propia lista de categorías
+	protected List<Categoria> categorias;
 
-    public Cuenta(String nombre) {
-        this.id = UUID.randomUUID().toString();
-        this.nombre = nombre;
-        this.gastos = new ArrayList<>();
-        this.categorias = new ArrayList<>();
-        // Categoría por defecto al crear cuenta nueva
-        this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
-    }
+	public Cuenta() {
+		this.gastos = new ArrayList<>();
+		this.categorias = new ArrayList<>();
+		// Inicializamos siempre con General para evitar errores
+		this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
+	}
 
-    public abstract String getTipo();
+	public Cuenta(String nombre) {
+		this.id = UUID.randomUUID().toString();
+		this.nombre = nombre;
+		this.gastos = new ArrayList<>();
+		this.categorias = new ArrayList<>();
+		// Categoría por defecto al crear cuenta nueva
+		this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
+	}
 
-    public void setTipo(String tipo) { }
+	public abstract String getTipo();
 
-    public void agregarGasto(Gasto gasto) {
-        this.gastos.add(gasto);
-    }
+	public void setTipo(String tipo) {
+	}
 
-    public void eliminarGasto(Gasto gasto) {
-        this.gastos.remove(gasto);
-    }
+	public void agregarGasto(Gasto gasto) {
+		this.gastos.add(gasto);
+	}
 
-    // Getters y Setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+	public void eliminarGasto(Gasto gasto) {
+		this.gastos.remove(gasto);
+	}
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+	// Getters y Setters
+	public String getId() {
+		return id;
+	}
 
-    public List<Gasto> getGastos() { return gastos; }
-    public void setGastos(List<Gasto> gastos) { this.gastos = gastos; }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    // NUEVOS GETTERS Y SETTERS PARA CATEGORÍAS (Vital para Jackson)
-    public List<Categoria> getCategorias() { return categorias; }
-    public void setCategorias(List<Categoria> categorias) { this.categorias = categorias; }
+	public String getNombre() {
+		return nombre;
+	}
 
-    @Override
-    public String toString() { return nombre; }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public List<Gasto> getGastos() {
+		return gastos;
+	}
+
+	public void setGastos(List<Gasto> gastos) {
+		this.gastos = gastos;
+	}
+
+	// NUEVOS GETTERS Y SETTERS PARA CATEGORÍAS (Vital para Jackson)
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
+
+	public java.util.List<Alerta> getAlertas() {
+		return alertas;
+	}
+
+	public void setAlertas(java.util.List<Alerta> alertas) {
+		this.alertas = alertas;
+	}
+
+	public java.util.List<Notificacion> getNotificaciones() {
+		return notificaciones;
+	}
+
+	public void setNotificaciones(java.util.List<Notificacion> notificaciones) {
+		this.notificaciones = notificaciones;
+	}
+	
+	public void anadirNotificacion(String notificacion) {
+		Notificacion notific = new Notificacion(notificacion);
+		this.notificaciones.add(notific);
+	}
+
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }
