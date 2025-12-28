@@ -1,2 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="gestorgastos.model.Alerta"/>
+    <fullyQualifiedTypeName name="gestorgastos.model.Gasto"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.time.temporal.TemporalAdjuster"/>
+    <fullyQualifiedTypeName name="java.time.temporal.TemporalAdjusters"/>
+    <fullyQualifiedTypeName name="java.time.DayOfWeek"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="gestorgastos.strategies.InterfaceAlerta"/>
+    <fullyQualifiedTypeName name="gestorgastos.strategies.EstrategiaSemanal"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.CuentaService"/>
+    <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.ServicioAlertas"/>
+    <fullyQualifiedTypeName name="gestorgastos.model.Notificacion"/>
+</qualifiedTypeNameHistroy>
