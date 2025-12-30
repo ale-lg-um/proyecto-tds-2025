@@ -6,14 +6,18 @@
     <fullyQualifiedTypeName name="java.time.temporal.TemporalAdjuster"/>
     <fullyQualifiedTypeName name="java.time.temporal.TemporalAdjusters"/>
     <fullyQualifiedTypeName name="java.time.DayOfWeek"/>
-    <fullyQualifiedTypeName name="java.time.LocalDate"/>
-    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
-    <fullyQualifiedTypeName name="gestorgastos.strategies.InterfaceAlerta"/>
     <fullyQualifiedTypeName name="gestorgastos.strategies.EstrategiaSemanal"/>
     <fullyQualifiedTypeName name="gestorgastos.services.CuentaService"/>
     <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
     <fullyQualifiedTypeName name="gestorgastos.services.ServicioAlertas"/>
     <fullyQualifiedTypeName name="gestorgastos.model.Notificacion"/>
+    <fullyQualifiedTypeName name="gestorgastos.model.Cuenta"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="javafx.stage.FileChooser"/>
+    <fullyQualifiedTypeName name="javafx.stage.FileChooser.ExtensionFilter"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
+    <fullyQualifiedTypeName name="gestorgastos.strategies.InterfaceAlerta"/>
 </qualifiedTypeNameHistroy>

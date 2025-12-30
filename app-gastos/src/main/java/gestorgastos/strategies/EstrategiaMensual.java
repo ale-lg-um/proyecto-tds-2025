@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 
 public class EstrategiaMensual implements InterfaceAlerta{
-	@Override
+	/*@Override
 	public boolean verificarLimite(Alerta alerta, Cuenta cuenta, Gasto gasto) {
 		double limite = alerta.getLimite();
         LocalDate fechaGasto = gasto.getFecha();
@@ -25,6 +25,34 @@ public class EstrategiaMensual implements InterfaceAlerta{
         }
         
         return totalGastado > limite;
+	}*/
+	
+	@Override
+	public boolean verificarLimite(Alerta alerta, Cuenta cuenta, Gasto nuevoGasto) {
+		double limite = alerta.getLimite();
+		LocalDate fechaGasto = nuevoGasto.getFecha();
+		
+		// Si la alerta tiene categoría, pero no coincide con la del gasto, devuelve false
+		if(alerta.getCategoria() != null) {
+			if(!alerta.getCategoria().getNombre().equalsIgnoreCase(nuevoGasto.getCategoria().getNombre())) {
+				return false;
+			}
+		}
+		
+		double totalGastado = nuevoGasto.getImporte(); // Empezamos sumando lo que ya se ha gastado
+		
+		for (Gasto g : cuenta.getGastos()) {
+			boolean mismoMes = g.getFecha().getMonth() == fechaGasto.getMonth() && g.getFecha().getYear() == fechaGasto.getYear();
+			boolean mismaCategoria = true;
+			if(alerta.getCategoria() != null) {
+				mismaCategoria = alerta.getCategoria().getNombre().equalsIgnoreCase(g.getCategoria().getNombre());
+			}
+			
+			if(mismoMes && mismaCategoria) {
+				totalGastado += g.getImporte();
+			}
+		}
+		return totalGastado > limite;
 	}
 }
 

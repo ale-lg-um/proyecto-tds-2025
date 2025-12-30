@@ -53,22 +53,46 @@
       "descripcion" : "",
       "colorHex" : "#00FF00"
     }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 500.0,
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 500.0,
+    "categoria" : {
+      "nombre" : "Navidad-A",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 1000.0,
+    "categoria" : {
+      "nombre" : "Navidad-B",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
   } ],
   "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
-    "fecha" : "2025-12-23 14:07:46",
+    "mensaje" : "Has superado el límite de 500.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 14:26:33",
     "leida" : false
   }, {
-    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
-    "fecha" : "2025-12-23 14:08:24",
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 14:26:44",
     "leida" : false
   }, {
-    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
-    "fecha" : "2025-12-23 14:08:28",
+    "mensaje" : "Has superado el límite de 500.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 14:27:19",
     "leida" : false
   }, {
-    "mensaje" : "Has superado el límite de 100.0€ definido en tu alerta.",
-    "fecha" : "2025-12-23 14:29:40",
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 14:27:39",
     "leida" : false
   } ],
   "categorias" : [ {
@@ -79,6 +103,14 @@
     "nombre" : "Navidad-M",
     "descripcion" : "",
     "colorHex" : "#00FF00"
+  }, {
+    "nombre" : "Navidad-A",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  }, {
+    "nombre" : "Navidad-B",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
   } ],
   "tipo" : "PERSONAL"
 } ]

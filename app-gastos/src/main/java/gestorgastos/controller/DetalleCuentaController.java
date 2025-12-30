@@ -2,6 +2,7 @@ package gestorgastos.controller;
 
 //import gestorgastos.cli.GestorCLI;
 import gestorgastos.model.*;
+import gestorgastos.importacion.*;
 import gestorgastos.services.CuentaService;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,11 +16,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
 import java.io.IOException;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
 public class DetalleCuentaController {
 
@@ -92,7 +97,8 @@ public class DetalleCuentaController {
         btnAnadirGasto.setOnAction(e -> abrirCrearGasto());
         btnEditarGasto.setOnAction(e -> abrirEditarGasto());
         btnBorrarGasto.setOnAction(e -> borrarGasto());
-        btnImportar.setOnAction(e -> System.out.println("Funcionalidad Importar pendiente..."));
+        //btnImportar.setOnAction(e -> System.out.println("Funcionalidad Importar pendiente..."));
+        btnImportar.setOnAction(e -> procesarImportacion());
     }
 
     /**
@@ -385,6 +391,99 @@ public class DetalleCuentaController {
             e.printStackTrace();
             mostrarAlerta("Error al abrir la terminal.");
         }
+    }
+    
+    private void procesarImportacion() {
+    	// Abrir ventana explorador de archivos
+    	FileChooser fileChooser = new FileChooser();
+    	fileChooser.setTitle("ImportarGastos");
+    	fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Archivos Soportados", "*.csv", "*.txt"));
+    	
+    	File fichero = fileChooser.showOpenDialog(btnImportar.getScene().getWindow());
+    	
+    	if(fichero == null) return;
+    	
+    	// Obtener adaptador adecuado
+    	
+    	Importador importador = FactoriaImportacion.getImportador(fichero.getAbsolutePath());
+    	
+    	if(importador == null) {
+    		mostrarAlerta("Formato de archivo no soportado");
+    		return;
+    	}
+    	
+    	try {
+    		// Leer los datos con el adaptador
+    		List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
+    		
+    		// Obtener nombres de todas las cuentas para buscar coincidencias
+    		Usuario user = gestorgastos.services.SesionService.getInstancia().getUsuarioActivo();
+    		List<Cuenta> cuentas = cuentaService.getCuentasDe(user);
+    		
+    		int insertados = 0;
+    		int descartados = 0;
+    		
+    		for(GastoTemporal t : temporales) {
+    			// Buscar cuenta por nombre
+    			Optional<Cuenta> cuentaMatch = cuentas.stream()
+    					.filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
+    					.findFirst();
+    			
+    			if(cuentaMatch.isEmpty()) {
+    				descartados++; // El usuario no posee una cuenta con ese nombre
+    				continue;
+    			}
+    			
+    			Cuenta cuentaDestino = cuentaMatch.get();
+    			boolean valido = false;
+    			
+    			// Validar según el tipo de cuenta
+    			if(cuentaDestino instanceof CuentaPersonal) {
+    				valido = true; // Si la cuenta es personal, entra directo
+    			} else if(cuentaDestino instanceof CuentaCompartida) {
+    				CuentaCompartida compartida = (CuentaCompartida) cuentaDestino;
+    				boolean esMiembro = compartida.getMiembros().stream()
+    						.anyMatch(m -> m.equalsIgnoreCase(t.pagador));
+    				
+    				if(esMiembro) {
+    					valido = true;
+    				} else {
+    					System.out.println("Descartado: " + t.pagador + " no pertenece a la cuenta " + compartida.getNombre());
+    					descartados++;
+    				}
+    			}
+    			
+    			if(valido) {
+    				Categoria real = cuentaDestino.getCategorias().stream()
+    						.filter(c -> c.getNombre().equalsIgnoreCase(t.categoria))
+    						.findFirst()
+    						.orElse(cuentaDestino.getCategorias().get(0)); // Si la categoria del gasto no existe en la cuenta, el gasto se asigna a la categoria General
+    				
+    				Gasto nuevoGasto = new Gasto(t.concepto, t.importe, t.fecha, real, t.pagador);
+    				nuevoGasto.setHora(t.hora);
+    				
+    				cuentaDestino.agregarGasto(nuevoGasto);
+    				insertados++;
+    			}
+    		}
+    		
+    		// Guardar
+    		for(Cuenta c: cuentas) {
+    			cuentaService.agregarCuenta(null,  c);
+    		}
+    		
+    		// Refrescar interfaz
+    		actualizarTabla();
+    		
+    		if(cuentaActual instanceof CuentaCompartida) {
+    			calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
+    		}
+    		
+    		mostrarAlerta("Improtación finalizada.\nInsertados: " + insertados + "\nDescartados: " + descartados);
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    		mostrarAlerta("Error al importar fichero: " + e.getMessage());
+    	}
     }
 }
 
