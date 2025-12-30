@@ -2,6 +2,7 @@ package gestorgastos.model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,7 +17,11 @@ public abstract class Cuenta {
 	protected String nombre;
 	protected List<Gasto> gastos;
 	private java.util.List<Alerta> alertas = new java.util.ArrayList<>();
-	private java.util.List<Notificacion> notificaciones = new java.util.ArrayList<>();
+	// En Cuenta.java
+
+
+	private List<Notificacion> notificaciones = new ArrayList<>();
+	//private java.util.List<Notificacion> notificaciones = new java.util.ArrayList<>();
 
 	// NUEVO: Cada cuenta tiene su propia lista de categorías
 	protected List<Categoria> categorias;
@@ -101,11 +106,14 @@ public abstract class Cuenta {
 	}
 	
 	public void anadirNotificacion(String notificacion) {
+		
 		if (this.notificaciones == null) {
 	        this.notificaciones = new ArrayList<>();
 	        
 	    }
+
 		Notificacion n = new Notificacion(notificacion);
+		
 		notificaciones.add(n);
 	    
 	}

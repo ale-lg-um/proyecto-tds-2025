@@ -22,4 +22,11 @@ public class GastoTemporal {
 		 this.fecha = fecha;
 		 this.hora = hora;
 	 }
+
+	 @Override
+	 public String toString() {
+		return "GastoTemporal [nombreCuenta=" + nombreCuenta + ", concepto=" + concepto + ", importe=" + importe
+				+ ", categoria=" + categoria + ", pagador=" + pagador + ", fecha=" + fecha + ", hora=" + hora + "]";
+	 }
+	 
 }

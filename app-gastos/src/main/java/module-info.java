@@ -10,6 +10,7 @@ module gestorgastos.app_gastos {
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.datatype.jsr310;
+    
 
     // Exportar el paquete principal para iniciar la App
     exports gestorgastos.app_gastos;

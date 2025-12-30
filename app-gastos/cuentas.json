@@ -157,4 +157,76 @@
     "colorHex" : "#FFFFFF"
   } ],
   "tipo" : "PERSONAL"
+}, {
+  "id" : "59084882-a399-4cf6-878e-697d0cec21b4",
+  "nombre" : "prueba",
+  "gastos" : [ {
+    "id" : "6c38cd86-0152-424d-b3c3-6efb4fb7af51",
+    "concepto" : "cena",
+    "importe" : 100.0,
+    "fecha" : [ 2025, 3, 12 ],
+    "hora" : "15:30",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "678722cd-be46-438e-af24-c2e643ed50ba",
+    "concepto" : "regalo",
+    "importe" : 100.0,
+    "fecha" : [ 2025, 3, 12 ],
+    "hora" : "12:45",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ {
+    "tipo" : "MENSUAL",
+    "limite" : 1000.0,
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    }
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 21:22:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 21:22:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 21:22:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 21:22:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 21:22:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-30 21:22:34",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "otono",
+    "descripcion" : "",
+    "colorHex" : "#B34D1A"
+  } ],
+  "tipo" : "PERSONAL"
 } ]

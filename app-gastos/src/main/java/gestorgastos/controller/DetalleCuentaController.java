@@ -487,6 +487,7 @@ public class DetalleCuentaController {
     }*/
     
     private void procesarImportacion() {
+
     	FileChooser fileChooser = new FileChooser();
     	fileChooser.setTitle("Importar Gastos");
     	fileChooser.getExtensionFilters().addAll(
@@ -503,15 +504,22 @@ public class DetalleCuentaController {
     	}
     	
     	try {
+
     		List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
-    		
+
     		Usuario user = gestorgastos.services.SesionService.getInstancia().getUsuarioActivo();
+
     		List<Cuenta> cuentas = cuentaService.getCuentasDe(user);
+
     		
     		int insertados = 0;
     		int descartados = 0;
+
+			
+
     		
     		for(GastoTemporal t : temporales) {
+    			
     			Optional<Cuenta> cMatch = cuentas.stream()
     					.filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
     					.findFirst();
@@ -549,12 +557,28 @@ public class DetalleCuentaController {
     			}
     			
     			if(valido) {
+
     				Categoria real = destino.getCategorias().stream()
     						.filter(c -> c.getNombre().equalsIgnoreCase(t.categoria))
     						.findFirst()
     						.orElse(destino.getCategorias().get(0));
+
     				Gasto nuevo = new Gasto(t.concepto, t.importe, t.fecha, real, t.pagador);
     				nuevo.setHora(t.hora);
+    				
+
+    			    gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
+    			    
+
+    			    String errorAlerta = servicio.comprobarAlertas(destino, nuevo);
+
+    			    if (errorAlerta != null) {
+    			        System.out.println("Descartado por ALERTA (" + destino.getNombre() + "): " + t.concepto + " -> " + errorAlerta);
+    			        cuentaService.agregarCuenta(user, destino);
+    			        descartados++;
+    			        continue; 
+    			    }
+    			    // ---------------------------------------------------------------
     				
     				destino.agregarGasto(nuevo);
     				if(destino.getNombre().equalsIgnoreCase(cuentaActual.getNombre())) {

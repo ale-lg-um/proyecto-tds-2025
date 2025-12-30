@@ -11,210 +11,217 @@ import java.time.LocalTime; // <--- Importar
 
 import java.time.LocalDate;
 
-
 public class FormularioGastoController {
 
-    @FXML private Label lblTitulo;
-    @FXML private TextField txtConcepto;
-    @FXML private TextField txtImporte;
-    @FXML private DatePicker dateFecha;
-    @FXML private ComboBox<Categoria> comboCategoria;
-    
-    @FXML private VBox panelPagador;
-    @FXML private ComboBox<String> comboPagador;
-    @FXML private Label lblError;
-    
-    @FXML private Spinner<Integer> spinHora;
-    @FXML private Spinner<Integer> spinMinuto;
+	@FXML
+	private Label lblTitulo;
+	@FXML
+	private TextField txtConcepto;
+	@FXML
+	private TextField txtImporte;
+	@FXML
+	private DatePicker dateFecha;
+	@FXML
+	private ComboBox<Categoria> comboCategoria;
 
-    private Gasto gastoResultado;
-    private boolean esEdicion = false;
-    private Cuenta cuentaAsociada; // Necesario para saber los miembros y las categorías
-    private boolean guardadoConfirmado = false;
+	@FXML
+	private VBox panelPagador;
+	@FXML
+	private ComboBox<String> comboPagador;
+	@FXML
+	private Label lblError;
 
+	@FXML
+	private Spinner<Integer> spinHora;
+	@FXML
+	private Spinner<Integer> spinMinuto;
 
+	private Gasto gastoResultado;
+	private boolean esEdicion = false;
+	private Cuenta cuentaAsociada; // Necesario para saber los miembros y las categorías
+	private boolean guardadoConfirmado = false;
 
-    @FXML
-    public void initialize() {
-        // En initialize SOLO configuramos cosas que no dependen de la cuenta
-        dateFecha.setValue(LocalDate.now());
-        spinHora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 12));
-        spinMinuto.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
-        
-        // ¡IMPORTANTE!: Aquí NO cargamos las categorías todavía, 
-        // porque aún no sabemos qué cuenta es. Lo hacemos en initAttributes.
-    }
+	@FXML
+	public void initialize() {
+		// En initialize SOLO configuramos cosas que no dependen de la cuenta
+		dateFecha.setValue(LocalDate.now());
+		spinHora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 12));
+		spinMinuto.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
 
- // Método para configurar la ventana según si es CREAR o EDITAR
-    public void initAttributes(Cuenta cuenta, Gasto gastoAEditar) {
-        this.cuentaAsociada = cuenta;
+		// ¡IMPORTANTE!: Aquí NO cargamos las categorías todavía,
+		// porque aún no sabemos qué cuenta es. Lo hacemos en initAttributes.
+	}
 
-        // 1. CARGAR LAS CATEGORÍAS
-        comboCategoria.setItems(FXCollections.observableArrayList(cuenta.getCategorias()));
+	// Método para configurar la ventana según si es CREAR o EDITAR
+	public void initAttributes(Cuenta cuenta, Gasto gastoAEditar) {
+		this.cuentaAsociada = cuenta;
 
-        if (!comboCategoria.getItems().isEmpty()) {
-            comboCategoria.getSelectionModel().selectFirst();
-        }
+		// 1. CARGAR LAS CATEGORÍAS
+		comboCategoria.setItems(FXCollections.observableArrayList(cuenta.getCategorias()));
 
-        // 2. Configurar Visibilidad del Pagador
-        if (cuenta instanceof CuentaCompartida) {
-            panelPagador.setVisible(true);
-            panelPagador.setManaged(true);
-            comboPagador.setItems(FXCollections.observableArrayList(((CuentaCompartida) cuenta).getMiembros()));
-        } else {
-            panelPagador.setVisible(false);
-            panelPagador.setManaged(false); 
-        }
+		if (!comboCategoria.getItems().isEmpty()) {
+			comboCategoria.getSelectionModel().selectFirst();
+		}
 
-        // 3. Rellenar datos
-        if (gastoAEditar != null) {
-            // --- MODO EDICIÓN ---
-            this.esEdicion = true;
-            this.gastoResultado = gastoAEditar; 
-            lblTitulo.setText("Editar Gasto");
-            
-            txtConcepto.setText(gastoAEditar.getConcepto());
-            txtImporte.setText(String.valueOf(gastoAEditar.getImporte()));
-            dateFecha.setValue(gastoAEditar.getFecha());
-            
-            // ---> AQUÍ CARGAMOS LA HORA GUARDADA <---
-            spinHora.getValueFactory().setValue(gastoAEditar.getHora().getHour());
-            spinMinuto.getValueFactory().setValue(gastoAEditar.getHora().getMinute());
-            // ----------------------------------------
-            
-            comboCategoria.setValue(gastoAEditar.getCategoria());
-            
-            if (cuenta instanceof CuentaCompartida) {
-                comboPagador.setValue(gastoAEditar.getPagador());
-            }
-        } else {
-            // --- MODO CREAR (NUEVO) ---
-            lblTitulo.setText("Nuevo Gasto");
-            
-            // ---> AQUÍ INICIALIZAMOS LA FECHA Y HORA ACTUALES <---
-            dateFecha.setValue(java.time.LocalDate.now()); // Ponemos fecha de hoy
-            
-            java.time.LocalTime ahora = java.time.LocalTime.now(); // Hora de ahora mismo
-            spinHora.getValueFactory().setValue(ahora.getHour());
-            spinMinuto.getValueFactory().setValue(ahora.getMinute());
-            // -----------------------------------------------------
+		// 2. Configurar Visibilidad del Pagador
+		if (cuenta instanceof CuentaCompartida) {
+			panelPagador.setVisible(true);
+			panelPagador.setManaged(true);
+			comboPagador.setItems(FXCollections.observableArrayList(((CuentaCompartida) cuenta).getMiembros()));
+		} else {
+			panelPagador.setVisible(false);
+			panelPagador.setManaged(false);
+		}
 
-            if (cuenta instanceof CuentaCompartida && !comboPagador.getItems().isEmpty()) {
-                comboPagador.getSelectionModel().selectFirst();
-            }
-        }
-    }
+		// 3. Rellenar datos
+		if (gastoAEditar != null) {
+			// --- MODO EDICIÓN ---
+			this.esEdicion = true;
+			this.gastoResultado = gastoAEditar;
+			lblTitulo.setText("Editar Gasto");
 
-    public Gasto getGastoResultado() {
-        return gastoResultado;
-    }
+			txtConcepto.setText(gastoAEditar.getConcepto());
+			txtImporte.setText(String.valueOf(gastoAEditar.getImporte()));
+			dateFecha.setValue(gastoAEditar.getFecha());
 
-   @FXML
-private void guardar() {
-    // ---------------------------------------------------
-    // 1. VALIDACIONES BÁSICAS (Igual que antes)
-    // ---------------------------------------------------
-    String concepto = txtConcepto.getText();
-    if (concepto.isEmpty()) {
-        lblError.setText("El concepto es obligatorio");
-        return;
-    }
+			// ---> AQUÍ CARGAMOS LA HORA GUARDADA <---
+			spinHora.getValueFactory().setValue(gastoAEditar.getHora().getHour());
+			spinMinuto.getValueFactory().setValue(gastoAEditar.getHora().getMinute());
+			// ----------------------------------------
 
-    double importe;
-    try {
-        importe = Double.parseDouble(txtImporte.getText().replace(",", "."));
-    } catch (NumberFormatException e) {
-        lblError.setText("El importe debe ser un número válido");
-        return;
-    }
+			comboCategoria.setValue(gastoAEditar.getCategoria());
 
-    LocalDate fecha = dateFecha.getValue();
-    if (fecha == null) {
-        lblError.setText("La fecha es obligatoria");
-        return;
-    }
-    
-    Categoria categoria = comboCategoria.getValue();
-    if (categoria == null) {
-        lblError.setText("Debes tener al menos una categoría");
-        return;
-    }
-    
-    String pagador = "Yo";
-    if (cuentaAsociada instanceof CuentaCompartida) {
-        pagador = comboPagador.getValue();
-        if (pagador == null) {
-            lblError.setText("Debes seleccionar quién pagó");
-            return;
-        }
-    }
+			if (cuenta instanceof CuentaCompartida) {
+				comboPagador.setValue(gastoAEditar.getPagador());
+			}
+		} else {
+			// --- MODO CREAR (NUEVO) ---
+			lblTitulo.setText("Nuevo Gasto");
 
-    // ---------------------------------------------------
-    // 2. PREPARAR EL OBJETO (Con la hora correcta)
-    // ---------------------------------------------------
-    // Primero creamos/editamos la estructura básica
-    if (esEdicion) {
-        gastoResultado.setConcepto(concepto);
-        gastoResultado.setImporte(importe);
-        gastoResultado.setFecha(fecha);
-        gastoResultado.setCategoria(categoria);
-        gastoResultado.setPagador(pagador);
-    } else {
-        gastoResultado = new Gasto(concepto, importe, fecha, categoria, pagador);
-    }
+			// ---> AQUÍ INICIALIZAMOS LA FECHA Y HORA ACTUALES <---
+			dateFecha.setValue(java.time.LocalDate.now()); // Ponemos fecha de hoy
 
-    // IMPORTANTE: Asignamos la hora de los spinners AHORA, 
-    // antes de comprobar las alertas, para que el objeto sea definitivo.
-    int h = spinHora.getValue();
-    int m = spinMinuto.getValue();
-    gastoResultado.setHora(java.time.LocalTime.of(h, m));
+			java.time.LocalTime ahora = java.time.LocalTime.now(); // Hora de ahora mismo
+			spinHora.getValueFactory().setValue(ahora.getHour());
+			spinMinuto.getValueFactory().setValue(ahora.getMinute());
+			// -----------------------------------------------------
 
+			if (cuenta instanceof CuentaCompartida && !comboPagador.getItems().isEmpty()) {
+				comboPagador.getSelectionModel().selectFirst();
+			}
+		}
+	}
 
-    // ---------------------------------------------------
-	// 3. COMPROBAR ALERTAS (Lógica de Bloqueo)
-    // ---------------------------------------------------
-    gestorgastos.services.ServicioAlertas servicioAlertas = new gestorgastos.services.ServicioAlertas();
-    
-    // Si hay alerta, este método ya guarda la Notificación internamente y nos devuelve el texto
-    String mensajeError = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
+	public Gasto getGastoResultado() {
+		return gastoResultado;
+	}
 
-    // Si mensajeError NO es null, significa que nos hemos pasado del límite
-    if (mensajeError != null) {
-        // A) Mostramos el POP-UP al usuario
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Gasto Bloqueado");
-        alert.setHeaderText("Límite superado");
-        alert.setContentText(mensajeError + "\n\nSe ha generado una notificación y el gasto no se guardará.");
-        alert.showAndWait();
+	@FXML
+	private void guardar() {
+		// ---------------------------------------------------
+		// 1. VALIDACIONES BÁSICAS (Igual que antes)
+		// ---------------------------------------------------
+		String concepto = txtConcepto.getText();
+		if (concepto.isEmpty()) {
+			lblError.setText("El concepto es obligatorio");
+			return;
+		}
 
-        // B) DETENEMOS TODO: Hacemos return para no llegar a la parte de guardar
-        return; 
-    }
+		double importe;
+		try {
+			importe = Double.parseDouble(txtImporte.getText().replace(",", "."));
+		} catch (NumberFormatException e) {
+			lblError.setText("El importe debe ser un número válido");
+			return;
+		}
 
-    // ---------------------------------------------------
-    // 4. GUARDAR DEFINITIVAMENTE (Si no hubo alertas)
-    // ---------------------------------------------------
-    
-    if (!esEdicion) {
-        //cuentaAsociada.agregarGasto(gastoResultado);
-    	this.guardadoConfirmado = true;
-    }
-    
+		LocalDate fecha = dateFecha.getValue();
+		if (fecha == null) {
+			lblError.setText("La fecha es obligatoria");
+			return;
+		}
 
-    cerrarVentana();
-}
-    @FXML
-    private void cancelar() {
-        gastoResultado = null; // Indicamos que no se hizo nada
-        cerrarVentana();
-    }
+		Categoria categoria = comboCategoria.getValue();
+		if (categoria == null) {
+			lblError.setText("Debes tener al menos una categoría");
+			return;
+		}
 
-    private void cerrarVentana() {
-        Stage stage = (Stage) txtConcepto.getScene().getWindow();
-        stage.close();
-    }
-    
-    public boolean isGuardadoConfirmado() {
-        return guardadoConfirmado;
-    }
+		String pagador = "Yo";
+		if (cuentaAsociada instanceof CuentaCompartida) {
+			pagador = comboPagador.getValue();
+			if (pagador == null) {
+				lblError.setText("Debes seleccionar quién pagó");
+				return;
+			}
+		}
+
+		// ---------------------------------------------------
+		// 2. PREPARAR EL OBJETO (Con la hora correcta)
+		// ---------------------------------------------------
+		// Primero creamos/editamos la estructura básica
+		if (esEdicion) {
+			gastoResultado.setConcepto(concepto);
+			gastoResultado.setImporte(importe);
+			gastoResultado.setFecha(fecha);
+			gastoResultado.setCategoria(categoria);
+			gastoResultado.setPagador(pagador);
+		} else {
+			gastoResultado = new Gasto(concepto, importe, fecha, categoria, pagador);
+		}
+
+		// IMPORTANTE: Asignamos la hora de los spinners AHORA,
+		// antes de comprobar las alertas, para que el objeto sea definitivo.
+		int h = spinHora.getValue();
+		int m = spinMinuto.getValue();
+		gastoResultado.setHora(java.time.LocalTime.of(h, m));
+
+		// ---------------------------------------------------
+		// 3. COMPROBAR ALERTAS (Lógica de Bloqueo)
+		// ---------------------------------------------------
+		gestorgastos.services.ServicioAlertas servicioAlertas = new gestorgastos.services.ServicioAlertas();
+
+		// Si hay alerta, este método ya guarda la Notificación internamente y nos
+		// devuelve el texto
+		String mensajeError = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
+
+		// Si mensajeError NO es null, significa que nos hemos pasado del límite
+		if (mensajeError != null) {
+			// A) Mostramos el POP-UP al usuario
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Gasto Bloqueado");
+			alert.setHeaderText("Límite superado");
+			alert.setContentText(mensajeError + "\n\nSe ha generado una notificación y el gasto no se guardará.");
+			alert.showAndWait();
+
+			// B) DETENEMOS TODO: Hacemos return para no llegar a la parte de guardar
+			return;
+		}
+
+		// ---------------------------------------------------
+		// 4. GUARDAR DEFINITIVAMENTE (Si no hubo alertas)
+		// ---------------------------------------------------
+
+		if (!esEdicion) {
+			// cuentaAsociada.agregarGasto(gastoResultado);
+			this.guardadoConfirmado = true;
+		}
+
+		cerrarVentana();
+	}
+
+	@FXML
+	private void cancelar() {
+		gastoResultado = null; // Indicamos que no se hizo nada
+		cerrarVentana();
+	}
+
+	private void cerrarVentana() {
+		Stage stage = (Stage) txtConcepto.getScene().getWindow();
+		stage.close();
+	}
+
+	public boolean isGuardadoConfirmado() {
+		return guardadoConfirmado;
+	}
 }
