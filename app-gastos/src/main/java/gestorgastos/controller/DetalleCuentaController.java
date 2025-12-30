@@ -557,6 +557,10 @@ public class DetalleCuentaController {
     				nuevo.setHora(t.hora);
     				
     				destino.agregarGasto(nuevo);
+    				if(destino.getNombre().equalsIgnoreCase(cuentaActual.getNombre())) {
+    					cuentaActual.agregarGasto(nuevo);
+    				}
+    				
     				insertados++;
     			} else {
     				descartados++;
