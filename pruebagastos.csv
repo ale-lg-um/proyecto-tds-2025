@@ -1,5 +1,5 @@
 Date,Account,Category,Subcategory,Note,Payer,Amount,Currency
-5/2/2024 12:33,Normal,efectivo,Comida,desayuno,Me,10.47 EUR
-7/6/2022 15:09,Compartida,tarjeta,Ocio,cine,Cristina,22.00 EUR
-18/12/2025 21:02,Compartida,tarjeta,Navidad,Paquito,57.86 EUR
-2/1/2023 10:45,Especial,efectivo,Muebles,compraIkea,Luis,100.58 EUR
+5/2/2024 12:33,Normal,efectivo,Comida,desayuno,Me,10.47,EUR
+7/6/2022 15:09,Compartida,tarjeta,Ocio,cine,Cristina,22.00,EUR
+18/12/2025 21:02,Compartida,tarjeta,Navidad,Paquito,57.86,EUR
+2/1/2023 10:45,Especial,efectivo,Muebles,compraIkea,Luis,100.58,EUR
