@@ -214,6 +214,30 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Luis"
+  }, {
+    "id" : "a5c24937-22ce-42ff-9ce0-5e5dd8970135",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
+  }, {
+    "id" : "d310fb4e-5016-4af4-91ba-5bab4412dc3c",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
   } ],
   "alertas" : [ ],
   "notificaciones" : [ ],
@@ -278,134 +302,6 @@
   },
   "tipo" : "ESPECIAL"
 }, {
-  "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
-  "nombre" : "Normal",
-  "gastos" : [ {
-    "id" : "96fce0d8-1355-4637-a984-30ddb7c57080",
-    "concepto" : "chiringuito",
-    "importe" : 2.0,
-    "fecha" : [ 2025, 12, 31 ],
-    "hora" : "12:19",
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#661A33"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "3c2e164f-ad58-414d-974e-4d2a6ba25eb2",
-    "concepto" : "desayuno",
-    "importe" : 10.47,
-    "fecha" : [ 2024, 5, 2 ],
-    "hora" : "12:33",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "80f1d272-2e29-4c69-8cd2-9879d26f1818",
-    "concepto" : "chiringuito",
-    "importe" : 2.0,
-    "fecha" : [ 2000, 8, 18 ],
-    "hora" : "12:22",
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#661A33"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "10f5fa22-c35f-463e-89ff-2aca3f06e5de",
-    "concepto" : "desayuno",
-    "importe" : 10.47,
-    "fecha" : [ 2024, 5, 2 ],
-    "hora" : "12:33",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "85cc71a5-8300-4f6b-b38a-67a25bf3e796",
-    "concepto" : "chiringuito",
-    "importe" : 2.0,
-    "fecha" : [ 2000, 8, 18 ],
-    "hora" : "12:22",
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#661A33"
-    },
-    "pagador" : "Yo"
-  } ],
-  "alertas" : [ {
-    "tipo" : "SEMANAL",
-    "limite" : 100.0,
-    "categoria" : {
-      "nombre" : "Navidad-M",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 500.0,
-    "categoria" : {
-      "nombre" : "Navidad-M",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 500.0,
-    "categoria" : {
-      "nombre" : "Navidad-A",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 1000.0,
-    "categoria" : {
-      "nombre" : "Navidad-B",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 50.0,
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#661A33"
-    }
-  } ],
-  "notificaciones" : [ ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "Navidad-M",
-    "descripcion" : "",
-    "colorHex" : "#00FF00"
-  }, {
-    "nombre" : "Navidad-A",
-    "descripcion" : "",
-    "colorHex" : "#FFFFFF"
-  }, {
-    "nombre" : "Navidad-B",
-    "descripcion" : "",
-    "colorHex" : "#FFFFFF"
-  }, {
-    "nombre" : "Verano",
-    "descripcion" : "",
-    "colorHex" : "#661A33"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
   "id" : "59084882-a399-4cf6-878e-697d0cec21b4",
   "nombre" : "prueba",
   "gastos" : [ {
@@ -456,6 +352,30 @@
       "colorHex" : "#B34D1A"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "443bf07a-3ca8-4a17-b081-96202c028c54",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Me"
+  }, {
+    "id" : "07a8f1db-29ad-411f-9da9-635933d15da1",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Me"
   } ],
   "alertas" : [ {
     "tipo" : "MENSUAL",
@@ -470,6 +390,14 @@
     "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
     "fecha" : "2025-12-31 12:44:07",
     "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 13:16:06",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 13:17:25",
+    "leida" : false
   } ],
   "categorias" : [ {
     "nombre" : "General",
@@ -479,6 +407,126 @@
     "nombre" : "otono",
     "descripcion" : "",
     "colorHex" : "#B34D1A"
+  } ],
+  "tipo" : "PERSONAL"
+}, {
+  "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
+  "nombre" : "Normal",
+  "gastos" : [ {
+    "id" : "eb19f2c5-d305-483d-bb9c-3db88a397816",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Me"
+  }, {
+    "id" : "f16a33d6-6102-420e-bb77-af890e681e65",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Me"
+  }, {
+    "id" : "fafa5763-673f-47c3-b289-b78a0c8cf623",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Me"
+  }, {
+    "id" : "4e679ade-c35c-4447-ae49-3f7daa1a8305",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Me"
+  } ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 100.0,
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 500.0,
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 500.0,
+    "categoria" : {
+      "nombre" : "Navidad-A",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 1000.0,
+    "categoria" : {
+      "nombre" : "Navidad-B",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 50.0,
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    }
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 50.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 13:17:25",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Navidad-M",
+    "descripcion" : "",
+    "colorHex" : "#00FF00"
+  }, {
+    "nombre" : "Navidad-A",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  }, {
+    "nombre" : "Navidad-B",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  }, {
+    "nombre" : "Verano",
+    "descripcion" : "",
+    "colorHex" : "#661A33"
   } ],
   "tipo" : "PERSONAL"
 } ]

@@ -9,6 +9,8 @@ public class FactoriaImportacion {
 			return new AdaptadorCSV();
 		} else if(ruta.endsWith(".txt")) {
 			return new AdaptadorTXT();
+		} else if(ruta.endsWith(".json")) {
+			return new AdaptadorJSON();
 		}
 		
 		return null;
