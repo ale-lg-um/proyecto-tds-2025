@@ -19,7 +19,7 @@
     <fullyQualifiedTypeName name="javafx.stage.FileChooser"/>
     <fullyQualifiedTypeName name="gestorgastos.strategies.InterfaceAlerta"/>
     <fullyQualifiedTypeName name="javafx.stage.FileChooser.ExtensionFilter"/>
-    <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
     <fullyQualifiedTypeName name="gestorgastos.model.CuentaCompartida"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
 </qualifiedTypeNameHistroy>
