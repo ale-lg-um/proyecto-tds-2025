@@ -427,7 +427,7 @@ public class DetalleCuentaController {
 
     		
     		for(GastoTemporal t : temporales) {
-    			
+    		System.out.println(t.toString());
     			Optional<Cuenta> cMatch = cuentas.stream()
     					.filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
     					.findFirst();
