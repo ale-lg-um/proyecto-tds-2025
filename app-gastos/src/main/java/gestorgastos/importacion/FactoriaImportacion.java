@@ -11,6 +11,8 @@ public class FactoriaImportacion {
 			return new AdaptadorTXT();
 		} else if(ruta.endsWith(".json")) {
 			return new AdaptadorJSON();
+		} else if(ruta.endsWith(".xlsx")) {
+			return new AdaptadorExcel();
 		}
 		
 		return null;

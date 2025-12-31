@@ -11,6 +11,10 @@ module gestorgastos.app_gastos {
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.datatype.jsr310;
     
+    //Para poder abrir Excels
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+    
 
     // Exportar el paquete principal para iniciar la App
     exports gestorgastos.app_gastos;

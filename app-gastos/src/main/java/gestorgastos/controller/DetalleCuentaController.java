@@ -399,7 +399,7 @@ public class DetalleCuentaController {
     	FileChooser fileChooser = new FileChooser();
     	fileChooser.setTitle("Importar Gastos");
     	fileChooser.getExtensionFilters().addAll(
-    			new FileChooser.ExtensionFilter("Archivos Soportados", "*.csv", "*.txt", "*.json")
+    			new FileChooser.ExtensionFilter("Archivos Soportados", "*.csv", "*.txt", "*.json", "*.xlsx")
     	);
     	
     	File fichero = fileChooser.showOpenDialog(btnImportar.getScene().getWindow());

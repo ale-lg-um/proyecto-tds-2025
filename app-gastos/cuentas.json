@@ -238,6 +238,18 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Luis"
+  }, {
+    "id" : "88a8314a-42d5-4b4f-8d5f-ceeef55a4df6",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
   } ],
   "alertas" : [ ],
   "notificaciones" : [ ],
@@ -376,6 +388,66 @@
       "colorHex" : "#B34D1A"
     },
     "pagador" : "Me"
+  }, {
+    "id" : "3d159a82-8f34-4442-b8aa-fd4f968d1dd8",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Me"
+  }, {
+    "id" : "e50f1152-01b2-4e1c-8173-32bd81122487",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Me"
+  }, {
+    "id" : "ee7d0b21-1e40-44fb-a3cc-9994de60c6f2",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "330263ea-fa44-4db5-971a-32435a00b95d",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Me"
+  }, {
+    "id" : "d626743d-514b-4e20-a348-10e6f533afa0",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Me"
   } ],
   "alertas" : [ {
     "tipo" : "MENSUAL",
@@ -398,6 +470,26 @@
     "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
     "fecha" : "2025-12-31 13:17:25",
     "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:00:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:01:51",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:02:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:03:03",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:06:33",
+    "leida" : false
   } ],
   "categorias" : [ {
     "nombre" : "General",
@@ -413,43 +505,7 @@
   "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
   "nombre" : "Normal",
   "gastos" : [ {
-    "id" : "eb19f2c5-d305-483d-bb9c-3db88a397816",
-    "concepto" : "desayuno",
-    "importe" : 10.47,
-    "fecha" : [ 2024, 5, 2 ],
-    "hora" : "12:33",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Me"
-  }, {
-    "id" : "f16a33d6-6102-420e-bb77-af890e681e65",
-    "concepto" : "chiringuito",
-    "importe" : 2.0,
-    "fecha" : [ 2000, 8, 18 ],
-    "hora" : "12:22",
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#661A33"
-    },
-    "pagador" : "Me"
-  }, {
-    "id" : "fafa5763-673f-47c3-b289-b78a0c8cf623",
-    "concepto" : "desayuno",
-    "importe" : 10.47,
-    "fecha" : [ 2024, 5, 2 ],
-    "hora" : "12:33",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Me"
-  }, {
-    "id" : "4e679ade-c35c-4447-ae49-3f7daa1a8305",
+    "id" : "acd5a83f-5769-4295-9a7f-cce69b9335b8",
     "concepto" : "chiringuito",
     "importe" : 2.0,
     "fecha" : [ 2000, 8, 18 ],
@@ -502,11 +558,7 @@
       "colorHex" : "#661A33"
     }
   } ],
-  "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 50.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 13:17:25",
-    "leida" : false
-  } ],
+  "notificaciones" : [ ],
   "categorias" : [ {
     "nombre" : "General",
     "descripcion" : "Gastos varios",
