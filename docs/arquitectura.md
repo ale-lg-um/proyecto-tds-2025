@@ -1,4 +1,4 @@
-# 🏗️ Arquitectura del Sistema (Versión Actualizada)
+# 🏗️ Arquitectura del Sistema
 
 Este documento detalla la estructura técnica y los patrones de diseño aplicados en el proyecto **Gestor de Gastos**. La arquitectura se fundamenta en los principios de **Separación Modelo-Vista** y **Desarrollo Dirigido por el Dominio (DDD)**.
 
