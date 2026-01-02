@@ -1,4 +1,4 @@
-# 💎 Modelo de Dominio (Actualizado)
+# 💎 Modelo de Dominio
 
 Este documento describe la estructura lógica y conceptual del sistema **Gestor de Gastos**, fundamentada en los principios de **Desarrollo Dirigido por el Dominio (DDD)**. Se centra en las entidades, sus relaciones y las reglas de negocio que gobiernan la gestión de finanzas.
 
