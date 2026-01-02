@@ -1,63 +1,86 @@
-# Diagrama de Clases - Gestor de Gastos
+# 📊 Diagrama de Clases - Gestor de Gastos
 
-A continuación se presenta la estructura de clases del sistema y sus relaciones (herencia, composición y asociación).
+Este documento describe la estructura de clases del sistema, detallando las relaciones de herencia, realización de interfaces y los patrones de diseño aplicados para garantizar la extensibilidad del proyecto.
 
 ```mermaid
 classDiagram
     direction BT
 
-    %% Relaciones de Herencia
+    %% Relaciones de Herencia y Realización
     CuentaPersonal --|> Cuenta : Extends
     CuentaCompartida --|> Cuenta : Extends
     CuentaProporcional --|> CuentaCompartida : Extends
+    
+    AdaptadorCSV ..|> Importador : Realizes
+    AdaptadorExcel ..|> Importador : Realizes
+    AdaptadorJSON ..|> Importador : Realizes
+    AdaptadorTXT ..|> Importador : Realizes
+    
+    EstrategiaSemanal ..|> InterfaceAlerta : Realizes
+    EstrategiaMensual ..|> InterfaceAlerta : Realizes
 
-    %% Relaciones de Composición/Asociación
+    %% Relaciones de Composición y Asociación
     Cuenta "1" *-- "many" Gasto : contiene
     Cuenta "1" *-- "many" Categoria : define
+    Cuenta "1" *-- "many" Alerta : posee
+    Alerta "1" --> "1" InterfaceAlerta : usa (Strategy)
     Gasto "many" --> "1" Categoria : pertenece a
+    FactoriaImportacion ..> Importador : crea
 
+    %% Definición de Clases del Dominio
     class Cuenta {
         <<Abstract>>
         #String id
         #String nombre
         #List~Gasto~ gastos
         #List~Categoria~ categorias
+        #List~Alerta~ alertas
         +getTipo()* String
-        +agregarGasto(Gasto gasto)
-        +eliminarGasto(Gasto gasto)
-    }
-
-    class CuentaPersonal {
-        +getTipo() String
-    }
-
-    class CuentaCompartida {
-        #List~String~ miembros
-        +getTipo() String
-        +calcularSaldos() Map
     }
 
     class CuentaProporcional {
         -Map~String, Double~ porcentajes
-        +getTipo() String
         +calcularSaldos() Map
     }
 
     class Gasto {
         -String id
-        -String concepto
         -double importe
         -LocalDate fecha
-        -Categoria categoria
         -String pagador
     }
 
-    class Categoria {
-        -String nombre
-        -String descripcion
-        -String colorHex
+    class Alerta {
+        -double limite
+        -InterfaceAlerta estrategia
+        +esLimiteSuperado(double acumulado) boolean
     }
 
-    class Usuario {
-        -String nombre
+    %% Sistema de Importación (Novedad)
+    class Importador {
+        <<Interface>>
+        +importar(File archivo) List~GastoTemporal~
+    }
+
+    class FactoriaImportacion {
+        +getImportador(String extension) Importador
+    }
+
+    class GastoTemporal {
+        -String concepto
+        -double importe
+        -String fecha
+    }
+
+    %% Capa de Servicios (Singletons)
+    class SesionService {
+        <<Singleton>>
+        -Usuario usuarioActivo
+        +getInstancia() SesionService
+    }
+
+    class CuentaService {
+        <<Singleton>>
+        -Cuenta cuentaActiva
+        +getInstancia() CuentaService
     }
