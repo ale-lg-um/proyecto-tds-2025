@@ -41,6 +41,10 @@ public class AdaptadorTXT extends Importador {
 		String pagador = gasto[5].trim().equalsIgnoreCase("Me") ? "Yo" : gasto[5].trim();
 		double importe = Double.parseDouble(gasto[6].trim().replace(",", "."));
 		
+		if(pagador.equalsIgnoreCase("Me")) {
+			pagador = "Yo";
+		}
+		
 		return new GastoTemporal(cuenta, concepto, importe, cat, pagador, fechaHora.toLocalDate(), fechaHora.toLocalTime());
 	}
 }

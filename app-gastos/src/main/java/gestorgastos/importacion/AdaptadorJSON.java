@@ -33,6 +33,10 @@ public class AdaptadorJSON extends Importador{
 					String subcat = node.get("Subcategory").asText();
 					double amount = node.get("Amount").asDouble();
 					
+					if(payer.equalsIgnoreCase("Me")) {
+						payer= "Yo";
+					}
+					
 					LocalDateTime fechaCompleta = LocalDateTime.parse(dateStr, formatter);
 					
 					GastoTemporal temporal = new GastoTemporal(account, note, amount, subcat, payer, fechaCompleta.toLocalDate(), fechaCompleta.toLocalTime());

@@ -22,31 +22,7 @@
 }, {
   "id" : "7a7bbf99-ead2-484e-95a9-f021a9b10ab6",
   "nombre" : "Especial",
-  "gastos" : [ {
-    "id" : "e4b1d460-b558-4b0b-82b2-bc29368394c3",
-    "concepto" : "cine_asistenta",
-    "importe" : 50.0,
-    "fecha" : [ 2025, 12, 31 ],
-    "hora" : "11:52",
-    "categoria" : {
-      "nombre" : "Verano-M",
-      "descripcion" : "",
-      "colorHex" : "#00FFFF"
-    },
-    "pagador" : "Uno"
-  }, {
-    "id" : "0a478d0d-203a-465d-8c9c-735bfc9f7730",
-    "concepto" : "gastto2",
-    "importe" : 10.0,
-    "fecha" : [ 2025, 12, 31 ],
-    "hora" : "11:54",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Uno"
-  } ],
+  "gastos" : [ ],
   "alertas" : [ ],
   "notificaciones" : [ ],
   "categorias" : [ {
@@ -66,10 +42,602 @@
   },
   "tipo" : "ESPECIAL"
 }, {
+  "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
+  "nombre" : "Normal",
+  "gastos" : [ {
+    "id" : "a7a63016-a7b2-421f-974d-68593b7750c7",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "1ae66d43-19c0-4d03-9789-5af0d9c56ac0",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "ce7fcf98-1a40-4ec7-b95c-a5134a5cb740",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "c118cc4a-3fd9-41cf-8826-4479c81307cb",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "1aff3630-2b2c-46eb-924c-deb98d8d7003",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "5bb3556f-17f4-49f1-a127-dcf891712687",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "c891eca1-4ba6-4467-abf6-59b5df09aced",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "b1f02e97-eccc-457e-97d2-3e71f0652148",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "7eec9d08-deb3-462b-86c3-d26a06ef9d62",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "096d6e2d-c568-41b2-b4de-ab74cd2cdc37",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "2ead4aca-2d96-4eb3-a4b0-94206fba78c5",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0be1d6f6-55bc-4f1f-994e-6db83ec363d5",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "74086a70-d3e9-4c72-906b-bb0c51ed18f9",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "03f06a17-bc47-4c83-9f59-b3827dd9ad4a",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "1f66f576-c4f4-4d04-8857-2d916347b3c0",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "5c483dce-67aa-4745-b5fc-51ef35d01cd5",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "67b68de5-344c-456e-b9e3-9bc3e688a659",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "ad94cd0a-6287-4ee4-a628-ec37da17fede",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "37c976d7-c75e-40f0-a3f4-822f70174752",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "585b99bf-ff8d-4f18-91f0-6fcfd9eac623",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "8ace15aa-2e6c-4d1d-bf7f-e24e73bf076d",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "ab126bc2-437f-4c61-b42c-dabea9e43344",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "ad8d94f5-2339-490b-9be6-14b561e533d2",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "9b8bceaa-a035-4a13-9e37-a5dfdb8e863e",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "b6f799e4-267e-4edb-a928-767deac2e9c8",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "d974975a-f460-4f82-8859-cba2f1b8e7d4",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "9296f717-b9f9-4163-b2d6-6d613fa73b3b",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "b7113912-de6b-4703-9f2e-73ac89938c26",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "2b525625-2848-4e68-8c10-0a0354536505",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a9c32433-4f79-4c79-8a83-48ce265690ce",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "5dd78cbc-ad2a-4c24-ac52-50a068122ec9",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "c6ebd138-c3ad-4863-b909-082589905e1a",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "d670aad5-81f6-420d-a1ea-367619353c8e",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "acaba800-ea20-4ff1-8d63-ac0c9ae937a5",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "626c0e12-acc5-4db8-a212-8f3e900eeff8",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "1e7df61d-0e59-4ac3-912d-f3e4456e203c",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "8709cda8-2f0a-403e-af32-b7b5c4465411",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "138d1766-ff5f-4513-8347-a6a525937cd5",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0aa214b8-eb53-4d2b-a20c-3bfd6db8696b",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "b74edd74-2047-48d5-9128-e26a50aede7e",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "8097f68b-4670-4926-b2ff-1bbd89c6d079",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "d97b320b-2066-45de-b21d-58610bff3cd4",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 100.0,
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 500.0,
+    "categoria" : {
+      "nombre" : "Navidad-M",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 500.0,
+    "categoria" : {
+      "nombre" : "Navidad-A",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 1000.0,
+    "categoria" : {
+      "nombre" : "Navidad-B",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 50.0,
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#661A33"
+    }
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 50.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:49:41",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 50.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:50:15",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 50.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 50.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 50.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:03",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Navidad-M",
+    "descripcion" : "",
+    "colorHex" : "#00FF00"
+  }, {
+    "nombre" : "Navidad-A",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  }, {
+    "nombre" : "Navidad-B",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  }, {
+    "nombre" : "Verano",
+    "descripcion" : "",
+    "colorHex" : "#661A33"
+  } ],
+  "tipo" : "PERSONAL"
+}, {
   "id" : "59084882-a399-4cf6-878e-697d0cec21b4",
   "nombre" : "prueba",
   "gastos" : [ {
-    "id" : "215f744d-d48c-4a59-9d46-e2374afa01ba",
+    "id" : "962f45f7-8bab-4e6e-bf08-3a09e2369196",
     "concepto" : "baratillo",
     "importe" : 50.0,
     "fecha" : [ 2023, 2, 15 ],
@@ -79,7 +647,43 @@
       "descripcion" : "",
       "colorHex" : "#B34D1A"
     },
-    "pagador" : "Me"
+    "pagador" : "Yo"
+  }, {
+    "id" : "938e4fb5-a3a7-4786-bee0-2885a793c126",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "688001c2-1b17-4436-8c68-ef181f51d044",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "5b76b6ad-f8dc-4365-9647-34ca912093af",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "MENSUAL",
@@ -124,7 +728,175 @@
     "leida" : false
   }, {
     "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 16:45:29",
+    "fecha" : "2025-12-31 18:33:57",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:36:09",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:38:09",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:39:48",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:40:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:46:35",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:49:02",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:49:41",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:50:15",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:50:59",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:01:07",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:01:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:03:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:25",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:41",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:47",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:06",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:21",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:27",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:25:27",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:07:55",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:11:12",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:11:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:12:01",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:12:01",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:16:50",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:16:50",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:03",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:03",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:16",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:16",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:59",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:59",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:04",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:04",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:17",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:17",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:35:28",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:35:39",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:41:17",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:44:15",
     "leida" : false
   } ],
   "categorias" : [ {
@@ -138,105 +910,49 @@
   } ],
   "tipo" : "PERSONAL"
 }, {
-  "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
-  "nombre" : "Normal",
+  "id" : "cff8ab27-faca-445a-9f74-9359e27c6322",
+  "nombre" : "Compartida2",
   "gastos" : [ {
-    "id" : "d57fd230-b1a4-48a3-be1b-ce21ac67296a",
-    "concepto" : "desayuno",
-    "importe" : 10.47,
-    "fecha" : [ 2024, 2, 5 ],
-    "hora" : "12:33",
+    "id" : "cf8216b6-1672-4785-a682-e6c9f8dcf443",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
     "categoria" : {
       "nombre" : "General",
       "descripcion" : "Gastos varios",
       "colorHex" : "#D3D3D3"
     },
-    "pagador" : "Me"
+    "pagador" : "Luis"
   }, {
-    "id" : "6d95bb05-9c99-4700-b113-7e8856888e50",
-    "concepto" : "chiringuito",
-    "importe" : 2.0,
-    "fecha" : [ 2000, 8, 18 ],
-    "hora" : "12:22",
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#661A33"
-    },
-    "pagador" : "Me"
-  } ],
-  "alertas" : [ {
-    "tipo" : "SEMANAL",
-    "limite" : 100.0,
-    "categoria" : {
-      "nombre" : "Navidad-M",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 500.0,
-    "categoria" : {
-      "nombre" : "Navidad-M",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 500.0,
-    "categoria" : {
-      "nombre" : "Navidad-A",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 1000.0,
-    "categoria" : {
-      "nombre" : "Navidad-B",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 50.0,
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#661A33"
-    }
-  } ],
-  "notificaciones" : [ ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "Navidad-M",
-    "descripcion" : "",
-    "colorHex" : "#00FF00"
-  }, {
-    "nombre" : "Navidad-A",
-    "descripcion" : "",
-    "colorHex" : "#FFFFFF"
-  }, {
-    "nombre" : "Navidad-B",
-    "descripcion" : "",
-    "colorHex" : "#FFFFFF"
-  }, {
-    "nombre" : "Verano",
-    "descripcion" : "",
-    "colorHex" : "#661A33"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
-  "id" : "cff8ab27-faca-445a-9f74-9359e27c6322",
-  "nombre" : "Compartida2",
-  "gastos" : [ {
-    "id" : "b1c7bf69-f0c8-4582-95c9-208e62d59642",
+    "id" : "a9495162-52b8-4f99-b6f6-a13ff9a6867c",
     "concepto" : "compraIkea",
     "importe" : 100.58,
-    "fecha" : [ 2023, 1, 2 ],
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
+  }, {
+    "id" : "25ec0c43-8a00-42cc-803e-2f6edce6ae9f",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
+  }, {
+    "id" : "67674125-94b3-466d-a96f-cbfdfd3235ba",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
     "hora" : "10:45",
     "categoria" : {
       "nombre" : "General",

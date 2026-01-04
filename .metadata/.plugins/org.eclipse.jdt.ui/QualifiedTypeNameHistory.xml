@@ -14,12 +14,15 @@
     <fullyQualifiedTypeName name="gestorgastos.model.Notificacion"/>
     <fullyQualifiedTypeName name="gestorgastos.model.Cuenta"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
-    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
     <fullyQualifiedTypeName name="javafx.stage.FileChooser"/>
     <fullyQualifiedTypeName name="gestorgastos.strategies.InterfaceAlerta"/>
-    <fullyQualifiedTypeName name="javafx.stage.FileChooser.ExtensionFilter"/>
     <fullyQualifiedTypeName name="gestorgastos.model.CuentaCompartida"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
+    <fullyQualifiedTypeName name="javafx.stage.FileChooser.ExtensionFilter"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.JsonNode"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
 </qualifiedTypeNameHistroy>

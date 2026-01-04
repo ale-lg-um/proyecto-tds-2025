@@ -14,6 +14,7 @@ module gestorgastos.app_gastos {
     //Para poder abrir Excels
     requires org.apache.poi.poi;
     requires org.apache.poi.ooxml;
+	requires java.xml;
     
 
     // Exportar el paquete principal para iniciar la App

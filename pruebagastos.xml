@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Gastos>
+    <Gasto>
+        <Date>5/2/2024 12:33</Date>
+        <Account>Normal</Account>
+        <Category>efectivo</Category>
+        <Subcategory>Comida</Subcategory>
+        <Note>desayuno</Note>
+        <Payer>Me</Payer>
+        <Amount>10.47</Amount>
+        <Currency>EUR</Currency>
+    </Gasto>
+    <Gasto>
+        <Date>7/6/2022 15:09</Date>
+        <Account>Compartida</Account>
+        <Category>tarjeta</Category>
+        <Subcategory>Ocio</Subcategory>
+        <Note>cine</Note>
+        <Payer>Cristina</Payer>
+        <Amount>22.00</Amount>
+        <Currency>EUR</Currency>
+    </Gasto>
+    <Gasto>
+        <Date>12/18/2025 21:02</Date>
+        <Account>Compartida</Account>
+        <Category>tarjeta</Category>
+        <Subcategory>Navidad</Subcategory>
+        <Note>regalos</Note>
+        <Payer>Paquito</Payer>
+        <Amount>57.86</Amount>
+        <Currency>EUR</Currency>
+    </Gasto>
+    <Gasto>
+        <Date>2/1/2023 10:45</Date>
+        <Account>Compartida2</Account>
+        <Category>efectivo</Category>
+        <Subcategory>Muebles</Subcategory>
+        <Note>compraIkea</Note>
+        <Payer>Luis</Payer>
+        <Amount>100.58</Amount>
+        <Currency>EUR</Currency>
+    </Gasto>
+    <Gasto>
+        <Date>2/15/2003 11:02</Date>
+        <Account>prueba</Account>
+        <Category>efectivo</Category>
+        <Subcategory>otono</Subcategory>
+        <Note>abrigoCaro</Note>
+        <Payer>Me</Payer>
+        <Amount>2000.00</Amount>
+        <Currency>EUR</Currency>
+    </Gasto>
+    <Gasto>
+        <Date>2/15/2023 11:06</Date>
+        <Account>prueba</Account>
+        <Category>tarjeta</Category>
+        <Subcategory>otono</Subcategory>
+        <Note>baratillo</Note>
+        <Payer>Me</Payer>
+        <Amount>50.00</Amount>
+        <Currency>EUR</Currency>
+    </Gasto>
+    <Gasto>
+        <Date>8/18/2000 12:22</Date>
+        <Account>Normal</Account>
+        <Category>efectivo</Category>
+        <Subcategory>Verano</Subcategory>
+        <Note>chiringuito</Note>
+        <Payer>Me</Payer>
+        <Amount>2.00</Amount>
+        <Currency>EUR</Currency>
+    </Gasto>
+</Gastos>
