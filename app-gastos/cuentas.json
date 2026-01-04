@@ -42,6 +42,350 @@
   },
   "tipo" : "ESPECIAL"
 }, {
+  "id" : "59084882-a399-4cf6-878e-697d0cec21b4",
+  "nombre" : "prueba",
+  "gastos" : [ {
+    "id" : "962f45f7-8bab-4e6e-bf08-3a09e2369196",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "938e4fb5-a3a7-4786-bee0-2885a793c126",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "688001c2-1b17-4436-8c68-ef181f51d044",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "5b76b6ad-f8dc-4365-9647-34ca912093af",
+    "concepto" : "baratillo",
+    "importe" : 50.0,
+    "fecha" : [ 2023, 2, 15 ],
+    "hora" : "11:06",
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ {
+    "tipo" : "MENSUAL",
+    "limite" : 1000.0,
+    "categoria" : {
+      "nombre" : "otono",
+      "descripcion" : "",
+      "colorHex" : "#B34D1A"
+    }
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 12:44:07",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 13:16:06",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 13:17:25",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:00:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:01:51",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:02:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:03:03",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 14:06:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:33:57",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:36:09",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:38:09",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:39:48",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:40:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:46:35",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:49:02",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:49:41",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:50:15",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 18:50:59",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:01:07",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:01:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:03:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:25",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:34",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:41",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:04:47",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:06",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:14",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:21",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:05:27",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2025-12-31 19:25:27",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:07:55",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:11:12",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:11:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:12:01",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:12:01",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:16:50",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:16:50",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:03",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:03",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:16",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:16",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:59",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:17:59",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:04",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:04",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:17",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:32:17",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:35:28",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:35:39",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:41:17",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
+    "fecha" : "2026-01-04 19:44:15",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "otono",
+    "descripcion" : "",
+    "colorHex" : "#B34D1A"
+  } ],
+  "tipo" : "PERSONAL"
+}, {
+  "id" : "cff8ab27-faca-445a-9f74-9359e27c6322",
+  "nombre" : "Compartida2",
+  "gastos" : [ {
+    "id" : "cf8216b6-1672-4785-a682-e6c9f8dcf443",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
+  }, {
+    "id" : "a9495162-52b8-4f99-b6f6-a13ff9a6867c",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
+  }, {
+    "id" : "25ec0c43-8a00-42cc-803e-2f6edce6ae9f",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
+  }, {
+    "id" : "67674125-94b3-466d-a96f-cbfdfd3235ba",
+    "concepto" : "compraIkea",
+    "importe" : 100.58,
+    "fecha" : [ 2023, 2, 1 ],
+    "hora" : "10:45",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Luis"
+  } ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "miembros" : [ "Marco", "Juana", "Luis", "María", "Josefa" ],
+  "porcentajes" : {
+    "Marco" : 10.0,
+    "Juana" : 2.0,
+    "Luis" : 50.0,
+    "María" : 22.0,
+    "Josefa" : 16.0
+  },
+  "tipo" : "ESPECIAL"
+}, {
   "id" : "f5a5afde-e052-4ab0-b0aa-6881f9804a62",
   "nombre" : "Normal",
   "gastos" : [ {
@@ -633,348 +977,4 @@
     "colorHex" : "#661A33"
   } ],
   "tipo" : "PERSONAL"
-}, {
-  "id" : "59084882-a399-4cf6-878e-697d0cec21b4",
-  "nombre" : "prueba",
-  "gastos" : [ {
-    "id" : "962f45f7-8bab-4e6e-bf08-3a09e2369196",
-    "concepto" : "baratillo",
-    "importe" : 50.0,
-    "fecha" : [ 2023, 2, 15 ],
-    "hora" : "11:06",
-    "categoria" : {
-      "nombre" : "otono",
-      "descripcion" : "",
-      "colorHex" : "#B34D1A"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "938e4fb5-a3a7-4786-bee0-2885a793c126",
-    "concepto" : "baratillo",
-    "importe" : 50.0,
-    "fecha" : [ 2023, 2, 15 ],
-    "hora" : "11:06",
-    "categoria" : {
-      "nombre" : "otono",
-      "descripcion" : "",
-      "colorHex" : "#B34D1A"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "688001c2-1b17-4436-8c68-ef181f51d044",
-    "concepto" : "baratillo",
-    "importe" : 50.0,
-    "fecha" : [ 2023, 2, 15 ],
-    "hora" : "11:06",
-    "categoria" : {
-      "nombre" : "otono",
-      "descripcion" : "",
-      "colorHex" : "#B34D1A"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "5b76b6ad-f8dc-4365-9647-34ca912093af",
-    "concepto" : "baratillo",
-    "importe" : 50.0,
-    "fecha" : [ 2023, 2, 15 ],
-    "hora" : "11:06",
-    "categoria" : {
-      "nombre" : "otono",
-      "descripcion" : "",
-      "colorHex" : "#B34D1A"
-    },
-    "pagador" : "Yo"
-  } ],
-  "alertas" : [ {
-    "tipo" : "MENSUAL",
-    "limite" : 1000.0,
-    "categoria" : {
-      "nombre" : "otono",
-      "descripcion" : "",
-      "colorHex" : "#B34D1A"
-    }
-  } ],
-  "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 12:44:07",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 13:16:06",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 13:17:25",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 14:00:33",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 14:01:51",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 14:02:33",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 14:03:03",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 14:06:33",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:33:57",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:36:09",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:38:09",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:39:48",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:40:14",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:46:35",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:49:02",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:49:41",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:50:15",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 18:50:59",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:01:07",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:01:14",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:03:14",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:04:25",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:04:34",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:04:41",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:04:47",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:05:06",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:05:14",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:05:21",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:05:27",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2025-12-31 19:25:27",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:07:55",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:11:12",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:11:33",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:12:01",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:12:01",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:16:50",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:16:50",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:17:03",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:17:03",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:17:16",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:17:16",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:17:59",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:17:59",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:32:04",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:32:04",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:32:17",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:32:17",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:35:28",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:35:39",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:41:17",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 1000.0€ definido en tu alerta.",
-    "fecha" : "2026-01-04 19:44:15",
-    "leida" : false
-  } ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "otono",
-    "descripcion" : "",
-    "colorHex" : "#B34D1A"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
-  "id" : "cff8ab27-faca-445a-9f74-9359e27c6322",
-  "nombre" : "Compartida2",
-  "gastos" : [ {
-    "id" : "cf8216b6-1672-4785-a682-e6c9f8dcf443",
-    "concepto" : "compraIkea",
-    "importe" : 100.58,
-    "fecha" : [ 2023, 2, 1 ],
-    "hora" : "10:45",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Luis"
-  }, {
-    "id" : "a9495162-52b8-4f99-b6f6-a13ff9a6867c",
-    "concepto" : "compraIkea",
-    "importe" : 100.58,
-    "fecha" : [ 2023, 2, 1 ],
-    "hora" : "10:45",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Luis"
-  }, {
-    "id" : "25ec0c43-8a00-42cc-803e-2f6edce6ae9f",
-    "concepto" : "compraIkea",
-    "importe" : 100.58,
-    "fecha" : [ 2023, 2, 1 ],
-    "hora" : "10:45",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Luis"
-  }, {
-    "id" : "67674125-94b3-466d-a96f-cbfdfd3235ba",
-    "concepto" : "compraIkea",
-    "importe" : 100.58,
-    "fecha" : [ 2023, 2, 1 ],
-    "hora" : "10:45",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Luis"
-  } ],
-  "alertas" : [ ],
-  "notificaciones" : [ ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  } ],
-  "miembros" : [ "Marco", "Juana", "Luis", "María", "Josefa" ],
-  "porcentajes" : {
-    "Marco" : 10.0,
-    "Juana" : 2.0,
-    "Luis" : 50.0,
-    "María" : 22.0,
-    "Josefa" : 16.0
-  },
-  "tipo" : "ESPECIAL"
 } ]
