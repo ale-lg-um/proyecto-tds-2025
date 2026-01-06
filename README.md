@@ -45,3 +45,8 @@ Abre una terminal en la raíz del proyecto y ejecuta:
 
 ```bash
 mvn clean javafx:run
+```
+---
+
+## Enlace a la Documentacion
+**Estes un enlace al indice de la documentacion ->**[Indice de la Documentacion](./docs/DOCUMENTACION.md)**

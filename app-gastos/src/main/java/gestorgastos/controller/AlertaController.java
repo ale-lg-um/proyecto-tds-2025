@@ -5,10 +5,13 @@ import gestorgastos.services.CuentaService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
+import javafx.util.Callback; // IMPORTANTE
+import java.time.LocalDate; // IMPORTANTE
+import java.time.format.DateTimeFormatter; // IMPORTANTE
+import java.time.temporal.TemporalAdjusters; // IMPORTANTE
+import java.time.DayOfWeek; // IMPORTANTE
 
 import java.util.ArrayList;
-
 
 public class AlertaController {
     @FXML private ComboBox<String> comboTipo;
@@ -20,21 +23,61 @@ public class AlertaController {
 
     private Cuenta cuentaActual;
     private CuentaService cuentaService = CuentaService.getInstancia();
+    
+    // Formateador para que las fechas se vean bonitas (ej: 06/01/2026)
+    private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     public void setCuenta(Cuenta cuenta){
         this.cuentaActual = cuenta;
-
-        if( cuenta.getAlertas() == null) cuenta.setAlertas(new ArrayList<>());
+        if(cuenta.getAlertas() == null) cuenta.setAlertas(new ArrayList<>());
         if(cuenta.getNotificaciones() == null) cuenta.setNotificaciones(new ArrayList<>());
-
         cargarDatos();
-
     }
 
     @FXML
     public void initialize() {
-    	comboTipo.setItems(FXCollections.observableArrayList("SEMANAL","MENSUAL"));
+        comboTipo.setItems(FXCollections.observableArrayList("SEMANAL","MENSUAL"));
         comboTipo.getSelectionModel().selectFirst();
+
+        // --- AQUÍ ESTÁ LA MAGIA ---
+        // Personalizamos cómo se ve cada celda de la lista de alertas
+        listaAlertasConfiguradas.setCellFactory(new Callback<ListView<Alerta>, ListCell<Alerta>>() {
+            @Override
+            public ListCell<Alerta> call(ListView<Alerta> param) {
+                return new ListCell<Alerta>() {
+                    @Override
+                    protected void updateItem(Alerta item, boolean empty) {
+                        super.updateItem(item, empty);
+
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            // 1. Calculamos las fechas basándonos en HOY
+                            LocalDate hoy = LocalDate.now();
+                            String rangoFechas = "";
+
+                            if ("SEMANAL".equalsIgnoreCase(item.getTipo())) {
+                                LocalDate inicio = hoy.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+                                LocalDate fin = hoy.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
+                                rangoFechas = "(" + inicio.format(fmt) + " al " + fin.format(fmt) + ")";
+                            } 
+                            else if ("MENSUAL".equalsIgnoreCase(item.getTipo())) {
+                                LocalDate inicio = hoy.with(TemporalAdjusters.firstDayOfMonth());
+                                LocalDate fin = hoy.with(TemporalAdjusters.lastDayOfMonth());
+                                rangoFechas = "(" + inicio.format(fmt) + " al " + fin.format(fmt) + ")";
+                            }
+
+                            // 2. Obtenemos el nombre de la categoría
+                            String nombreCat = (item.getCategoria() != null) ? item.getCategoria().getNombre() : "General";
+
+                            // 3. Formateamos el texto final
+                            // Ejemplo: SEMANAL (01/01/2026 al 07/01/2026) -> 100.0€ (Comida)
+                            setText(item.getTipo() + " " + rangoFechas + " -> " + item.getLimite() + "€ (" + nombreCat + ")");
+                        }
+                    }
+                };
+            }
+        });
     }
     
     @FXML

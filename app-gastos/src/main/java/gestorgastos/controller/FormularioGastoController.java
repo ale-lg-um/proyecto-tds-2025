@@ -191,15 +191,15 @@ public class FormularioGastoController {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Gasto Bloqueado");
 			alert.setHeaderText("Límite superado");
-			alert.setContentText(mensajeError + "\n\nSe ha generado una notificación y el gasto no se guardará.");
+			alert.setContentText(mensajeError + "\n\nSe ha generado una notificación aunque el gasto se guardará.");
 			alert.showAndWait();
 
 			// B) DETENEMOS TODO: Hacemos return para no llegar a la parte de guardar
-			return;
+			//return;
 		}
 
 		// ---------------------------------------------------
-		// 4. GUARDAR DEFINITIVAMENTE (Si no hubo alertas)
+		// 4. GUARDAR DEFINITIVAMENTE (Aunque haya habido alerta)
 		// ---------------------------------------------------
 
 		if (!esEdicion) {

@@ -2,7 +2,7 @@
 
 Este documento presenta el diagrama de secuencia correspondiente a la **Historia de Usuario 01: Registrar Gasto**.
 
-Esta historia ha sido seleccionada por ser la funcionalidad central del sistema, permitiendo visualizar la interacción completa entre las capas de la arquitectura **MVC**, el uso del patrón **Singleton** en el servicio y la persistencia de datos mediante el patrón **Repositorio**.
+Esta historia ha sido seleccionada por ser la funcionalidad central del sistema, permitiendo visualizar la interacción completa entre las capas de la arquitectura **MVC** y la persistencia de datos mediante el patrón **Repositorio**.
 
 ---
 
@@ -11,62 +11,65 @@ Esta historia ha sido seleccionada por ser la funcionalidad central del sistema,
 ```mermaid
 sequenceDiagram
     actor Usuario
-    participant View as Vista (FormularioGasto)
-    participant FormCtrl as FormularioGastoController
-    participant DetalleCtrl as DetalleCuentaController
+    participant View as Vista (Formulario)
+    participant FormCtrl as FormularioController
+    participant DetalleCtrl as DetalleController
+    participant Service as CuentaService
+    participant Strategy as Estrategias (Semanal/Mensual)
     participant Model as Cuenta (Modelo)
-    participant Service as CuentaService (Singleton)
-    participant Repo as CuentaRepositoryJson
-    participant Jackson as ObjectMapper (Librería)
+    participant Repo as Repositorio
 
-    Note over Usuario, View: El usuario abre la ventana de "Nuevo Gasto"
+    Note over Usuario, View: El usuario intenta guardar un nuevo gasto
 
-    Usuario->>View: Introduce Concepto, Importe, Fecha y Categoría
-    Usuario->>View: Clic en botón "Guardar"
+    Usuario->>View: Rellena datos y clic "Guardar"
     View->>FormCtrl: guardar()
-
-    Note over FormCtrl: 1. Validación de datos y creación del objeto
-
+    
     create participant NuevoGasto as :Gasto
     FormCtrl->>NuevoGasto: new Gasto(...)
-    
-    FormCtrl-->>View: cerrarVentana()
-    
-    Note over DetalleCtrl: 2. El controlador principal recibe el control
-    
-    DetalleCtrl->>FormCtrl: getGastoResultado()
-    FormCtrl-->>DetalleCtrl: retorna nuevoGasto
-    
-    Note over DetalleCtrl: 3. Actualización en Memoria (Modelo)
+    FormCtrl-->>DetalleCtrl: Retorna objeto nuevoGasto
 
-    DetalleCtrl->>Model: agregarGasto(nuevoGasto)
+    Note over DetalleCtrl, Service: 1. VALIDACIÓN DE ALERTAS (Informativa)
+
+    DetalleCtrl->>Service: verificarAlertas(cuenta, nuevoGasto)
+    
+    loop Para cada Alerta activa
+        Service->>Strategy: verificarLimite(alerta, cuenta, nuevoGasto)
+        activate Strategy
+        Strategy-->>Service: true (Supera) / false (Ok)
+        deactivate Strategy
+    end
+
+    alt ⚠️ Límite Superado
+        Service->>Model: add(Notificacion)
+        Note right of Model: Se registra la alerta en el historial
+        Service-->>DetalleCtrl: Retorna mensaje de advertencia
+    else ✅ Límite OK
+        Service-->>DetalleCtrl: Retorna null (Sin advertencias)
+    end
+
+    Note over DetalleCtrl: 2. PERSISTENCIA DEL GASTO (Siempre se ejecuta)
+
+    DetalleCtrl->>Model: add(nuevoGasto)
     activate Model
-    Model-->>DetalleCtrl: (Lista actualizada en RAM)
+    Model-->>DetalleCtrl: Lista de gastos actualizada en RAM
     deactivate Model
 
-    Note over DetalleCtrl: 4. Persistencia (Guardado en Disco)
-
-    DetalleCtrl->>Service: agregarCuenta(null, cuentaActual)
+    DetalleCtrl->>Service: agregarCuenta(..., cuenta)
     activate Service
-    Service->>Repo: save(cuentaActual)
+    Service->>Repo: save(cuenta)
     activate Repo
-    
-    Note right of Repo: Carga estado actual, actualiza y serializa
-    Repo->>Repo: findAll()
-    Repo->>Repo: removeIf(id coincide)
-    Repo->>Repo: add(cuentaActual)
-    
-    Repo->>Jackson: writeValue("cuentas.json", lista)
-    activate Jackson
-    Jackson-->>Repo: (Archivo JSON escrito)
-    deactivate Jackson
-    
-    Repo-->>Service: void
+    Note right of Repo: Se guarda TODO (Gasto + Notificación si hubo)
+    Repo-->>Service: JSON actualizado
     deactivate Repo
-    Service-->>DetalleCtrl: void
+    Service-->>DetalleCtrl: Confirmación
     deactivate Service
 
-    Note over DetalleCtrl: 5. Refresco de la Interfaz
+    Note over DetalleCtrl: 3. FEEDBACK AL USUARIO
 
     DetalleCtrl->>DetalleCtrl: actualizarTabla()
+    
+    opt Si hubo Advertencia de Alerta
+        DetalleCtrl-->>Usuario: Popup: "Gasto guardado, pero límite superado"
+    end
+    
     DetalleCtrl-->>Usuario: Muestra el nuevo gasto en la tabla

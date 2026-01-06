@@ -3,29 +3,58 @@ package gestorgastos.strategies;
 import gestorgastos.model.*;
 import java.time.LocalDate;
 
+public class EstrategiaMensual implements InterfaceAlerta {
 
-public class EstrategiaMensual implements InterfaceAlerta{
-	/*@Override
-	public boolean verificarLimite(Alerta alerta, Cuenta cuenta, Gasto gasto) {
-		double limite = alerta.getLimite();
-        LocalDate fechaGasto = gasto.getFecha();
+    @Override
+    public boolean verificarLimite(Alerta alerta, Cuenta cuenta, Gasto nuevoGasto) {
+        // 1. Referencia: HOY
+        LocalDate hoy = LocalDate.now();
+        LocalDate fechaGasto = nuevoGasto.getFecha();
 
-        double totalGastado = 0;
+        // 2. FILTRO VITAL: Si el gasto no es de este mes Y de este año, adiós.
+        boolean esEsteMes = (fechaGasto.getMonth() == hoy.getMonth()) && (fechaGasto.getYear() == hoy.getYear());
+        
+        if (!esEsteMes) {
+            return false; // Es un gasto antiguo o futuro, no afecta al límite mensual actual.
+        }
 
-        for(Gasto g : cuenta.getGastos()){
-            // Primero vemos que si coinciden en fecha
-            boolean mismoMes = g.getFecha().getMonth() == fechaGasto.getMonth() &&
-                               g.getFecha().getYear() == fechaGasto.getYear();
-            if (mismoMes){
-                // Miramos si hay categoria o si coincide 
-                if((alerta.getCategoria() == null) || (alerta.getCategoria().getNombre().equals(gasto.getCategoria().getNombre()))){
-                       totalGastado += g.getImporte(); 
-                }
+        // 3. Comprobación de Categoría
+        if(alerta.getCategoria() != null) {
+            if(!alerta.getCategoria().getNombre().equalsIgnoreCase(nuevoGasto.getCategoria().getNombre())) {
+                return false;
+            }
+        }
+        
+        double limite = alerta.getLimite();
+        double totalGastado = nuevoGasto.getImporte(); 
+        
+        // 4. Sumar gastos que pertenezcan al MES ACTUAL
+        for (Gasto g : cuenta.getGastos()) {
+            boolean coincideMesActual = (g.getFecha().getMonth() == hoy.getMonth()) && (g.getFecha().getYear() == hoy.getYear());
+            
+            boolean mismaCategoria = true;
+            if(alerta.getCategoria() != null) {
+                mismaCategoria = alerta.getCategoria().getNombre().equalsIgnoreCase(g.getCategoria().getNombre());
+            }
+            
+            if(coincideMesActual && mismaCategoria) {
+                totalGastado += g.getImporte();
             }
         }
         
         return totalGastado > limite;
-	}*/
+    }
+}
+/*
+ 
+package gestorgastos.strategies;
+
+import gestorgastos.model.*;
+import java.time.LocalDate;
+
+
+public class EstrategiaMensual implements InterfaceAlerta{
+
 	
 	@Override
 	public boolean verificarLimite(Alerta alerta, Cuenta cuenta, Gasto nuevoGasto) {
@@ -55,4 +84,4 @@ public class EstrategiaMensual implements InterfaceAlerta{
 		return totalGastado > limite;
 	}
 }
-
+*/

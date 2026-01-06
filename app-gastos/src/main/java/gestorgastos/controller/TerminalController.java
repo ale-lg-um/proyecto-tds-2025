@@ -223,7 +223,7 @@ public class TerminalController {
         imprimir(mensajeError);
         imprimir("--------------------------------------------------");
         imprimir("ℹ️  Se ha generado una notificación en tu cuenta.");
-        imprimir("    El gasto NO se ha guardado.");
+        imprimir("    El gasto SI se ha guardado.");
         imprimir("**************************************************\n");
 
         // Reseteamos el flujo para volver al menú principal
@@ -232,7 +232,7 @@ public class TerminalController {
         reiniciarPrompt();
         
         // IMPORTANTE: Return para que NO ejecute el código de abajo (agregarGasto)
-        return; 
+        //return; 
     }
 
     // ---------------------------------------------------------

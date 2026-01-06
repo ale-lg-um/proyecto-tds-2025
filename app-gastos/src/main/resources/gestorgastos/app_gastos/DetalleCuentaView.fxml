@@ -61,7 +61,7 @@
             <Button fx:id="btnEditarGasto" maxWidth="Infinity" text="Editar Seleccionado" />
             <Button fx:id="btnBorrarGasto" maxWidth="Infinity" style="-fx-text-fill: white; -fx-background-color: red;" text="Borrar Seleccionado" />
             <Separator />
-            <Button fx:id="btnImportar" maxWidth="Infinity" text="Importar (CSV/Txt)" />
+            <Button fx:id="btnImportar" maxWidth="Infinity" text="Importar Fichero" />
 
             <VBox fx:id="panelSaldos" spacing="10" visible="false" VBox.vgrow="ALWAYS">
                 <Separator />

@@ -1,6 +1,5 @@
 package gestorgastos.controller;
 
-//import gestorgastos.cli.GestorCLI;
 import gestorgastos.model.*;
 import gestorgastos.importacion.*;
 import gestorgastos.services.CuentaService;
@@ -51,10 +50,6 @@ public class DetalleCuentaController {
     private Cuenta cuentaActual;
     private CuentaService cuentaService = CuentaService.getInstancia();
 
-    // --- GESTIÓN DE CONSOLA (CLI) ---
-    //private GestorCLI gestorCLI;
-    //private Thread hiloCLI;
-
     @FXML
     public void initialize() {
         // 1. Configurar QUÉ datos van en cada columna (ValueFactory)
@@ -97,18 +92,13 @@ public class DetalleCuentaController {
         btnAnadirGasto.setOnAction(e -> abrirCrearGasto());
         btnEditarGasto.setOnAction(e -> abrirEditarGasto());
         btnBorrarGasto.setOnAction(e -> borrarGasto());
-        //btnImportar.setOnAction(e -> System.out.println("Funcionalidad Importar pendiente..."));
         btnImportar.setOnAction(e -> procesarImportacion());
     }
 
-    /**
-     * Recibe la cuenta desde el controlador anterior.
-     */
     public void setCuenta(Cuenta cuenta) {
         this.cuentaActual = cuenta;
         lblTituloCuenta.setText("Gastos: " + cuenta.getNombre());
 
-        // Aseguramos que la lista de categorías existe para evitar errores
         if (this.cuentaActual.getCategorias() == null) {
             this.cuentaActual.setCategorias(new ArrayList<>());
         }
@@ -118,38 +108,13 @@ public class DetalleCuentaController {
 
         actualizarTabla();
 
-        // Gestión del Panel de Saldos
         if (cuenta instanceof CuentaCompartida) {
             panelSaldos.setVisible(true);
             calcularYMostrarSaldos((CuentaCompartida) cuenta);
         } else {
             panelSaldos.setVisible(false);
         }
-
-        // --- INICIAR HILO DE CONSOLA (CLI) ---
-       // iniciarCLI();
     }
-    /*
-    // --- MÉTODOS CLI ---
-    private void iniciarCLI() {
-        // Solo iniciamos si no está ya corriendo
-        if (hiloCLI == null || !hiloCLI.isAlive()) {
-            gestorCLI = new GestorCLI(cuentaActual);
-            hiloCLI = new Thread(gestorCLI);
-            hiloCLI.setDaemon(true); // Se cierra si cierras la app principal
-            hiloCLI.start();
-        }
-    }
-
-    private void detenerCLI() {
-        if (gestorCLI != null) {
-            gestorCLI.detener();
-        }
-    }
-    // -------------------
-    */
-
-    // --- LÓGICA CRUD ---
 
     private void abrirCrearGasto() {
         abrirFormularioGasto(null);
@@ -177,23 +142,15 @@ public class DetalleCuentaController {
             stage.setTitle(gastoEdicion == null ? "Nuevo Gasto" : "Editar Gasto");
             stage.setScene(new Scene(root));
             stage.showAndWait();
-
-            // --- CAMBIO CLAVE AQUÍ ---
             
-            // Antes tenías: if (controller.getGastoResultado() != null) {
-            
-            // Ahora ponemos esto:
             if (controller.isGuardadoConfirmado() && controller.getGastoResultado() != null) {
                 
                 if (gastoEdicion == null) {
-                    // Solo añadimos si es nuevo. Si es edición, ya modificamos el objeto por referencia
                     cuentaActual.agregarGasto(controller.getGastoResultado());
                 }
                 
-                // Guardamos en el JSON
                 guardarCambiosYRefrescar();
             }
-            // Si cierra con X o cancela, 'isGuardadoConfirmado' será false y no entrará aquí.
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -220,11 +177,8 @@ public class DetalleCuentaController {
     }
 
     private void guardarCambiosYRefrescar() {
-        // 1. Guardar en JSON
         cuentaService.agregarCuenta(null, cuentaActual);
-        // 2. Refrescar Tabla
         actualizarTabla();
-        // 3. Recalcular Saldos si es compartida
         if (cuentaActual instanceof CuentaCompartida) {
             calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
         }
@@ -243,7 +197,6 @@ public class DetalleCuentaController {
             listaSaldos.getItems().add(texto);
         });
 
-        // Colores para deudores/acreedores
         listaSaldos.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -266,13 +219,8 @@ public class DetalleCuentaController {
         alert.showAndWait();
     }
 
-    // --- NAVEGACIÓN ---
-
     @FXML
     private void volverInicio() {
-        // DETENER LA CONSOLA AL SALIR
-        //detenerCLI();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/PrincipalView.fxml"));
             Parent root = loader.load();
@@ -292,9 +240,6 @@ public class DetalleCuentaController {
 
     @FXML
     private void irACategorias() {
-        // DETENER LA CONSOLA AL CAMBIAR DE VISTA
-        //detenerCLI();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/GestionCategoriasView.fxml"));
             Parent root = loader.load();
@@ -314,11 +259,10 @@ public class DetalleCuentaController {
             Parent root = loader.load();
 
             VisualizacionController controller = loader.getController();
-            controller.setCuenta(cuentaActual); // ¡Pasamos la cuenta!
+            controller.setCuenta(cuentaActual);
 
             Stage stage = (Stage) lblTituloCuenta.getScene().getWindow();
             
-            // Hacemos la ventana más grande porque el calendario ocupa espacio
             stage.setScene(new Scene(root, 1100, 750)); 
             stage.centerOnScreen();
             stage.show();
@@ -331,60 +275,42 @@ public class DetalleCuentaController {
     @FXML
     private void irAAlertas() {
         try {
-            // 1. Cargar la vista
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
             Parent root = loader.load();
 
-            // 2. Obtener el controlador y pasarle los datos
             AlertaController controller = loader.getController();
-            controller.setCuenta(cuentaActual); // ¡Importante! Pasamos la cuenta actual
+            controller.setCuenta(cuentaActual);
 
-            // 3. Crear y mostrar la ventana
             Stage stage = new Stage();
             stage.setTitle("Configuración de Alertas - " + cuentaActual.getNombre());
             stage.setScene(new Scene(root));
-            
-            // Usamos show() en vez de showAndWait() para que puedas ver las alertas 
-            // y la tabla de gastos a la vez (muy útil para comprobar cosas).
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            // Opcional: mostrar una alerta visual de error
             new Alert(Alert.AlertType.ERROR, "Error al abrir la ventana de alertas.").show();
         }
     }
-    /*
-    @FXML private void irACMD() { System.out.println("La consola ya está activa en segundo plano (mira tu IDE)."); }
-    */
+
     @FXML
     private void irACMD() {
         try {
-            // 1. Cargar la vista de la Terminal
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
             Parent root = loader.load();
 
-            // 2. Pasar la cuenta al controlador de la terminal
             TerminalController controller = loader.getController();
             controller.setCuenta(cuentaActual);
 
             controller.setOnUpdate(() -> {
-                actualizarTabla(); // Refresca la tabla de gastos
-                
-                // Si es compartida, refresca también los saldos
+                actualizarTabla();
                 if (cuentaActual instanceof CuentaCompartida) {
                     calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
                 }
             });
 
-            // 3. Abrir en una ventana nueva (Stage)
             Stage stage = new Stage();
             stage.setTitle("Terminal - " + cuentaActual.getNombre());
             stage.setScene(new Scene(root));
-            
-            // Opcional: Hacer que sea modal (no puedes tocar la ventana de atrás)
-            // stage.initModality(Modality.APPLICATION_MODAL); 
-            
             stage.show();
 
         } catch (IOException e) {
@@ -396,135 +322,133 @@ public class DetalleCuentaController {
     @FXML
     private void procesarImportacion() {
 
-    	FileChooser fileChooser = new FileChooser();
-    	fileChooser.setTitle("Importar Gastos");
-    	fileChooser.getExtensionFilters().addAll(
-    			new FileChooser.ExtensionFilter("Archivos Soportados", "*.csv", "*.txt", "*.json", "*.xlsx", "*.xml")
-    	);
-    	
-    	File fichero = fileChooser.showOpenDialog(btnImportar.getScene().getWindow());
-    	if(fichero == null) return;
-    	
-    	Importador importador = FactoriaImportacion.getImportador(fichero.getAbsolutePath());
-    	if(importador == null) {
-    		mostrarAlerta("Formato no soportado.");
-    		return;
-    	}
-    	
-    	try {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Importar Gastos");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Archivos Soportados", "*.csv", "*.txt", "*.json", "*.xlsx", "*.xml")
+        );
+        
+        File fichero = fileChooser.showOpenDialog(btnImportar.getScene().getWindow());
+        if(fichero == null) return;
+        
+        Importador importador = FactoriaImportacion.getImportador(fichero.getAbsolutePath());
+        if(importador == null) {
+            mostrarAlerta("Formato no soportado.");
+            return;
+        }
+        
+        try {
 
-    		List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
+            List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
 
-    		Usuario user = gestorgastos.services.SesionService.getInstancia().getUsuarioActivo();
+            Usuario user = gestorgastos.services.SesionService.getInstancia().getUsuarioActivo();
 
-    		List<Cuenta> cuentas = cuentaService.getCuentasDe(user);
+            List<Cuenta> cuentas = cuentaService.getCuentasDe(user);
 
-    		
-    		int insertados = 0;
-    		int descartados = 0;
+            
+            int insertados = 0;
+            int descartados = 0;
+            int alertasGeneradas = 0; // <--- NUEVA VARIABLE
+            
+            for(GastoTemporal t : temporales) {
+            System.out.println(t.toString());
+                Optional<Cuenta> cMatch = cuentas.stream()
+                        .filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
+                        .findFirst();
+                
+                if(cMatch.isEmpty()) {
+                    System.out.println("Descartado: No existe la cuenta: " + t.nombreCuenta + "\nGasto completo: " + t);
+                    descartados++;
+                    continue;
+                }
+                
+                Cuenta destino = cMatch.get();
+                
+                if(destino.getAlertas() == null) {
+                    destino.setAlertas(new ArrayList<>());
+                }
+                
+                if(destino.getNotificaciones() == null) {
+                    destino.setNotificaciones(new ArrayList<>());
+                }
+                
+                boolean valido = false;
+                
+                if(destino instanceof CuentaPersonal) {
+                    valido = true;
+                } else if(destino instanceof CuentaProporcional) {
+                    CuentaProporcional proporcional = (CuentaProporcional) destino;
+                    boolean esMiembro = proporcional.getMiembros().stream()
+                            .anyMatch(m -> m.equalsIgnoreCase(t.pagador));
+                    if(esMiembro) {
+                        valido = true;
+                    } else {
+                        System.out.println("Descartado (Especial): El usuario " + t.pagador + " no está asociado a esta cuenta\nGasto completo: " + t);
+                    }
+                } else if(destino instanceof CuentaCompartida) {
+                    CuentaCompartida compartida = (CuentaCompartida) destino;
+                    boolean esMiembro = compartida.getMiembros().stream()
+                            .anyMatch(m -> m.equalsIgnoreCase(t.pagador));
+                    if(esMiembro) {
+                        valido = true;
+                    } else {
+                        System.out.println("Descartado (Compartida): El usuario " + t.pagador + " no está asociado a esta cuenta\nGasto completo: " + t);
+                    }
+                }
+                
+                if(valido) {
 
-			
+                    Categoria real = destino.getCategorias().stream()
+                            .filter(c -> c.getNombre().equalsIgnoreCase(t.categoria))
+                            .findFirst()
+                            .orElse(destino.getCategorias().get(0));
 
-    		
-    		for(GastoTemporal t : temporales) {
-    		System.out.println(t.toString());
-    			Optional<Cuenta> cMatch = cuentas.stream()
-    					.filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
-    					.findFirst();
-    			
-    			if(cMatch.isEmpty()) {
-    				System.out.println("Descartado: No existe la cuenta: " + t.nombreCuenta + "\nGasto completo: " + t);
-    				descartados++;
-    				continue;
-    			}
-    			
-    			Cuenta destino = cMatch.get();
-    			
-    			if(destino.getAlertas() == null) {
-    				destino.setAlertas(new ArrayList<>());
-    			}
-    			
-    			if(destino.getNotificaciones() == null) {
-    				destino.setNotificaciones(new ArrayList<>());
-    			}
-    			
-    			boolean valido = false;
-    			
-    			// En caso de que la cuenta sea personal, insertamos directamente el gasto
-    			if(destino instanceof CuentaPersonal) {
-    				valido = true;
-    			} else if(destino instanceof CuentaProporcional) {
-    				CuentaProporcional proporcional = (CuentaProporcional) destino;
-    				boolean esMiembro = proporcional.getMiembros().stream()
-    						.anyMatch(m -> m.equalsIgnoreCase(t.pagador));
-    				if(esMiembro) {
-    					valido = true;
-    				} else {
-    					System.out.println("Descartado (Especial): El usuario " + t.pagador + " no está asociado a esta cuenta\nGasto completo: " + t);
-    				}
-    			} else if(destino instanceof CuentaCompartida) {
-    				CuentaCompartida compartida = (CuentaCompartida) destino;
-    				boolean esMiembro = compartida.getMiembros().stream()
-    						.anyMatch(m -> m.equalsIgnoreCase(t.pagador));
-    				if(esMiembro) {
-    					valido = true;
-    				} else {
-    					System.out.println("Descartado (Compartida): El usuario " + t.pagador + " no está asociado a esta cuenta\nGasto completo: " + t);
-    				}
-    			}
-    			
-    			if(valido) {
+                    Gasto nuevo = new Gasto(t.concepto, t.importe, t.fecha, real, t.pagador);
+                    nuevo.setHora(t.hora);
+                    
+                    gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
+                    
+                    String errorAlerta = servicio.comprobarAlertas(destino, nuevo);
 
-    				Categoria real = destino.getCategorias().stream()
-    						.filter(c -> c.getNombre().equalsIgnoreCase(t.categoria))
-    						.findFirst()
-    						.orElse(destino.getCategorias().get(0));
+                    if (errorAlerta != null) {
+                        System.out.println("ALERTA SALTADA (" + destino.getNombre() + "): " + t.concepto + " -> " + errorAlerta);
+                        
+                        // Guardamos la notificación
+                        if(destino.getNombre().equalsIgnoreCase(cuentaActual.getNombre())) {
+                            cuentaActual.anadirNotificacion(errorAlerta);
+                        }
+                        cuentaService.agregarCuenta(user, destino);
 
-    				Gasto nuevo = new Gasto(t.concepto, t.importe, t.fecha, real, t.pagador);
-    				nuevo.setHora(t.hora);
-    				
-
-    			    gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
-    			    
-
-    			    String errorAlerta = servicio.comprobarAlertas(destino, nuevo);
-
-    			    if (errorAlerta != null) {
-    			        System.out.println("Descartado por ALERTA (" + destino.getNombre() + "): " + t.concepto + " -> " + errorAlerta);
-    			        cuentaService.agregarCuenta(user, destino);
-    			        if(destino.getNombre().equalsIgnoreCase(cuentaActual.getNombre())) {
-    			        	cuentaActual.anadirNotificacion(errorAlerta);
-    			        }
-    			        descartados++;
-    			        continue; 
-    			    }
-    			    // ---------------------------------------------------------------
-    				
-    				destino.agregarGasto(nuevo);
-    				if(destino.getNombre().equalsIgnoreCase(cuentaActual.getNombre())) {
-    					cuentaActual.agregarGasto(nuevo);
-    				}
-    				
-    				insertados++;
-    			} else {
-    				descartados++;
-    			}
-    		}
-    		
-    		for(Cuenta c : cuentas) {
-    			cuentaService.agregarCuenta(null, c);
-    		}
-    		
-    		actualizarTabla();
-    		if(cuentaActual instanceof CuentaCompartida) {
-    			calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
-    		}
-    		
-    		mostrarAlerta("Importación Finalizada\nInsertados: " + insertados + "\nDescartados: " + descartados);
-    	} catch (Exception e) {
-    		e.printStackTrace();
-    		mostrarAlerta("Error al importar: " + e.getMessage());
-    	}
+                        alertasGeneradas++; // <--- CONTAMOS LA ALERTA AQUÍ
+                        
+                        // NOTA: Como comentamos el continue, el gasto SE INSERTARÁ abajo.
+                    }
+                    
+                    destino.agregarGasto(nuevo);
+                    if(destino.getNombre().equalsIgnoreCase(cuentaActual.getNombre())) {
+                        cuentaActual.agregarGasto(nuevo);
+                    }
+                    
+                    insertados++;
+                } else {
+                    descartados++;
+                }
+            }
+            
+            for(Cuenta c : cuentas) {
+                cuentaService.agregarCuenta(null, c);
+            }
+            
+            actualizarTabla();
+            if(cuentaActual instanceof CuentaCompartida) {
+                calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
+            }
+            
+            // --- ACTUALIZADO EL MENSAJE FINAL ---
+            mostrarAlerta("Importación Finalizada\nInsertados: " + insertados + "\n(Con Alerta: " + alertasGeneradas + ")\nDescartados: " + descartados);
+        } catch (Exception e) {
+            e.printStackTrace();
+            mostrarAlerta("Error al importar: " + e.getMessage());
+        }
     }
 }
-
