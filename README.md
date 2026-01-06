@@ -16,8 +16,6 @@ Este repositorio contiene el código fuente y la documentación del proyecto "Ge
 
 La aplicación permite a los usuarios gestionar su economía diaria de forma eficiente mediante una interfaz gráfica moderna construida con **JavaFX**. El sistema sigue una arquitectura **MVC (Modelo-Vista-Controlador)** y utiliza el patrón **Repositorio** para la persistencia de datos.
 
-AÑADIR MAS CONTENIDO...
-
 ### Funcionalidades Principales:
 * **Gestión de Cuentas:** Soporte para cuentas Personales, Compartidas y Especiales (Proporcionales).
 * **Control de Gastos:** Creación, edición y eliminación de gastos con categorización y fechas.
