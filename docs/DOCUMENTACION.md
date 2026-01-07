@@ -31,7 +31,3 @@ Bienvenido al índice de documentación técnica y funcional del proyecto. A con
 ### 6. Guía de Uso
 * **[📄 6. Manual de Usuario](manual-usuario.md)**
     * Guía paso a paso con capturas de pantalla para aprender a utilizar las funcionalidades principales (Crear cuenta, gestionar gastos, visualizar gráficos, etc.).
-
----
-
-> **Nota:** Todos los documentos se encuentran en este mismo directorio. Para visualizar los diagramas y capturas correctamente, asegúrese de que la carpeta de recursos de imágenes (`/img` o similar) esté presente.

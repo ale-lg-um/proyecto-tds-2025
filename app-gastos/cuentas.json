@@ -213,6 +213,30 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "46c94372-7d7b-4fbf-b16e-abcffc24b44c",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 2, 5 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a4356950-517a-4556-bf2c-be0a540a8460",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ ],
   "notificaciones" : [ ],
