@@ -22,7 +22,6 @@ public class CuentaRepositoryJson implements CuentaRepository {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
     }
 
-    // Implementamos los métodos de la interfaz
     @Override
     public List<Cuenta> findAll() {
         File file = new File(RUTA_ARCHIVO);
@@ -39,15 +38,30 @@ public class CuentaRepositoryJson implements CuentaRepository {
     @Override
     public void save(Cuenta cuenta) {
         List<Cuenta> cuentas = findAll();
-        cuentas.removeIf(c -> c.getId().equals(cuenta.getId()));
+        
+        System.out.println("--- GUARDANDO CUENTA ---");
+        System.out.println("Total cuentas antes: " + cuentas.size());
+        System.out.println("Intentando guardar ID: " + cuenta.getId());
+
+        // Eliminamos la versión vieja de forma segura
+        boolean borrado = cuentas.removeIf(c -> {
+            if (c.getId() == null) return false; // Protección anti-null
+            return c.getId().equals(cuenta.getId());
+        });
+        
+        System.out.println("¿Se encontró y borró la anterior?: " + borrado);
+
+        // Añadimos la nueva
         cuentas.add(cuenta);
+        System.out.println("Total cuentas después: " + cuentas.size());
+        
         saveAll(cuentas);
     }
 
     @Override
     public void delete(Cuenta cuenta) {
         List<Cuenta> cuentas = findAll();
-        cuentas.removeIf(c -> c.getId().equals(cuenta.getId()));
+        cuentas.removeIf(c -> c.getId() != null && c.getId().equals(cuenta.getId()));
         saveAll(cuentas);
     }
 

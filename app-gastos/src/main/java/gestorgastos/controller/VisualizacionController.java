@@ -17,6 +17,9 @@ import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.application.Platform; 
+import javafx.scene.Node; 
+import javafx.scene.Parent;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -135,35 +138,80 @@ public class VisualizacionController {
         aplicarFiltros(); // Refrescar para mostrar todo
     }
 
+ // Asegúrate de tener este import arriba:
+    // import javafx.application.Platform; 
+    // import javafx.scene.Node; 
+    // import javafx.scene.Parent;
+
     private void actualizarGraficos(List<Gasto> gastos) {
-        // Gráfico circular
+        // 1. Desactivamos animaciones
+        pieChart.setAnimated(false);
+        barChart.setAnimated(false);
+
+        // 2. Agrupamos los gastos por NOMBRE DE CATEGORÍA
         Map<String, Double> porCategoria = gastos.stream()
                 .collect(Collectors.groupingBy(
                         g -> g.getCategoria().getNombre(),
                         Collectors.summingDouble(Gasto::getImporte)
                 ));
 
+        // 3. Mapa de Colores
+        Map<String, String> mapaColores = cuentaActual.getCategorias().stream()
+                .collect(Collectors.toMap(Categoria::getNombre, Categoria::getColorHex, (a, b) -> a));
+
+        // --- A. GRÁFICO CIRCULAR (PieChart) ---
         pieChart.getData().clear();
-        porCategoria.forEach((cat, total) -> {
-            pieChart.getData().add(new PieChart.Data(cat, total));
+        porCategoria.forEach((catName, total) -> {
+            PieChart.Data data = new PieChart.Data(catName, total);
+            pieChart.getData().add(data);
+            
+            String color = mapaColores.getOrDefault(catName, "#808080");
+            data.getNode().setStyle("-fx-pie-color: " + color + ";");
         });
 
-        // Gráfico de barras
-        Map<String, Double> porFecha = gastos.stream()
-                .collect(Collectors.groupingBy(
-                        g -> g.getFecha().toString(),
-                        Collectors.summingDouble(Gasto::getImporte)
-                ));
+        // --- B. GRÁFICO DE BARRAS (BarChart) ---
+        barChart.getData().clear();
         
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Gastos Totales");
-        // Ordenamos por fecha
-        porFecha.entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .forEach(entry -> series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue())));
+        series.setName("Gastos por Categoría");
 
-        barChart.getData().clear();
+        porCategoria.forEach((catName, total) -> {
+            series.getData().add(new XYChart.Data<>(catName, total));
+        });
+
         barChart.getData().add(series);
+
+        // Pintamos las barras manualmente
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            javafx.scene.Node barra = data.getNode();
+            if (barra != null) {
+                String catName = data.getXValue();
+                String color = mapaColores.getOrDefault(catName, "#808080");
+                barra.setStyle("-fx-bar-fill: " + color + ";");
+            }
+        }
+
+        // --- C. ARREGLAR LA LEYENDA DEL PIECHART ---
+        Platform.runLater(() -> {
+            Node legend = pieChart.lookup(".chart-legend");
+            
+            if (legend != null && legend instanceof Parent) {
+                for (Node item : ((Parent) legend).getChildrenUnmodifiable()) {
+                    if (item instanceof Label) {
+                        Label label = (Label) item;
+                        String catName = label.getText(); 
+                        
+                        if (mapaColores.containsKey(catName)) {
+                            String color = mapaColores.get(catName);
+                            
+                            if (label.getGraphic() != null) {
+                                label.getGraphic().setStyle("-fx-background-color: " + color + ";");
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 
     private void actualizarCalendario(List<Gasto> gastos) {

@@ -93,7 +93,7 @@ public class PrincipalController {
             Stage stage = new Stage();
             stage.setTitle("Gestión de: " + cuentaSeleccionada.getNombre());
             stage.setScene(new Scene(root));
-            stage.setMaximized(true); // La ventana se abre en pantalla completa por defecto
+            //stage.setMaximized(true); // La ventana se abre en pantalla completa por defecto
             stage.show();
             
             // Cerrar la ventana previa

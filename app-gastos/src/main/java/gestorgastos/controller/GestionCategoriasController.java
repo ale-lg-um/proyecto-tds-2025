@@ -130,7 +130,7 @@ public class GestionCategoriasController {
             Stage stage = new Stage();
             stage.setTitle("Gastos: " + cuentaActual.getNombre());
             stage.setScene(new Scene(root));
-            stage.setMaximized(true);
+            //stage.setMaximized(true);
             stage.show();
             
             ((Stage) listaCategorias.getScene().getWindow()).close();

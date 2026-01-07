@@ -147,6 +147,7 @@ public class FormularioGastoController {
 			}
 		}
 
+		
 		// Si estamos editango un gasto, actualizamos sus valores
 		if (esEdicion) {
 			gastoResultado.setConcepto(concepto);
@@ -157,7 +158,7 @@ public class FormularioGastoController {
 		} else {
 			gastoResultado = new Gasto(concepto, importe, fecha, categoria, pagador);
 		}
-
+	
 		int h = spinHora.getValue();
 		int m = spinMinuto.getValue();
 		gastoResultado.setHora(java.time.LocalTime.of(h, m));
@@ -178,10 +179,8 @@ public class FormularioGastoController {
 			alert.showAndWait();
 		}
 
-		// Guardamos el gasto creado
-		if (!esEdicion) {
-			this.guardadoConfirmado = true;
-		}
+	
+		this.guardadoConfirmado = true; // 
 
 		cerrarVentana();
 	}
