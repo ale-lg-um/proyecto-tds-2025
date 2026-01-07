@@ -1,13 +1,13 @@
 # 🛠️ Patrones de Diseño (GoF) aplicados al Gestor
 
-Para que el código no fuera un lío y siguiendo lo que nos han explicado en clase sobre la "Banda de los Cuatro" (Erich Gamma y el resto del GoF), hemos metido varios patrones que nos ayudan a que el Gestor de Gastos sea fácil de ampliar y no se rompa todo al tocar una clase.
+Siguiendo lo que nos han explicado en clase sobre la "Banda de los Cuatro" (Erich Gamma y el resto del GoF), hemos metido varios patrones que nos ayudan a que el Gestor de Gastos sea fácil de ampliar y no se rompa todo al tocar una clase.
 
 ---
 
 ## 1. Patrones de Creación: ¿Cómo nacen nuestros objetos?
 
 ### 1.1. Singleton (Instancia única)
-Lo hemos usado para que cosas críticas no se dupliquen por ahí.
+Lo hemos usado para que cosas críticas no se dupliquen.
 * **`SesionService`**: Como decimos en el manual, el login es "meramente estético", pero por dentro necesitamos que solo haya un usuario activo a la vez.
 * **`CuentaService`**: Así nos aseguramos de que todos los controladores toquen la misma cuenta y no se pierdan los gastos por el camino.
 * **Ventaja:** Evitamos variables globales sucias y controlamos el acceso desde cualquier parte de la App.
