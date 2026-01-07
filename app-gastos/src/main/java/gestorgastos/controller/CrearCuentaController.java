@@ -16,21 +16,21 @@ import java.util.Map;
 
 public class CrearCuentaController {
 
-	// --- ELEMENTOS DE LA UI ---
+	
 	@FXML
 	private TextField nombreCuentaField;
 	@FXML
 	private Button btnCrear;
 
-	// NUEVO: Selector de tipo de cuenta
+	
 	@FXML
 	private ComboBox<String> comboTipo;
 
-	// NUEVO: Contenedor para ocultar/mostrar la parte de añadir amigos
+	
 	@FXML
 	private VBox panelMiembros;
 
-	// NUEVO: Campos para añadir gente al grupo
+	
 	@FXML
 	private TextField txtNuevoMiembro;
 	@FXML
@@ -42,7 +42,7 @@ public class CrearCuentaController {
 	@FXML
 	private Label lblError;
 
-	// --- LÓGICA INTERNA ---
+	
 	private CuentaService cuentaService = CuentaService.getInstancia();
 	private Runnable onCuentaCreada;
 

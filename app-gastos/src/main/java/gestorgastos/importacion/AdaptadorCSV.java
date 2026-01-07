@@ -15,10 +15,10 @@ public class AdaptadorCSV extends Importador{
 	@Override
 	public List<GastoTemporal> leerFichero(String ruta) throws Exception {
 		List<GastoTemporal> lista = new ArrayList<>();
-		try(BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+		try(BufferedReader buffer = new BufferedReader(new FileReader(ruta))) {
 			String linea;
 			boolean primera = true;
-			while((linea = br.readLine())!= null) {
+			while((linea = buffer.readLine())!= null) {
 				if(primera) {
 					primera = false;
 					continue; // Saltamos la cabecera

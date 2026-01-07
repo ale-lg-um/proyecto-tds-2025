@@ -1,84 +1,4 @@
 [ {
-  "id" : "455a5bfa-edb0-4efe-ba80-cb02736cbf83",
-  "nombre" : "Normal",
-  "gastos" : [ {
-    "id" : "34d0ea4d-05c7-41f4-8c16-d98599794458",
-    "concepto" : "Cena",
-    "importe" : 40.0,
-    "fecha" : [ 2026, 1, 6 ],
-    "hora" : "14:55",
-    "categoria" : {
-      "nombre" : "Año-Nuevo",
-      "descripcion" : "",
-      "colorHex" : "#800080"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "b58f5bd6-a78a-4be3-8cf4-2bb4d64a8164",
-    "concepto" : "desayuno",
-    "importe" : 10.47,
-    "fecha" : [ 2024, 5, 2 ],
-    "hora" : "12:33",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "82d921dc-8962-48c7-b108-780da94d2885",
-    "concepto" : "chiringuito",
-    "importe" : 2.0,
-    "fecha" : [ 2000, 8, 18 ],
-    "hora" : "12:22",
-    "categoria" : {
-      "nombre" : "Año-Nuevo",
-      "descripcion" : "",
-      "colorHex" : "#800080"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "49764581-326b-4de7-9575-d6c8615b0a77",
-    "concepto" : "Material Escolar",
-    "importe" : 40.0,
-    "fecha" : [ 2026, 1, 7 ],
-    "hora" : "15:30",
-    "categoria" : {
-      "nombre" : "Curso-Escolar",
-      "descripcion" : "",
-      "colorHex" : "#FFAB00"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "bd9b7569-e25c-4b1a-a81d-6a82e8687d24",
-    "concepto" : "Material Ultima Hora",
-    "importe" : 20.0,
-    "fecha" : [ 2026, 1, 7 ],
-    "hora" : "15:31",
-    "categoria" : {
-      "nombre" : "Curso-Escolar",
-      "descripcion" : "",
-      "colorHex" : "#FFAB00"
-    },
-    "pagador" : "Yo"
-  } ],
-  "alertas" : [ ],
-  "notificaciones" : [ ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "Año-Nuevo",
-    "descripcion" : "",
-    "colorHex" : "#800080"
-  }, {
-    "nombre" : "Curso-Escolar",
-    "descripcion" : "",
-    "colorHex" : "#FFAB00"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
   "id" : "c0ff0411-4cfe-474e-a79c-73f993ba43bc",
   "nombre" : "Compartida",
   "gastos" : [ {
@@ -206,4 +126,108 @@
     "Mario" : 33.0
   },
   "tipo" : "ESPECIAL"
+}, {
+  "id" : "455a5bfa-edb0-4efe-ba80-cb02736cbf83",
+  "nombre" : "Normal",
+  "gastos" : [ {
+    "id" : "34d0ea4d-05c7-41f4-8c16-d98599794458",
+    "concepto" : "Cena",
+    "importe" : 40.0,
+    "fecha" : [ 2026, 1, 6 ],
+    "hora" : "14:55",
+    "categoria" : {
+      "nombre" : "Año-Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#800080"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "b58f5bd6-a78a-4be3-8cf4-2bb4d64a8164",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "82d921dc-8962-48c7-b108-780da94d2885",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Año-Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#800080"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "49764581-326b-4de7-9575-d6c8615b0a77",
+    "concepto" : "Material Escolar",
+    "importe" : 40.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:30",
+    "categoria" : {
+      "nombre" : "Curso-Escolar",
+      "descripcion" : "",
+      "colorHex" : "#FFAB00"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "bd9b7569-e25c-4b1a-a81d-6a82e8687d24",
+    "concepto" : "Material Ultima Hora",
+    "importe" : 20.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:31",
+    "categoria" : {
+      "nombre" : "Curso-Escolar",
+      "descripcion" : "",
+      "colorHex" : "#FFAB00"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0271ad4a-b959-4d7f-bafc-8cdde2d1599e",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 2, 5 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a1365879-181b-4012-848b-47fdc3cba32f",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Año-Nuevo",
+    "descripcion" : "",
+    "colorHex" : "#800080"
+  }, {
+    "nombre" : "Curso-Escolar",
+    "descripcion" : "",
+    "colorHex" : "#FFAB00"
+  } ],
+  "tipo" : "PERSONAL"
 } ]

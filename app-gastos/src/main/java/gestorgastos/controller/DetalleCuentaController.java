@@ -167,7 +167,6 @@ public class DetalleCuentaController {
                 } else {
                     // CASO 2: EDICIÓN 
                     System.out.println("DEBUG: Editando gasto...");
-                    System.out.println("   Original: " + gastoEdicion.getConcepto() + " - " + gastoEdicion.getImporte());
                     System.out.println("   Nuevo:    " + gastoQueVieneDelFormulario.getConcepto() + " - " + gastoQueVieneDelFormulario.getImporte());
                     
                     // Buscamos la posición del gasto original
