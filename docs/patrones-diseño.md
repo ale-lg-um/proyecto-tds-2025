@@ -1,75 +1,55 @@
-# 🛠️ Patrones de Diseño
+# 🛠️ Patrones de Diseño (GoF) aplicados al Gestor
 
-Este documento describe los patrones de diseño aplicados en el **Gestor de Gastos**. Se han implementado soluciones estándar basadas en el catálogo de **Erich Gamma et al. (Patterns GoF)** para resolver problemas recurrentes de creación, estructura y comportamiento en el software.
-
----
-
-## 1. Patrones de Creación
-
-Tienen como objetivo abstraer el proceso de instanciación de los objetos, haciendo que el sistema sea independiente de cómo se crean sus componentes.
-
-### 1.1. Singleton
-**Propósito**: Garantizar que una clase tenga una única instancia y proporcionar un punto de acceso global a ella.
-* **Aplicación**: Implementado en las capas de servicios para mantener la consistencia del estado global.
-    * `SesionService`: Asegura que solo exista un usuario activo en toda la aplicación.
-    * `CuentaService`: Gestiona la instancia única de la cuenta con la que el usuario interactúa.
-* **Beneficio**: Evita conflictos en el acceso a datos y ahorra recursos de memoria.
-
-### 1.2. Método Factoría (Factory Method)
-**Propósito**: Definir una interfaz para crear un objeto, pero dejar que las subclases decidan qué clase instanciar.
-* **Aplicación**: Localizado en el paquete de importación.
-    * `FactoriaImportacion`: Centraliza la creación de los distintos adaptadores (`AdaptadorCSV`, `AdaptadorExcel`, etc.) según la extensión del archivo proporcionado.
-* **Beneficio**: Desacopla la lógica de creación del código cliente que utiliza los importadores.
+Para que el código no fuera un lío y siguiendo lo que nos han explicado en clase sobre la "Banda de los Cuatro" (Erich Gamma y el resto del GoF), hemos metido varios patrones que nos ayudan a que el Gestor de Gastos sea fácil de ampliar y no se rompa todo al tocar una clase.
 
 ---
 
-## 2. Patrones Estructurales
+## 1. Patrones de Creación: ¿Cómo nacen nuestros objetos?
 
-Se centran en cómo se combinan clases y objetos para formar estructuras mayores y más complejas.
+### 1.1. Singleton (Instancia única)
+Lo hemos usado para que cosas críticas no se dupliquen por ahí.
+* **`SesionService`**: Como decimos en el manual, el login es "meramente estético", pero por dentro necesitamos que solo haya un usuario activo a la vez.
+* **`CuentaService`**: Así nos aseguramos de que todos los controladores toquen la misma cuenta y no se pierdan los gastos por el camino.
+* **Ventaja:** Evitamos variables globales sucias y controlamos el acceso desde cualquier parte de la App.
+
+### 1.2. Factory Method (Factoría de Importación)
+En la parte de **Importación Inteligente**, no sabíamos qué tipo de archivo iba a subir el usuario.
+* **`FactoriaImportacion`**: Dependiendo de si es un `.csv`, `.json` o un Excel, esta clase decide qué objeto crear.
+* **Uso real:** Cuando eliges un fichero en la pantalla de importación, la factoría nos da el importador correcto sin que el controlador sepa cómo funciona cada formato.
+
+---
+
+## 2. Patrones Estructurales: Conectando las piezas
 
 ### 2.1. Adaptador (Adapter / Wrapper)
-**Propósito**: Convertir la interfaz de una clase en otra interfaz que el cliente espera.
-* **Aplicación**: Se utiliza para integrar fuentes de datos externas heterogéneas.
-    * `AdaptadorCSV`, `AdaptadorExcel`, `AdaptadorJSON`, `AdaptadorTXT`: Implementan la interfaz `Importador`, transformando los datos externos en objetos `GastoTemporal` compatibles con el sistema.
-* **Beneficio**: Permite la colaboración de clases con interfaces incompatibles sin modificar su código original.
+Este es clave para que los datos bancarios externos se entiendan con nuestro sistema.
+* **Los Adaptadores (`AdaptadorCSV`, `AdaptadorExcel`, etc.)**: Transforman las líneas raras de un fichero en objetos `GastoTemporal` que nuestra App sí sabe leer.
+* **Propósito:** Reutilizar lógica de lectura de archivos aunque tengan interfaces que no encajan con nuestro modelo de `Gasto`.
 
-### 2.1. Fachada (Facade)
-**Propósito**: Proporcionar una interfaz unificada y simplificada para un conjunto de interfaces en un subsistema.
-* **Aplicación**: La capa de persistencia actúa como una fachada.
-    * `CuentaRepository`: Oculta la complejidad de la librería Jackson y la gestión de archivos JSON al resto de la aplicación.
-* **Beneficio**: Reduce el acoplamiento entre el subsistema de datos y el resto del sistema.
+### 2.2. Fachada (Facade)
+Para que el resto del programa no tenga que pegarse con la librería Jackson o con cómo se escriben los archivos JSON.
+* **`CuentaRepositoryJson`**: Funciona como una fachada que simplifica todo el lío de la persistencia. Si mañana cambiamos el JSON por una base de datos real, solo tendríamos que tocar aquí.
 
 ---
 
-## 3. Patrones de Comportamiento
-
-Gestionan la comunicación entre objetos y la asignación de responsabilidades.
+## 3. Patrones de Comportamiento: El cerebro del Gestor
 
 ### 3.1. Estrategia (Strategy)
-**Propósito**: Definir una familia de algoritmos, encapsular cada uno de ellos y hacerlos intercambiables.
-* **Aplicación**: Implementado para la gestión flexible de límites de gasto.
-    * `InterfaceAlerta`: Define el contrato para la validación.
-    * `EstrategiaSemanal` / `EstrategiaMensual`: Algoritmos concretos que calculan si se ha superado un límite en un periodo de tiempo específico.
-* **Beneficio**: Permite cambiar el comportamiento de las alertas en tiempo de ejecución sin alterar la clase `Alerta`.
+Lo usamos para el **Sistema de Alertas**. Queríamos que el usuario pudiera elegir si el límite de gasto es semanal o mensual sin llenar el código de `if` o `switch`.
+* **`InterfaceAlerta`**: Define el contrato para la validación.
+* **`EstrategiaSemanal` y `EstrategiaMensual`**: Son los algoritmos que cambian según el tiempo.
+* **En la App:** Cuando el sistema saca un log de "Descartado por ALERTA", es porque la estrategia correspondiente ha hecho el cálculo.
 
 ---
 
-## 4. Resumen de Aplicabilidad
+## 📊 Resumen de organización técnica
 
-| Patrón | Tipo | Clase/Componente | Motivación Técnica |
-| :--- | :--- | :--- | :--- |
-| **Singleton** | Creación | `SesionService` | Control de instancia única. |
-| **Factoría** | Creación | `FactoriaImportacion` | Encapsular lógica de creación. |
-| **Adaptador** | Estructural | `AdaptadorCSV` | Reutilización de clases incompatibles. |
-| **Fachada** | Estructural | `CuentaRepository` | Interfaz simplificada al subsistema JSON. |
-| **Estrategia** | Comportamiento | `InterfaceAlerta` | Algoritmos intercambiables en ejecución. |
+| Patrón | ¿Dónde buscarlo? | ¿Para qué nos sirve en el proyecto? |
+| :--- | :--- | :--- |
+| **Singleton** | `services` | Para que la sesión y la cuenta activa sean únicas. |
+| **Factoría** | `importacion` | Para crear importadores sin conocer la extensión del archivo. |
+| **Adaptador** | `importacion` | Para que los datos de fuera se conviertan en gastos. |
+| **Fachada** | `repository` | Para ocultar el lío del guardado en JSON. |
+| **Estrategia** | `strategies` | Para cambiar entre alertas semanales y mensuales. |
 
----
-
-## 5. Criterios de Calidad de Diseño
-
-Siguiendo los principios **GRASP** y **DDD** vistos en los temas teóricos, el uso de estos patrones garantiza:
-
-* **Alta Cohesión**: Cada patrón resuelve un problema específico del dominio.
-* **Bajo Acoplamiento**: El uso de interfaces y factorías reduce la dependencia entre componentes.
-* **Favorecer el cambio**: El sistema es fácilmente extensible para soportar nuevos tipos de cuenta o formatos de importación sin modificar el núcleo del negocio.
+Con esto conseguimos una **alta cohesión** (cada cosa a lo suyo) y un **bajo acoplamiento** (que las piezas no estén pegadas con pegamento), que es lo que pide el diseño dirigido por el dominio (DDD).
