@@ -6,7 +6,7 @@ En este documento detallamos la estructura técnica y los patrones de diseño ap
 
 ## 1. Modelo Arquitectónico
 
-El sistema utiliza una **Arquitectura Multicapa** que implementa el patrón **MVC (Modelo-Vista-Controlador)**. Esta estructura permite un acoplamiento débil entre los componentes, asegurando que la lógica de negocio permanezca independiente de la interfaz de usuario.
+Nuestro sistema utiliza una **Arquitectura Multicapa** que implementa el patrón **MVC (Modelo-Vista-Controlador)**. Esta estructura nos permite un acoplamiento débil entre los componentes, asegurando que la lógica de negocio permanezca independiente de la interfaz de usuario.
 
 ### MVC: Componentes principales
 * **Modelo**: Representa los datos y las reglas del dominio, incluyendo la jerarquía de cuentas y gastos.
