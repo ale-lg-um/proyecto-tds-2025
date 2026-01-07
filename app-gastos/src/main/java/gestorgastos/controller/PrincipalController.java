@@ -31,15 +31,14 @@ public class PrincipalController {
 
     @FXML
     public void initialize() {
-        // 1. Poner el saludo con el nombre del usuario
+        // Dar bienvenida al usuario
         Usuario usuario = sesionService.getUsuarioActivo();
         if (usuario != null) {
             saludoLabel.setText("Hola, " + usuario.getNombre());
             cargarCuentas(); // Cargar la lista al iniciar
         }
 
-        // 2. Configurar acciones de los botones
-        // Como en tu FXML no pusiste onAction="#...", lo definimos aquí:
+        // Configuración de los botones
         btnCrearCuenta.setOnAction(e -> abrirVentanaCrearCuenta());
         btnEntrarCuenta.setOnAction(e -> entrarEnCuenta());
     }
@@ -82,23 +81,22 @@ public class PrincipalController {
         }
 
         try {
-            // 1. Cargar el FXML de detalle
+            // Cargar FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
             Parent root = loader.load();
 
-            // 2. Obtener el controlador y PASARLE LA CUENTA
+            // Obtener el controlador y pasarle la cuenta
             DetalleCuentaController controller = loader.getController();
             controller.setCuenta(cuentaSeleccionada);
 
-            // 3. Cambiar la escena (o abrir nueva ventana, depende de tu gusto)
-            // Opción A: Abrir nueva ventana (más fácil de gestionar ahora)
+            // Abrir nueva ventana
             Stage stage = new Stage();
             stage.setTitle("Gestión de: " + cuentaSeleccionada.getNombre());
             stage.setScene(new Scene(root));
-            stage.setMaximized(true); // Se ve mejor en grande
+            stage.setMaximized(true); // La ventana se abre en pantalla completa por defecto
             stage.show();
             
-            // Opcional: Cerrar la ventana principal actual si quieres
+            // Cerrar la ventana previa
             ((Stage) btnEntrarCuenta.getScene().getWindow()).close();
 
         } catch (IOException e) {

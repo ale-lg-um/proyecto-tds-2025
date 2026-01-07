@@ -56,27 +56,30 @@ public class CrearCuentaController {
 
 	@FXML
 	public void initialize() {
-		// 1. Configurar el ComboBox con las opciones del enunciado
+		// Lista con los tres tipos de cuenta:
+		// Normal: cuenta para una sola persona
+		// Compartida: cuenta para varias personas, todas tienen el mismo porcentaje de la cuenta.
+		// Especial: cuenta para varias personas, no todas tienen el mismo porcentaje de la cuenta
 		comboTipo.setItems(FXCollections.observableArrayList("Personal", "Compartida", "Especial"));
 		comboTipo.getSelectionModel().select("Personal");
 
-		// 2. Vincular la ListView con nuestros datos
+		// Vincular la ListView con nuestros datos
 		listaMiembrosView.setItems(miembrosVisuales);
 
-		// 3. Estado inicial: Ocultar panel de miembros (porque empieza en Personal)
+		// Estado inicial: Ocultar panel de miembros (porque empieza en Personal)
 		panelMiembros.setVisible(false);
 		txtPorcentaje.setManaged(false); // Ocultar campo %
 		txtPorcentaje.setVisible(false);
 
-		// 4. LISTENER: Si cambia el tipo, mostramos u ocultamos cosas
+		// Si cambia el tipo, mostramos u ocultamos cosas
 		comboTipo.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
 			actualizarInterfaz(newVal);
 		});
 
-		// 5. Acción botón añadir miembro
+		// Acción botón añadir miembro (para cuentas compartidas)
 		btnAnadirMiembro.setOnAction(e -> agregarMiembro());
 
-		// 6. Acción botón Crear (Tu lógica original mejorada)
+		// 6. Acción botón Crear
 		btnCrear.setOnAction(e -> crearLaCuenta());
 	}
 
@@ -146,26 +149,26 @@ public class CrearCuentaController {
 
 		String tipo = comboTipo.getValue();
 		Cuenta nuevaCuenta = null;
-
-		// --- AQUI SE APLICA EL POLIMORFISMO DE TU JERARQUÍA ---
+		
+		// Dependiendo del tipo de cuenta, el proceso de creación será distinto
 		try {
 			if ("Personal".equals(tipo)) {
 				nuevaCuenta = new CuentaPersonal(nombre);
 
 			} else if ("Compartida".equals(tipo)) {
 				if (miembrosVisuales.isEmpty()) {
-					lblError.setText("Añade al menos una persona al grupo.");
+					lblError.setText("Añade al menos una persona al grupo."); // Las cuentas comopartidas deben tener al menos un miembro
 					return;
 				}
 				// Convertimos ObservableList a ArrayList normal para el modelo
-				nuevaCuenta = new CuentaCompartida(nombre, new ArrayList<>(miembrosVisuales));
+				nuevaCuenta = new CuentaCompartida(nombre, new ArrayList<>(miembrosVisuales)); // Se crea la cuenta con un nombre de cuenta y una lista de miembros
 
 			} else if ("Especial".equals(tipo)) {
 
-				// 1. Sumamos todos los valores del mapa
+				// Miramos los porcentajes de la cuenta de cada usuario
 				double sumaTotal = mapaPorcentajes.values().stream().mapToDouble(Double::doubleValue).sum();
 
-				// 2. Validamos con un margen de error muy pequeño (0.01)
+				// Validamos con un margen de error muy pequeño (0.01)
 				// Si la diferencia entre la suma y 100 es mayor a 0.01, es un error.
 				if (Math.abs(sumaTotal - 100.0) > 0.01) {
 					lblError.setText("Error: Los porcentajes suman " + String.format("%.2f", sumaTotal)
@@ -178,18 +181,16 @@ public class CrearCuentaController {
 						mapaPorcentajes);
 			}
 
-// --- GUARDADO ---
-
-			// 1. Obtenemos el usuario que está logueado actualmente
+			// Miramos qué usuario ha iniciado sesión
 			Usuario usuarioActivo = SesionService.getInstancia().getUsuarioActivo();
 
-			// 2. Verificamos que no sea null (por seguridad)
+			// Si no hay ningún usuario con sesión abierta, error
 			if (usuarioActivo == null) {
 				lblError.setText("Error: No hay usuario en sesión.");
 				return;
 			}
 
-			// 3. Guardamos la cuenta asociándola a ese usuario
+			// Guardamos la cuenta, y la asociamos al usuario que ha iniciado sesión
 			// El servicio espera (Usuario, Cuenta)
 			cuentaService.agregarCuenta(usuarioActivo, nuevaCuenta);
 
@@ -206,7 +207,7 @@ public class CrearCuentaController {
 		}
 	}
 	
-	@FXML private Label lblProgresoPorcentaje; // Acuérdate de declararlo arriba
+	@FXML private Label lblProgresoPorcentaje;
 
 	// Método auxiliar para actualizar el texto
 	private void actualizarProgreso() {
@@ -225,7 +226,4 @@ public class CrearCuentaController {
 	        lblProgresoPorcentaje.setVisible(false);
 	    }
 	}
-
-	// Y llamas a este método 'actualizarProgreso()' al final de 'agregarMiembro()' 
-	// y también al cambiar el tipo de cuenta en 'actualizarInterfaz()'.
 }

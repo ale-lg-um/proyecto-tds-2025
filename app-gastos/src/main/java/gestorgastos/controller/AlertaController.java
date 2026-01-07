@@ -39,7 +39,6 @@ public class AlertaController {
         comboTipo.setItems(FXCollections.observableArrayList("SEMANAL","MENSUAL"));
         comboTipo.getSelectionModel().selectFirst();
 
-        // --- AQUÍ ESTÁ LA MAGIA ---
         // Personalizamos cómo se ve cada celda de la lista de alertas
         listaAlertasConfiguradas.setCellFactory(new Callback<ListView<Alerta>, ListCell<Alerta>>() {
             @Override
@@ -52,10 +51,11 @@ public class AlertaController {
                         if (empty || item == null) {
                             setText(null);
                         } else {
-                            // 1. Calculamos las fechas basándonos en HOY
+                            // Cálculo de la fecha de hoy
                             LocalDate hoy = LocalDate.now();
                             String rangoFechas = "";
 
+                            // Dos timpos de alertas: semanales y mensuales
                             if ("SEMANAL".equalsIgnoreCase(item.getTipo())) {
                                 LocalDate inicio = hoy.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
                                 LocalDate fin = hoy.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
@@ -67,10 +67,10 @@ public class AlertaController {
                                 rangoFechas = "(" + inicio.format(fmt) + " al " + fin.format(fmt) + ")";
                             }
 
-                            // 2. Obtenemos el nombre de la categoría
+                            // Obtenemos el nombre de la categoría. Si no tiene, se asigna a la categoría General
                             String nombreCat = (item.getCategoria() != null) ? item.getCategoria().getNombre() : "General";
 
-                            // 3. Formateamos el texto final
+                            // Formateo del texto
                             // Ejemplo: SEMANAL (01/01/2026 al 07/01/2026) -> 100.0€ (Comida)
                             setText(item.getTipo() + " " + rangoFechas + " -> " + item.getLimite() + "€ (" + nombreCat + ")");
                         }

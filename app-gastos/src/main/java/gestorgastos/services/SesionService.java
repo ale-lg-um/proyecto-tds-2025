@@ -3,7 +3,7 @@ package gestorgastos.services;
 import gestorgastos.model.Usuario;
 
 public class SesionService {
-    private static SesionService instancia;   // única instancia
+    private static SesionService instancia;   // SINGLETON
     private Usuario usuarioActivo;
 
     // Constructor privado para que no se pueda instanciar desde fuera

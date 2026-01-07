@@ -20,11 +20,9 @@ public class CuentaRepositoryJson implements CuentaRepository {
         mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        
-        // Ya no necesitamos registrar subtypes ni MixIns raros
-        // porque la clase Cuenta ya tiene el método getTipo() real.
     }
 
+    // Implementamos los métodos de la interfaz
     @Override
     public List<Cuenta> findAll() {
         File file = new File(RUTA_ARCHIVO);

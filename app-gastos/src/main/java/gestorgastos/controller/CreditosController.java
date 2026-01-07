@@ -37,16 +37,15 @@ public class CreditosController {
     }
 
     private void configurarAnimacionTicket() {
-        // 1. MÁSCARA (CLIP)
         // Hacemos que el texto solo sea visible dentro del área blanca del ticket
         Rectangle clip = new Rectangle();
         clip.widthProperty().bind(areaRecorte.widthProperty());
         clip.heightProperty().bind(areaRecorte.heightProperty());
         areaRecorte.setClip(clip);
 
-        // 2. ANIMACIÓN DEL TEXTO (SCROLL)
+        // Animación
         double alturaInicio = 400; // Empieza abajo
-        double alturaFin = -600;   // Termina arriba (ajustar según largo del texto)
+        double alturaFin = -600;   // Termina arriba
 
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(contenedorTexto);
@@ -76,7 +75,7 @@ public class CreditosController {
         moneda.setTextFill(Color.web("#85e3a5", 0.6)); // Verde clarito semitransparente
         moneda.setFont(Font.font("Arial", 20 + random.nextInt(30))); // Tamaño variable
         
-        // Posición inicial aleatoria en X (ancho de ventana aprox 800)
+        // Posición inicial aleatoria en X
         moneda.setLayoutX(random.nextInt(800));
         moneda.setLayoutY(-50); // Empieza arriba fuera de pantalla
 

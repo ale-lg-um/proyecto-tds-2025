@@ -9,6 +9,8 @@ import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("COMPARTIDA")
+
+// Esta clase se refiere a las cuentas compartidas en las que el procentaje de la cuenta es el mismo para todos los usuarios que están dentro de la cuenta.
 public class CuentaCompartida extends Cuenta {
 
     protected List<String> miembros; // Nombres de las personas del grupo
@@ -34,17 +36,17 @@ public class CuentaCompartida extends Cuenta {
     }
     
     public Map<String, Double> calcularSaldos() {
-        // 1. Calcular el total gastado en la cuenta usando Streams
+        // Total de astos en la cuenta
         double totalGastado = gastos.stream()
                                     .mapToDouble(Gasto::getImporte)
                                     .sum();
 
-        // 2. Calcular cuánto le toca pagar a cada uno (Equitativo)
+        // Calcular lo que debe pagar cada miembro
         int numMiembros = miembros.size();
         if (numMiembros == 0) return new HashMap<>();
         double cuotaPorPersona = totalGastado / numMiembros;
 
-        // 3. Calcular el saldo de cada miembro
+        // Calcular el saldo de cada miembro
         Map<String, Double> saldos = new HashMap<>();
         
         for (String miembro : miembros) {

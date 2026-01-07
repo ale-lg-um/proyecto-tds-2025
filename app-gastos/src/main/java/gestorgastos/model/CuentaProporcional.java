@@ -6,9 +6,12 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("ESPECIAL")
+
+// Esta clase se refiere a las cuentas compartidas en las que podemos establecer qué porcentaje de la cuenta pertenece a cada uno de los usuarios que participan en ella
+// Deriva de las cuentas compartidas equitativas
 public class CuentaProporcional extends CuentaCompartida {
 
-    // Mapa: "NombrePersona" -> 30.0 (porcentaje)
+    // Mapa que relaciona a cada usuario dentro de la cuenta con el porcentaje de la cuenta que pertenece a ese usuario
     private Map<String, Double> porcentajes; 
     
     public CuentaProporcional() {
@@ -24,15 +27,12 @@ public class CuentaProporcional extends CuentaCompartida {
         return porcentajes;
     }
     
+    // Redefinición de métodos de la clase padre para tener en cuenta los porcentajes desiguales
     @Override
     public String getTipo() {
         return "ESPECIAL";
     }
     
-    // Aquí podrías validar que los porcentajes sumen 100%
-    
-    
-    // Sobrescribimos el método del padre
     @Override
     public Map<String, Double> calcularSaldos() {
         double totalGastado = gastos.stream()
@@ -40,7 +40,7 @@ public class CuentaProporcional extends CuentaCompartida {
                                     .sum();
 
         Map<String, Double> saldos = new HashMap<>();
-        Map<String, Double> porcentajes = getPorcentajes(); // Asumo que tienes este getter
+        Map<String, Double> porcentajes = getPorcentajes();
 
         for (String miembro : super.miembros) {
             double pagado = gastos.stream()
@@ -48,7 +48,7 @@ public class CuentaProporcional extends CuentaCompartida {
                                   .mapToDouble(Gasto::getImporte)
                                   .sum();
 
-            // En la proporcional, mi cuota depende de mi porcentaje
+            // En la cuenta compartida especial, mi cuota depende de mi porcentaje
             double miPorcentaje = porcentajes.getOrDefault(miembro, 0.0);
             double miCuota = totalGastado * (miPorcentaje / 100.0);
 

@@ -5,6 +5,7 @@ public class FactoriaImportacion {
 		if(rutaArchivo == null) return null;
 		String ruta = rutaArchivo.toLowerCase();
 		
+		// Creamos un adaptador en función del formato del fichero.
 		if(ruta.endsWith(".csv")) {
 			return new AdaptadorCSV();
 		} else if(ruta.endsWith(".txt")) {

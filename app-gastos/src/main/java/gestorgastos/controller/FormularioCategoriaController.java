@@ -16,7 +16,7 @@ public class FormularioCategoriaController {
 
     @FXML
     public void initialize() {
-        colorPicker.setValue(Color.WHITE); // Default
+        colorPicker.setValue(Color.WHITE); // Por defecto
     }
 
     public Categoria getCategoriaResultado() {

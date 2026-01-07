@@ -49,14 +49,14 @@ public class VisualizacionController {
 
     @FXML
     public void initialize() {
-        // 1. Configurar listas para selección múltiple
+        // COnfigurar selección múltiple para los filtros
         listMeses.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         listCategorias.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-        // 2. Cargar los meses del año en la lista
+        // Cargar meses
         listMeses.getItems().addAll(Month.values());
         
-        // 3. Inicializar CalendarFX
+        // Inicializar el calendario
         configurarCalendario();
     }
 
@@ -99,21 +99,20 @@ public class VisualizacionController {
 
         List<Gasto> todos = cuentaActual.getGastos();
         
-        // --- LÓGICA DE FILTRADO (AND) ---
         List<Gasto> filtrados = todos.stream()
-            // 1. Filtro por Rango de Fechas
+            // Filtrar por rango de fechas
             .filter(g -> {
                 if (dateDesde.getValue() != null && g.getFecha().isBefore(dateDesde.getValue())) return false;
                 if (dateHasta.getValue() != null && g.getFecha().isAfter(dateHasta.getValue())) return false;
                 return true;
             })
-            // 2. Filtro por Meses seleccionados
+            // Filtrar por meses seleccionados
             .filter(g -> {
                 List<Month> mesesSel = listMeses.getSelectionModel().getSelectedItems();
                 if (mesesSel.isEmpty()) return true; // Si no hay nada seleccionado, mostrar todo
                 return mesesSel.contains(g.getFecha().getMonth());
             })
-            // 3. Filtro por Categorías seleccionadas
+            // Filtrar por categorías seleccionadas
             .filter(g -> {
                 List<Categoria> catsSel = listCategorias.getSelectionModel().getSelectedItems();
                 if (catsSel.isEmpty()) return true;
@@ -122,7 +121,7 @@ public class VisualizacionController {
             })
             .collect(Collectors.toList());
 
-        // --- ACTUALIZAR VISTAS ---
+        // Actualizar gráficos y calendario
         actualizarGraficos(filtrados);
         actualizarCalendario(filtrados);
     }
@@ -137,7 +136,7 @@ public class VisualizacionController {
     }
 
     private void actualizarGraficos(List<Gasto> gastos) {
-        // 1. PIE CHART (Agrupar importe por Categoría)
+        // Gráfico circular
         Map<String, Double> porCategoria = gastos.stream()
                 .collect(Collectors.groupingBy(
                         g -> g.getCategoria().getNombre(),
@@ -149,7 +148,7 @@ public class VisualizacionController {
             pieChart.getData().add(new PieChart.Data(cat, total));
         });
 
-        // 2. BAR CHART (Agrupar importe por Fecha)
+        // Gráfico de barras
         Map<String, Double> porFecha = gastos.stream()
                 .collect(Collectors.groupingBy(
                         g -> g.getFecha().toString(),
@@ -174,12 +173,7 @@ public class VisualizacionController {
             // Crear una entrada en el calendario
             Entry<String> entry = new Entry<>(g.getConcepto() + " (" + g.getImporte() + "€)");
             
-            // Asignar fecha y una hora ficticia (ej: 10:00 AM) para que se vea en el día
-           // entry.setInterval(g.getFecha(), LocalTime.of(10, 0), g.getFecha(), LocalTime.of(11, 0));
             entry.setInterval(g.getFecha(), g.getHora(), g.getFecha(), g.getHora().plusHours(1));
-            
-            // Opcional: poner Full Day
-            // entry.setFullDay(true); 
             
             calendarioGastos.addEntry(entry);
         }

@@ -4,10 +4,10 @@ public class Categoria {
     
     private String nombre;
     private String descripcion;
-    private String colorHex; // Nuevo campo para el color (ej: "#FFFFFF")
+    private String colorHex;
 
     public Categoria() {
-        // Constructor vacío para Jackson
+        // Constructor vacío para JSON
     }
     
     // Constructor simple (por defecto gris/blanco)

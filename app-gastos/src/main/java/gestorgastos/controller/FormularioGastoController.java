@@ -47,9 +47,6 @@ public class FormularioGastoController {
 		dateFecha.setValue(LocalDate.now());
 		spinHora.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23, 12));
 		spinMinuto.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59, 0));
-
-		// ¡IMPORTANTE!: Aquí NO cargamos las categorías todavía,
-		// porque aún no sabemos qué cuenta es. Lo hacemos en initAttributes.
 	}
 
 	// Método para configurar la ventana según si es CREAR o EDITAR
@@ -63,7 +60,7 @@ public class FormularioGastoController {
 			comboCategoria.getSelectionModel().selectFirst();
 		}
 
-		// 2. Configurar Visibilidad del Pagador
+		// Visibilidad del pagador del gasto (no es necesario si la cuenta es personal)
 		if (cuenta instanceof CuentaCompartida) {
 			panelPagador.setVisible(true);
 			panelPagador.setManaged(true);
@@ -73,9 +70,9 @@ public class FormularioGastoController {
 			panelPagador.setManaged(false);
 		}
 
-		// 3. Rellenar datos
+		// Rellenamos los datos del gasto
 		if (gastoAEditar != null) {
-			// --- MODO EDICIÓN ---
+			// Si el gasto ya existe, entonces lo estamos editando
 			this.esEdicion = true;
 			this.gastoResultado = gastoAEditar;
 			lblTitulo.setText("Editar Gasto");
@@ -84,10 +81,8 @@ public class FormularioGastoController {
 			txtImporte.setText(String.valueOf(gastoAEditar.getImporte()));
 			dateFecha.setValue(gastoAEditar.getFecha());
 
-			// ---> AQUÍ CARGAMOS LA HORA GUARDADA <---
 			spinHora.getValueFactory().setValue(gastoAEditar.getHora().getHour());
 			spinMinuto.getValueFactory().setValue(gastoAEditar.getHora().getMinute());
-			// ----------------------------------------
 
 			comboCategoria.setValue(gastoAEditar.getCategoria());
 
@@ -95,16 +90,14 @@ public class FormularioGastoController {
 				comboPagador.setValue(gastoAEditar.getPagador());
 			}
 		} else {
-			// --- MODO CREAR (NUEVO) ---
+			// Si el gasto no existía, entonces estamos creando un nuevo gasto
 			lblTitulo.setText("Nuevo Gasto");
 
-			// ---> AQUÍ INICIALIZAMOS LA FECHA Y HORA ACTUALES <---
 			dateFecha.setValue(java.time.LocalDate.now()); // Ponemos fecha de hoy
 
 			java.time.LocalTime ahora = java.time.LocalTime.now(); // Hora de ahora mismo
 			spinHora.getValueFactory().setValue(ahora.getHour());
 			spinMinuto.getValueFactory().setValue(ahora.getMinute());
-			// -----------------------------------------------------
 
 			if (cuenta instanceof CuentaCompartida && !comboPagador.getItems().isEmpty()) {
 				comboPagador.getSelectionModel().selectFirst();
@@ -118,9 +111,7 @@ public class FormularioGastoController {
 
 	@FXML
 	private void guardar() {
-		// ---------------------------------------------------
-		// 1. VALIDACIONES BÁSICAS (Igual que antes)
-		// ---------------------------------------------------
+		// Guardamos el gasto comprobando los valores de los campos
 		String concepto = txtConcepto.getText();
 		if (concepto.isEmpty()) {
 			lblError.setText("El concepto es obligatorio");
@@ -148,7 +139,7 @@ public class FormularioGastoController {
 		}
 
 		String pagador = "Yo";
-		if (cuentaAsociada instanceof CuentaCompartida) {
+		if (cuentaAsociada instanceof CuentaCompartida) { // Esto si estamos en una cuenta compartida o especial
 			pagador = comboPagador.getValue();
 			if (pagador == null) {
 				lblError.setText("Debes seleccionar quién pagó");
@@ -156,10 +147,7 @@ public class FormularioGastoController {
 			}
 		}
 
-		// ---------------------------------------------------
-		// 2. PREPARAR EL OBJETO (Con la hora correcta)
-		// ---------------------------------------------------
-		// Primero creamos/editamos la estructura básica
+		// Si estamos editango un gasto, actualizamos sus valores
 		if (esEdicion) {
 			gastoResultado.setConcepto(concepto);
 			gastoResultado.setImporte(importe);
@@ -170,40 +158,28 @@ public class FormularioGastoController {
 			gastoResultado = new Gasto(concepto, importe, fecha, categoria, pagador);
 		}
 
-		// IMPORTANTE: Asignamos la hora de los spinners AHORA,
-		// antes de comprobar las alertas, para que el objeto sea definitivo.
 		int h = spinHora.getValue();
 		int m = spinMinuto.getValue();
 		gastoResultado.setHora(java.time.LocalTime.of(h, m));
 
-		// ---------------------------------------------------
-		// 3. COMPROBAR ALERTAS (Lógica de Bloqueo)
-		// ---------------------------------------------------
+		// Comprobamos si debe saltar alguna alerta
 		gestorgastos.services.ServicioAlertas servicioAlertas = new gestorgastos.services.ServicioAlertas();
 
-		// Si hay alerta, este método ya guarda la Notificación internamente y nos
-		// devuelve el texto
+		// Si hay alerta, se guarda la notificación y se guarda el texto de la alerta.
 		String mensajeError = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
 
 		// Si mensajeError NO es null, significa que nos hemos pasado del límite
 		if (mensajeError != null) {
-			// A) Mostramos el POP-UP al usuario
+			// Mostramos una ventana con el mensaje
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Gasto Bloqueado");
 			alert.setHeaderText("Límite superado");
 			alert.setContentText(mensajeError + "\n\nSe ha generado una notificación aunque el gasto se guardará.");
 			alert.showAndWait();
-
-			// B) DETENEMOS TODO: Hacemos return para no llegar a la parte de guardar
-			//return;
 		}
 
-		// ---------------------------------------------------
-		// 4. GUARDAR DEFINITIVAMENTE (Aunque haya habido alerta)
-		// ---------------------------------------------------
-
+		// Guardamos el gasto creado
 		if (!esEdicion) {
-			// cuentaAsociada.agregarGasto(gastoResultado);
 			this.guardadoConfirmado = true;
 		}
 

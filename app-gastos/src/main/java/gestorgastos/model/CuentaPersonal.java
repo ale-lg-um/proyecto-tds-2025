@@ -3,6 +3,8 @@ package gestorgastos.model;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @JsonTypeName("PERSONAL")
+
+// Esta clase se refiere a las cuentas en las que solo puede haber un usuario
 public class CuentaPersonal extends Cuenta {
 
 	public CuentaPersonal() {

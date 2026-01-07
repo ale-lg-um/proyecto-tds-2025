@@ -11,6 +11,8 @@ import java.util.UUID;
 @JsonSubTypes({ @JsonSubTypes.Type(value = CuentaPersonal.class, name = "PERSONAL"),
 		@JsonSubTypes.Type(value = CuentaCompartida.class, name = "COMPARTIDA"),
 		@JsonSubTypes.Type(value = CuentaProporcional.class, name = "ESPECIAL") })
+
+// Clase abstracta que se usará para implementar las cuentas personales y compartidas
 public abstract class Cuenta {
 
 	protected String id;
@@ -21,9 +23,8 @@ public abstract class Cuenta {
 
 
 	private List<Notificacion> notificaciones = new ArrayList<>();
-	//private java.util.List<Notificacion> notificaciones = new java.util.ArrayList<>();
 
-	// NUEVO: Cada cuenta tiene su propia lista de categorías
+	// Cada cuenta tiene una lista de categorías
 	protected List<Categoria> categorias;
 
 	public Cuenta() {
@@ -42,6 +43,7 @@ public abstract class Cuenta {
 		this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
 	}
 
+	// Obtener y establecer tipo de la cuenta
 	public abstract String getTipo();
 
 	public void setTipo(String tipo) {
@@ -79,8 +81,7 @@ public abstract class Cuenta {
 	public void setGastos(List<Gasto> gastos) {
 		this.gastos = gastos;
 	}
-
-	// NUEVOS GETTERS Y SETTERS PARA CATEGORÍAS (Vital para Jackson)
+	
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
@@ -105,6 +106,7 @@ public abstract class Cuenta {
 		this.notificaciones = notificaciones;
 	}
 	
+	// Añadir notificaciones cuando salta una alerta
 	public void anadirNotificacion(String notificacion) {
 		
 		if (this.notificaciones == null) {

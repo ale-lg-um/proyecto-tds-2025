@@ -3,7 +3,7 @@ package gestorgastos.model;
 public class Usuario {
 	private String nombre;
 
-	// Constructor vacío para Jackson
+	// Constructor vacío para JSON
 	public Usuario() {
 	}
 

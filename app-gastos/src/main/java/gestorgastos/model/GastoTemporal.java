@@ -3,7 +3,7 @@ package gestorgastos.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-// Clase para mover los gastos de los ficheros al controlador  antes de validarlos
+// Clase para mover los gastos de los ficheros al controlador antes de validarlos
 public class GastoTemporal {
 	 public String nombreCuenta; // Account
 	 public String concepto; // Note

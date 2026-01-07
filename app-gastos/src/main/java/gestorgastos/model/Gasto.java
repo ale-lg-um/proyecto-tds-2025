@@ -10,19 +10,18 @@ import java.time.LocalTime; // <--- Importar
 public class Gasto {
 
 	private String id;
-	private String concepto; // Ej: "Cena", "Gasolina"
-	private double importe; // Ej: 50.0
-	private LocalDate fecha; // Ej: 2025-09-29
+	private String concepto;
+	private double importe; 
+	private LocalDate fecha;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
     private LocalTime hora = LocalTime.now();
 	
 
 	
-	private Categoria categoria; // El gasto pertenece a una categoría
+	private Categoria categoria; // El gasto debe pertenecer a una categoría
 
-	// IMPORTANTE: Necesario para cuentas compartidas
-	// Guardamos el nombre de la persona que pagó.
+	// Todos los gastos deben ser pagados por alguien
 	private String pagador;
 
 	public Gasto(String concepto, double importe, LocalDate fecha, Categoria categoria, String pagador) {
@@ -34,7 +33,7 @@ public class Gasto {
 		this.pagador = pagador;
 	}
 
-	// Constructor vacío para Jackson
+	// Constructor vacío para JSON
 	public Gasto() {
 	}
 
@@ -93,8 +92,7 @@ public class Gasto {
 		return fecha + ": " + concepto + " (" + importe + "€) - " + pagador;
 	}
 	
-	// --- NUEVOS GETTER Y SETTER (Necesarios para el calendario) ---
+	// Métodos necesarios para el calendario
     public LocalTime getHora() { return hora; }
     public void setHora(LocalTime hora) { this.hora = hora; }
-    // --------------------------------------------------------------
 }

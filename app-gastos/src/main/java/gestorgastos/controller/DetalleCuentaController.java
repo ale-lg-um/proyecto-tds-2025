@@ -52,7 +52,7 @@ public class DetalleCuentaController {
 
     @FXML
     public void initialize() {
-        // 1. Configurar QUÉ datos van en cada columna (ValueFactory)
+        // Configurar los datos que van en cada columna
         colFecha.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getFecha()));
         colConcepto.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getConcepto()));
         colImporte.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getImporte()));
@@ -61,7 +61,7 @@ public class DetalleCuentaController {
         // El valor base de esta columna es el NOMBRE de la categoría
         colCategoria.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCategoria().getNombre()));
 
-        // --- Configurar CÓMO se ve la celda (CellFactory) para el COLOR ---
+        // Configuración de las celdas
         colCategoria.setCellFactory(column -> new TableCell<Gasto, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -88,11 +88,11 @@ public class DetalleCuentaController {
             }
         });
 
-        // 2. Configurar acciones de los botones
-        btnAnadirGasto.setOnAction(e -> abrirCrearGasto());
-        btnEditarGasto.setOnAction(e -> abrirEditarGasto());
-        btnBorrarGasto.setOnAction(e -> borrarGasto());
-        btnImportar.setOnAction(e -> procesarImportacion());
+        // Configuración de los botones
+        btnAnadirGasto.setOnAction(e -> abrirCrearGasto()); // Crear un gasto
+        btnEditarGasto.setOnAction(e -> abrirEditarGasto()); // Editar un gasto
+        btnBorrarGasto.setOnAction(e -> borrarGasto()); // Borrar un gasto
+        btnImportar.setOnAction(e -> procesarImportacion()); // Importar gastoss
     }
 
     public void setCuenta(Cuenta cuenta) {
@@ -218,6 +218,8 @@ public class DetalleCuentaController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+    
+    // Botones superiores
 
     @FXML
     private void volverInicio() {
@@ -319,6 +321,8 @@ public class DetalleCuentaController {
         }
     }
     
+    // Método para iniciar la importación de gastos desde ficheros externos
+    // Se importan también gastos de otras cuentas automáticamente
     @FXML
     private void procesarImportacion() {
 
@@ -348,7 +352,7 @@ public class DetalleCuentaController {
             
             int insertados = 0;
             int descartados = 0;
-            int alertasGeneradas = 0; // <--- NUEVA VARIABLE
+            int alertasGeneradas = 0;
             
             for(GastoTemporal t : temporales) {
             System.out.println(t.toString());
@@ -374,6 +378,7 @@ public class DetalleCuentaController {
                 
                 boolean valido = false;
                 
+                // Comportamiento distinto según tipo de cuenta a la que pertenece el gasto
                 if(destino instanceof CuentaPersonal) {
                     valido = true;
                 } else if(destino instanceof CuentaProporcional) {
@@ -419,9 +424,7 @@ public class DetalleCuentaController {
                         }
                         cuentaService.agregarCuenta(user, destino);
 
-                        alertasGeneradas++; // <--- CONTAMOS LA ALERTA AQUÍ
-                        
-                        // NOTA: Como comentamos el continue, el gasto SE INSERTARÁ abajo.
+                        alertasGeneradas++; // Incrementamos el número de alertas generadas
                     }
                     
                     destino.agregarGasto(nuevo);
@@ -444,7 +447,7 @@ public class DetalleCuentaController {
                 calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
             }
             
-            // --- ACTUALIZADO EL MENSAJE FINAL ---
+            // Imprimir mensaje
             mostrarAlerta("Importación Finalizada\nInsertados: " + insertados + "\n(Con Alerta: " + alertasGeneradas + ")\nDescartados: " + descartados);
         } catch (Exception e) {
             e.printStackTrace();

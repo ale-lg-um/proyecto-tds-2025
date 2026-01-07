@@ -20,7 +20,7 @@ public class TerminalController {
     private Cuenta cuentaActiva;
     private CuentaService cuentaService = CuentaService.getInstancia();
     private Runnable onUpdateAction;
-    private java.time.LocalTime tempHora; // <--- NUEVA
+    private java.time.LocalTime tempHora;
 
     // MÁQUINA DE ESTADOS
     // 0=Cmd, 1=Concepto, 2=Importe, 3=Fecha, 4=Categoría, 5=Pagador
@@ -29,7 +29,7 @@ public class TerminalController {
     // Variables temporales
     private String tempConcepto;
     private double tempImporte;
-    private LocalDate tempFecha; // <--- NUEVA VARIABLE
+    private LocalDate tempFecha;
     private String tempCategoria;
 
     public void setCuenta(Cuenta cuenta) {
@@ -99,7 +99,6 @@ public class TerminalController {
     private void procesarPasoRegistro(String entrada) {
         try {
             switch (pasoActual) {
-                // ... (Case 1 y 2 siguen igual) ...
                 case 1:
                      if(entrada.isEmpty()) throw new Exception("El concepto no puede estar vacío.");
                      tempConcepto = entrada;
@@ -113,7 +112,6 @@ public class TerminalController {
                      imprimir("Fecha (AAAA-MM-DD) [Enter para Hoy]:");
                      break;
 
-                // --- MODIFICADO: PASO FECHA ---
                 case 3:
                     if (entrada.isEmpty()) {
                         tempFecha = LocalDate.now();
@@ -124,30 +122,25 @@ public class TerminalController {
                             throw new Exception("Formato incorrecto. Usa AAAA-MM-DD");
                         }
                     }
-                    // ANTES IBA AL 4. AHORA VA AL 31 (Hora)
+
                     pasoActual = 31; 
                     imprimir("Hora (HH:mm) [Enter para Ahora]:");
                     break;
 
-                // --- NUEVO: PASO HORA ---
                 case 31:
                     if (entrada.isEmpty()) {
-                        // Si pulsa Enter, usamos la hora actual
                         tempHora = java.time.LocalTime.now();
                     } else {
                         try {
-                            // Intentamos leer la hora (ej: 14:30)
                             tempHora = java.time.LocalTime.parse(entrada);
                         } catch (DateTimeParseException e) {
                             throw new Exception("Formato incorrecto. Usa HH:mm (ej: 14:30)");
                         }
                     }
-                    pasoActual = 4; // Ahora sí vamos a Categoría
+                    pasoActual = 4;
                     imprimir("Categoría (o Enter para General):");
                     break;
-                // ------------------------
-
-                // --- PASO 4: CATEGORÍA ---
+         
                 case 4: 
                     String catNombre = entrada;
                     Categoria cat = cuentaActiva.getCategorias().stream()
@@ -165,7 +158,6 @@ public class TerminalController {
                     }
                     break;
 
-                // ... (Case 5 y Case 10 siguen igual) ...
                 case 5:
                     Categoria catFinal = cuentaActiva.getCategorias().stream()
                             .filter(c -> c.getNombre().equalsIgnoreCase(tempCategoria))
@@ -174,7 +166,6 @@ public class TerminalController {
                     break;
                     
                 case 10:
-                    // ... (tu código de borrar) ...
                     int id = Integer.parseInt(entrada);
                     if (id >= 0 && id < cuentaActiva.getGastos().size()) {
                          Gasto g = cuentaActiva.getGastos().remove(id);
@@ -192,31 +183,28 @@ public class TerminalController {
             imprimir("(!) Error: Número inválido.");
         } catch (Exception e) {
             imprimir("(!) Error: " + e.getMessage());
-            // IMPORTANTE: Si falla la hora, podríamos querer volver a pedirla en vez de reiniciar todo.
-            // Pero reiniciar es más seguro para evitar bucles.
+            
             pasoActual = 0; 
             reiniciarPrompt();
         }
     }
 
     private void guardarGasto(Categoria cat, String pagador) {
-    // 1. Creamos el gasto
+    // Crear el gasto
     Gasto nuevo = new Gasto(tempConcepto, tempImporte, tempFecha, cat, pagador);
     
-    // 2. SOBRESCRIBIMOS CON LA HORA QUE ELIGIÓ EL USUARIO
+    // Editar la hora
     nuevo.setHora(tempHora);
 
-    // ---------------------------------------------------------
-    // 3. COMPROBACIÓN DE ALERTAS (BLOQUEANTE)
-    // ---------------------------------------------------------
+    // Comprobar alertas
     gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
     
     // Guardamos el resultado. Si hay alerta, el servicio ya creó la notificación internamente.
     String mensajeError = servicio.comprobarAlertas(cuentaActiva, nuevo); 
 
-    // Si mensajeError tiene texto, significa que nos hemos pasado
+    // Si mensajeError tiene texto, significa que nos hemos pasado del límite de la alerta
     if (mensajeError != null) {
-        // Mostramos el "Pop-up" versión texto
+        // Como estamos en CMD, no puede aparecer una ventana con el mensaje, así que el mensaje se imprime por la terminal
         imprimir("\n**************************************************");
         imprimir("⚠️  GASTO BLOQUEADO POR ALERTA");
         imprimir("--------------------------------------------------");
@@ -231,13 +219,9 @@ public class TerminalController {
         pasoActual = 0;
         reiniciarPrompt();
         
-        // IMPORTANTE: Return para que NO ejecute el código de abajo (agregarGasto)
-        //return; 
     }
 
-    // ---------------------------------------------------------
-    // 4. GUARDAR EN LA CUENTA (Solo llegamos aquí si mensajeError fue null)
-    // ---------------------------------------------------------
+    // Guardamos el gasto
     cuentaActiva.agregarGasto(nuevo);
     guardarCambios();
     
@@ -251,14 +235,13 @@ public class TerminalController {
         if (onUpdateAction != null) onUpdateAction.run();
     }
 
+    // Listamos los gastos
     private void listarGastos() {
         if (cuentaActiva.getGastos().isEmpty()) {
             imprimir("(Sin gastos)");
             return;
         }
         
-        // Hacemos la columna de fecha un poco más ancha para que quepa la hora
-        // Antes era %-12s, ahora %-18s
         String formato = "%-5s %-18s %-20s %-10s %-15s";
         
         imprimir(String.format(formato, "ID", "FECHA Y HORA", "CONCEPTO", "IMPORTE", "CATEGORIA"));
@@ -268,7 +251,6 @@ public class TerminalController {
             Gasto g = cuentaActiva.getGastos().get(i);
             
             // Combinamos fecha y hora para verlo bonito
-            // Ejemplo: "2023-12-20 14:30"
             String fechaHoraStr = g.getFecha().toString();
             if (g.getHora() != null) {
                 // Cortamos los segundos para que quede más limpio (HH:mm)
@@ -280,7 +262,7 @@ public class TerminalController {
 
             imprimir(String.format(formato, 
                 "[" + i + "]", 
-                fechaHoraStr, // <--- Usamos la variable combinada
+                fechaHoraStr,
                 g.getConcepto(), 
                 String.format("%.2f€", g.getImporte()), 
                 g.getCategoria().getNombre()));
