@@ -1,6 +1,6 @@
 # 🏗️ Arquitectura del Sistema
 
-Este documento detalla la estructura técnica y los patrones de diseño aplicados en el proyecto **Gestor de Gastos**. La arquitectura se fundamenta en los principios de **Separación Modelo-Vista** y **Desarrollo Dirigido por el Dominio (DDD)**.
+En este documento detallamos la estructura técnica y los patrones de diseño aplicados en el proyecto. La arquitectura se fundamenta en los principios de **Separación Modelo-Vista** y **Desarrollo Dirigido por el Dominio (DDD)**.
 
 ---
 
@@ -32,7 +32,7 @@ La aplicación organiza su código en paquetes específicos según su responsabi
 
 ## 3. Patrones de Diseño Implementados
 
-Se han aplicado patrones **GoF (Gang of Four)** para resolver problemas recurrentes de creación, estructura y comportamiento:
+Hemos aplicado patrones **GoF (Gang of Four)** para resolver problemas recurrentes de creación, estructura y comportamiento:
 
 ### 3.1. Patrones de Creación
 * **Singleton (`services`)**: Clases como `SesionService` y `CuentaService` aseguran una única instancia global para mantener la consistencia del estado.
@@ -49,16 +49,16 @@ Se han aplicado patrones **GoF (Gang of Four)** para resolver problemas recurren
 
 ## 4. Jerarquía y Polimorfismo
 
-El sistema utiliza el **Polimorfismo** para gestionar comportamientos variables de forma transparente para el cliente:
+Utilizamos el **Polimorfismo** para gestionar comportamientos variables de forma transparente para el cliente:
 
-* **Especialización de Cuentas**: A través de la herencia de `Cuenta`, se implementan lógicas de reparto Personal, Compartida y Proporcional.
+* **Especialización de Cuentas**: A través de la herencia de `Cuenta`, implementamos lógicas de reparto Personal, Compartida y Proporcional.
 * **Adaptadores de Importación**: La interfaz `Importador` define el contrato común para todos los formatos soportados (CSV, JSON, etc.).
 
 ---
 
 ## 5. Ciclo de Vida y Persistencia
 
-Siguiendo las directrices de **DDD**, se controla el ciclo de vida de los objetos para garantizar la integridad de los datos:
+Siguiendo las directrices de **DDD**, controlamos el ciclo de vida de los objetos para garantizar la integridad de los datos:
 
 * **Agregados**: La clase `Cuenta` actúa como raíz del agregado, gestionando sus propios gastos, categorías y alertas.
 * **Persistencia JSON**: Se utiliza un modelo de datos semiestructurado para garantizar la flexibilidad y ligereza en el intercambio de información.
