@@ -52,4 +52,4 @@ Lo usamos para el **Sistema de Alertas**. Queríamos que el usuario pudiera eleg
 | **Fachada** | `repository` | Para ocultar el lío del guardado en JSON. |
 | **Estrategia** | `strategies` | Para cambiar entre alertas semanales y mensuales. |
 
-Con esto conseguimos una **alta cohesión** (cada cosa a lo suyo) y un **bajo acoplamiento** (que las piezas no estén pegadas con pegamento), que es lo que pide el diseño dirigido por el dominio (DDD).
+Con esto conseguimos una **alta cohesión** y un **bajo acoplamiento**, que es lo que pide el diseño dirigido por el dominio (DDD).
