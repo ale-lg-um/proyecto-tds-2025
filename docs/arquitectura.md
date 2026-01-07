@@ -1,12 +1,12 @@
 # 🏗️ Arquitectura de Nuestro Sistema
 
-En este documento explicamos cómo hemos montado las "tripas" del **Gestor de Gastos**. Entre los tres hemos diseñado una estructura que no solo funciona, sino que sigue los principios de **Separación Modelo-Vista** y **Diseño Dirigido por el Dominio (DDD)** que hemos visto en clase.
+En este documento explicamos cómo hemos montado las "tripas" del **Gestor de Gastos**. Hemos diseñado una estructura que no solo funciona, sino que sigue los principios de **Separación Modelo-Vista** y **Diseño Dirigido por el Dominio (DDD)** que hemos visto en clase.
 
 ---
 
 ## 1. El Esquema de Trabajo (MVC)
 
-Para que el proyecto no fuera un caos de código, los tres decidimos usar una **Arquitectura Multicapa** basada en el patrón **MVC (Modelo-Vista-Controlador)**. 
+Para que el proyecto no fuera un caos de código, decidimos usar una **Arquitectura Multicapa** basada en el patrón **MVC (Modelo-Vista-Controlador)**. 
 
 La idea es sencilla: separar los datos de lo que el usuario ve.
 * **Modelo**: Es el corazón del programa. Aquí están las reglas de las cuentas y los gastos.
@@ -32,7 +32,7 @@ Hemos repartido el código en paquetes para que cada cosa tenga su sitio (lo que
 
 ## 3. Patrones de Diseño (Los "clásicos" de GoF)
 
-Como somos tres programando, necesitábamos soluciones que ya funcionaran. Hemos aplicado varios patrones de la famosa "Banda de los Cuatro" (Erich Gamma y compañía):
+Necesitábamos soluciones que ya funcionaran. Hemos aplicado varios patrones de la famosa "Banda de los Cuatro" (Erich Gamma y compañía):
 
 * **Singleton**: Lo usamos en `SesionService` y `CuentaService` para que solo haya una sesión y una cuenta activa a la vez.
 * **Método Factoría**: En la capa de importación, la `FactoriaImportacion` elige el adaptador adecuado según el archivo que nos paséis.
