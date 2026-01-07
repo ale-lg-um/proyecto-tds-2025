@@ -1,70 +1,60 @@
-# 🏗️ Arquitectura del Sistema
+# 🏗️ Arquitectura de Nuestro Sistema
 
-Este documento detalla la estructura técnica y los patrones de diseño aplicados en el proyecto **Gestor de Gastos**. La arquitectura se fundamenta en los principios de **Separación Modelo-Vista** y **Desarrollo Dirigido por el Dominio (DDD)**.
-
----
-
-## 1. Modelo Arquitectónico
-
-El sistema utiliza una **Arquitectura Multicapa** que implementa el patrón **MVC (Modelo-Vista-Controlador)**. Esta estructura permite un acoplamiento débil entre los componentes, asegurando que la lógica de negocio permanezca independiente de la interfaz de usuario.
-
-### MVC: Componentes principales
-* **Modelo**: Representa los datos y las reglas del dominio, incluyendo la jerarquía de cuentas y gastos.
-* **Vista**: Gestiona la interacción con el usuario mediante JavaFX (gráfica) y el hilo `GestorCLI` (consola).
-* **Controlador**: Actúa como el **Controlador GRASP**, coordinando el flujo entre la vista y los servicios de negocio.
+En este documento explicamos cómo hemos montado las "tripas" del **Gestor de Gastos**. Hemos diseñado una estructura que no solo funciona, sino que sigue los principios de **Separación Modelo-Vista** y **Diseño Dirigido por el Dominio (DDD)** que hemos visto en clase.
 
 ---
 
-## 2. Desglose de Capas Técnicas
+## 1. El Esquema de Trabajo (MVC)
 
-La aplicación organiza su código en paquetes específicos según su responsabilidad funcional y principios de alta cohesión:
+Para que el proyecto no fuera un caos de código, decidimos usar una **Arquitectura Multicapa** basada en el patrón **MVC (Modelo-Vista-Controlador)**. 
 
-| Capa | Paquete | Función y Responsabilidad |
+La idea es sencilla: separar los datos de lo que el usuario ve.
+* **Modelo**: Es el corazón del programa. Aquí están las reglas de las cuentas y los gastos.
+* **Vista**: Lo que usáis para interactuar, ya sea la interfaz de JavaFX con sus "quesitos" o la terminal para los que prefieren tirar comandos.
+* **Controlador**: Hace de "jefe de tráfico" (Controlador GRASP), moviendo la info entre la pantalla y los servicios de negocio.
+
+---
+
+## 2. Organización por Capas
+
+Hemos repartido el código en paquetes para que cada cosa tenga su sitio (lo que en TDS llaman alta cohesión):
+
+| Capa | ¿Qué hace? | Ubicación en el Código |
 | :--- | :--- | :--- |
-| **Presentación** | `app_gastos` / `cli` | Punto de entrada del sistema. Gestiona la visualización y captura de eventos. |
-| **Control** | `controller` | Traduce las acciones del usuario en la interfaz en operaciones del sistema. |
-| **Importación** | `importacion` | Procesa datos externos (CSV, JSON, Excel) transformándolos en objetos del dominio. |
-| **Negocio** | `services` | Contiene los **Servicios del Dominio** que implementan la lógica de sesión y alertas. |
-| **Persistencia** | `repository` | Implementa el patrón **Repositorio** para el almacenamiento de entidades en JSON. |
-| **Modelo** | `model` | Define las entidades y agregados que forman el núcleo del negocio. |
+| **Presentación** | Es la cara visible: JavaFX y el hilo de la terminal (CLI). | `app_gastos` / `cli` |
+| **Control** | Gestiona los clics y lo que escribís en los formularios. | `controller` |
+| **Importación** | La magia de la "Importación Inteligente" que lee CSV o Excel. | `importacion` |
+| **Negocio** | Donde reside la lógica real: sesiones, alertas y cálculos. | `services` |
+| **Persistencia** | Se encarga de que nada se pierda al cerrar, guardándolo todo en el JSON. | `repository` |
+| **Modelo** | El núcleo: define qué es una Cuenta o un Gasto. | `model` |
 
 ---
 
-## 3. Patrones de Diseño Implementados
+## 3. Patrones de Diseño (Los "clásicos" de GoF)
 
-Se han aplicado patrones **GoF (Gang of Four)** para resolver problemas recurrentes de creación, estructura y comportamiento:
+Necesitábamos soluciones que ya funcionaran. Hemos aplicado varios patrones de la famosa "Banda de los Cuatro" (Erich Gamma y compañía):
 
-### 3.1. Patrones de Creación
-* **Singleton (`services`)**: Clases como `SesionService` y `CuentaService` aseguran una única instancia global para mantener la consistencia del estado.
-* **Método Factoría (`importacion`)**: La clase `FactoriaImportacion` centraliza la creación de adaptadores según el formato de archivo.
-
-### 3.2. Patrones Estructurales
-* **Adaptador (Adapter) (`importacion`)**: Permite la colaboración de clases con interfaces incompatibles, convirtiendo diversos formatos externos al modelo del sistema.
-* **Fachada (Facade) (`repository`)**: El repositorio proporciona una interfaz simplificada para el subsistema de persistencia en disco.
-
-### 3.3. Patrones de Comportamiento
-* **Estrategia (Strategy) (`strategies`)**: Define una familia de algoritmos para la validación de alertas (semanal/mensual), haciéndolos intercambiables en tiempo de ejecución.
+* **Singleton**: Lo usamos en `SesionService` y `CuentaService` para que solo haya una sesión y una cuenta activa a la vez.
+* **Método Factoría**: En la capa de importación, la `FactoriaImportacion` elige el adaptador adecuado según el archivo que nos paséis.
+* **Adaptador (Adapter)**: Fundamental para que formatos externos raros se conviertan en gastos que nuestra App entienda.
+* **Fachada (Facade)**: El repositorio nos ofrece una cara amable para no tener que pelearnos con el sistema de archivos cada vez que guardamos algo.
+* **Estrategia (Strategy)**: Para que el sistema de alertas sepa si tiene que calcular por semanas o por meses de forma intercambiable.
 
 ---
 
-## 4. Jerarquía y Polimorfismo
+## 4. Jerarquías y el "Poder" del Polimorfismo
 
-El sistema utiliza el **Polimorfismo** para gestionar comportamientos variables de forma transparente para el cliente:
-
-* **Especialización de Cuentas**: A través de la herencia de `Cuenta`, se implementan lógicas de reparto Personal, Compartida y Proporcional.
-* **Adaptadores de Importación**: La interfaz `Importador` define el contrato común para todos los formatos soportados (CSV, JSON, etc.).
+Una de las partes que más nos costó diseñar fue el reparto de gastos. Gracias al **polimorfismo**, el sistema trata todas las cuentas igual, pero cada una se comporta de forma distinta bajo el capó:
+* Tenemos la **CuentaPersonal**, la **Compartida** (a partes iguales) y la **Proporcional** (donde cada uno paga su porcentaje).
+* Lo mismo pasa con los **Importadores**: todos siguen la misma interfaz aunque lean formatos distintos.
 
 ---
 
-## 5. Ciclo de Vida y Persistencia
+## 5. El ciclo de vida y el guardado
 
-Siguiendo las directrices de **DDD**, se controla el ciclo de vida de los objetos para garantizar la integridad de los datos:
+Siguiendo las pautas de **DDD**, nos hemos asegurado de que los datos sean consistentes:
+* **Agregados**: La clase `Cuenta` es la "raíz". Ella manda sobre sus gastos, categorías y alertas.
+* **Persistencia JSON**: Usamos este formato porque es ligero y flexible para guardar vuestra info financiera.
+* **DTOs**: Usamos el `GastoTemporal` para mover los datos desde la importación hasta el dominio sin ensuciar las entidades reales.
 
-* **Agregados**: La clase `Cuenta` actúa como raíz del agregado, gestionando sus propios gastos, categorías y alertas.
-* **Persistencia JSON**: Se utiliza un modelo de datos semiestructurado para garantizar la flexibilidad y ligereza en el intercambio de información.
-* **DTO (Data Transfer Objects)**: Se emplea `GastoTemporal` para transportar datos desde la capa de importación hacia el dominio de forma segura.
-
-* **Criterios de Consistencia:**
-    * Dado que el usuario modifica una entidad o realiza una importación,
-    * Cuando la operación es validada por la capa de negocio,
-    * Entonces el repositorio sincroniza automáticamente los cambios en el almacenamiento físico.
+**En resumen:** Si tocáis algo en la App o importáis un fichero, el sistema lo valida en la capa de negocio y el repositorio lo sincroniza al momento con el archivo `cuentas.json` para que no perdáis ni un céntimo.
