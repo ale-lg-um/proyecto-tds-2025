@@ -1,0 +1,257 @@
+[ {
+  "id" : "c0ff0411-4cfe-474e-a79c-73f993ba43bc",
+  "nombre" : "Compartida",
+  "gastos" : [ {
+    "id" : "f635a966-3a40-4eb8-b2ea-45f805d4f599",
+    "concepto" : "Comida",
+    "importe" : 40.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:31",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Mario"
+  } ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "miembros" : [ "Mario", "Jaime" ],
+  "tipo" : "COMPARTIDA"
+}, {
+  "id" : "16eca2c0-49b5-4eb8-9c67-6f5f9424ae84",
+  "nombre" : "Especial",
+  "gastos" : [ {
+    "id" : "c0027ba5-2d66-47f0-b4c6-1073f30e6459",
+    "concepto" : "Comida_Navidad",
+    "importe" : 430.0,
+    "fecha" : [ 2025, 12, 24 ],
+    "hora" : "15:07",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Mario"
+  }, {
+    "id" : "ad9e282f-bc94-439a-bfb5-c14ec0825dde",
+    "concepto" : "Viaje",
+    "importe" : 1000.0,
+    "fecha" : [ 2025, 8, 14 ],
+    "hora" : "15:08",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#FFFF00"
+    },
+    "pagador" : "Alejandro"
+  }, {
+    "id" : "bb9a28c1-7983-4b49-b8eb-52366d5a8f45",
+    "concepto" : "Compra",
+    "importe" : 100.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:09",
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    },
+    "pagador" : "Jesus"
+  }, {
+    "id" : "7bc5a69d-77b6-46c7-b326-b0cbe8172aee",
+    "concepto" : "Pan",
+    "importe" : 4.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:10",
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    },
+    "pagador" : "Jaime"
+  }, {
+    "id" : "3c30be52-3569-48ff-a81c-b2744a1ac2f6",
+    "concepto" : "Cena_Navidad",
+    "importe" : 400.0,
+    "fecha" : [ 2025, 12, 25 ],
+    "hora" : "21:11",
+    "categoria" : {
+      "nombre" : "Navidad",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "Jaime"
+  } ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 200.0,
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    }
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 200.0€ definido en tu alerta.",
+    "fecha" : "2026-01-07 15:11:05",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Verano",
+    "descripcion" : "",
+    "colorHex" : "#FFFF00"
+  }, {
+    "nombre" : "GastoSemanal",
+    "descripcion" : "",
+    "colorHex" : "#800000"
+  }, {
+    "nombre" : "Navidad",
+    "descripcion" : "",
+    "colorHex" : "#00FF00"
+  } ],
+  "miembros" : [ "Alejandro", "Jesus", "Jaime", "Mario" ],
+  "porcentajes" : {
+    "Alejandro" : 33.0,
+    "Jesus" : 1.0,
+    "Jaime" : 33.0,
+    "Mario" : 33.0
+  },
+  "tipo" : "ESPECIAL"
+}, {
+  "id" : "455a5bfa-edb0-4efe-ba80-cb02736cbf83",
+  "nombre" : "Normal",
+  "gastos" : [ {
+    "id" : "34d0ea4d-05c7-41f4-8c16-d98599794458",
+    "concepto" : "Cena",
+    "importe" : 40.0,
+    "fecha" : [ 2026, 1, 6 ],
+    "hora" : "14:55",
+    "categoria" : {
+      "nombre" : "Año-Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#800080"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "b58f5bd6-a78a-4be3-8cf4-2bb4d64a8164",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "82d921dc-8962-48c7-b108-780da94d2885",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "Año-Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#800080"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "49764581-326b-4de7-9575-d6c8615b0a77",
+    "concepto" : "Material Escolar",
+    "importe" : 40.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:30",
+    "categoria" : {
+      "nombre" : "Curso-Escolar",
+      "descripcion" : "",
+      "colorHex" : "#FFAB00"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "bd9b7569-e25c-4b1a-a81d-6a82e8687d24",
+    "concepto" : "Material Ultima Hora",
+    "importe" : 20.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:31",
+    "categoria" : {
+      "nombre" : "Curso-Escolar",
+      "descripcion" : "",
+      "colorHex" : "#FFAB00"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0271ad4a-b959-4d7f-bafc-8cdde2d1599e",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 2, 5 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a1365879-181b-4012-848b-47fdc3cba32f",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "46c94372-7d7b-4fbf-b16e-abcffc24b44c",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 2, 5 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a4356950-517a-4556-bf2c-be0a540a8460",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Año-Nuevo",
+    "descripcion" : "",
+    "colorHex" : "#800080"
+  }, {
+    "nombre" : "Curso-Escolar",
+    "descripcion" : "",
+    "colorHex" : "#FFAB00"
+  } ],
+  "tipo" : "PERSONAL"
+} ]
