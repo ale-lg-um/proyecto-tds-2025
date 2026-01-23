@@ -237,9 +237,89 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "5a67ba8b-87d7-4ce2-8761-e97cf9b3c50d",
+    "concepto" : "30",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 23 ],
+    "hora" : "12:03",
+    "categoria" : {
+      "nombre" : "Año-Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#800080"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "4ea1cd1f-0022-4170-95e4-61f40891090a",
+    "concepto" : "30",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 23 ],
+    "hora" : "12:03",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "2bcf7737-9f1f-4d49-9e0c-89da25fc8da3",
+    "concepto" : "30",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 23 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "1544fb0f-2d08-4820-a873-d158c570b6a5",
+    "concepto" : "30",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 23 ],
+    "hora" : "12:34",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "65b18dfa-3f83-4495-9af9-2a54922f947d",
+    "concepto" : "30",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 23 ],
+    "hora" : "12:44",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
-  "alertas" : [ ],
-  "notificaciones" : [ ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 20.0,
+    "categoria" : {
+      "nombre" : "Año-Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#800080"
+    }
+  }, {
+    "tipo" : "MENSUAL",
+    "limite" : 20.0,
+    "categoria" : null
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 20.0€ definido en tu alerta.",
+    "fecha" : "2026-01-23 12:03:19",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 20.0€ definido en tu alerta.",
+    "fecha" : "2026-01-23 12:03:59",
+    "leida" : false
+  } ],
   "categorias" : [ {
     "nombre" : "General",
     "descripcion" : "Gastos varios",

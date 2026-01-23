@@ -25,4 +25,5 @@
     <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="gestorgastos.strategies.FactoriaAlertas"/>
 </qualifiedTypeNameHistroy>

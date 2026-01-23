@@ -26,14 +26,25 @@ public class CuentaService {
     }
 
     // Obtener todas las cuentas de un usuario
-    public List<Cuenta> getCuentasDe(Usuario usuario) {
-        return repositorio.findAll();
+    public List<Cuenta> getCuentasUsuarioActual() {
+    	Usuario activo = SesionService.getInstancia().getUsuarioActivo();
+    	return repositorio.findAll();
     }
     
+    // Corrección primer PR
+    /*public List<Cuenta> getCuentasDe(Usuario usuario) {
+        return repositorio.findAll();
+    }*/
+    
     // Guardar una cuenta nueva
-    public void agregarCuenta(Usuario usuario, Cuenta cuenta) {
-        repositorio.save(cuenta);
+    public void  agregarCuenta(Cuenta cuenta) {
+    	Usuario activo = SesionService.getInstancia().getUsuarioActivo();
+    	repositorio.save(cuenta);
     }
+    
+    /*public void agregarCuenta(Usuario usuario, Cuenta cuenta) {
+        repositorio.save(cuenta);
+    }*/
     
     // Eliminar una cuenta
     public void eliminarCuenta(Cuenta cuenta) {

@@ -192,7 +192,9 @@ public class CrearCuentaController {
 
 			// Guardamos la cuenta, y la asociamos al usuario que ha iniciado sesión
 			// El servicio espera (Usuario, Cuenta)
-			cuentaService.agregarCuenta(usuarioActivo, nuevaCuenta);
+			//cuentaService.agregarCuenta(usuarioActivo, nuevaCuenta);
+			
+			cuentaService.agregarCuenta(nuevaCuenta);
 
 			if (onCuentaCreada != null) {
 				onCuentaCreada.run();

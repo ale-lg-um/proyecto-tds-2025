@@ -44,11 +44,14 @@ public class PrincipalController {
     }
 
     private void cargarCuentas() {
-        Usuario usuario = sesionService.getUsuarioActivo();
+        /*Usuario usuario = sesionService.getUsuarioActivo();
         if (usuario != null) {
-            List<Cuenta> cuentas = cuentaService.getCuentasDe(usuario);
+            List<Cuenta> cuentas = cuentaService.getCuentasUsuarioActual();
             listaCuentas.getItems().setAll(cuentas);
-        }
+        }*/
+    	
+    	List<Cuenta> cuentas = cuentaService.getCuentasUsuarioActual();
+        listaCuentas.getItems().setAll(cuentas);
     }
 
     private void abrirVentanaCrearCuenta() {

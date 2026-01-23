@@ -80,7 +80,7 @@ public class GestionCategoriasController {
 
             if (controller.getCategoriaResultado() != null) {
                 cuentaActual.getCategorias().add(controller.getCategoriaResultado());
-                cuentaService.agregarCuenta(null, cuentaActual);
+                cuentaService.agregarCuenta(cuentaActual);
                 cargarCategorias();
             }
         } catch (IOException e) { e.printStackTrace(); }
@@ -113,7 +113,7 @@ public class GestionCategoriasController {
             }
 
             cuentaActual.getCategorias().remove(seleccionada);
-            cuentaService.agregarCuenta(null, cuentaActual);
+            cuentaService.agregarCuenta(cuentaActual);
             cargarCategorias();
         }
     }

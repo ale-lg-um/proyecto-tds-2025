@@ -200,15 +200,19 @@ public class TerminalController {
     gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
     
     // Guardamos el resultado. Si hay alerta, el servicio ya creó la notificación internamente.
-    String mensajeError = servicio.comprobarAlertas(cuentaActiva, nuevo); 
+    //String mensajeError = servicio.comprobarAlertas(cuentaActiva, nuevo); 
 
     // Si mensajeError tiene texto, significa que nos hemos pasado del límite de la alerta
-    if (mensajeError != null) {
+    
+    // Corrección tercer PR
+    Alerta alertaSaltada = servicio.comprobarAlertas(cuentaActiva, nuevo);
+    if (alertaSaltada != null) {
+    	String mensaje = "Has superado el límite de " + alertaSaltada.getLimite() + "€ definido en tu alerta.";
         // Como estamos en CMD, no puede aparecer una ventana con el mensaje, así que el mensaje se imprime por la terminal
         imprimir("\n**************************************************");
         imprimir("⚠️  GASTO BLOQUEADO POR ALERTA");
         imprimir("--------------------------------------------------");
-        imprimir(mensajeError);
+        imprimir(mensaje);
         imprimir("--------------------------------------------------");
         imprimir("ℹ️  Se ha generado una notificación en tu cuenta.");
         imprimir("    El gasto SI se ha guardado.");
@@ -231,7 +235,7 @@ public class TerminalController {
 }
     
     private void guardarCambios() {
-        cuentaService.agregarCuenta(null, cuentaActiva);
+        cuentaService.agregarCuenta(cuentaActiva);
         if (onUpdateAction != null) onUpdateAction.run();
     }
 

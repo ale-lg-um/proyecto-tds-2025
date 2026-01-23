@@ -100,7 +100,7 @@ public class AlertaController {
     		Categoria categoria = comboCategoria.getValue();
     		Alerta alerta = new Alerta(tipoAlerta, limite, categoria);
     		cuentaActual.getAlertas().add(alerta);
-    		cuentaService.agregarCuenta(null, cuentaActual);
+    		cuentaService.agregarCuenta(cuentaActual);
     		this.cargarDatos();
     		this.txtLimite.clear();
     		this.comboCategoria.getSelectionModel().clearSelection();
@@ -115,7 +115,7 @@ public class AlertaController {
     	alertaBorrar = listaAlertasConfiguradas.getSelectionModel().getSelectedItem();
     	if(alertaBorrar != null) {
     		cuentaActual.getAlertas().remove(alertaBorrar);
-    		cuentaService.agregarCuenta(null, cuentaActual);
+    		cuentaService.agregarCuenta(cuentaActual);
     		this.cargarDatos();
     	}
     }
@@ -123,7 +123,7 @@ public class AlertaController {
     @FXML
     public void limpiarHistorial() {
     	cuentaActual.getNotificaciones().clear();
-    	cuentaService.agregarCuenta(null, cuentaActual);
+    	cuentaService.agregarCuenta(cuentaActual);
     	this.cargarDatos();
     }
 }

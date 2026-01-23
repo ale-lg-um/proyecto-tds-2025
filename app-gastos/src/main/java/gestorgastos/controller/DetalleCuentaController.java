@@ -211,7 +211,7 @@ public class DetalleCuentaController {
 	}
 
 	private void guardarCambiosYRefrescar() {
-		cuentaService.agregarCuenta(null, cuentaActual);
+		cuentaService.agregarCuenta(cuentaActual);
 		actualizarTabla();
 		if (cuentaActual instanceof CuentaCompartida) {
 			calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
@@ -400,7 +400,7 @@ public class DetalleCuentaController {
 
 			Usuario user = gestorgastos.services.SesionService.getInstancia().getUsuarioActivo();
 
-			List<Cuenta> cuentas = cuentaService.getCuentasDe(user);
+			List<Cuenta> cuentas = cuentaService.getCuentasUsuarioActual();
 
 			int insertados = 0;
 			int descartados = 0;
@@ -464,17 +464,22 @@ public class DetalleCuentaController {
 
 					gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
 
-					String errorAlerta = servicio.comprobarAlertas(destino, nuevo);
+					//String errorAlerta = servicio.comprobarAlertas(destino, nuevo);
+					// Corrección tercer PR
+					Alerta alertaSaltada = servicio.comprobarAlertas(destino,  nuevo);
 
-					if (errorAlerta != null) {
-						System.out.println(
-								"ALERTA SALTADA (" + destino.getNombre() + "): " + t.concepto + " -> " + errorAlerta);
+					if (alertaSaltada != null) {
+						//System.out.println(
+							//	"ALERTA SALTADA (" + destino.getNombre() + "): " + t.concepto + " -> " + errorAlerta);
+						
+						String mensaje = "Has superado el límite de " + alertaSaltada.getLimite() + "€ definido en tu alerta.";
+						System.out.println("ALERTA: " + mensaje);
 
 						// Guardamos la notificación
 						if (destino.getNombre().equalsIgnoreCase(cuentaActual.getNombre())) {
-							cuentaActual.anadirNotificacion(errorAlerta);
+							cuentaActual.anadirNotificacion(mensaje);
 						}
-						cuentaService.agregarCuenta(user, destino);
+						cuentaService.agregarCuenta(destino);
 
 						alertasGeneradas++; // Incrementamos el número de alertas generadas
 					}
@@ -491,7 +496,7 @@ public class DetalleCuentaController {
 			}
 
 			for (Cuenta c : cuentas) {
-				cuentaService.agregarCuenta(null, c);
+				cuentaService.agregarCuenta(c);
 			}
 
 			actualizarTabla();

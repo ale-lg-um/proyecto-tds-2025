@@ -16,6 +16,19 @@ public class Alerta {
 		this.categoria = categoria;
 	}
 	
+	// Corrección cuarto PR
+	public boolean esAplicablePara(Gasto gasto) {
+		if(this.categoria == null) {
+			return true;
+		}
+		
+		if(gasto.getCategoria() != null) {
+			return this.categoria.getNombre().equalsIgnoreCase(gasto.getCategoria().getNombre());
+		}
+		
+		return false;
+	}
+	
 	public String getTipo() {
 		return this.tipo;
 	}

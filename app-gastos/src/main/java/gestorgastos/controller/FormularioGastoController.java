@@ -167,15 +167,19 @@ public class FormularioGastoController {
 		gestorgastos.services.ServicioAlertas servicioAlertas = new gestorgastos.services.ServicioAlertas();
 
 		// Si hay alerta, se guarda la notificación y se guarda el texto de la alerta.
-		String mensajeError = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
+		//String mensajeError = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
 
 		// Si mensajeError NO es null, significa que nos hemos pasado del límite
-		if (mensajeError != null) {
+		
+		// Corrección tercer PR
+		Alerta alertaSaltada = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
+		if (alertaSaltada != null) {
+			String mensaje = "Has superado el límite de " + alertaSaltada.getLimite() + "€ definido en tu alerta.";
 			// Mostramos una ventana con el mensaje
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Gasto Bloqueado");
 			alert.setHeaderText("Límite superado");
-			alert.setContentText(mensajeError + "\n\nSe ha generado una notificación aunque el gasto se guardará.");
+			alert.setContentText(mensaje + "\n\nSe ha generado una notificación aunque el gasto se guardará.");
 			alert.showAndWait();
 		}
 
