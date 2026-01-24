@@ -297,6 +297,54 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "7a93dcee-57aa-4a16-a19e-791be41ad899",
+    "concepto" : "terminalnueva",
+    "importe" : 40.0,
+    "fecha" : [ 2026, 1, 24 ],
+    "hora" : "13:36",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "a1a09a97-ffd0-482f-ae8a-d9b97cfb6889",
+    "concepto" : "nuevo",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 24 ],
+    "hora" : "13:50",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0cf94800-4414-4466-9287-60c9377f8b44",
+    "concepto" : "nuevo",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 24 ],
+    "hora" : "13:52",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "f0f43155-a73f-45d8-bf25-75b660067550",
+    "concepto" : "nuevo3",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 24 ],
+    "hora" : "13:52",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
@@ -318,6 +366,18 @@
   }, {
     "mensaje" : "Has superado el límite de 20.0€ definido en tu alerta.",
     "fecha" : "2026-01-23 12:03:59",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
+    "fecha" : "2026-01-24 13:50:15",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
+    "fecha" : "2026-01-24 13:52:11",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
+    "fecha" : "2026-01-24 13:52:47",
     "leida" : false
   } ],
   "categorias" : [ {
