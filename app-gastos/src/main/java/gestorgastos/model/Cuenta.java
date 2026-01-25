@@ -17,7 +17,7 @@ public abstract class Cuenta {
 
 	protected String id;
 	protected String nombre;
-	protected List<Gasto> gastos;
+	protected List<Gasto> gastos = new ArrayList<>();;
 	private java.util.List<Alerta> alertas = new java.util.ArrayList<>();
 	// En Cuenta.java
 
@@ -25,22 +25,24 @@ public abstract class Cuenta {
 	private List<Notificacion> notificaciones = new ArrayList<>();
 
 	// Cada cuenta tiene una lista de categorías
-	protected List<Categoria> categorias;
+	protected List<Categoria> categorias = new ArrayList<>();
 
 	public Cuenta() {
-		this.gastos = new ArrayList<>();
-		this.categorias = new ArrayList<>();
+		this.id = UUID.randomUUID().toString();
+		//this.gastos = new ArrayList<>();
+		//this.categorias = new ArrayList<>();
 		// Inicializamos siempre con General para evitar errores
 		this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
 	}
 
 	public Cuenta(String nombre) {
-		this.id = UUID.randomUUID().toString();
+		//this.id = UUID.randomUUID().toString();
+		this();
 		this.nombre = nombre;
-		this.gastos = new ArrayList<>();
-		this.categorias = new ArrayList<>();
+		//this.gastos = new ArrayList<>();
+		//this.categorias = new ArrayList<>();
 		// Categoría por defecto al crear cuenta nueva
-		this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
+		//this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
 	}
 
 	// Obtener y establecer tipo de la cuenta

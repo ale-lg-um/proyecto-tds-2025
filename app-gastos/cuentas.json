@@ -345,6 +345,30 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "bbb47b74-e295-4e98-80de-06a4f2b5565b",
+    "concepto" : "nuevo4",
+    "importe" : 100.0,
+    "fecha" : [ 2026, 1, 24 ],
+    "hora" : "19:20",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "e8955b02-8280-4fe4-8e31-bca27945fec1",
+    "concepto" : "uno",
+    "importe" : 1.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "12:24",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",

@@ -15,16 +15,31 @@ public class CuentaRepositoryJson implements CuentaRepository {
 
     private final String RUTA_ARCHIVO = "cuentas.json";
     private ObjectMapper mapper;
+    // Corrección noveno PR
+    private List<Cuenta> cuentas;
 
     public CuentaRepositoryJson() {
         mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        this.cuentas = cargarDelArchivo();
+    }
+    
+    private List<Cuenta> cargarDelArchivo() {
+    	File file = new File(RUTA_ARCHIVO);
+    	if(!file.exists()) return new ArrayList<>();
+    	
+    	try {
+    		return mapper.readValue(file,  new TypeReference<List<Cuenta>>() {});
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    		return new ArrayList<>();
+    	}
     }
 
     @Override
     public List<Cuenta> findAll() {
-        File file = new File(RUTA_ARCHIVO);
+        /*File file = new File(RUTA_ARCHIVO);
         if (!file.exists()) return new ArrayList<>();
 
         try {
@@ -32,42 +47,66 @@ public class CuentaRepositoryJson implements CuentaRepository {
         } catch (IOException e) {
             e.printStackTrace();
             return new ArrayList<>();
-        }
+        }*/
+    	return this.cuentas;
     }
 
     @Override
     public void save(Cuenta cuenta) {
-        List<Cuenta> cuentas = findAll();
+        //List<Cuenta> cuentas = findAll();
         
         System.out.println("--- GUARDANDO CUENTA ---");
         System.out.println("Total cuentas antes: " + cuentas.size());
         System.out.println("Intentando guardar ID: " + cuenta.getId());
 
         // Eliminamos la versión vieja de forma segura
-        boolean borrado = cuentas.removeIf(c -> {
+        /*boolean borrado = cuentas.removeIf(c -> {
             if (c.getId() == null) return false; // Protección anti-null
             return c.getId().equals(cuenta.getId());
-        });
+        });*/
+        // Corrección octavo PR
+        //cuentas.removeIf(c -> c.getId().equals(cuenta.getId())); // Si la cuenta es nula, se lanzará una excepción, no se tiene que ocultar esa excepción.
         
-        System.out.println("¿Se encontró y borró la anterior?: " + borrado);
+        //System.out.println("¿Se encontró y borró la anterior?: " + borrado);
 
         // Añadimos la nueva
-        cuentas.add(cuenta);
-        System.out.println("Total cuentas después: " + cuentas.size());
-        
+        /*cuentas.add(cuenta);
         saveAll(cuentas);
+        System.out.println("Total cuentas después: " + cuentas.size());*/
+        
+        this.cuentas.removeIf(c -> c.getId().equals(cuenta.getId()));
+        this.cuentas.add(cuenta);
+        System.out.println("Total cuentas después: " + cuentas.size());
+        volcar();
     }
 
     @Override
     public void delete(Cuenta cuenta) {
         List<Cuenta> cuentas = findAll();
-        cuentas.removeIf(c -> c.getId() != null && c.getId().equals(cuenta.getId()));
-        saveAll(cuentas);
+        //cuentas.removeIf(c -> c.getId() != null && c.getId().equals(cuenta.getId()));
+        // Corrección octavo PR
+        cuentas.removeIf(c -> c.getId().equals(cuenta.getId()));
+        volcar();
     }
 
     @Override
-    public void saveAll(List<Cuenta> cuentas) {
-        try {
+    public void saveAll(List<Cuenta> cuentasNuevas) {
+        /*try {
+            mapper.writeValue(new File(RUTA_ARCHIVO), cuentas);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+    	//List<Cuenta> todas = findAll();
+    	for(Cuenta cuenta : cuentasNuevas) {
+    		this.cuentas.removeIf(c -> c.getId().equals(cuenta.getId()));
+    		this.cuentas.add(cuenta);
+    	}
+    	
+    	volcar();
+    }
+    
+    private void volcar() {
+    	try {
             mapper.writeValue(new File(RUTA_ARCHIVO), cuentas);
         } catch (IOException e) {
             e.printStackTrace();
