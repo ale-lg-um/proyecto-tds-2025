@@ -41,7 +41,7 @@ public class Alerta {
 		return this.limite;
 	}
 	
-	public void setLimite(int limite) {
+	public void setLimite(double limite) {
 		this.limite = limite;
 	}
 	
