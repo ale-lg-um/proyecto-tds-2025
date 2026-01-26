@@ -58,7 +58,7 @@ El panel principal es el centro de cuentas del usuario. Está diseñado para ofr
     2. **Cuenta compartida:** Cuenta con más de un participantes ( la lista de participantes no podrá ser editada) donde el reparte de gastos se hace equitativamente ( 50% )
     3. **Cuenta especial ( cuenta compartida de nivel 2):** Funciona igual que la cuenta compartida solo que al crear la lista de participantes podremos elegir cuanto porcentaje del total pagarán, siempre y cuando la suma de este entre todos sea del 100%.
 
-![Vista Principal Dashboard](./imagenes/dashboard_view.png)
+![Vista Principal Dashboard](./imagenes/pantalla_cuentas.png)
 
 ---
 
@@ -76,7 +76,7 @@ La pantalla de gastos es la base de la cuenta elegida. En ella principalmente te
         * Actualmente soporta archivos Excel, JSON, CSV, TXT, XML
 * **Menu de interaccion:** Se incluye ademas en la parte superior un menú sencillo con acceso a otras funcionalidades de la aplicacion y aplicables a la cuenta seleccionada
 
-![Vista Principal Dashboard](./imagenes/dashboard_view.png)
+![Vista Principal Dashboard](./imagenes/pantalla_gastos.png)
 
 ---
 
@@ -125,8 +125,8 @@ El sistema es "inteligente" y realiza filtros automáticos:
 
 Para evitar errores o gastos desorbitados, la aplicación cuenta con un **sistema de alertas activo**.
 
-* **Funcionamiento:** Si intenta crear o importar un gasto que supere el límite establecido (por defecto **1000€**), la operación será bloqueada.
-* **Notificación:** El gasto no se guardará, y en su lugar, se generará una notificación en el sistema indicando el intento rechazado.
+* **Funcionamiento:** Si intenta crear o importar un gasto que supere el límite establecido en un tiempo establecido ( de forma mensual o semanal ), la operación será bloqueada.
+* **Notificación:** Aunque el gasto se guarde, se generará una notificación en el sistema indicando que se sobrepaso el limite.
 
 > **Ejemplo:** Al importar un gasto de 2000€ concepto "Abrigo Caro", el sistema lo ignorará y le avisará: *"Has superado el límite definido en tu alerta"*.
 
@@ -156,6 +156,7 @@ La terminal muestra en tiempo real lo que ocurre "bajo el capó":
 * **Traza de Importación:** Verá línea a línea qué gastos se aceptan y cuáles se descartan y el motivo exacto (ej: *"Descartado por ALERTA"*, *"Usuario no asociado"*).
 
 ![Vista de la Consola con Logs](./imagenes/terminal_logs.png)
+![Vista de la Consola con Logs 2](./imagenes/terminal_logs_2.png)
 
 ### ⌨️ Entrada por Comandos
 Es posible interactuar con la aplicación sin interfaz gráfica (si se habilita el modo consola):
