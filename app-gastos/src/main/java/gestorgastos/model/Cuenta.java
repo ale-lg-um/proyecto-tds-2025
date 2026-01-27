@@ -80,32 +80,44 @@ public abstract class Cuenta {
 		return gastos;
 	}
 
-	public void setGastos(List<Gasto> gastos) {
+	/*public void setGastos(List<Gasto> gastos) {
 		this.gastos = gastos;
-	}
+	}*/
 	
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
+	/*public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}*/
+	
+	public void agregarCategoria(Categoria categoria) {
+		this.categorias.add(categoria);
 	}
 
 	public java.util.List<Alerta> getAlertas() {
 		return alertas;
 	}
 
-	public void setAlertas(java.util.List<Alerta> alertas) {
+	/*public void setAlertas(java.util.List<Alerta> alertas) {
 		this.alertas = alertas;
+	}*/
+	
+	public void agregarAlerta(Alerta alerta) {
+		this.alertas.add(alerta);
 	}
 
 	public java.util.List<Notificacion> getNotificaciones() {
 		return notificaciones;
 	}
 
-	public void setNotificaciones(java.util.List<Notificacion> notificaciones) {
+	/*public void setNotificaciones(java.util.List<Notificacion> notificaciones) {
 		this.notificaciones = notificaciones;
+	}*/
+	
+	public void agregarNotificacion(Notificacion notificacion) {
+		this.notificaciones.add(notificacion);
 	}
 	
 	// Añadir notificaciones cuando salta una alerta

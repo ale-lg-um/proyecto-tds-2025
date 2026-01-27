@@ -103,7 +103,7 @@ public class AlertaController {
     		double limite = Double.parseDouble(txtLimite.getText().replace(",", "."));
     		Categoria categoria = comboCategoria.getValue();
     		Alerta alerta = new Alerta(tipoAlerta, limite, categoria);
-    		cuentaActual.getAlertas().add(alerta);
+    		cuentaActual.agregarAlerta(alerta);
     		cuentaService.agregarCuenta(cuentaActual);
     		this.cargarDatos();
     		this.txtLimite.clear();
