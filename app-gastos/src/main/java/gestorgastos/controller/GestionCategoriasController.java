@@ -171,12 +171,12 @@ public class GestionCategoriasController {
     @FXML
     private void irAVisualizacion() {
         try {
-        	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/VisualizacionView.fxml"));
             Parent root = loader.load();
 
-            VisualizacionController controller = loader.getController();
-            controller.setCuenta(cuentaActual); 
+            //VisualizacionController controller = loader.getController();
+            //controller.setCuenta(cuentaActual); 
 
             Stage stage = (Stage) listaCategorias.getScene().getWindow();
             // -----------------------

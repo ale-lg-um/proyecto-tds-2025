@@ -8,6 +8,7 @@ import com.calendarfx.view.CalendarView;
 import gestorgastos.model.Categoria;
 import gestorgastos.model.Cuenta;
 import gestorgastos.model.Gasto;
+import gestorgastos.services.SesionService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,7 +49,7 @@ public class VisualizacionController {
     private CalendarView calendarView;
     private Calendar calendarioGastos;
 
-    private Cuenta cuentaActual;
+    //private Cuenta cuentaActual;
 
     @FXML
     public void initialize() {
@@ -59,18 +60,23 @@ public class VisualizacionController {
         // Cargar meses
         listMeses.getItems().addAll(Month.values());
         
+        Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        listCategorias.getItems().setAll(cuentaActual.getCategorias());
+        
+        
         // Inicializar el calendario
         configurarCalendario();
+        aplicarFiltros();
     }
 
-    public void setCuenta(Cuenta cuenta) {
+    /*public void setCuenta(Cuenta cuenta) {
         this.cuentaActual = cuenta;
         // Cargar las categorías de esta cuenta en el filtro
         listCategorias.getItems().setAll(cuenta.getCategorias());
         
         // Mostrar todo por defecto al entrar
         aplicarFiltros();
-    }
+    }*/
 
     private void configuringCalendario() {
         calendarView = new CalendarView();
@@ -98,7 +104,8 @@ public class VisualizacionController {
 
     @FXML
     private void aplicarFiltros() {
-        if (cuentaActual == null) return;
+    	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+    	if (cuentaActual == null) return;
 
         List<Gasto> todos = cuentaActual.getGastos();
         
@@ -144,7 +151,8 @@ public class VisualizacionController {
     // import javafx.scene.Parent;
 
     private void actualizarGraficos(List<Gasto> gastos) {
-        // 1. Desactivamos animaciones
+    	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+    	// 1. Desactivamos animaciones
         pieChart.setAnimated(false);
         barChart.setAnimated(false);
 
@@ -240,7 +248,8 @@ public class VisualizacionController {
     @FXML
     private void volver() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
+        	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
             Parent root = loader.load();
 
             DetalleCuentaController controller = loader.getController();

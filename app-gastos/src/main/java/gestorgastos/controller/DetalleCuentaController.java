@@ -292,8 +292,11 @@ public class DetalleCuentaController {
     }
 
     @FXML private void irAVisualizacion() {
-        GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "VisualizacionView.fxml", "Gráficos", 
-            (VisualizacionController c) -> c.setCuenta(cuentaActual));
+        //GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "VisualizacionView.fxml", "Gráficos", 
+            //(VisualizacionController c) -> c.setCuenta(cuentaActual));
+    	
+    	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+    	GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "VisualizacionView.fxml", "Categorías", null);
     }
 
     @FXML private void irAAlertas() {
