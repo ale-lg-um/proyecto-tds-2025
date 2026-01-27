@@ -303,10 +303,11 @@ public class DetalleCuentaController {
         // Alertas se abre "encima" sin cerrar la actual, podemos usar abrirModal o navegar normal
         // Si quieres que sea una ventana nueva:
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
+        	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
             javafx.scene.Parent root = loader.load();
             AlertaController controller = loader.getController();
-            controller.setCuenta(cuentaActual);
+            //controller.setCuenta(cuentaActual);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -315,10 +316,11 @@ public class DetalleCuentaController {
 
     @FXML private void irACMD() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
+        	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
             javafx.scene.Parent root = loader.load();
             TerminalController controller = loader.getController();
-            controller.setCuenta(cuentaActual);
+            //controller.setCuenta(cuentaActual);
             controller.setOnUpdate(this::actualizarVista); // Callback limpio
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

@@ -2,6 +2,7 @@ package gestorgastos.controller;
 
 import gestorgastos.model.*;
 import gestorgastos.services.CuentaService;
+import gestorgastos.services.SesionService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -39,14 +40,14 @@ public class TerminalController {
     private LocalDate tempFecha;
     private String tempCategoria;
 
-    public void setCuenta(Cuenta cuenta) {
+    /*public void setCuenta(Cuenta cuenta) {
         this.cuentaActiva = cuenta;
         imprimir("========================================");
         imprimir(" CONSOLA INTEGRADA - " + cuenta.getNombre());
         imprimir(" Comandos: registrar, borrar, listar, ayuda");
         imprimir("========================================");
         imprimir("\nCMD> ");
-    }
+    }*/
 
     public void setOnUpdate(Runnable action) {
         this.onUpdateAction = action;
@@ -54,8 +55,15 @@ public class TerminalController {
 
     @FXML
     public void initialize() {
-        Platform.runLater(() -> txtInput.requestFocus());
+    	
+    	Platform.runLater(() -> txtInput.requestFocus());
         configurarMaquinaDeEstados();
+        this.cuentaActiva = SesionService.getInstancia().getCuentaActiva();
+        imprimir("========================================");
+        imprimir(" CONSOLA INTEGRADA - " + this.cuentaActiva.getNombre());
+        imprimir(" Comandos: registrar, borrar, listar, ayuda");
+        imprimir("========================================");
+        imprimir("\nCMD> ");
     }
     
     //Corrección sexto PR

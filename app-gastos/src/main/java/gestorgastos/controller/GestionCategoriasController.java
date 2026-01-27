@@ -57,7 +57,7 @@ public class GestionCategoriasController {
                 }
             }
         });
-        
+        //this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
         cargarCategorias();
     }
     
@@ -150,7 +150,7 @@ public class GestionCategoriasController {
             Parent root = loader.load();
 
             TerminalController controller = loader.getController();
-            controller.setCuenta(cuentaActual);
+            //controller.setCuenta(cuentaActual);
 
             // Callback: Si pasa algo en la terminal, refrescamos la lista de categorías (por precaución)
             controller.setOnUpdate(() -> {
@@ -197,8 +197,8 @@ public class GestionCategoriasController {
             Parent root = loader.load();
 
             
-            AlertaController controller = loader.getController();
-            controller.setCuenta(cuentaActual);
+            //AlertaController controller = loader.getController();
+            //controller.setCuenta(cuentaActual);
 
             Stage stage = new Stage();
             stage.setTitle("Configuración de Alertas - " + cuentaActual.getNombre());
