@@ -1,10 +1,12 @@
 package gestorgastos.services;
 
+import gestorgastos.model.Cuenta;
 import gestorgastos.model.Usuario;
 
 public class SesionService {
     private static SesionService instancia;   // SINGLETON
     private Usuario usuarioActivo;
+    private Cuenta cuentaActiva;
 
     // Constructor privado para que no se pueda instanciar desde fuera
     private SesionService() {}
@@ -30,5 +32,13 @@ public class SesionService {
     // Obtener usuario activo
     public Usuario getUsuarioActivo() {
         return usuarioActivo;
+    }
+    
+    public void setCuentaActiva(Cuenta cuenta) {
+    	this.cuentaActiva = cuenta;
+    }
+    
+    public Cuenta getCuentaActiva() {
+    	return this.cuentaActiva;
     }
 }

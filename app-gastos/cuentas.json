@@ -127,6 +127,142 @@
   },
   "tipo" : "ESPECIAL"
 }, {
+  "id" : "db4a43ed-bd1d-400f-95a1-c47fce77565e",
+  "nombre" : "normal2",
+  "gastos" : [ {
+    "id" : "0ee343bc-db28-481a-90be-978f151a8bb1",
+    "concepto" : "31",
+    "importe" : 31.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:19",
+    "categoria" : {
+      "nombre" : "cat1",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "23d8101c-4ed5-4a57-a22c-10f094471bbe",
+    "concepto" : "21",
+    "importe" : 21.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:20",
+    "categoria" : {
+      "nombre" : "cat2",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "3905bd77-988e-44c3-8716-78e69076f6af",
+    "concepto" : "41",
+    "importe" : 41.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:21",
+    "categoria" : {
+      "nombre" : "c3",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "66337b10-5ade-47ee-843c-aca7c113d7c0",
+    "concepto" : "412",
+    "importe" : 41.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:21",
+    "categoria" : {
+      "nombre" : "c3",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0310b8e6-2d76-4954-b30c-9f43f749c110",
+    "concepto" : "101",
+    "importe" : 101.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:40",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 30.0,
+    "categoria" : {
+      "nombre" : "cat1",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 20.0,
+    "categoria" : {
+      "nombre" : "cat2",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "MENSUAL",
+    "limite" : 100.0,
+    "categoria" : null
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 40.0,
+    "categoria" : {
+      "nombre" : "c3",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 30.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:19:58",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:20:16",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:21:27",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:26:37",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:40:04",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:40:31",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "cat1",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  }, {
+    "nombre" : "cat2",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  }, {
+    "nombre" : "c3",
+    "descripcion" : "",
+    "colorHex" : "#FFFFFF"
+  } ],
+  "tipo" : "PERSONAL"
+}, {
   "id" : "455a5bfa-edb0-4efe-ba80-cb02736cbf83",
   "nombre" : "Normal",
   "gastos" : [ {
@@ -381,6 +517,54 @@
       "colorHex" : "#FFAB00"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "e5586826-1fee-4cbf-8bc5-eaf7cee704ae",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "e5d615d1-74bb-4bd1-b9ba-47963f6d5fe5",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "d3b53bc9-61c4-4265-9d10-2b7d12765776",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "3bf3b79a-0495-40b3-8814-7d5d1f181787",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
@@ -440,142 +624,6 @@
     "nombre" : "Curso-Escolar",
     "descripcion" : "",
     "colorHex" : "#FFAB00"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
-  "id" : "db4a43ed-bd1d-400f-95a1-c47fce77565e",
-  "nombre" : "normal2",
-  "gastos" : [ {
-    "id" : "0ee343bc-db28-481a-90be-978f151a8bb1",
-    "concepto" : "31",
-    "importe" : 31.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:19",
-    "categoria" : {
-      "nombre" : "cat1",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "23d8101c-4ed5-4a57-a22c-10f094471bbe",
-    "concepto" : "21",
-    "importe" : 21.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:20",
-    "categoria" : {
-      "nombre" : "cat2",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "3905bd77-988e-44c3-8716-78e69076f6af",
-    "concepto" : "41",
-    "importe" : 41.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:21",
-    "categoria" : {
-      "nombre" : "c3",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "66337b10-5ade-47ee-843c-aca7c113d7c0",
-    "concepto" : "412",
-    "importe" : 41.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:21",
-    "categoria" : {
-      "nombre" : "c3",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "0310b8e6-2d76-4954-b30c-9f43f749c110",
-    "concepto" : "101",
-    "importe" : 101.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:40",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  } ],
-  "alertas" : [ {
-    "tipo" : "SEMANAL",
-    "limite" : 30.0,
-    "categoria" : {
-      "nombre" : "cat1",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 20.0,
-    "categoria" : {
-      "nombre" : "cat2",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "MENSUAL",
-    "limite" : 100.0,
-    "categoria" : null
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 40.0,
-    "categoria" : {
-      "nombre" : "c3",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  } ],
-  "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 30.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:19:58",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:20:16",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:21:27",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:26:37",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:40:04",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:40:31",
-    "leida" : false
-  } ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "cat1",
-    "descripcion" : "",
-    "colorHex" : "#FFFFFF"
-  }, {
-    "nombre" : "cat2",
-    "descripcion" : "",
-    "colorHex" : "#FFFFFF"
-  }, {
-    "nombre" : "c3",
-    "descripcion" : "",
-    "colorHex" : "#FFFFFF"
   } ],
   "tipo" : "PERSONAL"
 } ]

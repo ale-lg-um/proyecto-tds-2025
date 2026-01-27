@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import gestorgastos.model.GastoTemporal;
+import gestorgastos.dto.GastoTemporal;
 
 public class AdaptadorJSON extends Importador{
 	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy H:mm");

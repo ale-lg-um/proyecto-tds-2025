@@ -2,6 +2,8 @@ package gestorgastos.controller;
 
 import gestorgastos.model.*;
 import gestorgastos.services.CuentaService;
+import gestorgastos.services.SesionService;
+import gestorgastos.dto.GastoTemporal;
 import gestorgastos.importacion.*; // Asumiendo que tu lógica de importación está aquí
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -53,6 +55,8 @@ public class DetalleCuentaController {
         btnEditarGasto.setOnAction(e -> abrirEditarGasto());
         btnBorrarGasto.setOnAction(e -> borrarGasto());
         btnImportar.setOnAction(e -> procesarImportacion());
+        
+        this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
     }
 
     public void setCuenta(Cuenta cuenta) {
@@ -186,8 +190,92 @@ public class DetalleCuentaController {
 
     @FXML 
     private void procesarImportacion() {
-        // ... (Tu código de importación original va aquí, usando GestorDialogos para los errores) ...
-        // Recuerda usar cuentaService.agregarGasto(destino, nuevo) dentro del bucle.
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Importar Gastos");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Archivos Soportados", "*.csv", "*.txt", "*.json", "*.xlsx", "*.xml")
+        );
+
+        File fichero = fileChooser.showOpenDialog(lblTituloCuenta.getScene().getWindow());
+        if (fichero == null) return;
+
+        // 1. Obtener el importador (Patrón Factory)
+        Importador importador = FactoriaImportacion.getImportador(fichero.getAbsolutePath());
+        if (importador == null) {
+            GestorDialogos.mostrarError("Error", "Formato no soportado.");
+            return;
+        }
+
+        try {
+            // 2. Leer datos temporales
+            List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
+            
+            // 3. Obtener cuentas del usuario actual (PR #5: Usuario implícito en sesión)
+            List<Cuenta> cuentasUsuario = cuentaService.getCuentasUsuarioActual();
+
+            int insertados = 0;
+            int descartados = 0;
+            int alertasGeneradas = 0;
+
+            for (GastoTemporal t : temporales) {
+                // Buscamos la cuenta destino por nombre
+                Optional<Cuenta> cMatch = cuentasUsuario.stream()
+                        .filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
+                        .findFirst();
+
+                if (cMatch.isEmpty()) {
+                    System.out.println("Descartado: No existe la cuenta: " + t.nombreCuenta);
+                    descartados++;
+                    continue;
+                }
+
+                Cuenta destino = cMatch.get();
+
+                // 4. Validación de Miembros (Lógica de Negocio básica)
+                boolean valido = true;
+                if (destino instanceof CuentaCompartida) {
+                    // Tanto para Compartida como Proporcional (que hereda de Compartida)
+                    List<String> miembros = ((CuentaCompartida) destino).getMiembros();
+                    // Si el pagador no es "Yo" y no está en la lista, es inválido
+                    if (!t.pagador.equalsIgnoreCase("Yo") && 
+                        miembros.stream().noneMatch(m -> m.equalsIgnoreCase(t.pagador))) {
+                        valido = false;
+                        System.out.println("Descartado: El usuario " + t.pagador + " no pertenece a la cuenta.");
+                    }
+                }
+
+                if (valido) {
+                    // Asignar Categoría (Buscamos la real o usamos la primera por defecto)
+                    Categoria catReal = destino.getCategorias().stream()
+                            .filter(c -> c.getNombre().equalsIgnoreCase(t.categoria))
+                            .findFirst()
+                            .orElse(destino.getCategorias().get(0));
+
+                    Gasto nuevo = new Gasto(t.concepto, t.importe, t.fecha, catReal, t.pagador);
+                    if(t.hora != null) nuevo.setHora(t.hora);
+
+                    Alerta alertaSaltada = cuentaService.agregarGasto(destino, nuevo); 
+                    
+                    if (alertaSaltada != null) {
+                        alertasGeneradas++;
+                    }
+                    insertados++;
+                } else {
+                    descartados++;
+                }
+            }
+
+            // 5. Actualizar la vista solo si estamos viendo la cuenta afectada
+            actualizarVista();
+            
+            GestorDialogos.mostrarAlerta("Importación Finalizada\nInsertados: " + insertados + 
+                                         "\n(Alertas nuevas: " + alertasGeneradas + ")" +
+                                         "\nDescartados: " + descartados);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            GestorDialogos.mostrarError("Error Importación", "Fallo al leer el archivo: " + e.getMessage());
+        }
     }
 
     // --- NAVEGACIÓN (Delegada al Gestor) ---
@@ -197,8 +285,10 @@ public class DetalleCuentaController {
     }
 
     @FXML private void irACategorias() {
-        GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "GestionCategoriasView.fxml", "Categorías", 
-            (GestionCategoriasController c) -> c.setCuenta(cuentaActual));
+        //GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "GestionCategoriasView.fxml", "Categorías", 
+            //(GestionCategoriasController c) -> c.setCuenta(cuentaActual));
+    	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+    	GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "GestionCategoriasView.fxml", "Categorías", null);
     }
 
     @FXML private void irAVisualizacion() {

@@ -1,7 +1,8 @@
 package gestorgastos.importacion;
 
 import java.util.List;
-import gestorgastos.model.GastoTemporal;
+
+import gestorgastos.dto.GastoTemporal;
 
 // Clase abstracta de la que derivan los adaptadores
 public abstract class Importador {

@@ -1,8 +1,9 @@
 package gestorgastos.importacion;
 
-import gestorgastos.model.GastoTemporal;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import gestorgastos.dto.GastoTemporal;
 
 import java.io.File;
 import java.io.FileInputStream;

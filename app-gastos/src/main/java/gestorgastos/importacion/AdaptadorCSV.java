@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import gestorgastos.model.GastoTemporal;
+import gestorgastos.dto.GastoTemporal;
 
 public class AdaptadorCSV extends Importador{
 	private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy H:mm");
