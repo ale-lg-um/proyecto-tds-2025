@@ -1,0 +1,169 @@
+.root {
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-background-color: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+}
+
+.label {
+    -fx-text-fill: #2d3748;
+}
+
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a202c;
+}
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #a0aec0;
+    -fx-border-radius: 4px;
+    -fx-padding: 6px;
+}
+
+.button {
+    -fx-background-color: #3182ce;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 16px;
+}
+
+.button:hover {
+    -fx-background-color: #2b6cb0;
+}
+
+.list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cbd5e0;
+    -fx-border-radius: 4px;
+}
+
+.titulo-creditos {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: center;
+}
+
+.contenido-creditos {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial";
+    -fx-text-fill: #34495e;
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+
+.boton-volver {
+    -fx-font-size: 14px;
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-padding: 8 20 8 20;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+.contenido-creditos {
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-text-fill: #2c3e50;
+    -fx-background-color: #ecf0f1;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+}
+
+/* Fondo general de la pantalla (Verde oscuro financiero) */
+.fondo-finanzas {
+    -fx-background-color: linear-gradient(to bottom right, #1e3c2f, #2b5c45);
+}
+
+/* El papel del ticket */
+.papel-ticket {
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 15, 0, 0, 0);
+    -fx-padding: 20;
+    -fx-background-radius: 5; /* Bordes ligeramente redondeados */
+    /* Opcional: Imagen de fondo de papel arrugado si tuvieras */
+}
+
+/* Tipografía general del ticket (Monospace es clave) */
+.ticket-titulo {
+    -fx-font-family: "Courier New", "Consolas", monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-text-fill: #333333;
+}
+
+.ticket-subtitulo {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.ticket-separador {
+    -fx-font-family: "Courier New", monospace;
+    -fx-text-fill: #999999;
+    -fx-font-size: 12px;
+}
+
+.ticket-item-titulo {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 10px;
+    -fx-text-fill: #666666;
+}
+
+.ticket-item-nombre {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+}
+
+.ticket-precio {
+    -fx-font-family: "Courier New", monospace;
+    -fx-alignment: center-right;
+    -fx-text-fill: #333333;
+}
+
+.ticket-total {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000;
+}
+
+.ticket-info, .ticket-info-pie {
+    -fx-font-family: "Courier New", monospace;
+    -fx-font-size: 11px;
+    -fx-text-fill: #555555;
+    -fx-alignment: center;
+}
+
+.codigo-barras {
+    -fx-font-family: "Arial"; /* Arial estirado parece código de barras a veces */
+    -fx-font-size: 24px;
+    -fx-scale-y: 1.5; /* Estiramos verticalmente */
+    -fx-text-fill: #000000;
+    -fx-padding: 10 0 5 0;
+}
+
+/* Botón estilo "Pagar" */
+.boton-pagar {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0, 0, 2);
+}
+
+.boton-pagar:hover {
+    -fx-background-color: #27ae60;
+}
+
