@@ -24,8 +24,6 @@ public class CuentaCompartida extends Cuenta {
         // Creamos una copia nueva para evitar problemas externos
         this.miembros = new ArrayList<>(miembrosIniciales);
     }
-
-    // Devolvemos lista inmodificable para cumplir requisito de no editar miembros
     public List<String> getMiembros() {
         return Collections.unmodifiableList(miembros);
     }
@@ -55,9 +53,6 @@ public class CuentaCompartida extends Cuenta {
                                   .filter(g -> miembro.equals(g.getPagador()))
                                   .mapToDouble(Gasto::getImporte)
                                   .sum();
-            
-            // Saldo = Lo que puse - Lo que debía poner
-            // Positivo = Me deben dinero / Negativo = Debo dinero
             saldos.put(miembro, pagado - cuotaPorPersona);
         }
         return saldos;

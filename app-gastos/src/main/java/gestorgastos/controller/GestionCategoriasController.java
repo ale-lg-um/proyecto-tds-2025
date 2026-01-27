@@ -38,7 +38,6 @@ public class GestionCategoriasController {
 
     @FXML
     public void initialize() {
-        // Configuración visual de la lista (Círculos de colores)
         listaCategorias.setCellFactory(lv -> new ListCell<Categoria>() {
             @Override
             protected void updateItem(Categoria item, boolean empty) {
@@ -130,7 +129,7 @@ public class GestionCategoriasController {
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
             Parent root = loader.load();
             //DetalleCuentaController controller = loader.getController();
-            //controller.setCuenta(cuentaActual); // Mantenemos la cuenta
+            //controller.setCuenta(cuentaActual); 
 
             Stage stage = new Stage();
             stage.setTitle("Gastos: " + cuentaActual.getNombre());
@@ -152,7 +151,6 @@ public class GestionCategoriasController {
             TerminalController controller = loader.getController();
             //controller.setCuenta(cuentaActual);
 
-            // Callback: Si pasa algo en la terminal, refrescamos la lista de categorías (por precaución)
             controller.setOnUpdate(() -> {
                 cargarCategorias();
             });
@@ -179,7 +177,6 @@ public class GestionCategoriasController {
             //controller.setCuenta(cuentaActual); 
 
             Stage stage = (Stage) listaCategorias.getScene().getWindow();
-            // -----------------------
 
             stage.setScene(new Scene(root, 1100, 750)); 
             stage.centerOnScreen();

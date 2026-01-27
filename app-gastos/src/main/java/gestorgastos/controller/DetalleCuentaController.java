@@ -42,7 +42,6 @@ public class DetalleCuentaController {
     @FXML private javafx.scene.layout.VBox panelSaldos;
     @FXML private ListView<String> listaSaldos;
 
-    // --- MODELO ---
     private Cuenta cuentaActual;
     private final CuentaService cuentaService = CuentaService.getInstancia();
 
@@ -70,8 +69,6 @@ public class DetalleCuentaController {
 
         actualizarVista();
     }
-
-    // --- GESTIÓN DE LA VISTA (Responsabilidad del Controlador) ---
     
     private void configurarTabla() {
         colFecha.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getFecha()));
@@ -132,8 +129,6 @@ public class DetalleCuentaController {
             }
         });
     }
-
-    // --- ACCIONES DE USUARIO (Lógica de Interfaz) ---
 
     private void abrirEditarGasto() {
         Gasto seleccionado = tablaGastos.getSelectionModel().getSelectedItem();
@@ -199,7 +194,6 @@ public class DetalleCuentaController {
         File fichero = fileChooser.showOpenDialog(lblTituloCuenta.getScene().getWindow());
         if (fichero == null) return;
 
-        // 1. Obtener el importador (Patrón Factory)
         Importador importador = FactoriaImportacion.getImportador(fichero.getAbsolutePath());
         if (importador == null) {
             GestorDialogos.mostrarError("Error", "Formato no soportado.");
@@ -207,10 +201,8 @@ public class DetalleCuentaController {
         }
 
         try {
-            // 2. Leer datos temporales
             List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
             
-            // 3. Obtener cuentas del usuario actual (PR #5: Usuario implícito en sesión)
             List<Cuenta> cuentasUsuario = cuentaService.getCuentasUsuarioActual();
 
             int insertados = 0;
@@ -218,7 +210,6 @@ public class DetalleCuentaController {
             int alertasGeneradas = 0;
 
             for (GastoTemporal t : temporales) {
-                // Buscamos la cuenta destino por nombre
                 Optional<Cuenta> cMatch = cuentasUsuario.stream()
                         .filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
                         .findFirst();
@@ -231,12 +222,9 @@ public class DetalleCuentaController {
 
                 Cuenta destino = cMatch.get();
 
-                // 4. Validación de Miembros (Lógica de Negocio básica)
                 boolean valido = true;
                 if (destino instanceof CuentaCompartida) {
-                    // Tanto para Compartida como Proporcional (que hereda de Compartida)
                     List<String> miembros = ((CuentaCompartida) destino).getMiembros();
-                    // Si el pagador no es "Yo" y no está en la lista, es inválido
                     if (!t.pagador.equalsIgnoreCase("Yo") && 
                         miembros.stream().noneMatch(m -> m.equalsIgnoreCase(t.pagador))) {
                         valido = false;
@@ -245,7 +233,6 @@ public class DetalleCuentaController {
                 }
 
                 if (valido) {
-                    // Asignar Categoría (Buscamos la real o usamos la primera por defecto)
                     Categoria catReal = destino.getCategorias().stream()
                             .filter(c -> c.getNombre().equalsIgnoreCase(t.categoria))
                             .findFirst()
@@ -265,7 +252,6 @@ public class DetalleCuentaController {
                 }
             }
 
-            // 5. Actualizar la vista solo si estamos viendo la cuenta afectada
             actualizarVista();
             
             GestorDialogos.mostrarAlerta("Importación Finalizada\nInsertados: " + insertados + 
@@ -277,8 +263,6 @@ public class DetalleCuentaController {
             GestorDialogos.mostrarError("Error Importación", "Fallo al leer el archivo: " + e.getMessage());
         }
     }
-
-    // --- NAVEGACIÓN (Delegada al Gestor) ---
 
     @FXML private void volverInicio() {
         GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "PrincipalView.fxml", "Mis Cuentas", null);
@@ -321,7 +305,7 @@ public class DetalleCuentaController {
             javafx.scene.Parent root = loader.load();
             TerminalController controller = loader.getController();
             //controller.setCuenta(cuentaActual);
-            controller.setOnUpdate(this::actualizarVista); // Callback limpio
+            controller.setOnUpdate(this::actualizarVista);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();

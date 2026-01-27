@@ -145,7 +145,6 @@ public abstract class Cuenta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cuenta cuenta = (Cuenta) o;
-        // Dos cuentas son iguales si su ID es el mismo
         return id != null && id.equals(cuenta.id);
     }
 

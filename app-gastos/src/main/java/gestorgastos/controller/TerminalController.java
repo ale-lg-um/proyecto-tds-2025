@@ -84,7 +84,7 @@ public class TerminalController {
     private void procesarEntrada() {
         String texto = txtInput.getText().trim();
         txtInput.clear();
-        txtOutput.appendText(texto + "\n"); // Eco
+        txtOutput.appendText(texto + "\n");
 
         /*if (pasoActual == 0) {
             ejecutarComandoPrincipal(texto.toLowerCase());

@@ -34,17 +34,14 @@ import java.util.stream.Collectors;
 
 public class VisualizacionController {
 
-    // --- FILTROS ---
     @FXML private DatePicker dateDesde;
     @FXML private DatePicker dateHasta;
     @FXML private ListView<Month> listMeses;
     @FXML private ListView<Categoria> listCategorias;
 
-    // --- GRÁFICOS ---
     @FXML private PieChart pieChart;
     @FXML private BarChart<String, Number> barChart;
 
-    // --- CALENDARIO ---
     @FXML private StackPane contenedorCalendario;
     private CalendarView calendarView;
     private Calendar calendarioGastos;
@@ -53,7 +50,7 @@ public class VisualizacionController {
 
     @FXML
     public void initialize() {
-        // COnfigurar selección múltiple para los filtros
+        // Configurar selección múltiple para los filtros
         listMeses.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         listCategorias.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -152,22 +149,18 @@ public class VisualizacionController {
 
     private void actualizarGraficos(List<Gasto> gastos) {
     	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
-    	// 1. Desactivamos animaciones
         pieChart.setAnimated(false);
         barChart.setAnimated(false);
 
-        // 2. Agrupamos los gastos por NOMBRE DE CATEGORÍA
         Map<String, Double> porCategoria = gastos.stream()
                 .collect(Collectors.groupingBy(
                         g -> g.getCategoria().getNombre(),
                         Collectors.summingDouble(Gasto::getImporte)
                 ));
 
-        // 3. Mapa de Colores
         Map<String, String> mapaColores = cuentaActual.getCategorias().stream()
                 .collect(Collectors.toMap(Categoria::getNombre, Categoria::getColorHex, (a, b) -> a));
 
-        // --- A. GRÁFICO CIRCULAR (PieChart) ---
         pieChart.getData().clear();
         porCategoria.forEach((catName, total) -> {
             PieChart.Data data = new PieChart.Data(catName, total);
@@ -177,7 +170,6 @@ public class VisualizacionController {
             data.getNode().setStyle("-fx-pie-color: " + color + ";");
         });
 
-        // --- B. GRÁFICO DE BARRAS (BarChart) ---
         barChart.getData().clear();
         
         XYChart.Series<String, Number> series = new XYChart.Series<>();
@@ -189,7 +181,6 @@ public class VisualizacionController {
 
         barChart.getData().add(series);
 
-        // Pintamos las barras manualmente
         for (XYChart.Data<String, Number> data : series.getData()) {
             javafx.scene.Node barra = data.getNode();
             if (barra != null) {
@@ -199,7 +190,6 @@ public class VisualizacionController {
             }
         }
 
-        // --- C. ARREGLAR LA LEYENDA DEL PIECHART ---
         Platform.runLater(() -> {
             Node legend = pieChart.lookup(".chart-legend");
             

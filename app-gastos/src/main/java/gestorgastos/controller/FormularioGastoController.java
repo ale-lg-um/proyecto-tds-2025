@@ -12,7 +12,6 @@ import java.time.LocalDate;
 
 public class FormularioGastoController {
 
-    // ... (Atributos FXML existentes: lblTitulo, txtConcepto, etc.) ...
     @FXML private Label lblTitulo;
     @FXML private TextField txtConcepto;
     @FXML private TextField txtImporte;
@@ -29,7 +28,6 @@ public class FormularioGastoController {
     private Cuenta cuentaAsociada;
     private boolean guardadoConfirmado = false;
 
-    // ... (Métodos initialize e initAttributes se mantienen igual) ...
     @FXML
     public void initialize() {
         dateFecha.setValue(LocalDate.now());
@@ -111,12 +109,10 @@ public class FormularioGastoController {
     
         gastoResultado.setHora(LocalTime.of(spinHora.getValue(), spinMinuto.getValue()));
 
-        // --- LÓGICA DE ALERTA ---
         ServicioAlertas servicioAlertas = new ServicioAlertas();
         Alerta alertaSaltada = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
         
         if (alertaSaltada != null) {
-            // Obtenemos dinámicamente el tipo (SEMANAL/MENSUAL) y el límite
             String tipo = alertaSaltada.getTipo(); 
             double limite = alertaSaltada.getLimite();
 
@@ -127,7 +123,6 @@ public class FormularioGastoController {
             alert.setContentText("Has superado el límite " + tipo + " de " + limite + "€ definido en tu alerta.\n\nSe ha generado una notificación aunque el gasto se guardará.");
             alert.showAndWait();
         }
-        // ------------------------
 
         this.guardadoConfirmado = true;
         cerrarVentana();
