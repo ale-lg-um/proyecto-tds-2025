@@ -11,7 +11,6 @@ public class ServicioAlertas {
     public Alerta comprobarAlertas(Cuenta cuenta, Gasto nuevoGasto) {
         if (cuenta.getAlertas() == null || cuenta.getAlertas().isEmpty()) return null;
 
-        // PASO 1: Alertas específicas de Categoría (Prioridad Alta)
         for (Alerta alerta : cuenta.getAlertas()) {
             if (alerta.getCategoria() != null && 
                 alerta.getCategoria().getNombre().equalsIgnoreCase(nuevoGasto.getCategoria().getNombre())) {
@@ -20,10 +19,7 @@ public class ServicioAlertas {
             }
         }
 
-        // PASO 2: Alertas Globales/Generales (Prioridad Baja)
-        // [IMPORTANTE] Asegúrate de que este bloque NO esté comentado
         for (Alerta alerta : cuenta.getAlertas()) {
-            // Si la categoría es null o se llama "General", aplica a todo
             if (alerta.getCategoria() == null || "General".equalsIgnoreCase(alerta.getCategoria().getNombre())) {
                 if (verificarLimite(alerta, cuenta, nuevoGasto)) return alerta;
             }

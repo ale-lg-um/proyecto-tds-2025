@@ -79,33 +79,45 @@ public abstract class Cuenta {
 	public List<Gasto> getGastos() {
 		return gastos;
 	}
-	
-	public void setGastos(List<Gasto> gastos) {
+
+	/*public void setGastos(List<Gasto> gastos) {
 		this.gastos = gastos;
-	}
+	}*/
 	
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
+	/*public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}*/
+	
+	public void agregarCategoria(Categoria categoria) {
+		this.categorias.add(categoria);
 	}
 
 	public java.util.List<Alerta> getAlertas() {
 		return alertas;
 	}
 
-	public void setAlertas(java.util.List<Alerta> alertas) {
+	/*public void setAlertas(java.util.List<Alerta> alertas) {
 		this.alertas = alertas;
+	}*/
+	
+	public void agregarAlerta(Alerta alerta) {
+		this.alertas.add(alerta);
 	}
 
 	public java.util.List<Notificacion> getNotificaciones() {
 		return notificaciones;
 	}
 
-	public void setNotificaciones(java.util.List<Notificacion> notificaciones) {
+	/*public void setNotificaciones(java.util.List<Notificacion> notificaciones) {
 		this.notificaciones = notificaciones;
+	}*/
+	
+	public void agregarNotificacion(Notificacion notificacion) {
+		this.notificaciones.add(notificacion);
 	}
 	
 	// Añadir notificaciones cuando salta una alerta
@@ -133,7 +145,6 @@ public abstract class Cuenta {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cuenta cuenta = (Cuenta) o;
-        // Dos cuentas son iguales si su ID es el mismo
         return id != null && id.equals(cuenta.id);
     }
 

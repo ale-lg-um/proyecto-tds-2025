@@ -53,12 +53,12 @@ public class Alerta {
 		this.categoria = categoria;
 	}
 	
-	public String comprobarAlertas(Alerta alerta) {
+	/*public String comprobarAlertas(Alerta alerta) {
 		if("SEMANAL".equals(alerta.getTipo())) {
 			return "SEMANAL";
 		}
 		return "MENSUAL";
-	}
+	}*/
 
 	@Override
 	public String toString(){

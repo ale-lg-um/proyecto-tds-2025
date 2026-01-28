@@ -2,6 +2,8 @@ package gestorgastos.controller;
 
 import gestorgastos.model.*;
 import gestorgastos.services.CuentaService;
+import gestorgastos.services.SesionService;
+import gestorgastos.dto.GastoTemporal;
 import gestorgastos.importacion.*; // Asumiendo que tu lógica de importación está aquí
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -40,7 +42,6 @@ public class DetalleCuentaController {
     @FXML private javafx.scene.layout.VBox panelSaldos;
     @FXML private ListView<String> listaSaldos;
 
-    // --- MODELO ---
     private Cuenta cuentaActual;
     private final CuentaService cuentaService = CuentaService.getInstancia();
 
@@ -53,6 +54,8 @@ public class DetalleCuentaController {
         btnEditarGasto.setOnAction(e -> abrirEditarGasto());
         btnBorrarGasto.setOnAction(e -> borrarGasto());
         btnImportar.setOnAction(e -> procesarImportacion());
+        
+        this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
     }
 
     public void setCuenta(Cuenta cuenta) {
@@ -66,8 +69,6 @@ public class DetalleCuentaController {
 
         actualizarVista();
     }
-
-    // --- GESTIÓN DE LA VISTA (Responsabilidad del Controlador) ---
     
     private void configurarTabla() {
         colFecha.setCellValueFactory(cell -> new SimpleObjectProperty<>(cell.getValue().getFecha()));
@@ -129,8 +130,6 @@ public class DetalleCuentaController {
         });
     }
 
-    // --- ACCIONES DE USUARIO (Lógica de Interfaz) ---
-
     private void abrirEditarGasto() {
         Gasto seleccionado = tablaGastos.getSelectionModel().getSelectedItem();
         if (seleccionado == null) {
@@ -186,34 +185,113 @@ public class DetalleCuentaController {
 
     @FXML 
     private void procesarImportacion() {
-        // ... (Tu código de importación original va aquí, usando GestorDialogos para los errores) ...
-        // Recuerda usar cuentaService.agregarGasto(destino, nuevo) dentro del bucle.
-    }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Importar Gastos");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("Archivos Soportados", "*.csv", "*.txt", "*.json", "*.xlsx", "*.xml")
+        );
 
-    // --- NAVEGACIÓN (Delegada al Gestor) ---
+        File fichero = fileChooser.showOpenDialog(lblTituloCuenta.getScene().getWindow());
+        if (fichero == null) return;
+
+        Importador importador = FactoriaImportacion.getImportador(fichero.getAbsolutePath());
+        if (importador == null) {
+            GestorDialogos.mostrarError("Error", "Formato no soportado.");
+            return;
+        }
+
+        try {
+            List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
+            
+            List<Cuenta> cuentasUsuario = cuentaService.getCuentasUsuarioActual();
+
+            int insertados = 0;
+            int descartados = 0;
+            int alertasGeneradas = 0;
+
+            for (GastoTemporal t : temporales) {
+                Optional<Cuenta> cMatch = cuentasUsuario.stream()
+                        .filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta))
+                        .findFirst();
+
+                if (cMatch.isEmpty()) {
+                    System.out.println("Descartado: No existe la cuenta: " + t.nombreCuenta);
+                    descartados++;
+                    continue;
+                }
+
+                Cuenta destino = cMatch.get();
+
+                boolean valido = true;
+                if (destino instanceof CuentaCompartida) {
+                    List<String> miembros = ((CuentaCompartida) destino).getMiembros();
+                    if (!t.pagador.equalsIgnoreCase("Yo") && 
+                        miembros.stream().noneMatch(m -> m.equalsIgnoreCase(t.pagador))) {
+                        valido = false;
+                        System.out.println("Descartado: El usuario " + t.pagador + " no pertenece a la cuenta.");
+                    }
+                }
+
+                if (valido) {
+                    Categoria catReal = destino.getCategorias().stream()
+                            .filter(c -> c.getNombre().equalsIgnoreCase(t.categoria))
+                            .findFirst()
+                            .orElse(destino.getCategorias().get(0));
+
+                    Gasto nuevo = new Gasto(t.concepto, t.importe, t.fecha, catReal, t.pagador);
+                    if(t.hora != null) nuevo.setHora(t.hora);
+
+                    Alerta alertaSaltada = cuentaService.agregarGasto(destino, nuevo); 
+                    
+                    if (alertaSaltada != null) {
+                        alertasGeneradas++;
+                    }
+                    insertados++;
+                } else {
+                    descartados++;
+                }
+            }
+
+            actualizarVista();
+            
+            GestorDialogos.mostrarAlerta("Importación Finalizada\nInsertados: " + insertados + 
+                                         "\n(Alertas nuevas: " + alertasGeneradas + ")" +
+                                         "\nDescartados: " + descartados);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            GestorDialogos.mostrarError("Error Importación", "Fallo al leer el archivo: " + e.getMessage());
+        }
+    }
 
     @FXML private void volverInicio() {
         GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "PrincipalView.fxml", "Mis Cuentas", null);
     }
 
     @FXML private void irACategorias() {
-        GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "GestionCategoriasView.fxml", "Categorías", 
-            (GestionCategoriasController c) -> c.setCuenta(cuentaActual));
+        //GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "GestionCategoriasView.fxml", "Categorías", 
+            //(GestionCategoriasController c) -> c.setCuenta(cuentaActual));
+    	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+    	GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "GestionCategoriasView.fxml", "Categorías", null);
     }
 
     @FXML private void irAVisualizacion() {
-        GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "VisualizacionView.fxml", "Gráficos", 
-            (VisualizacionController c) -> c.setCuenta(cuentaActual));
+        //GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "VisualizacionView.fxml", "Gráficos", 
+            //(VisualizacionController c) -> c.setCuenta(cuentaActual));
+    	
+    	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+    	GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "VisualizacionView.fxml", "Categorías", null);
     }
 
     @FXML private void irAAlertas() {
         // Alertas se abre "encima" sin cerrar la actual, podemos usar abrirModal o navegar normal
         // Si quieres que sea una ventana nueva:
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
+        	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
             javafx.scene.Parent root = loader.load();
             AlertaController controller = loader.getController();
-            controller.setCuenta(cuentaActual);
+            //controller.setCuenta(cuentaActual);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
@@ -222,11 +300,12 @@ public class DetalleCuentaController {
 
     @FXML private void irACMD() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
+        	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
             javafx.scene.Parent root = loader.load();
             TerminalController controller = loader.getController();
-            controller.setCuenta(cuentaActual);
-            controller.setOnUpdate(this::actualizarVista); // Callback limpio
+            //controller.setCuenta(cuentaActual);
+            controller.setOnUpdate(this::actualizarVista);
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();

@@ -2,6 +2,7 @@ package gestorgastos.controller;
 
 import gestorgastos.model.*;
 import gestorgastos.services.CuentaService;
+import gestorgastos.services.SesionService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -27,16 +28,17 @@ public class AlertaController {
     // Formateador para que las fechas se vean bonitas (ej: 06/01/2026)
     private final DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    public void setCuenta(Cuenta cuenta){
+    /*public void setCuenta(Cuenta cuenta){
         this.cuentaActual = cuenta;
         if(cuenta.getAlertas() == null) cuenta.setAlertas(new ArrayList<>());
         if(cuenta.getNotificaciones() == null) cuenta.setNotificaciones(new ArrayList<>());
         cargarDatos();
-    }
+    }*/
 
     @FXML
     public void initialize() {
-        comboTipo.setItems(FXCollections.observableArrayList("SEMANAL","MENSUAL"));
+        this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
+    	comboTipo.setItems(FXCollections.observableArrayList("SEMANAL","MENSUAL"));
         comboTipo.getSelectionModel().selectFirst();
 
         // Personalizamos cómo se ve cada celda de la lista de alertas
@@ -78,6 +80,8 @@ public class AlertaController {
                 };
             }
         });
+        
+        cargarDatos();
     }
     
     @FXML
@@ -99,7 +103,7 @@ public class AlertaController {
     		double limite = Double.parseDouble(txtLimite.getText().replace(",", "."));
     		Categoria categoria = comboCategoria.getValue();
     		Alerta alerta = new Alerta(tipoAlerta, limite, categoria);
-    		cuentaActual.getAlertas().add(alerta);
+    		cuentaActual.agregarAlerta(alerta);
     		cuentaService.agregarCuenta(cuentaActual);
     		this.cargarDatos();
     		this.txtLimite.clear();

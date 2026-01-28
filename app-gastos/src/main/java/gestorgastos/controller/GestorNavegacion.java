@@ -11,13 +11,11 @@ import java.util.function.Consumer;
 
 public class GestorNavegacion {
 
-    // Método genérico para cambiar de pantalla pasando datos (Cuenta)
     public static <T> void navegar(Stage stageActual, String fxml, String titulo, Consumer<T> inicializador) {
         try {
             FXMLLoader loader = new FXMLLoader(GestorNavegacion.class.getResource("/gestorgastos/app_gastos/" + fxml));
             Parent root = loader.load();
 
-            // Configurar el controlador destino si hace falta
             if (inicializador != null) {
                 T controller = loader.getController();
                 inicializador.accept(controller);
@@ -26,7 +24,6 @@ public class GestorNavegacion {
             Stage stage = new Stage();
             stage.setTitle(titulo);
             
-            // Caso especial para visualización (tamaño grande)
             if (fxml.contains("Visualizacion")) {
                 stage.setScene(new Scene(root, 1100, 750));
                 stage.centerOnScreen();
@@ -36,7 +33,6 @@ public class GestorNavegacion {
             
             stage.show();
 
-            // Cerrar ventana anterior
             if (stageActual != null) stageActual.close();
 
         } catch (IOException e) {
@@ -45,7 +41,6 @@ public class GestorNavegacion {
         }
     }
 
-    // Método para abrir modales (ventanas que bloquean, como Crear Gasto)
     public static <T> T abrirModal(String fxml, String titulo, Consumer<T> inicializador) {
         try {
             FXMLLoader loader = new FXMLLoader(GestorNavegacion.class.getResource("/gestorgastos/app_gastos/" + fxml));

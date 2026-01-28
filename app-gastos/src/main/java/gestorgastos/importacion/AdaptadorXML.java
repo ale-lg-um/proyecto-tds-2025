@@ -17,7 +17,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import gestorgastos.model.GastoTemporal;
+import gestorgastos.dto.GastoTemporal;
 
 public class AdaptadorXML extends Importador{
 private final List<DateTimeFormatter> formatters = Arrays.asList(
