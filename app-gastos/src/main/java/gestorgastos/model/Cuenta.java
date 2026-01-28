@@ -79,7 +79,7 @@ public abstract class Cuenta {
 	public List<Gasto> getGastos() {
 		return gastos;
 	}
-
+	
 	public void setGastos(List<Gasto> gastos) {
 		this.gastos = gastos;
 	}
