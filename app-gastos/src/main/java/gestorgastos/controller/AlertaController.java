@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter; // IMPORTANTE
 import java.time.temporal.TemporalAdjusters; // IMPORTANTE
 import java.time.DayOfWeek; // IMPORTANTE
 
-import java.util.ArrayList;
+
 
 public class AlertaController {
     @FXML private ComboBox<String> comboTipo;

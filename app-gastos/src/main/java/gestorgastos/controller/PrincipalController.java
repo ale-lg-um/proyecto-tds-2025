@@ -22,7 +22,7 @@ public class PrincipalController {
 
     // Coinciden con tu último PrincipalView.fxml
     @FXML private Label saludoLabel;
-    @FXML private ListView<Cuenta> listaCuentas; // OJO: En tu FXML se llama "listaCuentas"
+    @FXML private ListView<Cuenta> listaCuentas; 
     @FXML private Button btnCrearCuenta;
     @FXML private Button btnEntrarCuenta;
 
@@ -44,11 +44,7 @@ public class PrincipalController {
     }
 
     private void cargarCuentas() {
-        /*Usuario usuario = sesionService.getUsuarioActivo();
-        if (usuario != null) {
-            List<Cuenta> cuentas = cuentaService.getCuentasUsuarioActual();
-            listaCuentas.getItems().setAll(cuentas);
-        }*/
+        
     	
     	List<Cuenta> cuentas = cuentaService.getCuentasUsuarioActual();
         listaCuentas.getItems().setAll(cuentas);

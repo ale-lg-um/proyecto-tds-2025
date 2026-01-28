@@ -12,7 +12,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class GestionCategoriasController {
 

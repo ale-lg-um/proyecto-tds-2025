@@ -16,8 +16,8 @@ import java.util.List;
 
 public class AdaptadorExcel extends Importador {
 
-    // 1. LISTA DE FORMATOS (Faltaba esto en tu código)
-    // Es vital para que 'parsearFechaRobusta' funcione.
+   
+    // Vital para que 'parsearFechaRobusta' funcione.
     private final List<DateTimeFormatter> formatters = Arrays.asList( // Diversos formatos de fechas aceptados en Excel
         DateTimeFormatter.ofPattern("M/d/yyyy H:mm"),     
         DateTimeFormatter.ofPattern("M/d/yyyy HH:mm"),   
@@ -84,15 +84,14 @@ public class AdaptadorExcel extends Importador {
                     }
 
                     // Creación del gasto
-                    // El gasto se crea como una variable temporal que se añade a una lista. Los gastos de la lista se añadirán o no a las cuentas en función de si existe la cuenta, el pagador, etc., pero esto se hace en otro método
-                    GastoTemporal temp = new GastoTemporal(
+                   GastoTemporal temp = new GastoTemporal(
                             cuenta, concepto, importe, categoria, pagador,
                             fechaHora.toLocalDate(), fechaHora.toLocalTime()
                     );
                     lista.add(temp);
 
                 } catch (Exception e) {
-                    // Imprimimos el error pero seguimos con la siguiente fila
+                    // Imprimimos el error 
                     System.err.println("⚠️ Error leyendo fila Excel " + (row.getRowNum() + 1) + ": " + e.getMessage());
                 }
             }

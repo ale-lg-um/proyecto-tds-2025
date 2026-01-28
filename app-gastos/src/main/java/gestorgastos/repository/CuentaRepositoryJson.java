@@ -59,11 +59,7 @@ public class CuentaRepositoryJson implements CuentaRepository {
         System.out.println("Total cuentas antes: " + cuentas.size());
         System.out.println("Intentando guardar ID: " + cuenta.getId());
 
-        // Eliminamos la versión vieja de forma segura
-        /*boolean borrado = cuentas.removeIf(c -> {
-            if (c.getId() == null) return false; // Protección anti-null
-            return c.getId().equals(cuenta.getId());
-        });*/
+        
         // Corrección octavo PR
         //cuentas.removeIf(c -> c.getId().equals(cuenta.getId())); // Si la cuenta es nula, se lanzará una excepción, no se tiene que ocultar esa excepción.
         
@@ -91,12 +87,7 @@ public class CuentaRepositoryJson implements CuentaRepository {
 
     @Override
     public void saveAll(List<Cuenta> cuentasNuevas) {
-        /*try {
-            mapper.writeValue(new File(RUTA_ARCHIVO), cuentas);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-    	//List<Cuenta> todas = findAll();
+        
     	for(Cuenta cuenta : cuentasNuevas) {
     		this.cuentas.removeIf(c -> c.getId().equals(cuenta.getId()));
     		this.cuentas.add(cuenta);

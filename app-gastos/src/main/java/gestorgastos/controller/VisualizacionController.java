@@ -9,7 +9,7 @@ import gestorgastos.model.Categoria;
 import gestorgastos.model.Cuenta;
 import gestorgastos.model.Gasto;
 import gestorgastos.services.SesionService;
-import javafx.collections.FXCollections;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,15 +20,14 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.application.Platform; 
 import javafx.scene.Node; 
-import javafx.scene.Parent;
+
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
+
 import java.time.Month;
-import java.time.format.TextStyle;
+
 import java.util.List;
-import java.util.Locale;
+
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -142,10 +141,6 @@ public class VisualizacionController {
         aplicarFiltros(); // Refrescar para mostrar todo
     }
 
- // Asegúrate de tener este import arriba:
-    // import javafx.application.Platform; 
-    // import javafx.scene.Node; 
-    // import javafx.scene.Parent;
 
     private void actualizarGraficos(List<Gasto> gastos) {
     	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();

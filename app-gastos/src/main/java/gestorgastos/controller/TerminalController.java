@@ -28,7 +28,7 @@ public class TerminalController {
 
     // MÁQUINA DE ESTADOS
     // 0=Cmd, 1=Concepto, 2=Importe, 3=Fecha, 4=Categoría, 5=Pagador
-    //private int pasoActual = 0;
+
     
     // Corrección sexto PR
     private EstadoTerminal pasoActual = EstadoTerminal.CMD;
@@ -86,11 +86,7 @@ public class TerminalController {
         txtInput.clear();
         txtOutput.appendText(texto + "\n");
 
-        /*if (pasoActual == 0) {
-            ejecutarComandoPrincipal(texto.toLowerCase());
-        } else {
-            procesarPasoRegistro(texto);
-        }*/
+       
         
         // Corrección sexto PR
         try {

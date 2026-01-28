@@ -34,7 +34,7 @@ public class CuentaCompartida extends Cuenta {
     }
     
     public Map<String, Double> calcularSaldos() {
-        // Total de astos en la cuenta
+        // Total de gastos en la cuenta
         double totalGastado = gastos.stream()
                                     .mapToDouble(Gasto::getImporte)
                                     .sum();

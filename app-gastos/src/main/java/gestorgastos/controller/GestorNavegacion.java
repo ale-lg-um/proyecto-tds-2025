@@ -1,6 +1,6 @@
 package gestorgastos.controller;
 
-import gestorgastos.model.Cuenta;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

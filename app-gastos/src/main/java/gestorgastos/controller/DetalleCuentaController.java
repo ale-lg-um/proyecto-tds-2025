@@ -25,7 +25,7 @@ import java.util.Optional;
 
 public class DetalleCuentaController {
 
-    // --- VISTA (@FXML) ---
+
     @FXML private Label lblTituloCuenta;
     @FXML private TableView<Gasto> tablaGastos;
     @FXML private TableColumn<Gasto, LocalDate> colFecha;
@@ -166,7 +166,7 @@ public class DetalleCuentaController {
             Gasto gastoResultante = controller.getGastoResultado();
             
             if (gastoEdicion == null) {
-                // NUEVO: Delegamos al servicio (Crea gasto, revisa alertas, notifica y guarda)
+                
                 Alerta alerta = cuentaService.agregarGasto(cuentaActual, gastoResultante);
                 /*if(alerta != null) {
                     GestorDialogos.mostrarAlerta("⚠️ Límite " + alerta.getTipo() + " superado. Notificación guardada.");
@@ -285,7 +285,7 @@ public class DetalleCuentaController {
 
     @FXML private void irAAlertas() {
         // Alertas se abre "encima" sin cerrar la actual, podemos usar abrirModal o navegar normal
-        // Si quieres que sea una ventana nueva:
+        
         try {
         	gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
