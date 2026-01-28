@@ -24,81 +24,169 @@
   "miembros" : [ "Mario", "Jaime" ],
   "tipo" : "COMPARTIDA"
 }, {
-  "id" : "16eca2c0-49b5-4eb8-9c67-6f5f9424ae84",
-  "nombre" : "Especial",
+  "id" : "db4a43ed-bd1d-400f-95a1-c47fce77565e",
+  "nombre" : "normal2",
   "gastos" : [ {
-    "id" : "c0027ba5-2d66-47f0-b4c6-1073f30e6459",
-    "concepto" : "Comida_Navidad",
-    "importe" : 430.0,
-    "fecha" : [ 2025, 12, 24 ],
-    "hora" : "15:07",
+    "id" : "0ee343bc-db28-481a-90be-978f151a8bb1",
+    "concepto" : "31",
+    "importe" : 31.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:19",
+    "categoria" : {
+      "nombre" : "cat1",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "23d8101c-4ed5-4a57-a22c-10f094471bbe",
+    "concepto" : "21",
+    "importe" : 21.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:20",
+    "categoria" : {
+      "nombre" : "cat2",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "3905bd77-988e-44c3-8716-78e69076f6af",
+    "concepto" : "41",
+    "importe" : 41.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:21",
+    "categoria" : {
+      "nombre" : "c3",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "66337b10-5ade-47ee-843c-aca7c113d7c0",
+    "concepto" : "412",
+    "importe" : 41.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:21",
+    "categoria" : {
+      "nombre" : "c3",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "0310b8e6-2d76-4954-b30c-9f43f749c110",
+    "concepto" : "101",
+    "importe" : 101.0,
+    "fecha" : [ 2026, 1, 25 ],
+    "hora" : "20:40",
     "categoria" : {
       "nombre" : "General",
       "descripcion" : "Gastos varios",
       "colorHex" : "#D3D3D3"
     },
-    "pagador" : "Mario"
+    "pagador" : "Yo"
   }, {
-    "id" : "ad9e282f-bc94-439a-bfb5-c14ec0825dde",
-    "concepto" : "Viaje",
-    "importe" : 1000.0,
-    "fecha" : [ 2025, 8, 14 ],
-    "hora" : "15:08",
+    "id" : "2a2dd14c-0209-4091-b5f3-cc5796820c38",
+    "concepto" : "20",
+    "importe" : 20.0,
+    "fecha" : [ 2026, 1, 27 ],
+    "hora" : "20:19",
     "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#FFFF00"
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
     },
-    "pagador" : "Alejandro"
+    "pagador" : "Yo"
   }, {
-    "id" : "bb9a28c1-7983-4b49-b8eb-52366d5a8f45",
-    "concepto" : "Compra",
-    "importe" : 100.0,
-    "fecha" : [ 2026, 1, 7 ],
-    "hora" : "15:09",
+    "id" : "46440894-0681-429a-88a5-699189bf1dd4",
+    "concepto" : "treintaeuros",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 1, 27 ],
+    "hora" : "20:33",
     "categoria" : {
-      "nombre" : "GastoSemanal",
-      "descripcion" : "",
-      "colorHex" : "#800000"
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
     },
-    "pagador" : "Jesus"
+    "pagador" : "Yo"
   }, {
-    "id" : "7bc5a69d-77b6-46c7-b326-b0cbe8172aee",
-    "concepto" : "Pan",
-    "importe" : 4.0,
-    "fecha" : [ 2026, 1, 7 ],
-    "hora" : "15:10",
+    "id" : "508e896c-1b97-4eaf-b697-8b6275ea199d",
+    "concepto" : "treintayuneruos",
+    "importe" : 31.0,
+    "fecha" : [ 2026, 1, 27 ],
+    "hora" : "20:33",
     "categoria" : {
-      "nombre" : "GastoSemanal",
-      "descripcion" : "",
-      "colorHex" : "#800000"
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
     },
-    "pagador" : "Jaime"
-  }, {
-    "id" : "3c30be52-3569-48ff-a81c-b2744a1ac2f6",
-    "concepto" : "Cena_Navidad",
-    "importe" : 400.0,
-    "fecha" : [ 2025, 12, 25 ],
-    "hora" : "21:11",
-    "categoria" : {
-      "nombre" : "Navidad",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    },
-    "pagador" : "Jaime"
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
-    "limite" : 200.0,
+    "limite" : 30.0,
     "categoria" : {
-      "nombre" : "GastoSemanal",
+      "nombre" : "cat1",
       "descripcion" : "",
-      "colorHex" : "#800000"
+      "colorHex" : "#FFFFFF"
     }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 20.0,
+    "categoria" : {
+      "nombre" : "cat2",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 40.0,
+    "categoria" : {
+      "nombre" : "c3",
+      "descripcion" : "",
+      "colorHex" : "#FFFFFF"
+    }
+  }, {
+    "tipo" : "SEMANAL",
+    "limite" : 20.0,
+    "categoria" : null
   } ],
   "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 200.0€ definido en tu alerta.",
-    "fecha" : "2026-01-07 15:11:05",
+    "mensaje" : "Has superado el límite de 30.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:19:58",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:20:16",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:21:27",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:26:37",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:40:04",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
+    "fecha" : "2026-01-25 20:40:31",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
+    "fecha" : "2026-01-27 20:19:48",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
+    "fecha" : "2026-01-27 20:33:30",
+    "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
+    "fecha" : "2026-01-27 20:33:58",
     "leida" : false
   } ],
   "categorias" : [ {
@@ -106,26 +194,19 @@
     "descripcion" : "Gastos varios",
     "colorHex" : "#D3D3D3"
   }, {
-    "nombre" : "Verano",
+    "nombre" : "cat1",
     "descripcion" : "",
-    "colorHex" : "#FFFF00"
+    "colorHex" : "#FFFFFF"
   }, {
-    "nombre" : "GastoSemanal",
+    "nombre" : "cat2",
     "descripcion" : "",
-    "colorHex" : "#800000"
+    "colorHex" : "#FFFFFF"
   }, {
-    "nombre" : "Navidad",
+    "nombre" : "c3",
     "descripcion" : "",
-    "colorHex" : "#00FF00"
+    "colorHex" : "#FFFFFF"
   } ],
-  "miembros" : [ "Alejandro", "Jesus", "Jaime", "Mario" ],
-  "porcentajes" : {
-    "Alejandro" : 33.0,
-    "Jesus" : 1.0,
-    "Jaime" : 33.0,
-    "Mario" : 33.0
-  },
-  "tipo" : "ESPECIAL"
+  "tipo" : "PERSONAL"
 }, {
   "id" : "455a5bfa-edb0-4efe-ba80-cb02736cbf83",
   "nombre" : "Normal",
@@ -429,6 +510,18 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "3f5c0984-5cf3-4b38-91c3-a486afbd3a88",
+    "concepto" : "Tablet mercadillo",
+    "importe" : 50.0,
+    "fecha" : [ 2026, 1, 28 ],
+    "hora" : "16:22",
+    "categoria" : {
+      "nombre" : "Curso-Escolar",
+      "descripcion" : "",
+      "colorHex" : "#FFAB00"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
@@ -475,6 +568,10 @@
     "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
     "fecha" : "2026-01-25 19:57:20",
     "leida" : false
+  }, {
+    "mensaje" : "Has superado el límite de 15.0€ establecido en la alerta",
+    "fecha" : "2026-01-28 16:22:37",
+    "leida" : false
   } ],
   "categorias" : [ {
     "nombre" : "General",
@@ -491,169 +588,93 @@
   } ],
   "tipo" : "PERSONAL"
 }, {
-  "id" : "db4a43ed-bd1d-400f-95a1-c47fce77565e",
-  "nombre" : "normal2",
+  "id" : "16eca2c0-49b5-4eb8-9c67-6f5f9424ae84",
+  "nombre" : "Especial",
   "gastos" : [ {
-    "id" : "0ee343bc-db28-481a-90be-978f151a8bb1",
-    "concepto" : "31",
-    "importe" : 31.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:19",
-    "categoria" : {
-      "nombre" : "cat1",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "23d8101c-4ed5-4a57-a22c-10f094471bbe",
-    "concepto" : "21",
-    "importe" : 21.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:20",
-    "categoria" : {
-      "nombre" : "cat2",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "3905bd77-988e-44c3-8716-78e69076f6af",
-    "concepto" : "41",
-    "importe" : 41.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:21",
-    "categoria" : {
-      "nombre" : "c3",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "66337b10-5ade-47ee-843c-aca7c113d7c0",
-    "concepto" : "412",
-    "importe" : 41.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:21",
-    "categoria" : {
-      "nombre" : "c3",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "0310b8e6-2d76-4954-b30c-9f43f749c110",
-    "concepto" : "101",
-    "importe" : 101.0,
-    "fecha" : [ 2026, 1, 25 ],
-    "hora" : "20:40",
+    "id" : "c0027ba5-2d66-47f0-b4c6-1073f30e6459",
+    "concepto" : "Comida_Navidad",
+    "importe" : 430.0,
+    "fecha" : [ 2025, 12, 24 ],
+    "hora" : "15:07",
     "categoria" : {
       "nombre" : "General",
       "descripcion" : "Gastos varios",
       "colorHex" : "#D3D3D3"
     },
-    "pagador" : "Yo"
+    "pagador" : "Mario"
   }, {
-    "id" : "2a2dd14c-0209-4091-b5f3-cc5796820c38",
-    "concepto" : "20",
-    "importe" : 20.0,
-    "fecha" : [ 2026, 1, 27 ],
-    "hora" : "20:19",
+    "id" : "ad9e282f-bc94-439a-bfb5-c14ec0825dde",
+    "concepto" : "Viaje",
+    "importe" : 1000.0,
+    "fecha" : [ 2025, 8, 14 ],
+    "hora" : "15:08",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#FFFF00"
+    },
+    "pagador" : "Alejandro"
+  }, {
+    "id" : "bb9a28c1-7983-4b49-b8eb-52366d5a8f45",
+    "concepto" : "Compra",
+    "importe" : 100.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:09",
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    },
+    "pagador" : "Jesus"
+  }, {
+    "id" : "7bc5a69d-77b6-46c7-b326-b0cbe8172aee",
+    "concepto" : "Pan",
+    "importe" : 4.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:10",
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    },
+    "pagador" : "Jaime"
+  }, {
+    "id" : "3c30be52-3569-48ff-a81c-b2744a1ac2f6",
+    "concepto" : "Cena_Navidad",
+    "importe" : 400.0,
+    "fecha" : [ 2025, 12, 25 ],
+    "hora" : "21:11",
+    "categoria" : {
+      "nombre" : "Navidad",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "Jaime"
+  }, {
+    "id" : "2d4fd780-2f21-41b2-83ff-68068b6afc69",
+    "concepto" : "Cinta de correr",
+    "importe" : 300.0,
+    "fecha" : [ 2026, 1, 28 ],
+    "hora" : "16:22",
     "categoria" : {
       "nombre" : "General",
       "descripcion" : "Gastos varios",
       "colorHex" : "#D3D3D3"
     },
-    "pagador" : "Yo"
-  }, {
-    "id" : "46440894-0681-429a-88a5-699189bf1dd4",
-    "concepto" : "treintaeuros",
-    "importe" : 30.0,
-    "fecha" : [ 2026, 1, 27 ],
-    "hora" : "20:33",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "508e896c-1b97-4eaf-b697-8b6275ea199d",
-    "concepto" : "treintayuneruos",
-    "importe" : 31.0,
-    "fecha" : [ 2026, 1, 27 ],
-    "hora" : "20:33",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
+    "pagador" : "Jaime"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
-    "limite" : 30.0,
+    "limite" : 200.0,
     "categoria" : {
-      "nombre" : "cat1",
+      "nombre" : "GastoSemanal",
       "descripcion" : "",
-      "colorHex" : "#FFFFFF"
+      "colorHex" : "#800000"
     }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 20.0,
-    "categoria" : {
-      "nombre" : "cat2",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 40.0,
-    "categoria" : {
-      "nombre" : "c3",
-      "descripcion" : "",
-      "colorHex" : "#FFFFFF"
-    }
-  }, {
-    "tipo" : "SEMANAL",
-    "limite" : 20.0,
-    "categoria" : null
   } ],
   "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 30.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:19:58",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:20:16",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:21:27",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 40.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:26:37",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:40:04",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
-    "fecha" : "2026-01-25 20:40:31",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
-    "fecha" : "2026-01-27 20:19:48",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 100.0€ establecido en la alerta",
-    "fecha" : "2026-01-27 20:33:30",
-    "leida" : false
-  }, {
-    "mensaje" : "Has superado el límite de 20.0€ establecido en la alerta",
-    "fecha" : "2026-01-27 20:33:58",
+    "mensaje" : "Has superado el límite de 200.0€ definido en tu alerta.",
+    "fecha" : "2026-01-07 15:11:05",
     "leida" : false
   } ],
   "categorias" : [ {
@@ -661,17 +682,24 @@
     "descripcion" : "Gastos varios",
     "colorHex" : "#D3D3D3"
   }, {
-    "nombre" : "cat1",
+    "nombre" : "Verano",
     "descripcion" : "",
-    "colorHex" : "#FFFFFF"
+    "colorHex" : "#FFFF00"
   }, {
-    "nombre" : "cat2",
+    "nombre" : "GastoSemanal",
     "descripcion" : "",
-    "colorHex" : "#FFFFFF"
+    "colorHex" : "#800000"
   }, {
-    "nombre" : "c3",
+    "nombre" : "Navidad",
     "descripcion" : "",
-    "colorHex" : "#FFFFFF"
+    "colorHex" : "#00FF00"
   } ],
-  "tipo" : "PERSONAL"
+  "miembros" : [ "Alejandro", "Jesus", "Jaime", "Mario" ],
+  "porcentajes" : {
+    "Alejandro" : 33.0,
+    "Jesus" : 1.0,
+    "Jaime" : 33.0,
+    "Mario" : 33.0
+  },
+  "tipo" : "ESPECIAL"
 } ]
