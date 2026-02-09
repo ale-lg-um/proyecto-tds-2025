@@ -18,7 +18,6 @@
     <fullyQualifiedTypeName name="gestorgastos.strategies.InterfaceAlerta"/>
     <fullyQualifiedTypeName name="gestorgastos.model.CuentaCompartida"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
     <fullyQualifiedTypeName name="javafx.stage.FileChooser.ExtensionFilter"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.JsonNode"/>
@@ -27,4 +26,5 @@
     <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="gestorgastos.strategies.FactoriaAlertas"/>
     <fullyQualifiedTypeName name="gestorgastos.controller.EstadoTerminal"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
 </qualifiedTypeNameHistroy>
