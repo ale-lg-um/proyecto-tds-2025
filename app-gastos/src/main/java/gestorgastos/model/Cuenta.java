@@ -29,20 +29,13 @@ public abstract class Cuenta {
 
 	public Cuenta() {
 		this.id = UUID.randomUUID().toString();
-		//this.gastos = new ArrayList<>();
-		//this.categorias = new ArrayList<>();
 		// Inicializamos siempre con General para evitar errores
 		this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
 	}
 
 	public Cuenta(String nombre) {
-		//this.id = UUID.randomUUID().toString();
 		this();
 		this.nombre = nombre;
-		//this.gastos = new ArrayList<>();
-		//this.categorias = new ArrayList<>();
-		// Categoría por defecto al crear cuenta nueva
-		//this.categorias.add(new Categoria("General", "Gastos varios", "#D3D3D3"));
 	}
 
 	// Obtener y establecer tipo de la cuenta
@@ -79,18 +72,10 @@ public abstract class Cuenta {
 	public List<Gasto> getGastos() {
 		return gastos;
 	}
-
-	/*public void setGastos(List<Gasto> gastos) {
-		this.gastos = gastos;
-	}*/
 	
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
-
-	/*public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
-	}*/
 	
 	public void agregarCategoria(Categoria categoria) {
 		this.categorias.add(categoria);
@@ -99,10 +84,6 @@ public abstract class Cuenta {
 	public java.util.List<Alerta> getAlertas() {
 		return alertas;
 	}
-
-	/*public void setAlertas(java.util.List<Alerta> alertas) {
-		this.alertas = alertas;
-	}*/
 	
 	public void agregarAlerta(Alerta alerta) {
 		this.alertas.add(alerta);
@@ -111,10 +92,6 @@ public abstract class Cuenta {
 	public java.util.List<Notificacion> getNotificaciones() {
 		return notificaciones;
 	}
-
-	/*public void setNotificaciones(java.util.List<Notificacion> notificaciones) {
-		this.notificaciones = notificaciones;
-	}*/
 	
 	public void agregarNotificacion(Notificacion notificacion) {
 		this.notificaciones.add(notificacion);
@@ -152,4 +129,9 @@ public abstract class Cuenta {
     public int hashCode() {
         return getClass().hashCode();
     }
+    
+	public static boolean noHayAlertas(Cuenta cuenta){
+		if (cuenta ==null || cuenta.getAlertas() == null || cuenta.getAlertas().isEmpty()) return true;
+		return false;
+	}
 }

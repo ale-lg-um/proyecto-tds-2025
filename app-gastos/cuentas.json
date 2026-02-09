@@ -702,4 +702,66 @@
     "Mario" : 33.0
   },
   "tipo" : "ESPECIAL"
+}, {
+  "id" : "6069abae-e151-486c-ba45-12acb43287dd",
+  "nombre" : "normal3",
+  "gastos" : [ {
+    "id" : "df6d781f-8e23-4a76-90df-dd4e5b454e0e",
+    "concepto" : "desayuno",
+    "importe" : 60.0,
+    "fecha" : [ 2026, 2, 9 ],
+    "hora" : "19:01",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "2eaf977a-ecf4-48b0-9a8c-4dc7fc04f88c",
+    "concepto" : "comida",
+    "importe" : 60.0,
+    "fecha" : [ 2026, 2, 9 ],
+    "hora" : "19:28",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 50.0,
+    "categoria" : null
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 50.0€ establecido en la alerta",
+    "fecha" : "2026-02-09 19:28:56",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "tipo" : "PERSONAL"
+}, {
+  "id" : "fe7094e0-ac76-408d-8b64-021ff4650727",
+  "nombre" : "especial2",
+  "gastos" : [ ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "miembros" : [ "mario", "jaime", "alejandro" ],
+  "porcentajes" : {
+    "mario" : 33.0,
+    "jaime" : 33.0,
+    "alejandro" : 34.0
+  },
+  "tipo" : "ESPECIAL"
 } ]

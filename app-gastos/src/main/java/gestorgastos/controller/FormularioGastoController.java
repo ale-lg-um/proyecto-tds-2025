@@ -109,7 +109,7 @@ public class FormularioGastoController {
     
         gastoResultado.setHora(LocalTime.of(spinHora.getValue(), spinMinuto.getValue()));
 
-        ServicioAlertas servicioAlertas = new ServicioAlertas();
+        ServicioAlertas servicioAlertas = ServicioAlertas.getInstancia();
         Alerta alertaSaltada = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
         
         if (alertaSaltada != null) {
