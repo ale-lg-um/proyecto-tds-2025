@@ -24,9 +24,6 @@ public class CuentaService {
 	//////////////////////////////////////////////////// SERVICIOS PANTALLA CREAR
 	//////////////////////////////////////////////////// CUENTA
 	//////////////////////////////////////////////////// /////////////////////////////////
-	/*
-	 * El controlador solo pasa info y el servicio fabrica la cuenta.
-	 */
 	public void procesarNuevaCuenta(String nombre, String tipo, List<String> miembros, Map<String, Double> porcentajes)
 			throws Exception {
 
