@@ -90,7 +90,6 @@ public class DetalleCuentaController {
 		colPagador.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getPagador()));
 		colCategoria.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getCategoria().getNombre()));
 
-		// Decoración de celdas (Círculos de color)
 		colCategoria.setCellFactory(column -> new TableCell<Gasto, String>() {
 			@Override
 			protected void updateItem(String item, boolean empty) {
@@ -117,11 +116,9 @@ public class DetalleCuentaController {
 	}
 
 	private void actualizarVista() {
-		// Refrescar Tabla
 		tablaGastos.setItems(FXCollections.observableArrayList(cuentaActual.getGastos()));
 		tablaGastos.refresh();
-
-		// Refrescar Saldos (si aplica)
+		
 		if (cuentaActual instanceof CuentaCompartida) {
 			panelSaldos.setVisible(true);
 			calcularYMostrarSaldos((CuentaCompartida) cuentaActual);
@@ -135,7 +132,6 @@ public class DetalleCuentaController {
 		Map<String, Double> saldos = CuentaService.calcularSaldos(cuentaComp);
 		saldos.forEach(
 				(persona, cantidad) -> listaSaldos.getItems().add(String.format("%s: %.2f €", persona, cantidad)));
-		// Estilo rojo/verde
 		listaSaldos.setCellFactory(lv -> new ListCell<>() {
 			@Override
 			protected void updateItem(String item, boolean empty) {
@@ -169,20 +165,17 @@ public class DetalleCuentaController {
 				"¿Seguro que quieres borrar: " + seleccionado.getConcepto() + "?");
 
 		if (confirmado) {
-			// Lógica de negocio
 			cuentaActual.eliminarGasto(seleccionado);
-			cuentaService.agregarCuenta(cuentaActual); // Guardar
+			cuentaService.agregarCuenta(cuentaActual);
 			actualizarVista();
 		}
 	}
 
 	private void abrirFormularioGasto(Gasto gastoEdicion) {
-		// Usamos el GestorNavegacion para abrir el modal y obtener el controlador
 		FormularioGastoController controller = GestorNavegacion.abrirModal("FormularioGastoView.fxml",
 				gastoEdicion == null ? "Nuevo Gasto" : "Editar Gasto",
 				c -> ((FormularioGastoController) c).initAttributes(cuentaActual, gastoEdicion));
 
-		// Si el usuario guardó (el modal se cerró), procesamos
 		if (controller != null && controller.isGuardadoConfirmado()) {
 			Gasto gastoResultante = controller.getGastoResultado();
 
@@ -191,7 +184,6 @@ public class DetalleCuentaController {
 				Alerta alerta = cuentaService.agregarGasto(cuentaActual, gastoResultante);
 
 			} else {
-				// EDICIÓN: Reemplazo manual y guardar
 				int index = cuentaActual.getGastos().indexOf(gastoEdicion);
 				if (index != -1) {
 					cuentaActual.getGastos().set(index, gastoResultante);
@@ -220,15 +212,12 @@ public class DetalleCuentaController {
 		}
 
 		try {
-
 			List<GastoTemporal> temporales = importador.leerFichero(fichero.getAbsolutePath());
 
-			// LLAMADA AL SERVICIO: Recibimos el array de 3 posiciones
 			int[] res = cuentaService.importarGastos(temporales);
 
 			actualizarVista();
 
-			// Mostramos los datos usando los índices del array
 			GestorDialogos.mostrarAlerta("Importación Finalizada\n" + "Insertados: " + res[0] + "\n"
 					+ "(Alertas nuevas: " + res[2] + ")\n" + "Descartados: " + res[1]);
 			
@@ -246,9 +235,6 @@ public class DetalleCuentaController {
 
 	@FXML
 	private void irACategorias() {
-		// GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(),
-		// "GestionCategoriasView.fxml", "Categorías",
-		// (GestionCategoriasController c) -> c.setCuenta(cuentaActual));
 		gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
 		GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "GestionCategoriasView.fxml",
 				"Categorías", null);
@@ -256,10 +242,6 @@ public class DetalleCuentaController {
 
 	@FXML
 	private void irAVisualizacion() {
-		// GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(),
-		// "VisualizacionView.fxml", "Gráficos",
-		// (VisualizacionController c) -> c.setCuenta(cuentaActual));
-
 		gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
 		GestorNavegacion.navegar((Stage) lblTituloCuenta.getScene().getWindow(), "VisualizacionView.fxml", "Categorías",
 				null);
@@ -267,15 +249,11 @@ public class DetalleCuentaController {
 
 	@FXML
 	private void irAAlertas() {
-		// Alertas se abre "encima" sin cerrar la actual, podemos usar abrirModal o
-		// navegar normal
-
 		try {
 			gestorgastos.services.SesionService.getInstancia().setCuentaActiva(cuentaActual);
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
 			javafx.scene.Parent root = loader.load();
 			AlertaController controller = loader.getController();
-			// controller.setCuenta(cuentaActual);
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));
 			stage.show();
@@ -291,7 +269,6 @@ public class DetalleCuentaController {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
 			javafx.scene.Parent root = loader.load();
 			TerminalController controller = loader.getController();
-			// controller.setCuenta(cuentaActual);
 			controller.setOnUpdate(this::actualizarVista);
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root));

@@ -1,3 +1,2 @@
-2026/02/09-18:15:21.298 3b50 Reusing MANIFEST C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2026/02/09-18:15:21.312 3b50 Recovering log #3
-2026/02/09-18:15:21.315 3b50 Reusing old log C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/000003.log 
+2026/02/10-20:25:25.924 4848 Creating DB C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb since it was missing.
+2026/02/10-20:25:25.952 4848 Reusing MANIFEST C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001

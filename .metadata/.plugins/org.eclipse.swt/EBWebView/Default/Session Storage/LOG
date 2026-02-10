@@ -1,3 +1,2 @@
-2026/02/09-18:15:21.427 3b50 Reusing MANIFEST C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001
-2026/02/09-18:15:21.429 3b50 Recovering log #3
-2026/02/09-18:15:21.433 3b50 Reusing old log C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/000003.log 
+2026/02/10-20:25:27.380 4848 Creating DB C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage since it was missing.
+2026/02/10-20:25:27.388 4848 Reusing MANIFEST C:\proyecto-tds-2025\.metadata\.plugins\org.eclipse.swt\EBWebView\Default\Session Storage/MANIFEST-000001

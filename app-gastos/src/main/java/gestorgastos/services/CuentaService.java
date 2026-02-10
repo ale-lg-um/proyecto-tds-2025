@@ -60,14 +60,9 @@ public class CuentaService {
 			throw new Exception("Tipo de cuenta desconocido: " + tipo);
 		}
 
-		// Guardar en el repositorio
 		repositorio.save(nuevaCuenta);
 	}
 
-	/**
-	 * El servicio es el único que conoce la regla de negocio del 100% de los
-	 * porcentajes.
-	 */
 	private void validarPorcentajes(Map<String, Double> porcentajes) throws Exception {
 		if (porcentajes == null || porcentajes.isEmpty()) {
 			throw new Exception("Debe añadir miembros con sus porcentajes.");
@@ -90,33 +85,23 @@ public class CuentaService {
 		return cuenta.calcularSaldos();
 	}
 
-	/**
-	 * Añade un gasto y comprobación de alertas.
-	 */
 	public Alerta agregarGasto(Cuenta cuenta, Gasto nuevo) {
-		// 1. Añadir el gasto al objeto
 		cuenta.agregarGasto(nuevo);
 
-		// 2. Usar el servicio de alertas
 		ServicioAlertas servicio = ServicioAlertas.getInstancia();
 		Alerta saltada = servicio.comprobarAlertas(cuenta, nuevo);
 
-		// 3. Si hay alerta, generar notificación
 		if (saltada != null) {
 			String mensaje = "Límite superado: " + saltada.getLimite() + "€ en "
 					+ (saltada.getCategoria() != null ? saltada.getCategoria().getNombre() : "General");
 			cuenta.anadirNotificacion(mensaje);
 		}
 
-		// 4. Persistencia
 		repositorio.save(cuenta);
 		return saltada;
 	}
-
 	
-
 	public int[] importarGastos(List<GastoTemporal> temporales) {
-		// [0]: insertados, [1]: descartados, [2]: alertas
 		int[] resultados = new int[3];
 
 		List<Cuenta> cuentasUsuario = this.getCuentasUsuarioActual();
@@ -126,14 +111,13 @@ public class CuentaService {
 					.filter(c -> c.getNombre().equalsIgnoreCase(t.nombreCuenta)).findFirst();
 
 			if (cMatch.isEmpty()) {
-				resultados[1]++; // Descartado: No existe la cuenta
+				resultados[1]++;
 				continue;
 			}
 
 			Cuenta destino = cMatch.get();
 			boolean valido = true;
-
-			// Validación de miembros 
+ 
 			if (destino instanceof CuentaCompartida) {
 				List<String> miembros = ((CuentaCompartida) destino).getMiembros();
 				if (t.pagador != null && !t.pagador.equalsIgnoreCase("Yo")
@@ -151,19 +135,18 @@ public class CuentaService {
 				if (t.hora != null)
 					nuevo.setHora(t.hora);
 
-				// Guardamos y comprobamos alertas
 				Alerta alertaSaltada = this.agregarGasto(destino, nuevo);
 
 				if (alertaSaltada != null) {
-					resultados[2]++; // Nueva alerta generada
+					resultados[2]++;
 				}
-				resultados[0]++; // Gasto insertado con éxito
+				resultados[0]++;
 			} else {
-				resultados[1]++; // Descartado por pagador inválido
+				resultados[1]++;
 			}
 		}
 
-		return resultados; // Devolvemos el array con los 3 contadores
+		return resultados;
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

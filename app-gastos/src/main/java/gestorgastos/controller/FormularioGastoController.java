@@ -100,12 +100,7 @@ public class FormularioGastoController {
             if (pagador == null) { lblError.setText("Debes seleccionar quién pagó"); return; }
         }
 
-        
-        
         gastoResultado = gastosService.crearEditarGasto(spinMinuto, spinHora, gastoResultado,concepto, importe, fecha, categoria, pagador, esEdicion);
-
-        
-        		
         
         ServicioAlertas servicioAlertas = ServicioAlertas.getInstancia();
         Alerta alertaSaltada = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
@@ -114,7 +109,6 @@ public class FormularioGastoController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Gasto Bloqueado");
             alert.setHeaderText("Límite superado");
-            // Mensaje dinámico con el valor correcto
             alert.setContentText("Has superado el límite " + servicioAlertas.getTipo(alertaSaltada) + " de " + servicioAlertas.getLimite(alertaSaltada) + "€ definido en tu alerta.\n\nSe ha generado una notificación aunque el gasto se guardará.");
             alert.showAndWait();
         }
