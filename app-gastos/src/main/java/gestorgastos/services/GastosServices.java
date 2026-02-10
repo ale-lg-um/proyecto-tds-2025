@@ -20,6 +20,7 @@ public class GastosServices {
 		return instancia;
 	}
 	
+	
 	public Gasto crearEditarGasto(Spinner<Integer>spinMinuto, Spinner<Integer>spinHora, Gasto gastoResultado, String concepto, double importe, LocalDate fecha, Categoria categoria, String pagador, boolean esEdicion) {
 		if(esEdicion) {
 			gastoResultado.setConcepto(concepto);
