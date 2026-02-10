@@ -1,6 +1,7 @@
 package gestorgastos.controller;
 
 import gestorgastos.model.*;
+import gestorgastos.services.GastosServices;
 import gestorgastos.services.ServicioAlertas;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -27,6 +28,8 @@ public class FormularioGastoController {
     private boolean esEdicion = false;
     private Cuenta cuentaAsociada;
     private boolean guardadoConfirmado = false;
+    
+    private final GastosServices gastosService = GastosServices.getInstancia();
 
     @FXML
     public void initialize() {
@@ -97,30 +100,22 @@ public class FormularioGastoController {
             if (pagador == null) { lblError.setText("Debes seleccionar quién pagó"); return; }
         }
 
-        if (esEdicion) {
-            gastoResultado.setConcepto(concepto);
-            gastoResultado.setImporte(importe);
-            gastoResultado.setFecha(fecha);
-            gastoResultado.setCategoria(categoria);
-            gastoResultado.setPagador(pagador);
-        } else {
-            gastoResultado = new Gasto(concepto, importe, fecha, categoria, pagador);
-        }
-    
-        gastoResultado.setHora(LocalTime.of(spinHora.getValue(), spinMinuto.getValue()));
+        
+        
+        gastoResultado = gastosService.crearEditarGasto(spinMinuto, spinHora, gastoResultado,concepto, importe, fecha, categoria, pagador, esEdicion);
 
+        
+        		
+        
         ServicioAlertas servicioAlertas = ServicioAlertas.getInstancia();
         Alerta alertaSaltada = servicioAlertas.comprobarAlertas(cuentaAsociada, gastoResultado);
         
         if (alertaSaltada != null) {
-            String tipo = alertaSaltada.getTipo(); 
-            double limite = alertaSaltada.getLimite();
-
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Gasto Bloqueado");
             alert.setHeaderText("Límite superado");
             // Mensaje dinámico con el valor correcto
-            alert.setContentText("Has superado el límite " + tipo + " de " + limite + "€ definido en tu alerta.\n\nSe ha generado una notificación aunque el gasto se guardará.");
+            alert.setContentText("Has superado el límite " + servicioAlertas.getTipo(alertaSaltada) + " de " + servicioAlertas.getLimite(alertaSaltada) + "€ definido en tu alerta.\n\nSe ha generado una notificación aunque el gasto se guardará.");
             alert.showAndWait();
         }
 

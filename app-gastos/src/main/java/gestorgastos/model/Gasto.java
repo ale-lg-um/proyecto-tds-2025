@@ -95,4 +95,9 @@ public class Gasto {
 	// Métodos necesarios para el calendario
     public LocalTime getHora() { return hora; }
     public void setHora(LocalTime hora) { this.hora = hora; }
+    
+    
+    public static Gasto crearGasto(String concepto,double importe, LocalDate fecha ,Categoria cat ,String pagador) {
+    	return new Gasto(concepto, importe, fecha, cat, pagador);
+    }
 }

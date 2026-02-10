@@ -1,29 +1,4 @@
 [ {
-  "id" : "c0ff0411-4cfe-474e-a79c-73f993ba43bc",
-  "nombre" : "Compartida",
-  "gastos" : [ {
-    "id" : "f635a966-3a40-4eb8-b2ea-45f805d4f599",
-    "concepto" : "Comida",
-    "importe" : 40.0,
-    "fecha" : [ 2026, 1, 7 ],
-    "hora" : "15:31",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Mario"
-  } ],
-  "alertas" : [ ],
-  "notificaciones" : [ ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  } ],
-  "miembros" : [ "Mario", "Jaime" ],
-  "tipo" : "COMPARTIDA"
-}, {
   "id" : "db4a43ed-bd1d-400f-95a1-c47fce77565e",
   "nombre" : "normal2",
   "gastos" : [ {
@@ -207,6 +182,176 @@
     "colorHex" : "#FFFFFF"
   } ],
   "tipo" : "PERSONAL"
+}, {
+  "id" : "16eca2c0-49b5-4eb8-9c67-6f5f9424ae84",
+  "nombre" : "Especial",
+  "gastos" : [ {
+    "id" : "c0027ba5-2d66-47f0-b4c6-1073f30e6459",
+    "concepto" : "Comida_Navidad",
+    "importe" : 430.0,
+    "fecha" : [ 2025, 12, 24 ],
+    "hora" : "15:07",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Mario"
+  }, {
+    "id" : "ad9e282f-bc94-439a-bfb5-c14ec0825dde",
+    "concepto" : "Viaje",
+    "importe" : 1000.0,
+    "fecha" : [ 2025, 8, 14 ],
+    "hora" : "15:08",
+    "categoria" : {
+      "nombre" : "Verano",
+      "descripcion" : "",
+      "colorHex" : "#FFFF00"
+    },
+    "pagador" : "Alejandro"
+  }, {
+    "id" : "bb9a28c1-7983-4b49-b8eb-52366d5a8f45",
+    "concepto" : "Compra",
+    "importe" : 100.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:09",
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    },
+    "pagador" : "Jesus"
+  }, {
+    "id" : "7bc5a69d-77b6-46c7-b326-b0cbe8172aee",
+    "concepto" : "Pan",
+    "importe" : 4.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:10",
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    },
+    "pagador" : "Jaime"
+  }, {
+    "id" : "3c30be52-3569-48ff-a81c-b2744a1ac2f6",
+    "concepto" : "Cena_Navidad",
+    "importe" : 400.0,
+    "fecha" : [ 2025, 12, 25 ],
+    "hora" : "21:11",
+    "categoria" : {
+      "nombre" : "Navidad",
+      "descripcion" : "",
+      "colorHex" : "#00FF00"
+    },
+    "pagador" : "Jaime"
+  }, {
+    "id" : "2d4fd780-2f21-41b2-83ff-68068b6afc69",
+    "concepto" : "Cinta de correr",
+    "importe" : 300.0,
+    "fecha" : [ 2026, 1, 28 ],
+    "hora" : "16:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Jaime"
+  } ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 200.0,
+    "categoria" : {
+      "nombre" : "GastoSemanal",
+      "descripcion" : "",
+      "colorHex" : "#800000"
+    }
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 200.0€ definido en tu alerta.",
+    "fecha" : "2026-01-07 15:11:05",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  }, {
+    "nombre" : "Verano",
+    "descripcion" : "",
+    "colorHex" : "#FFFF00"
+  }, {
+    "nombre" : "GastoSemanal",
+    "descripcion" : "",
+    "colorHex" : "#800000"
+  }, {
+    "nombre" : "Navidad",
+    "descripcion" : "",
+    "colorHex" : "#00FF00"
+  } ],
+  "miembros" : [ "Alejandro", "Jesus", "Jaime", "Mario" ],
+  "porcentajes" : {
+    "Alejandro" : 33.0,
+    "Jesus" : 1.0,
+    "Jaime" : 33.0,
+    "Mario" : 33.0
+  },
+  "tipo" : "ESPECIAL"
+}, {
+  "id" : "fe7094e0-ac76-408d-8b64-021ff4650727",
+  "nombre" : "especial2",
+  "gastos" : [ ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "miembros" : [ "mario", "jaime", "alejandro" ],
+  "porcentajes" : {
+    "mario" : 33.0,
+    "jaime" : 33.0,
+    "alejandro" : 34.0
+  },
+  "tipo" : "ESPECIAL"
+}, {
+  "id" : "c0ff0411-4cfe-474e-a79c-73f993ba43bc",
+  "nombre" : "Compartida",
+  "gastos" : [ {
+    "id" : "f635a966-3a40-4eb8-b2ea-45f805d4f599",
+    "concepto" : "Comida",
+    "importe" : 40.0,
+    "fecha" : [ 2026, 1, 7 ],
+    "hora" : "15:31",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Mario"
+  }, {
+    "id" : "75c33435-d83d-45bc-ba19-331c5f95d9c2",
+    "concepto" : "Cena",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 2, 10 ],
+    "hora" : "18:34",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Mario"
+  } ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "miembros" : [ "Mario", "Jaime" ],
+  "tipo" : "COMPARTIDA"
 }, {
   "id" : "455a5bfa-edb0-4efe-ba80-cb02736cbf83",
   "nombre" : "Normal",
@@ -522,6 +667,30 @@
       "colorHex" : "#FFAB00"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "db8ea5b2-f62a-4d1d-96ee-bc6f9241bad5",
+    "concepto" : "desayuno",
+    "importe" : 10.47,
+    "fecha" : [ 2024, 5, 2 ],
+    "hora" : "12:33",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "1e7b03a4-3ae8-41dd-b193-50dc33fd6bd6",
+    "concepto" : "chiringuito",
+    "importe" : 2.0,
+    "fecha" : [ 2000, 8, 18 ],
+    "hora" : "12:22",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
@@ -588,121 +757,6 @@
   } ],
   "tipo" : "PERSONAL"
 }, {
-  "id" : "16eca2c0-49b5-4eb8-9c67-6f5f9424ae84",
-  "nombre" : "Especial",
-  "gastos" : [ {
-    "id" : "c0027ba5-2d66-47f0-b4c6-1073f30e6459",
-    "concepto" : "Comida_Navidad",
-    "importe" : 430.0,
-    "fecha" : [ 2025, 12, 24 ],
-    "hora" : "15:07",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Mario"
-  }, {
-    "id" : "ad9e282f-bc94-439a-bfb5-c14ec0825dde",
-    "concepto" : "Viaje",
-    "importe" : 1000.0,
-    "fecha" : [ 2025, 8, 14 ],
-    "hora" : "15:08",
-    "categoria" : {
-      "nombre" : "Verano",
-      "descripcion" : "",
-      "colorHex" : "#FFFF00"
-    },
-    "pagador" : "Alejandro"
-  }, {
-    "id" : "bb9a28c1-7983-4b49-b8eb-52366d5a8f45",
-    "concepto" : "Compra",
-    "importe" : 100.0,
-    "fecha" : [ 2026, 1, 7 ],
-    "hora" : "15:09",
-    "categoria" : {
-      "nombre" : "GastoSemanal",
-      "descripcion" : "",
-      "colorHex" : "#800000"
-    },
-    "pagador" : "Jesus"
-  }, {
-    "id" : "7bc5a69d-77b6-46c7-b326-b0cbe8172aee",
-    "concepto" : "Pan",
-    "importe" : 4.0,
-    "fecha" : [ 2026, 1, 7 ],
-    "hora" : "15:10",
-    "categoria" : {
-      "nombre" : "GastoSemanal",
-      "descripcion" : "",
-      "colorHex" : "#800000"
-    },
-    "pagador" : "Jaime"
-  }, {
-    "id" : "3c30be52-3569-48ff-a81c-b2744a1ac2f6",
-    "concepto" : "Cena_Navidad",
-    "importe" : 400.0,
-    "fecha" : [ 2025, 12, 25 ],
-    "hora" : "21:11",
-    "categoria" : {
-      "nombre" : "Navidad",
-      "descripcion" : "",
-      "colorHex" : "#00FF00"
-    },
-    "pagador" : "Jaime"
-  }, {
-    "id" : "2d4fd780-2f21-41b2-83ff-68068b6afc69",
-    "concepto" : "Cinta de correr",
-    "importe" : 300.0,
-    "fecha" : [ 2026, 1, 28 ],
-    "hora" : "16:22",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Jaime"
-  } ],
-  "alertas" : [ {
-    "tipo" : "SEMANAL",
-    "limite" : 200.0,
-    "categoria" : {
-      "nombre" : "GastoSemanal",
-      "descripcion" : "",
-      "colorHex" : "#800000"
-    }
-  } ],
-  "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 200.0€ definido en tu alerta.",
-    "fecha" : "2026-01-07 15:11:05",
-    "leida" : false
-  } ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  }, {
-    "nombre" : "Verano",
-    "descripcion" : "",
-    "colorHex" : "#FFFF00"
-  }, {
-    "nombre" : "GastoSemanal",
-    "descripcion" : "",
-    "colorHex" : "#800000"
-  }, {
-    "nombre" : "Navidad",
-    "descripcion" : "",
-    "colorHex" : "#00FF00"
-  } ],
-  "miembros" : [ "Alejandro", "Jesus", "Jaime", "Mario" ],
-  "porcentajes" : {
-    "Alejandro" : 33.0,
-    "Jesus" : 1.0,
-    "Jaime" : 33.0,
-    "Mario" : 33.0
-  },
-  "tipo" : "ESPECIAL"
-}, {
   "id" : "6069abae-e151-486c-ba45-12acb43287dd",
   "nombre" : "normal3",
   "gastos" : [ {
@@ -729,6 +783,30 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "ec063066-dfa0-47fb-9fb4-aeb7a9c5990b",
+    "concepto" : "cena",
+    "importe" : 70.0,
+    "fecha" : [ 2026, 2, 10 ],
+    "hora" : "18:52",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "ad222478-539f-4217-a2e8-21e87b396edb",
+    "concepto" : "desayuno2",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 2, 10 ],
+    "hora" : "20:12",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
@@ -739,6 +817,22 @@
     "mensaje" : "Has superado el límite de 50.0€ establecido en la alerta",
     "fecha" : "2026-02-09 19:28:56",
     "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 18:52:32",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 20:10:49",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 20:11:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 20:12:11",
+    "leida" : false
   } ],
   "categorias" : [ {
     "nombre" : "General",
@@ -746,22 +840,4 @@
     "colorHex" : "#D3D3D3"
   } ],
   "tipo" : "PERSONAL"
-}, {
-  "id" : "fe7094e0-ac76-408d-8b64-021ff4650727",
-  "nombre" : "especial2",
-  "gastos" : [ ],
-  "alertas" : [ ],
-  "notificaciones" : [ ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  } ],
-  "miembros" : [ "mario", "jaime", "alejandro" ],
-  "porcentajes" : {
-    "mario" : 33.0,
-    "jaime" : 33.0,
-    "alejandro" : 34.0
-  },
-  "tipo" : "ESPECIAL"
 } ]
