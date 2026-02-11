@@ -1,0 +1,26 @@
+1) Repositorio de GitHub [HECHO]
+                                                                          ---------------
+2) Historias de usuario (por ejemplo, registrar gasto)          Concepto: |             |
+                                                                          ---------------
+3) Modelo de dominio
+                                                                          ---------------
+                                                                Cantidad: |             |
+                                                                          ---------------
+
+                                                           
+
+
+
+
+                            issue
+                            _____  
+REPOSITORIO                 /\
+docs                         |
+  |                          |
+  |-> modelo.md              |
+  |                          |
+  |-> imágenes               |
+  |                          |
+  |-> historia.md    --------|
+
+GitHub profe: jesus-umu

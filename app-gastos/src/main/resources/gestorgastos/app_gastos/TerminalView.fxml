@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="gestorgastos.controller.TerminalController"
+      prefHeight="400.0" prefWidth="600.0" spacing="5.0"
+      style="-fx-background-color: black;">
+
+    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+    <TextArea fx:id="txtOutput" editable="false" wrapText="true" VBox.vgrow="ALWAYS"
+              style="-fx-control-inner-background: black; -fx-text-fill: #00FF00; -fx-background-color: black;">
+        <font>
+            <Font name="Monospaced Regular" size="14.0" />
+        </font>
+    </TextArea>
+
+    <TextField fx:id="txtInput" onAction="#procesarEntrada"
+               promptText="Escribe un comando..."
+               style="-fx-background-color: #333333; -fx-text-fill: white; -fx-prompt-text-fill: gray;">
+        <font>
+            <Font name="Monospaced Regular" size="14.0" />
+        </font>
+    </TextField>
+
+</VBox>
