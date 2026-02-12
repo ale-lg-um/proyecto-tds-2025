@@ -69,6 +69,9 @@ public class DetalleCuentaController {
 		btnImportar.setOnAction(e -> procesarImportacion());
 
 		this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
+		if(this.cuentaActual != null) {
+			actualizarVista();
+		}
 	}
 
 	public void setCuenta(Cuenta cuenta) {

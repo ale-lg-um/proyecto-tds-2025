@@ -71,11 +71,8 @@ public class ServicioAlertas {
 	}
 
 	public Alerta comprobarAlertas(Cuenta cuenta, Gasto nuevoGasto) {
-		// 1. Validación inicial
 		if (Cuenta.noHayAlertas(cuenta))
 			return null;
-
-		// 2. Prioridad: Categorías específicas
 		for (Alerta alerta : cuenta.getAlertas()) {
 
 			if (alerta.esMismaCategoria(nuevoGasto)) {
@@ -83,8 +80,6 @@ public class ServicioAlertas {
 					return alerta;
 			}
 		}
-
-		// 3. Prioridad: Alertas generales
 		for (Alerta alerta : cuenta.getAlertas()) {
 
 			if (alerta.esGeneral()) {

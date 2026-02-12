@@ -10,6 +10,11 @@ public class CuentaService {
 
 	private static CuentaService instancia;
 	private CuentaRepository repositorio;
+	/*
+	 * private CategoriasService categoriasService =
+	 * CategoriasService.getInstancia(); private GastosServices gastosService =
+	 * GastosServices.getInstancia();
+	 */
 
 	private CuentaService() {
 		this.repositorio = new CuentaRepositoryJson();
@@ -97,7 +102,7 @@ public class CuentaService {
 		repositorio.save(cuenta);
 		return saltada;
 	}
-	
+
 	public int[] importarGastos(List<GastoTemporal> temporales) {
 		int[] resultados = new int[3];
 
@@ -114,7 +119,7 @@ public class CuentaService {
 
 			Cuenta destino = cMatch.get();
 			boolean valido = true;
- 
+
 			if (destino instanceof CuentaCompartida) {
 				List<String> miembros = ((CuentaCompartida) destino).getMiembros();
 				if (t.pagador != null && !t.pagador.equalsIgnoreCase("Yo")
@@ -144,6 +149,66 @@ public class CuentaService {
 		}
 
 		return resultados;
+	}
+
+	/////////////////////////////////////////// SERVICIO PANTALLA CATEGORIAS
+	public List<Categoria> obtenerCategorias(Cuenta cuenta) {
+		return cuenta.getCategorias();
+	}
+
+	public void anadirCat(Cuenta cuenta, Categoria categoria) {
+		cuenta.getCategorias().add(categoria);
+	}
+
+	public void cambiarCategoriaGastos(Cuenta cuenta, Categoria categoria) {
+
+		CategoriasService categoriasService = CategoriasService.getInstancia();
+		GastosServices gastosService = GastosServices.getInstancia();
+
+		Categoria generalCat = obtenerCategorias(cuenta).stream()
+				.filter(c -> "General".equals(categoriasService.getNombre(c))).findFirst().orElse(null);
+		/*
+		if (generalCat != null) {
+			gastosService.establecerCat(cuenta, categoria, generalCat);
+		}
+
+		cuenta.getCategorias().remove(categoria);
+		*/
+
+		// 2. Si existe General, movemos los gastos de la categoría vieja a la nueva
+		if (generalCat != null && !categoriasService.getNombre(categoria).equalsIgnoreCase("General")) {
+			gastosService.establecerCat(cuenta, categoria, generalCat);
+		}
+
+		// 3. AHORA SÍ, eliminamos la categoría de la lista de la cuenta
+		// Usamos removeIf para asegurar que la borramos por nombre también
+		cuenta.getCategorias().removeIf(c -> categoriasService.getNombre(c).equalsIgnoreCase(categoriasService.getNombre(categoria)));
+
+
+		
+	}
+
+	public List<Gasto> obtenerGastos(Cuenta cuenta) {
+		return cuenta.getGastos();
+	}
+
+	public String obtenerNombre(Cuenta cuenta) {
+		return cuenta.getNombre();
+	}
+
+	/////////////////////////////////////// PANTALLA  TERMINAL
+
+	public Categoria procesarCatTerminal(String nombreCat, Cuenta cuenta) {
+		CategoriasService categoriasService = CategoriasService.getInstancia();
+		Categoria cat = obtenerCategorias(cuenta).stream()
+				.filter(c -> categoriasService.getNombre(c).equalsIgnoreCase(nombreCat))
+				.findFirst()
+				.orElse(obtenerCategorias(cuenta).get(0));
+		return cat;
+	}
+	
+	public Gasto quitarGastoTerminal(int id, Cuenta cuenta) {
+		return cuenta.getGastos().remove(id);
 	}
 
 	//////////////////////////////////////////////////////////////////////////////////

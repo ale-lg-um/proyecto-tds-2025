@@ -14,5 +14,12 @@ public class CategoriasService {
 	public static Categoria crearCategorias(String nombre, String st,String hex) {
 		return new Categoria(nombre, st, hex);
 	}
+	
+	public String getNombre(Categoria categoria) {
+		return categoria.getNombre();
+	}
 
+	public String obtenerColorHex(Categoria categoria) {
+		return categoria.getColorHex();
+	}
 }

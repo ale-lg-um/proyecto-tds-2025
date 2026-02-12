@@ -1,6 +1,7 @@
 package gestorgastos.controller;
 
 import gestorgastos.model.*;
+import gestorgastos.services.CategoriasService;
 import gestorgastos.services.CuentaService;
 import gestorgastos.services.SesionService;
 import javafx.collections.FXCollections;
@@ -18,7 +19,9 @@ public class GestionCategoriasController {
     @FXML private ListView<Categoria> listaCategorias;
     @FXML private Label lblTituloCuenta;
 
+    private Cuenta cuentaActual;
     private CuentaService cuentaService = CuentaService.getInstancia();
+    private CategoriasService categoriasService = CategoriasService.getInstancia();
     //private Cuenta cuentaActual;
 
     /*public void setCuenta(Cuenta cuenta) {
@@ -56,13 +59,14 @@ public class GestionCategoriasController {
             }
         });
         //this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
         cargarCategorias();
     }
     
     public void cargarCategorias() {
-    	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+    	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         if (cuentaActual != null) {
-            listaCategorias.setItems(FXCollections.observableArrayList(cuentaActual.getCategorias()));
+            listaCategorias.setItems(FXCollections.observableArrayList(cuentaService.obtenerCategorias(cuentaActual)));
         }
     }
 
@@ -79,8 +83,9 @@ public class GestionCategoriasController {
             stage.showAndWait();
 
             if (controller.getCategoriaResultado() != null) {
-            	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
-                cuentaActual.getCategorias().add(controller.getCategoriaResultado());
+            	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+                cuentaService.anadirCat(cuentaActual,controller.getCategoriaResultado());
+                //cuentaActual.getCategorias().add(controller.getCategoriaResultado());
                 cuentaService.agregarCuenta(cuentaActual);
                 cargarCategorias();
             }
@@ -92,17 +97,18 @@ public class GestionCategoriasController {
         Categoria seleccionada = listaCategorias.getSelectionModel().getSelectedItem();
         if (seleccionada == null) return;
         
-        if ("General".equals(seleccionada.getNombre())) {
+        if ("General".equals(categoriasService.getNombre(seleccionada))) {
             mostrarAlerta("No puedes borrar la categoría General");
             return;
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("¿Borrar '" + seleccionada.getNombre() + "'? Sus gastos pasarán a 'General'.");
+        alert.setContentText("¿Borrar '" + categoriasService.getNombre(seleccionada) + "'? Sus gastos pasarán a 'General'.");
         
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
-        	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
-        	Categoria catGeneral = cuentaActual.getCategorias().stream()
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+            cuentaService.cambiarCategoriaGastos(cuentaActual,seleccionada);
+        	/*Categoria catGeneral = cuentaActual.getCategorias().stream()
                     .filter(c -> "General".equals(c.getNombre()))
                     .findFirst().orElse(null);
 
@@ -113,9 +119,15 @@ public class GestionCategoriasController {
                     }
                 }
             }
+            
 
             cuentaActual.getCategorias().remove(seleccionada);
+            */
+            
             cuentaService.agregarCuenta(cuentaActual);
+
+            SesionService.getInstancia().setCuentaActiva(cuentaActual);
+            
             cargarCategorias();
         }
     }
@@ -124,14 +136,14 @@ public class GestionCategoriasController {
     @FXML
     private void irAGastos() {
         try {
-        	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
             Parent root = loader.load();
             //DetalleCuentaController controller = loader.getController();
             //controller.setCuenta(cuentaActual); 
 
             Stage stage = new Stage();
-            stage.setTitle("Gastos: " + cuentaActual.getNombre());
+            stage.setTitle("Gastos: " + cuentaService.obtenerNombre(cuentaActual));
             stage.setScene(new Scene(root));
             //stage.setMaximized(true);
             stage.show();
@@ -143,7 +155,7 @@ public class GestionCategoriasController {
     @FXML 
     private void irACMD() { 
         try {
-        	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
             Parent root = loader.load();
 
@@ -188,7 +200,7 @@ public class GestionCategoriasController {
     @FXML
     private void irAAlertas() {
         try {
-        	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
             Parent root = loader.load();
 
@@ -197,7 +209,7 @@ public class GestionCategoriasController {
             //controller.setCuenta(cuentaActual);
 
             Stage stage = new Stage();
-            stage.setTitle("Configuración de Alertas - " + cuentaActual.getNombre());
+            stage.setTitle("Configuración de Alertas - " + cuentaService.obtenerNombre(cuentaActual));
             stage.setScene(new Scene(root));
 
             stage.show();

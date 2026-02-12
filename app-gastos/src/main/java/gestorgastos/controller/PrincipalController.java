@@ -90,7 +90,8 @@ public class PrincipalController {
 
             // Abrir nueva ventana
             Stage stage = new Stage();
-            stage.setTitle("Gestión de: " + cuentaSeleccionada.getNombre());
+            //stage.setTitle("Gestión de: " + cuentaSeleccionada.getNombre());
+            stage.setTitle("Gestión de: " + cuentaService.obtenerNombre(cuentaSeleccionada));
             stage.setScene(new Scene(root));
             //stage.setMaximized(true); // La ventana se abre en pantalla completa por defecto
             stage.show();

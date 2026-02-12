@@ -8,6 +8,9 @@ import com.calendarfx.view.CalendarView;
 import gestorgastos.model.Categoria;
 import gestorgastos.model.Cuenta;
 import gestorgastos.model.Gasto;
+import gestorgastos.services.CategoriasService;
+import gestorgastos.services.CuentaService;
+import gestorgastos.services.GastosServices;
 import gestorgastos.services.SesionService;
 
 import javafx.fxml.FXML;
@@ -45,7 +48,10 @@ public class VisualizacionController {
     private CalendarView calendarView;
     private Calendar calendarioGastos;
 
-    //private Cuenta cuentaActual;
+    private Cuenta cuentaActual;
+    private CuentaService cuentaService = CuentaService.getInstancia();
+    private GastosServices gastosServices = GastosServices.getInstancia();
+    private CategoriasService categoriasService = CategoriasService.getInstancia();
 
     @FXML
     public void initialize() {
@@ -56,7 +62,7 @@ public class VisualizacionController {
         // Cargar meses
         listMeses.getItems().addAll(Month.values());
         
-        Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        cuentaActual = SesionService.getInstancia().getCuentaActiva();
         listCategorias.getItems().setAll(cuentaActual.getCategorias());
         
         
@@ -100,30 +106,30 @@ public class VisualizacionController {
 
     @FXML
     private void aplicarFiltros() {
-    	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+    	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
     	if (cuentaActual == null) return;
 
-        List<Gasto> todos = cuentaActual.getGastos();
+        List<Gasto> todos = cuentaService.obtenerGastos(cuentaActual);
         
         List<Gasto> filtrados = todos.stream()
             // Filtrar por rango de fechas
             .filter(g -> {
-                if (dateDesde.getValue() != null && g.getFecha().isBefore(dateDesde.getValue())) return false;
-                if (dateHasta.getValue() != null && g.getFecha().isAfter(dateHasta.getValue())) return false;
+                if (dateDesde.getValue() != null && gastosServices.obtenerFecha(g).isBefore(dateDesde.getValue())) return false;
+                if (dateHasta.getValue() != null && gastosServices.obtenerFecha(g).isAfter(dateHasta.getValue())) return false;
                 return true;
             })
             // Filtrar por meses seleccionados
             .filter(g -> {
                 List<Month> mesesSel = listMeses.getSelectionModel().getSelectedItems();
                 if (mesesSel.isEmpty()) return true; // Si no hay nada seleccionado, mostrar todo
-                return mesesSel.contains(g.getFecha().getMonth());
+                return mesesSel.contains(gastosServices.obtenerFecha(g).getMonth());
             })
             // Filtrar por categorías seleccionadas
             .filter(g -> {
                 List<Categoria> catsSel = listCategorias.getSelectionModel().getSelectedItems();
                 if (catsSel.isEmpty()) return true;
                 // Comparamos por nombre para asegurar
-                return catsSel.stream().anyMatch(c -> c.getNombre().equals(g.getCategoria().getNombre()));
+                return catsSel.stream().anyMatch(c -> categoriasService.getNombre(c).equals(categoriasService.getNombre(gastosServices.obtenerCategoria(g))));
             })
             .collect(Collectors.toList());
 
@@ -143,7 +149,7 @@ public class VisualizacionController {
 
 
     private void actualizarGraficos(List<Gasto> gastos) {
-    	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+    	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         pieChart.setAnimated(false);
         barChart.setAnimated(false);
 
@@ -153,8 +159,8 @@ public class VisualizacionController {
                         Collectors.summingDouble(Gasto::getImporte)
                 ));
 
-        Map<String, String> mapaColores = cuentaActual.getCategorias().stream()
-                .collect(Collectors.toMap(Categoria::getNombre, Categoria::getColorHex, (a, b) -> a));
+        Map<String, String> mapaColores = cuentaService.obtenerCategorias(cuentaActual).stream()
+                .collect(Collectors.toMap(categoriasService::getNombre, categoriasService::obtenerColorHex, (a, b) -> a));
 
         pieChart.getData().clear();
         porCategoria.forEach((catName, total) -> {
@@ -212,9 +218,9 @@ public class VisualizacionController {
         
         for (Gasto g : gastos) {
             // Crear una entrada en el calendario
-            Entry<String> entry = new Entry<>(g.getConcepto() + " (" + g.getImporte() + "€)");
+            Entry<String> entry = new Entry<>(gastosServices.obtenerConcepto(g) + " (" + gastosServices.obtenerImporte(g) + "€)");
             
-            entry.setInterval(g.getFecha(), g.getHora(), g.getFecha(), g.getHora().plusHours(1));
+            entry.setInterval(gastosServices.obtenerFecha(g), gastosServices.obtenerHora(g), gastosServices.obtenerFecha(g), gastosServices.obtenerHora(g).plusHours(1));
             
             calendarioGastos.addEntry(entry);
         }
@@ -233,7 +239,7 @@ public class VisualizacionController {
     @FXML
     private void volver() {
         try {
-        	Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
             Parent root = loader.load();
 

@@ -1,7 +1,10 @@
 package gestorgastos.controller;
 
 import gestorgastos.model.*;
+import gestorgastos.services.CategoriasService;
 import gestorgastos.services.CuentaService;
+import gestorgastos.services.GastosServices;
+import gestorgastos.services.ServicioAlertas;
 import gestorgastos.services.SesionService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -23,6 +26,9 @@ public class TerminalController {
 
     private Cuenta cuentaActiva;
     private CuentaService cuentaService = CuentaService.getInstancia();
+    private CategoriasService categoriasService = CategoriasService.getInstancia();
+    private GastosServices gastosServices = GastosServices.getInstancia();
+    private ServicioAlertas alertasService = ServicioAlertas.getInstancia();
     private Runnable onUpdateAction;
     private java.time.LocalTime tempHora;
 
@@ -60,7 +66,8 @@ public class TerminalController {
         configurarMaquinaDeEstados();
         this.cuentaActiva = SesionService.getInstancia().getCuentaActiva();
         imprimir("========================================");
-        imprimir(" CONSOLA INTEGRADA - " + this.cuentaActiva.getNombre());
+        //imprimir(" CONSOLA INTEGRADA - " + this.cuentaActiva.getNombre());
+        imprimir(" CONSOLA INTEGRADA - " + cuentaService.obtenerNombre(cuentaActiva));
         imprimir(" Comandos: registrar, borrar, listar, ayuda");
         imprimir("========================================");
         imprimir("\nCMD> ");
@@ -277,11 +284,18 @@ public class TerminalController {
     
     private void procesarCategoria(String entrada) {
     	String catNombre = entrada;
+        Categoria cat = cuentaService.procesarCatTerminal(catNombre,cuentaActiva);
+        
+        /*
     	Categoria cat = cuentaActiva.getCategorias().stream()
     			.filter(c -> c.getNombre().equalsIgnoreCase(catNombre))
     			.findFirst()
     			.orElse(cuentaActiva.getCategorias().get(0));
     	tempCategoria = cat.getNombre();
+        */
+        
+        tempCategoria = categoriasService.getNombre(cat);
+        
     	
     	if(cuentaActiva instanceof CuentaCompartida) {
     		pasoActual = EstadoTerminal.PAGADOR;
@@ -295,10 +309,11 @@ public class TerminalController {
     	if(entrada.isEmpty()) {
     		throw new RuntimeException("El pagador no puede ser nulo");
     	} else {
-    		Categoria cat = cuentaActiva.getCategorias().stream()
+    		/*Categoria cat = cuentaActiva.getCategorias().stream()
     				.filter(c -> c.getNombre().equalsIgnoreCase(tempCategoria))
     				.findFirst()
-    				.orElse(cuentaActiva.getCategorias().get(0));
+    				.orElse(cuentaActiva.getCategorias().get(0));*/
+    		Categoria cat = cuentaService.procesarCatTerminal(tempCategoria, cuentaActiva);
     		guardarGasto(cat, entrada);
     	}
     }
@@ -306,10 +321,10 @@ public class TerminalController {
     private void procesarBorrar(String entrada) {
     	try {
     		int id = Integer.parseInt(entrada);
-    		if((id >= 0) && (id < cuentaActiva.getGastos().size())) {
-    			Gasto g = cuentaActiva.getGastos().remove(id);
+    		if((id >= 0) && (id < cuentaService.obtenerGastos(cuentaActiva).size())) {
+    			Gasto g = cuentaService.quitarGastoTerminal(id, cuentaActiva);
     			guardarCambios();
-    			imprimir("✓ Borrado: " + g.getConcepto()); 
+    			imprimir("✓ Borrado: " + gastosServices.obtenerConcepto(g)); 
     		} else {
     			imprimir("ERROR: id inválido.");
     		}
@@ -321,11 +336,14 @@ public class TerminalController {
     }
 
     private void guardarGasto(Categoria cat, String pagador) {
+
+        
     	// Crear el gasto
-    	Gasto nuevo = new Gasto(tempConcepto, tempImporte, tempFecha, cat, pagador);
+
+    	//Gasto nuevo = new Gasto(tempConcepto, tempImporte, tempFecha, cat, pagador);
     
     	// Editar la hora
-    	nuevo.setHora(tempHora);
+    	//nuevo.setHora(tempHora);
 
     	// Comprobar alertas
     	//gestorgastos.services.ServicioAlertas servicio = new gestorgastos.services.ServicioAlertas();
@@ -336,9 +354,9 @@ public class TerminalController {
     	// Si mensajeError tiene texto, significa que nos hemos pasado del límite de la alerta
     
     	// Corrección tercer PR
-    	Alerta alertaSaltada = cuentaService.agregarGasto(cuentaActiva, nuevo);
+    	Alerta alertaSaltada = cuentaService.agregarGasto(cuentaActiva, gastosServices.crearGasto(tempConcepto, tempImporte, tempFecha, cat, pagador, tempHora));
     	if (alertaSaltada != null) {
-    		String mensaje = "Has superado el límite de " + alertaSaltada.getLimite() + "€ definido en tu alerta.";
+    		String mensaje = "Has superado el límite de " + alertasService.getLimite(alertaSaltada) + "€ definido en tu alerta.";
     		// Como estamos en CMD, no puede aparecer una ventana con el mensaje, así que el mensaje se imprime por la terminal
     		imprimir("\n**************************************************");
     		imprimir("⚠️  GASTO BLOQUEADO POR ALERTA");
@@ -373,7 +391,7 @@ public class TerminalController {
 
     // Listamos los gastos
     private void listarGastos() {
-        if (cuentaActiva.getGastos().isEmpty()) {
+        if (cuentaService.obtenerGastos(cuentaActiva).isEmpty()) {
             imprimir("(Sin gastos)");
             return;
         }
@@ -383,14 +401,14 @@ public class TerminalController {
         imprimir(String.format(formato, "ID", "FECHA Y HORA", "CONCEPTO", "IMPORTE", "CATEGORIA"));
         imprimir("-----------------------------------------------------------------------");
 
-        for (int i = 0; i < cuentaActiva.getGastos().size(); i++) {
-            Gasto g = cuentaActiva.getGastos().get(i);
+        for (int i = 0; i < cuentaService.obtenerGastos(cuentaActiva).size(); i++) {
+            Gasto g = cuentaService.obtenerGastos(cuentaActiva).get(i);
             
             // Combinamos fecha y hora para verlo bonito
-            String fechaHoraStr = g.getFecha().toString();
-            if (g.getHora() != null) {
+            String fechaHoraStr = gastosServices.obtenerFecha(g).toString();
+            if (gastosServices.obtenerHora(g) != null) {
                 // Cortamos los segundos para que quede más limpio (HH:mm)
-                String horaSimple = g.getHora().toString();
+                String horaSimple = gastosServices.obtenerHora(g).toString();
                 if(horaSimple.length() > 5) horaSimple = horaSimple.substring(0, 5);
                 
                 fechaHoraStr += " " + horaSimple;
@@ -399,9 +417,10 @@ public class TerminalController {
             imprimir(String.format(formato, 
                 "[" + i + "]", 
                 fechaHoraStr,
-                g.getConcepto(), 
+                gastosServices.obtenerConcepto(g), 
                 String.format("%.2f€", g.getImporte()), 
-                g.getCategoria().getNombre()));
+                //g.getCategoria().getNombre()));
+                categoriasService.getNombre(gastosServices.obtenerCategoria(g))));
         }
     }
 

@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="gestorgastos.services.CuentaService"/>
     <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
     <fullyQualifiedTypeName name="java.lang.Double"/>
-    <fullyQualifiedTypeName name="gestorgastos.services.ServicioAlertas"/>
     <fullyQualifiedTypeName name="gestorgastos.model.Notificacion"/>
     <fullyQualifiedTypeName name="gestorgastos.model.Cuenta"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
@@ -27,4 +26,7 @@
     <fullyQualifiedTypeName name="gestorgastos.strategies.FactoriaAlertas"/>
     <fullyQualifiedTypeName name="gestorgastos.controller.EstadoTerminal"/>
     <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.GastosServices"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.ServicioAlertas"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.CategoriasService"/>
 </qualifiedTypeNameHistroy>
