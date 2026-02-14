@@ -4,7 +4,11 @@ import gestorgastos.dto.GastoTemporal;
 import gestorgastos.model.*;
 import gestorgastos.repository.CuentaRepository;
 import gestorgastos.repository.CuentaRepositoryJson;
+
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CuentaService {
 
@@ -210,7 +214,61 @@ public class CuentaService {
 	public Gasto quitarGastoTerminal(int id, Cuenta cuenta) {
 		return cuenta.getGastos().remove(id);
 	}
+	
+	///////////////////////////////////////// PANTALLA VISUALIZACION GRAFICOS
+	
+	public List<Gasto> filtrarGastos(List<Gasto> todos, LocalDate desde, LocalDate hasta, List<Month> meses, List<Categoria> categorias) {
+	    GastosServices gastosServices = GastosServices.getInstancia();
+	    CategoriasService categoriasService = CategoriasService.getInstancia();
 
+	    return todos.stream()
+	        // 1. Filtro por rango de fechas
+	        .filter(g -> {
+	            LocalDate fechaGasto = gastosServices.obtenerFecha(g);
+	            if (desde != null && fechaGasto.isBefore(desde)) return false;
+	            if (hasta != null && fechaGasto.isAfter(hasta)) return false;
+	            return true;
+	        })
+	        // 2. Filtro por meses
+	        .filter(g -> {
+	            if (meses == null || meses.isEmpty()) return true;
+	            return meses.contains(gastosServices.obtenerFecha(g).getMonth());
+	        })
+	        // 3. Filtro por categorías
+	        .filter(g -> {
+	            if (categorias == null || categorias.isEmpty()) return true;
+	            String nombreCatGasto = categoriasService.getNombre(gastosServices.obtenerCategoria(g));
+	            return categorias.stream()
+	                .anyMatch(c -> categoriasService.getNombre(c).equals(nombreCatGasto));
+	        })
+	        .collect(Collectors.toList());
+	}
+	
+	/**
+	 * Agrupa los gastos por nombre de categoría y suma sus importes
+	 */
+	public Map<String, Double> agruparGastosPorCategoria(List<Gasto> gastos) {
+	    return gastos.stream()
+	            .collect(Collectors.groupingBy(
+	                    g -> g.getCategoria().getNombre(),
+	                    Collectors.summingDouble(Gasto::getImporte)
+	            ));
+	}
+
+	/**
+	 * Crea un mapa de nombres de categorías y sus colores hexadecimales.
+	 */
+	public Map<String, String> obtenerMapaColoresCategorias(Cuenta cuenta) {
+	    CategoriasService categoriasService = CategoriasService.getInstancia();
+	    return cuenta.getCategorias().stream()
+	            .collect(Collectors.toMap(
+	                    categoriasService::getNombre,
+	                    categoriasService::obtenerColorHex,
+	                    (a, b) -> a // En caso de duplicados, primero
+	            ));
+	}
+	
+	
 	//////////////////////////////////////////////////////////////////////////////////
 
 	public List<Cuenta> getCuentasUsuarioActual() {

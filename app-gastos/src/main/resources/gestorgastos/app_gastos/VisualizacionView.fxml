@@ -56,8 +56,8 @@
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL">
                      <items>
                         <PieChart fx:id="pieChart" title="Distribución por Categoría" />
-                        <BarChart fx:id="barChart" title="Gastos por Fecha">
-                          <xAxis><CategoryAxis label="Fecha" /></xAxis>
+                        <BarChart fx:id="barChart" title="Gastos por Categoria">
+                          <xAxis><CategoryAxis label="Categoria" /></xAxis>
                           <yAxis><NumberAxis label="Importe (€)" /></yAxis>
                         </BarChart>
                      </items>
