@@ -1,0 +1,240 @@
+package gestorgastos.controller;
+
+import gestorgastos.model.*;
+import gestorgastos.services.CategoriasService;
+import gestorgastos.services.CuentaService;
+import gestorgastos.services.SesionService;
+import javafx.collections.FXCollections;
+import javafx.fxml.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.shape.Circle;
+import javafx.scene.paint.Color;
+import javafx.stage.*;
+import java.io.IOException;
+
+public class GestionCategoriasController {
+
+    @FXML private ListView<Categoria> listaCategorias;
+    @FXML private Label lblTituloCuenta;
+
+    private Cuenta cuentaActual;
+    private CuentaService cuentaService = CuentaService.getInstancia();
+    private CategoriasService categoriasService = CategoriasService.getInstancia();
+    //private Cuenta cuentaActual;
+
+    /*public void setCuenta(Cuenta cuenta) {
+        this.cuentaActual = cuenta;
+        
+        // Inicialización de seguridad
+        if (this.cuentaActual.getCategorias() == null) {
+            this.cuentaActual.setCategorias(new ArrayList<>());
+        }
+        if (this.cuentaActual.getCategorias().isEmpty()) {
+            this.cuentaActual.getCategorias().add(new Categoria("General", "Defecto", "#D3D3D3"));
+        }
+
+        cargarCategorias();
+    }*/
+
+    @FXML
+    public void initialize() {
+        listaCategorias.setCellFactory(lv -> new ListCell<Categoria>() {
+            @Override
+            protected void updateItem(Categoria item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    setText(item.getNombre());
+                    Circle circulo = new Circle(10);
+                    try {
+                        circulo.setFill(Color.web(item.getColorHex()));
+                    } catch (Exception e) { circulo.setFill(Color.GREY); }
+                    circulo.setStroke(Color.BLACK);
+                    setGraphic(circulo);
+                }
+            }
+        });
+        //this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        this.cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        cargarCategorias();
+    }
+    
+    public void cargarCategorias() {
+    	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        if (cuentaActual != null) {
+            listaCategorias.setItems(FXCollections.observableArrayList(cuentaService.obtenerCategorias(cuentaActual)));
+        }
+    }
+
+    @FXML
+    private void crearCategoria() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/FormularioCategoriaView.fxml"));
+            Parent root = loader.load();
+            FormularioCategoriaController controller = loader.getController();
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            if (controller.getCategoriaResultado() != null) {
+            	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+                cuentaService.anadirCat(cuentaActual,controller.getCategoriaResultado());
+                //cuentaActual.getCategorias().add(controller.getCategoriaResultado());
+                cuentaService.agregarCuenta(cuentaActual);
+                cargarCategorias();
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+
+    @FXML
+    private void borrarCategoria() {
+        Categoria seleccionada = listaCategorias.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) return;
+        
+        if ("General".equals(categoriasService.getNombre(seleccionada))) {
+            mostrarAlerta("No puedes borrar la categoría General");
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setContentText("¿Borrar '" + categoriasService.getNombre(seleccionada) + "'? Sus gastos pasarán a 'General'.");
+        
+        if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+            cuentaService.cambiarCategoriaGastos(cuentaActual,seleccionada);
+        	/*Categoria catGeneral = cuentaActual.getCategorias().stream()
+                    .filter(c -> "General".equals(c.getNombre()))
+                    .findFirst().orElse(null);
+
+            if (catGeneral != null) {
+                for (Gasto g : cuentaActual.getGastos()) {
+                    if (g.getCategoria().equals(seleccionada)) {
+                        g.setCategoria(catGeneral);
+                    }
+                }
+            }
+            
+
+            cuentaActual.getCategorias().remove(seleccionada);
+            */
+            
+            cuentaService.agregarCuenta(cuentaActual);
+
+            SesionService.getInstancia().setCuentaActiva(cuentaActual);
+            
+            cargarCategorias();
+        }
+    }
+
+    // Botones superiores
+    @FXML
+    private void irAGastos() {
+        try {
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/DetalleCuentaView.fxml"));
+            Parent root = loader.load();
+            //DetalleCuentaController controller = loader.getController();
+            //controller.setCuenta(cuentaActual); 
+
+            Stage stage = new Stage();
+            stage.setTitle("Gastos: " + cuentaService.obtenerNombre(cuentaActual));
+            stage.setScene(new Scene(root));
+            //stage.setMaximized(true);
+            stage.show();
+            
+            ((Stage) listaCategorias.getScene().getWindow()).close();
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+    
+    @FXML 
+    private void irACMD() { 
+        try {
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/TerminalView.fxml"));
+            Parent root = loader.load();
+
+            TerminalController controller = loader.getController();
+            //controller.setCuenta(cuentaActual);
+
+            controller.setOnUpdate(() -> {
+                cargarCategorias();
+            });
+
+            Stage stage = new Stage();
+            stage.setTitle("Terminal - " + cuentaActual.getNombre());
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error al abrir la terminal.");
+        }
+    }
+
+    @FXML
+    private void irAVisualizacion() {
+        try {
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/VisualizacionView.fxml"));
+            Parent root = loader.load();
+
+            //VisualizacionController controller = loader.getController();
+            //controller.setCuenta(cuentaActual); 
+
+            Stage stage = (Stage) listaCategorias.getScene().getWindow();
+
+            stage.setScene(new Scene(root, 1100, 750)); 
+            stage.centerOnScreen();
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void irAAlertas() {
+        try {
+        	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
+        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/AlertaView.fxml"));
+            Parent root = loader.load();
+
+            
+            //AlertaController controller = loader.getController();
+            //controller.setCuenta(cuentaActual);
+
+            Stage stage = new Stage();
+            stage.setTitle("Configuración de Alertas - " + cuentaService.obtenerNombre(cuentaActual));
+            stage.setScene(new Scene(root));
+
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            new Alert(Alert.AlertType.ERROR, "Error al abrir la ventana de alertas.").show();
+        }
+    }
+
+    @FXML
+    private void volverInicio() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gestorgastos/app_gastos/PrincipalView.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Gestor de Gastos - Mis Cuentas");
+            stage.setScene(new Scene(root));
+            stage.show();
+            ((Stage) listaCategorias.getScene().getWindow()).close();
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+
+    private void mostrarAlerta(String msg) {
+        Alert a = new Alert(Alert.AlertType.WARNING); a.setContentText(msg); a.showAndWait();
+    }
+}

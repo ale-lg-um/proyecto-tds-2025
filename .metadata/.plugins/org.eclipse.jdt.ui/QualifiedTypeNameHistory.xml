@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="gestorgastos.model.Alerta"/>
+    <fullyQualifiedTypeName name="gestorgastos.model.Gasto"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.time.temporal.TemporalAdjuster"/>
+    <fullyQualifiedTypeName name="java.time.temporal.TemporalAdjusters"/>
+    <fullyQualifiedTypeName name="java.time.DayOfWeek"/>
+    <fullyQualifiedTypeName name="gestorgastos.strategies.EstrategiaSemanal"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.CuentaService"/>
+    <fullyQualifiedTypeName name="javafx.collections.FXCollections"/>
+    <fullyQualifiedTypeName name="java.lang.Double"/>
+    <fullyQualifiedTypeName name="gestorgastos.model.Notificacion"/>
+    <fullyQualifiedTypeName name="gestorgastos.model.Cuenta"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
+    <fullyQualifiedTypeName name="javafx.stage.FileChooser"/>
+    <fullyQualifiedTypeName name="gestorgastos.strategies.InterfaceAlerta"/>
+    <fullyQualifiedTypeName name="gestorgastos.model.CuentaCompartida"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="javafx.stage.FileChooser.ExtensionFilter"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.JsonNode"/>
+    <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
+    <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="gestorgastos.strategies.FactoriaAlertas"/>
+    <fullyQualifiedTypeName name="gestorgastos.controller.EstadoTerminal"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.SesionService"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.GastosServices"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.ServicioAlertas"/>
+    <fullyQualifiedTypeName name="gestorgastos.services.CategoriasService"/>
+</qualifiedTypeNameHistroy>

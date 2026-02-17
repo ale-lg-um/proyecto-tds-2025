@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<TabPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestorgastos.controller.AlertaController">
+  <tabs>
+    <Tab text="Configuración Alertas">
+      <VBox spacing="15" style="-fx-padding: 20;">
+          <Label text="Crear Nueva Regla">
+              <font><Font name="System Bold" size="16.0" /></font>
+          </Label>
+          
+          <HBox spacing="10" alignment="CENTER_LEFT">
+              <Label text="Periodo:" />
+              <ComboBox fx:id="comboTipo" prefWidth="120" />
+              <Label text="Límite (€):" />
+              <TextField fx:id="txtLimite" prefWidth="80" />
+          </HBox>
+          
+          <HBox spacing="10" alignment="CENTER_LEFT">
+              <Label text="Categoría (Opcional):" />
+              <ComboBox fx:id="comboCategoria" prefWidth="200" promptText="-- Todas --" />
+              <Button text="Añadir Alerta" onAction="#guardarAlertas" style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+          </HBox>
+          
+          <Separator />
+          <Label text="Mis Alertas Activas:" />
+          <ListView fx:id="listaAlertasConfiguradas" VBox.vgrow="ALWAYS" />
+          <Button text="Borrar Seleccionada" onAction="#borrarAlertas" style="-fx-text-fill: red;"/>
+      </VBox>
+    </Tab>
+
+    <Tab text="Historial de Notificaciones">
+       <VBox spacing="10" style="-fx-padding: 20;">
+           <ListView fx:id="listaHistorial" VBox.vgrow="ALWAYS" />
+           <Button text="Limpiar Historial" onAction="#limpiarHistorial" />
+       </VBox>
+    </Tab>
+  </tabs>
+</TabPane>
