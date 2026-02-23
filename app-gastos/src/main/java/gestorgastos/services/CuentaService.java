@@ -264,7 +264,7 @@ public class CuentaService {
 	            .collect(Collectors.toMap(
 	                    categoriasService::getNombre,
 	                    categoriasService::obtenerColorHex,
-	                    (a, b) -> a // En caso de duplicados, primero
+	                    (a, b) -> a // En caso de duplicados, primeros
 	            ));
 	}
 	

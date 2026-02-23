@@ -1,4 +1,4 @@
-package gestorgastos.controller;
+    package gestorgastos.controller;
 
 import gestorgastos.model.*;
 import gestorgastos.services.CategoriasService;
