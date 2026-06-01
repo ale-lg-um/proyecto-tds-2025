@@ -148,7 +148,7 @@ public class VisualizacionController {
 		List<Categoria> catsSeleccionadas = listCategorias.getSelectionModel().getSelectedItems();
 
 		// El filtrado lo hace el verdadero controlador
-		List<Gasto> todos = cuentaService.obtenerGastos(cuentaActual);
+		List<Gasto> todos = cuentaActual.getGastos();
 		List<Gasto> filtrados = cuentaService.filtrarGastos(todos, desde, hasta, mesesSeleccionados, catsSeleccionadas);
 
 		// Actualizamos
@@ -277,16 +277,11 @@ public class VisualizacionController {
 
 	private void actualizarCalendario(List<Gasto> gastos) {
 		calendarioGastos.clear(); // Borrar entradas anteriores
-
+		
 		for (Gasto g : gastos) {
-			// Crear una entrada en el calendario
-			Entry<String> entry = new Entry<>(
-					gastosServices.obtenerConcepto(g) + " (" + gastosServices.obtenerImporte(g) + "€)");
-
-			entry.setInterval(gastosServices.obtenerFecha(g), gastosServices.obtenerHora(g),
-					gastosServices.obtenerFecha(g), gastosServices.obtenerHora(g).plusHours(1));
-
-			calendarioGastos.addEntry(entry);
+		    Entry<String> entry = new Entry<>(g.getConcepto() + " (" + g.getImporte() + "€)");
+		    entry.setInterval(g.getFecha(), g.getHora(), g.getFecha(), g.getHora().plusHours(1));
+		    calendarioGastos.addEntry(entry);
 		}
 
 		// Ir a la fecha del último gasto si hay alguno, para no ver el calendario vacío

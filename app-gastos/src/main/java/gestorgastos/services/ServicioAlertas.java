@@ -97,6 +97,8 @@ public class ServicioAlertas {
 		return estrategia != null && estrategia.verificarLimite(alerta, cuenta, gasto);
 	}
 	
+	/*
+	
 	public String getTipo(Alerta alerta) {
 		return alerta.getTipo();
 	}
@@ -104,5 +106,8 @@ public class ServicioAlertas {
 	public double getLimite(Alerta alerta) {
 		return alerta.getLimite();
 	}
+	
+	*/
+	
 
 }

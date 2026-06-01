@@ -15,6 +15,7 @@ public class CategoriasService {
 		return new Categoria(nombre, st, hex);
 	}
 	
+	/*
 	public String getNombre(Categoria categoria) {
 		return categoria.getNombre();
 	}
@@ -22,4 +23,5 @@ public class CategoriasService {
 	public String obtenerColorHex(Categoria categoria) {
 		return categoria.getColorHex();
 	}
+	*/
 }

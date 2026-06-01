@@ -67,7 +67,7 @@ public class TerminalController {
         this.cuentaActiva = SesionService.getInstancia().getCuentaActiva();
         imprimir("========================================");
         //imprimir(" CONSOLA INTEGRADA - " + this.cuentaActiva.getNombre());
-        imprimir(" CONSOLA INTEGRADA - " + cuentaService.obtenerNombre(cuentaActiva));
+        imprimir(" CONSOLA INTEGRADA - " + cuentaActiva.getNombre());
         imprimir(" Comandos: registrar, borrar, listar, ayuda");
         imprimir("========================================");
         imprimir("\nCMD> ");
@@ -294,7 +294,7 @@ public class TerminalController {
     	tempCategoria = cat.getNombre();
         */
         
-        tempCategoria = categoriasService.getNombre(cat);
+        tempCategoria = cat.getNombre();
         
     	
     	if(cuentaActiva instanceof CuentaCompartida) {
@@ -321,10 +321,10 @@ public class TerminalController {
     private void procesarBorrar(String entrada) {
     	try {
     		int id = Integer.parseInt(entrada);
-    		if((id >= 0) && (id < cuentaService.obtenerGastos(cuentaActiva).size())) {
+    		if((id >= 0) && (id < cuentaActiva.getGastos().size())) {
     			Gasto g = cuentaService.quitarGastoTerminal(id, cuentaActiva);
     			guardarCambios();
-    			imprimir("✓ Borrado: " + gastosServices.obtenerConcepto(g)); 
+    			imprimir("✓ Borrado: " + g.getConcepto()); 
     		} else {
     			imprimir("ERROR: id inválido.");
     		}
@@ -356,7 +356,7 @@ public class TerminalController {
     	// Corrección tercer PR
     	Alerta alertaSaltada = cuentaService.agregarGasto(cuentaActiva, gastosServices.crearGasto(tempConcepto, tempImporte, tempFecha, cat, pagador, tempHora));
     	if (alertaSaltada != null) {
-    		String mensaje = "Has superado el límite de " + alertasService.getLimite(alertaSaltada) + "€ definido en tu alerta.";
+    		String mensaje = "Has superado el límite de " + alertaSaltada.getLimite() + "€ definido en tu alerta.";
     		// Como estamos en CMD, no puede aparecer una ventana con el mensaje, así que el mensaje se imprime por la terminal
     		imprimir("\n**************************************************");
     		imprimir("⚠️  GASTO BLOQUEADO POR ALERTA");
@@ -391,7 +391,7 @@ public class TerminalController {
 
     // Listamos los gastos
     private void listarGastos() {
-        if (cuentaService.obtenerGastos(cuentaActiva).isEmpty()) {
+        if (cuentaActiva.getGastos().isEmpty()) {
             imprimir("(Sin gastos)");
             return;
         }
@@ -401,26 +401,25 @@ public class TerminalController {
         imprimir(String.format(formato, "ID", "FECHA Y HORA", "CONCEPTO", "IMPORTE", "CATEGORIA"));
         imprimir("-----------------------------------------------------------------------");
 
-        for (int i = 0; i < cuentaService.obtenerGastos(cuentaActiva).size(); i++) {
-            Gasto g = cuentaService.obtenerGastos(cuentaActiva).get(i);
+        for (int i = 0; i < cuentaActiva.getGastos().size(); i++) {
+            Gasto g = cuentaActiva.getGastos().get(i);
             
             // Combinamos fecha y hora para verlo bonito
-            String fechaHoraStr = gastosServices.obtenerFecha(g).toString();
-            if (gastosServices.obtenerHora(g) != null) {
+            String fechaHoraStr = g.getFecha().toString();
+            if (g.getHora() != null) {
                 // Cortamos los segundos para que quede más limpio (HH:mm)
-                String horaSimple = gastosServices.obtenerHora(g).toString();
+                String horaSimple = g.getHora().toString();
                 if(horaSimple.length() > 5) horaSimple = horaSimple.substring(0, 5);
                 
                 fechaHoraStr += " " + horaSimple;
             }
 
             imprimir(String.format(formato, 
-                "[" + i + "]", 
-                fechaHoraStr,
-                gastosServices.obtenerConcepto(g), 
-                String.format("%.2f€", g.getImporte()), 
-                //g.getCategoria().getNombre()));
-                categoriasService.getNombre(gastosServices.obtenerCategoria(g))));
+            	    "[" + i + "]", 
+            	    fechaHoraStr,
+            	    g.getConcepto(), 
+            	    String.format("%.2f€", g.getImporte()), 
+            	    g.getCategoria().getNombre()));
         }
     }
 

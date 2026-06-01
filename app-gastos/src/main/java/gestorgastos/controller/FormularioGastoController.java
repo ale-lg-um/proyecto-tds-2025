@@ -109,7 +109,7 @@ public class FormularioGastoController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Gasto Bloqueado");
             alert.setHeaderText("Límite superado");
-            alert.setContentText("Has superado el límite " + servicioAlertas.getTipo(alertaSaltada) + " de " + servicioAlertas.getLimite(alertaSaltada) + "€ definido en tu alerta.\n\nSe ha generado una notificación aunque el gasto se guardará.");
+            alert.setContentText("Has superado el límite " + alertaSaltada.getTipo() + " de " + alertaSaltada.getLimite() + "€ definido en tu alerta.\n\nSe ha generado una notificación aunque el gasto se guardará.");
             alert.showAndWait();
         }
 

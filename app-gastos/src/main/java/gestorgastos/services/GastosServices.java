@@ -50,15 +50,16 @@ public class GastosServices {
             }
 			*/
 			// Recorremos los gastos
-    	for (Gasto g : cuentaService.obtenerGastos(cuenta)) {
+    	for (Gasto g : cuenta.getGastos()) {
         // ERROR ANTERIOR: g.getCategoria().equals(categoria) 
         // SOLUCIÓN: Comparar por el nombre de la categoría
-    		if (g.getCategoria().getNombre().equalsIgnoreCase(categoriasService.getNombre(categoria))) {
+    		if (g.getCategoria().getNombre().equalsIgnoreCase(categoria.getNombre())) {
     			g.setCategoria(generalCat);
     		}
     	}
 	}
 	
+	/*
 	public double obtenerImporte(Gasto gasto) {
 		return gasto.getImporte();
 	}
@@ -79,10 +80,12 @@ public class GastosServices {
 		return gasto.getCategoria();
 	}
 
+	*/
 	public Gasto crearGasto(String concepto, double importe, LocalDate fecha, Categoria cat, String pagador, LocalTime hora){
 		Gasto gasto = Gasto.crearGasto(concepto, importe, fecha, cat, pagador);
 		gasto.setHora(hora);
 		return gasto;
 	}
+	
 }
 

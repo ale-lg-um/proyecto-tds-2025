@@ -156,10 +156,13 @@ public class CuentaService {
 	}
 
 	/////////////////////////////////////////// SERVICIO PANTALLA CATEGORIAS
+	
+	/*
 	public List<Categoria> obtenerCategorias(Cuenta cuenta) {
 		return cuenta.getCategorias();
 	}
-
+	*/
+	
 	public void anadirCat(Cuenta cuenta, Categoria categoria) {
 		cuenta.getCategorias().add(categoria);
 	}
@@ -169,8 +172,8 @@ public class CuentaService {
 		CategoriasService categoriasService = CategoriasService.getInstancia();
 		GastosServices gastosService = GastosServices.getInstancia();
 
-		Categoria generalCat = obtenerCategorias(cuenta).stream()
-				.filter(c -> "General".equals(categoriasService.getNombre(c))).findFirst().orElse(null);
+		Categoria generalCat = cuenta.getCategorias().stream()
+				.filter(c -> "General".equals(c.getNombre())).findFirst().orElse(null);
 		/*
 		if (generalCat != null) {
 			gastosService.establecerCat(cuenta, categoria, generalCat);
@@ -180,18 +183,19 @@ public class CuentaService {
 		*/
 
 		// 2. Si existe General, movemos los gastos de la categoría vieja a la nueva
-		if (generalCat != null && !categoriasService.getNombre(categoria).equalsIgnoreCase("General")) {
+		if (generalCat != null && !categoria.getNombre().equalsIgnoreCase("General")) {
 			gastosService.establecerCat(cuenta, categoria, generalCat);
 		}
 
 		// 3. AHORA SÍ, eliminamos la categoría de la lista de la cuenta
 		// Usamos removeIf para asegurar que la borramos por nombre también
-		cuenta.getCategorias().removeIf(c -> categoriasService.getNombre(c).equalsIgnoreCase(categoriasService.getNombre(categoria)));
+		cuenta.getCategorias().removeIf(c -> c.getNombre().equalsIgnoreCase(categoria.getNombre()));
 
 
 		
 	}
-
+	
+	/*
 	public List<Gasto> obtenerGastos(Cuenta cuenta) {
 		return cuenta.getGastos();
 	}
@@ -199,15 +203,16 @@ public class CuentaService {
 	public String obtenerNombre(Cuenta cuenta) {
 		return cuenta.getNombre();
 	}
-
+	*/
+	
 	/////////////////////////////////////// PANTALLA  TERMINAL
 
 	public Categoria procesarCatTerminal(String nombreCat, Cuenta cuenta) {
 		CategoriasService categoriasService = CategoriasService.getInstancia();
-		Categoria cat = obtenerCategorias(cuenta).stream()
-				.filter(c -> categoriasService.getNombre(c).equalsIgnoreCase(nombreCat))
+		Categoria cat = cuenta.getCategorias().stream()
+				.filter(c -> c.getNombre().equalsIgnoreCase(nombreCat))
 				.findFirst()
-				.orElse(obtenerCategorias(cuenta).get(0));
+				.orElse(cuenta.getCategorias().get(0));
 		return cat;
 	}
 	
@@ -224,7 +229,7 @@ public class CuentaService {
 	    return todos.stream()
 	        // 1. Filtro por rango de fechas
 	        .filter(g -> {
-	            LocalDate fechaGasto = gastosServices.obtenerFecha(g);
+	            LocalDate fechaGasto = g.getFecha();
 	            if (desde != null && fechaGasto.isBefore(desde)) return false;
 	            if (hasta != null && fechaGasto.isAfter(hasta)) return false;
 	            return true;
@@ -232,14 +237,14 @@ public class CuentaService {
 	        // 2. Filtro por meses
 	        .filter(g -> {
 	            if (meses == null || meses.isEmpty()) return true;
-	            return meses.contains(gastosServices.obtenerFecha(g).getMonth());
+	            return meses.contains(g.getFecha().getMonth());
 	        })
 	        // 3. Filtro por categorías
 	        .filter(g -> {
 	            if (categorias == null || categorias.isEmpty()) return true;
-	            String nombreCatGasto = categoriasService.getNombre(gastosServices.obtenerCategoria(g));
+	            String nombreCatGasto = g.getCategoria().getNombre();
 	            return categorias.stream()
-	                .anyMatch(c -> categoriasService.getNombre(c).equals(nombreCatGasto));
+	                .anyMatch(c -> c.getNombre().equals(nombreCatGasto));
 	        })
 	        .collect(Collectors.toList());
 	}
@@ -258,14 +263,14 @@ public class CuentaService {
 	/**
 	 * Crea un mapa de nombres de categorías y sus colores hexadecimales.
 	 */
+
 	public Map<String, String> obtenerMapaColoresCategorias(Cuenta cuenta) {
-	    CategoriasService categoriasService = CategoriasService.getInstancia();
 	    return cuenta.getCategorias().stream()
-	            .collect(Collectors.toMap(
-	                    categoriasService::getNombre,
-	                    categoriasService::obtenerColorHex,
-	                    (a, b) -> a // En caso de duplicados, primeros
-	            ));
+	        .collect(Collectors.toMap(
+	            Categoria::getNombre,
+	            Categoria::getColorHex,
+	            (a, b) -> a
+	        ));
 	}
 	
 	

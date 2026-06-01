@@ -66,7 +66,7 @@ public class GestionCategoriasController {
     public void cargarCategorias() {
     	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
         if (cuentaActual != null) {
-            listaCategorias.setItems(FXCollections.observableArrayList(cuentaService.obtenerCategorias(cuentaActual)));
+            listaCategorias.setItems(FXCollections.observableArrayList(cuentaActual.getCategorias()));
         }
     }
 
@@ -97,13 +97,13 @@ public class GestionCategoriasController {
         Categoria seleccionada = listaCategorias.getSelectionModel().getSelectedItem();
         if (seleccionada == null) return;
         
-        if ("General".equals(categoriasService.getNombre(seleccionada))) {
+        if ("General".equals(seleccionada.getNombre())) {
             mostrarAlerta("No puedes borrar la categoría General");
             return;
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setContentText("¿Borrar '" + categoriasService.getNombre(seleccionada) + "'? Sus gastos pasarán a 'General'.");
+        alert.setContentText("¿Borrar '" + seleccionada.getNombre() + "'? Sus gastos pasarán a 'General'.");
         
         if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
         	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
@@ -143,7 +143,7 @@ public class GestionCategoriasController {
             //controller.setCuenta(cuentaActual); 
 
             Stage stage = new Stage();
-            stage.setTitle("Gastos: " + cuentaService.obtenerNombre(cuentaActual));
+            stage.setTitle("Gastos: " + cuentaActual.getNombre());
             stage.setScene(new Scene(root));
             //stage.setMaximized(true);
             stage.show();
@@ -209,7 +209,7 @@ public class GestionCategoriasController {
             //controller.setCuenta(cuentaActual);
 
             Stage stage = new Stage();
-            stage.setTitle("Configuración de Alertas - " + cuentaService.obtenerNombre(cuentaActual));
+            stage.setTitle("Configuración de Alertas - " + cuentaActual.getNombre());
             stage.setScene(new Scene(root));
 
             stage.show();
