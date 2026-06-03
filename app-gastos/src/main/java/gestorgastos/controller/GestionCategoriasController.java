@@ -86,7 +86,7 @@ public class GestionCategoriasController {
             	//Cuenta cuentaActual = SesionService.getInstancia().getCuentaActiva();
                 cuentaService.anadirCat(cuentaActual,controller.getCategoriaResultado());
                 //cuentaActual.getCategorias().add(controller.getCategoriaResultado());
-                cuentaService.agregarCuenta(cuentaActual);
+                //cuentaService.agregarCuenta(cuentaActual);
                 cargarCategorias();
             }
         } catch (IOException e) { e.printStackTrace(); }
@@ -124,9 +124,9 @@ public class GestionCategoriasController {
             cuentaActual.getCategorias().remove(seleccionada);
             */
             
-            cuentaService.agregarCuenta(cuentaActual);
+            //cuentaService.agregarCuenta(cuentaActual);
 
-            SesionService.getInstancia().setCuentaActiva(cuentaActual);
+            //SesionService.getInstancia().setCuentaActiva(cuentaActual);
             
             cargarCategorias();
         }

@@ -104,6 +104,7 @@ public class CuentaService {
 		}
 
 		repositorio.save(cuenta);
+		SesionService.getInstancia().setCuentaActiva(cuenta);
 		return saltada;
 	}
 
@@ -154,6 +155,21 @@ public class CuentaService {
 
 		return resultados;
 	}
+	
+	public void eliminarGasto(Cuenta cuenta, Gasto gasto) {
+		cuenta.eliminarGasto(gasto);
+		repositorio.save(cuenta);
+		SesionService.getInstancia().setCuentaActiva(cuenta);
+	}
+
+	public void actualizarGastoEditado(Cuenta cuenta, Gasto antiguo, Gasto nuevo) {
+		int index = cuenta.getGastos().indexOf(antiguo);
+		if (index != -1) {
+			cuenta.getGastos().set(index, nuevo);
+			repositorio.save(cuenta);
+			SesionService.getInstancia().setCuentaActiva(cuenta);
+		}
+	}
 
 	/////////////////////////////////////////// SERVICIO PANTALLA CATEGORIAS
 	
@@ -165,6 +181,8 @@ public class CuentaService {
 	
 	public void anadirCat(Cuenta cuenta, Categoria categoria) {
 		cuenta.getCategorias().add(categoria);
+		repositorio.save(cuenta);
+		SesionService.getInstancia().setCuentaActiva(cuenta);
 	}
 	
 	/*
@@ -198,8 +216,8 @@ public class CuentaService {
 	public void cambiarCategoriaGastos(Cuenta cuenta, Categoria categoria) {
 		// El servicio delega toda la lógica de listas al EXPERTO (La propia cuenta)
 		cuenta.eliminarCategoriaYReasignarGastos(categoria);
-		
-		// (Nota: En el Bloque 1 añadiremos aquí el guardado en base de datos)
+		repositorio.save(cuenta);
+		SesionService.getInstancia().setCuentaActiva(cuenta); 	
 	}
 	
 	

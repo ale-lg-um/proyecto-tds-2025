@@ -799,6 +799,18 @@
       "colorHex" : "#D3D3D3"
     },
     "pagador" : "Yo"
+  }, {
+    "id" : "f3df0167-c5df-4d32-b5fa-4b2661cf7fc3",
+    "concepto" : "Prueba Junio",
+    "importe" : 10.0,
+    "fecha" : [ 2026, 6, 3 ],
+    "hora" : "03:39",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
   } ],
   "alertas" : [ {
     "tipo" : "SEMANAL",
@@ -848,6 +860,10 @@
   }, {
     "mensaje" : "Has superado el límite de 15.0€ establecido en la alerta",
     "fecha" : "2026-01-28 16:22:37",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 20.0€ en General",
+    "fecha" : "2026-06-03 03:39:32",
     "leida" : false
   } ],
   "categorias" : [ {

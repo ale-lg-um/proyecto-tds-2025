@@ -168,8 +168,13 @@ public class DetalleCuentaController {
 				"¿Seguro que quieres borrar: " + seleccionado.getConcepto() + "?");
 
 		if (confirmado) {
+			/*
 			cuentaActual.eliminarGasto(seleccionado);
 			cuentaService.agregarCuenta(cuentaActual);
+			actualizarVista();
+			*/
+			// El servicio borra, guarda y actualiza todo
+			cuentaService.eliminarGasto(cuentaActual, seleccionado);
 			actualizarVista();
 		}
 	}
@@ -184,14 +189,17 @@ public class DetalleCuentaController {
 
 			if (gastoEdicion == null) {
 
-				Alerta alerta = cuentaService.agregarGasto(cuentaActual, gastoResultante);
+				cuentaService.agregarGasto(cuentaActual, gastoResultante);
 
 			} else {
+				/*
 				int index = cuentaActual.getGastos().indexOf(gastoEdicion);
 				if (index != -1) {
 					cuentaActual.getGastos().set(index, gastoResultante);
 					cuentaService.agregarCuenta(cuentaActual);
 				}
+				*/
+				cuentaService.actualizarGastoEditado(cuentaActual, gastoEdicion, gastoResultante);
 			}
 			actualizarVista();
 		}

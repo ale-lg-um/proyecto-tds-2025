@@ -323,7 +323,8 @@ public class TerminalController {
     		int id = Integer.parseInt(entrada);
     		if((id >= 0) && (id < cuentaActiva.getGastos().size())) {
     			Gasto g = cuentaService.quitarGastoTerminal(id, cuentaActiva);
-    			guardarCambios();
+    			//guardarCambios();
+    			cuentaService.eliminarGasto(cuentaActiva, g); // Usamos el servicio
     			imprimir("✓ Borrado: " + g.getConcepto()); 
     		} else {
     			imprimir("ERROR: id inválido.");
