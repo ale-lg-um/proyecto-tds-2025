@@ -353,6 +353,114 @@
   "miembros" : [ "Mario", "Jaime" ],
   "tipo" : "COMPARTIDA"
 }, {
+  "id" : "6069abae-e151-486c-ba45-12acb43287dd",
+  "nombre" : "normal3",
+  "gastos" : [ {
+    "id" : "df6d781f-8e23-4a76-90df-dd4e5b454e0e",
+    "concepto" : "desayuno",
+    "importe" : 60.0,
+    "fecha" : [ 2026, 2, 9 ],
+    "hora" : "19:01",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "2eaf977a-ecf4-48b0-9a8c-4dc7fc04f88c",
+    "concepto" : "comida",
+    "importe" : 60.0,
+    "fecha" : [ 2026, 2, 9 ],
+    "hora" : "19:28",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "ec063066-dfa0-47fb-9fb4-aeb7a9c5990b",
+    "concepto" : "cena",
+    "importe" : 70.0,
+    "fecha" : [ 2026, 2, 10 ],
+    "hora" : "18:52",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  }, {
+    "id" : "ad222478-539f-4217-a2e8-21e87b396edb",
+    "concepto" : "desayuno2",
+    "importe" : 30.0,
+    "fecha" : [ 2026, 2, 10 ],
+    "hora" : "20:12",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ {
+    "tipo" : "SEMANAL",
+    "limite" : 50.0,
+    "categoria" : null
+  } ],
+  "notificaciones" : [ {
+    "mensaje" : "Has superado el límite de 50.0€ establecido en la alerta",
+    "fecha" : "2026-02-09 19:28:56",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 18:52:32",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 20:10:49",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 20:11:33",
+    "leida" : false
+  }, {
+    "mensaje" : "Límite superado: 50.0€ en General",
+    "fecha" : "2026-02-10 20:12:11",
+    "leida" : false
+  } ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "tipo" : "PERSONAL"
+}, {
+  "id" : "725461df-df6f-4976-be25-bef9bac7c29c",
+  "nombre" : "dos",
+  "gastos" : [ {
+    "id" : "d4f3eb31-753d-49cc-ace9-b191addaf75f",
+    "concepto" : "gasto1",
+    "importe" : 100.0,
+    "fecha" : [ 2026, 2, 12 ],
+    "hora" : "19:43",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "Yo"
+  } ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "tipo" : "PERSONAL"
+}, {
   "id" : "455a5bfa-edb0-4efe-ba80-cb02736cbf83",
   "nombre" : "Normal",
   "gastos" : [ {
@@ -542,9 +650,9 @@
     "fecha" : [ 2026, 1, 24 ],
     "hora" : "13:50",
     "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
+      "nombre" : "Año-Nuevo",
+      "descripcion" : "",
+      "colorHex" : "#800080"
     },
     "pagador" : "Yo"
   }, {
@@ -754,114 +862,6 @@
     "nombre" : "Curso-Escolar",
     "descripcion" : "",
     "colorHex" : "#FFAB00"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
-  "id" : "6069abae-e151-486c-ba45-12acb43287dd",
-  "nombre" : "normal3",
-  "gastos" : [ {
-    "id" : "df6d781f-8e23-4a76-90df-dd4e5b454e0e",
-    "concepto" : "desayuno",
-    "importe" : 60.0,
-    "fecha" : [ 2026, 2, 9 ],
-    "hora" : "19:01",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "2eaf977a-ecf4-48b0-9a8c-4dc7fc04f88c",
-    "concepto" : "comida",
-    "importe" : 60.0,
-    "fecha" : [ 2026, 2, 9 ],
-    "hora" : "19:28",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "ec063066-dfa0-47fb-9fb4-aeb7a9c5990b",
-    "concepto" : "cena",
-    "importe" : 70.0,
-    "fecha" : [ 2026, 2, 10 ],
-    "hora" : "18:52",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  }, {
-    "id" : "ad222478-539f-4217-a2e8-21e87b396edb",
-    "concepto" : "desayuno2",
-    "importe" : 30.0,
-    "fecha" : [ 2026, 2, 10 ],
-    "hora" : "20:12",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  } ],
-  "alertas" : [ {
-    "tipo" : "SEMANAL",
-    "limite" : 50.0,
-    "categoria" : null
-  } ],
-  "notificaciones" : [ {
-    "mensaje" : "Has superado el límite de 50.0€ establecido en la alerta",
-    "fecha" : "2026-02-09 19:28:56",
-    "leida" : false
-  }, {
-    "mensaje" : "Límite superado: 50.0€ en General",
-    "fecha" : "2026-02-10 18:52:32",
-    "leida" : false
-  }, {
-    "mensaje" : "Límite superado: 50.0€ en General",
-    "fecha" : "2026-02-10 20:10:49",
-    "leida" : false
-  }, {
-    "mensaje" : "Límite superado: 50.0€ en General",
-    "fecha" : "2026-02-10 20:11:33",
-    "leida" : false
-  }, {
-    "mensaje" : "Límite superado: 50.0€ en General",
-    "fecha" : "2026-02-10 20:12:11",
-    "leida" : false
-  } ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
-  } ],
-  "tipo" : "PERSONAL"
-}, {
-  "id" : "725461df-df6f-4976-be25-bef9bac7c29c",
-  "nombre" : "dos",
-  "gastos" : [ {
-    "id" : "d4f3eb31-753d-49cc-ace9-b191addaf75f",
-    "concepto" : "gasto1",
-    "importe" : 100.0,
-    "fecha" : [ 2026, 2, 12 ],
-    "hora" : "19:43",
-    "categoria" : {
-      "nombre" : "General",
-      "descripcion" : "Gastos varios",
-      "colorHex" : "#D3D3D3"
-    },
-    "pagador" : "Yo"
-  } ],
-  "alertas" : [ ],
-  "notificaciones" : [ ],
-  "categorias" : [ {
-    "nombre" : "General",
-    "descripcion" : "Gastos varios",
-    "colorHex" : "#D3D3D3"
   } ],
   "tipo" : "PERSONAL"
 } ]

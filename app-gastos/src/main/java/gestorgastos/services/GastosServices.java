@@ -38,17 +38,18 @@ public class GastosServices {
 		return gastoResultado;
 	}
 	
+	/*
 	public void establecerCat(Cuenta cuenta, Categoria categoria, Categoria generalCat) {
 
 		CuentaService cuentaService = CuentaService.getInstancia();
 		CategoriasService categoriasService = CategoriasService.getInstancia();
 
 		//for (Gasto g : cuentaService.obtenerGastos(cuenta)) {
-			/*
-            if (g.getCategoria().equals(categoria)) {
-                g.setCategoria(generalCat);
-            }
-			*/
+			
+            //if (g.getCategoria().equals(categoria)) {
+             //   g.setCategoria(generalCat);
+            //}
+			
 			// Recorremos los gastos
     	for (Gasto g : cuenta.getGastos()) {
         // ERROR ANTERIOR: g.getCategoria().equals(categoria) 
@@ -58,6 +59,7 @@ public class GastosServices {
     		}
     	}
 	}
+*/
 	
 	/*
 	public double obtenerImporte(Gasto gasto) {

@@ -21,7 +21,6 @@ public abstract class Cuenta {
 	private java.util.List<Alerta> alertas = new java.util.ArrayList<>();
 	// En Cuenta.java
 
-
 	private List<Notificacion> notificaciones = new ArrayList<>();
 
 	// Cada cuenta tiene una lista de categorías
@@ -72,11 +71,11 @@ public abstract class Cuenta {
 	public List<Gasto> getGastos() {
 		return gastos;
 	}
-	
+
 	public List<Categoria> getCategorias() {
 		return categorias;
 	}
-	
+
 	public void agregarCategoria(Categoria categoria) {
 		this.categorias.add(categoria);
 	}
@@ -84,7 +83,7 @@ public abstract class Cuenta {
 	public java.util.List<Alerta> getAlertas() {
 		return alertas;
 	}
-	
+
 	public void agregarAlerta(Alerta alerta) {
 		this.alertas.add(alerta);
 	}
@@ -92,46 +91,66 @@ public abstract class Cuenta {
 	public java.util.List<Notificacion> getNotificaciones() {
 		return notificaciones;
 	}
-	
+
 	public void agregarNotificacion(Notificacion notificacion) {
 		this.notificaciones.add(notificacion);
 	}
-	
+
 	// Añadir notificaciones cuando salta una alerta
 	public void anadirNotificacion(String notificacion) {
-		
+
 		if (this.notificaciones == null) {
-	        this.notificaciones = new ArrayList<>();
-	        
-	    }
+			this.notificaciones = new ArrayList<>();
+
+		}
 
 		Notificacion n = new Notificacion(notificacion);
-		
+
 		notificaciones.add(n);
-	    
+
+	}
+
+	public void eliminarCategoriaYReasignarGastos(Categoria categoriaABorrar) {
+		//La cuenta busca su categoría General
+		Categoria generalCat = this.categorias.stream().filter(c -> "General".equalsIgnoreCase(c.getNombre()))
+				.findFirst().orElse(null);
+
+		//La cuenta reasigna sus gastos a General
+		if (generalCat != null && !categoriaABorrar.getNombre().equalsIgnoreCase("General")) {
+			for (Gasto g : this.gastos) {
+				if (g.getCategoria().getNombre().equalsIgnoreCase(categoriaABorrar.getNombre())) {
+					g.setCategoria(generalCat);
+				}
+			}
+		}
+
+		//La cuenta borra la categoría de su lista
+		this.categorias.removeIf(c -> c.getNombre().equalsIgnoreCase(categoriaABorrar.getNombre()));
 	}
 
 	@Override
 	public String toString() {
 		return nombre;
 	}
-	
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cuenta cuenta = (Cuenta) o;
-        return id != null && id.equals(cuenta.id);
-    }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		Cuenta cuenta = (Cuenta) o;
+		return id != null && id.equals(cuenta.id);
+	}
 
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
-    
-	public static boolean noHayAlertas(Cuenta cuenta){
-		if (cuenta ==null || cuenta.getAlertas() == null || cuenta.getAlertas().isEmpty()) return true;
+	@Override
+	public int hashCode() {
+		return getClass().hashCode();
+	}
+
+	public static boolean noHayAlertas(Cuenta cuenta) {
+		if (cuenta == null || cuenta.getAlertas() == null || cuenta.getAlertas().isEmpty())
+			return true;
 		return false;
 	}
 }

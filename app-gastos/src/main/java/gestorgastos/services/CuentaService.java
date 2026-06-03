@@ -166,7 +166,8 @@ public class CuentaService {
 	public void anadirCat(Cuenta cuenta, Categoria categoria) {
 		cuenta.getCategorias().add(categoria);
 	}
-
+	
+	/*
 	public void cambiarCategoriaGastos(Cuenta cuenta, Categoria categoria) {
 
 		CategoriasService categoriasService = CategoriasService.getInstancia();
@@ -174,13 +175,13 @@ public class CuentaService {
 
 		Categoria generalCat = cuenta.getCategorias().stream()
 				.filter(c -> "General".equals(c.getNombre())).findFirst().orElse(null);
-		/*
-		if (generalCat != null) {
-			gastosService.establecerCat(cuenta, categoria, generalCat);
-		}
+		
+		//if (generalCat != null) {
+		//	gastosService.establecerCat(cuenta, categoria, generalCat);
+		//}
 
-		cuenta.getCategorias().remove(categoria);
-		*/
+		//cuenta.getCategorias().remove(categoria);
+		
 
 		// 2. Si existe General, movemos los gastos de la categoría vieja a la nueva
 		if (generalCat != null && !categoria.getNombre().equalsIgnoreCase("General")) {
@@ -189,11 +190,18 @@ public class CuentaService {
 
 		// 3. AHORA SÍ, eliminamos la categoría de la lista de la cuenta
 		// Usamos removeIf para asegurar que la borramos por nombre también
-		cuenta.getCategorias().removeIf(c -> c.getNombre().equalsIgnoreCase(categoria.getNombre()));
-
-
-		
+		cuenta.getCategorias().removeIf(c -> c.getNombre().equalsIgnoreCase(categoria.getNombre()));		
 	}
+	*/
+	
+	// Sustiuimos el metodo para cambiar la categoria de los gastos pidiendoselo a la cuenta, no aqui directamente
+	public void cambiarCategoriaGastos(Cuenta cuenta, Categoria categoria) {
+		// El servicio delega toda la lógica de listas al EXPERTO (La propia cuenta)
+		cuenta.eliminarCategoriaYReasignarGastos(categoria);
+		
+		// (Nota: En el Bloque 1 añadiremos aquí el guardado en base de datos)
+	}
+	
 	
 	/*
 	public List<Gasto> obtenerGastos(Cuenta cuenta) {
