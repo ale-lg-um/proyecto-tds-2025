@@ -880,4 +880,16 @@
     "colorHex" : "#FFAB00"
   } ],
   "tipo" : "PERSONAL"
+}, {
+  "id" : "1e482370-bef4-4fe5-9d41-428daeda76f9",
+  "nombre" : "pruebaterminal",
+  "gastos" : [ ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "tipo" : "PERSONAL"
 } ]

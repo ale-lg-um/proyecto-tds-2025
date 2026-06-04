@@ -233,7 +233,7 @@ public class CuentaService {
 	
 	/////////////////////////////////////// PANTALLA  TERMINAL
 
-	public Categoria procesarCatTerminal(String nombreCat, Cuenta cuenta) {
+	/*public Categoria procesarCatTerminal(String nombreCat, Cuenta cuenta) {
 		CategoriasService categoriasService = CategoriasService.getInstancia();
 		Categoria cat = cuenta.getCategorias().stream()
 				.filter(c -> c.getNombre().equalsIgnoreCase(nombreCat))
@@ -244,7 +244,7 @@ public class CuentaService {
 	
 	public Gasto quitarGastoTerminal(int id, Cuenta cuenta) {
 		return cuenta.getGastos().remove(id);
-	}
+	}*/
 	
 	///////////////////////////////////////// PANTALLA VISUALIZACION GRAFICOS
 	

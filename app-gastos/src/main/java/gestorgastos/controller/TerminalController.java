@@ -281,7 +281,7 @@ public class TerminalController {
     	pasoActual = EstadoTerminal.CATEGORIA;
     	imprimir("Categoría (o Enter para General): ");
     }
-    
+    /*
     private void procesarCategoria(String entrada) {
     	String catNombre = entrada;
         Categoria cat = cuentaService.procesarCatTerminal(catNombre,cuentaActiva);
@@ -292,7 +292,7 @@ public class TerminalController {
     			.findFirst()
     			.orElse(cuentaActiva.getCategorias().get(0));
     	tempCategoria = cat.getNombre();
-        */
+        *
         
         tempCategoria = cat.getNombre();
         
@@ -303,22 +303,53 @@ public class TerminalController {
     	} else {
     		guardarGasto(cat, "Yo");
     	}
+    }*/
+    
+    private void procesarCategoria(String entrada) {
+    	// Buscar categoría
+    	Categoria cat = this.cuentaActiva.getCategorias().stream()
+    			.filter(c -> c.getNombre().equalsIgnoreCase(entrada))
+    			.findFirst()
+    			.orElse(cuentaActiva.getCategorias().get(0));
+    	
+    	tempCategoria = cat.getNombre();
+    	
+    	if(cuentaActiva instanceof CuentaCompartida) {
+    		pasoActual = EstadoTerminal.PAGADOR;
+    		imprimir("Pagador (nombre): ");
+    	} else {
+    		guardarGasto(cat, "Yo");
+    	}
     }
     
-    private void procesarPagador(String entrada) {
+    /*private void procesarPagador(String entrada) {
     	if(entrada.isEmpty()) {
     		throw new RuntimeException("El pagador no puede ser nulo");
     	} else {
     		/*Categoria cat = cuentaActiva.getCategorias().stream()
     				.filter(c -> c.getNombre().equalsIgnoreCase(tempCategoria))
     				.findFirst()
-    				.orElse(cuentaActiva.getCategorias().get(0));*/
+    				.orElse(cuentaActiva.getCategorias().get(0));*
     		Categoria cat = cuentaService.procesarCatTerminal(tempCategoria, cuentaActiva);
+    		guardarGasto(cat, entrada);
+    	}
+    }*/
+    
+    private void procesarPagador(String entrada) {
+    	if(entrada.isEmpty()) {
+    		throw new RuntimeException("El pagador no puede ser nulo");
+    	} else {
+    		// Recuperar categoria guardada
+    		Categoria cat = cuentaActiva.getCategorias().stream()
+    				.filter(c -> c.getNombre().equalsIgnoreCase(tempCategoria))
+    				.findFirst()
+    				.orElse(cuentaActiva.getCategorias().get(0));
+    		
     		guardarGasto(cat, entrada);
     	}
     }
     
-    private void procesarBorrar(String entrada) {
+    /*private void procesarBorrar(String entrada) {
     	try {
     		int id = Integer.parseInt(entrada);
     		if((id >= 0) && (id < cuentaActiva.getGastos().size())) {
@@ -326,6 +357,23 @@ public class TerminalController {
     			//guardarCambios();
     			cuentaService.eliminarGasto(cuentaActiva, g); // Usamos el servicio
     			imprimir("✓ Borrado: " + g.getConcepto()); 
+    		} else {
+    			imprimir("ERROR: id inválido.");
+    		}
+    	} catch (NumberFormatException e) {
+    		imprimir("ERROR: id inválido");
+    	}
+    	pasoActual = EstadoTerminal.CMD;
+    	reiniciarPrompt();
+    }*/
+    
+    private void procesarBorrar(String entrada) {
+    	try {
+    		int id = Integer.parseInt(entrada);
+    		if((id >= 0) && (id < cuentaActiva.getGastos().size())) {
+    			// Obtener objeto de Gasto y usar método del servicio
+    			Gasto gastoABorrar = cuentaActiva.getGastos().get(id);
+    			cuentaService.eliminarGasto(cuentaActiva, gastoABorrar);
     		} else {
     			imprimir("ERROR: id inválido.");
     		}
