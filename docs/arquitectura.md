@@ -57,4 +57,4 @@ Siguiendo las pautas de **DDD**, nos hemos asegurado de que los datos sean consi
 * **Persistencia JSON**: Usamos este formato porque es ligero y flexible para guardar vuestra info financiera.
 * **DTOs**: Usamos el `GastoTemporal` para mover los datos desde la importación hasta el dominio sin ensuciar las entidades reales.
 
-**En resumen:** Si tocáis algo en la App o importáis un fichero, el sistema lo valida en la capa de negocio y el repositorio lo sincroniza al momento con el archivo `cuentas.json` para que no perdáis ni un céntimo.
+**En resumen:** Si tocáis algo en la App o importáis un fichero, el sistema lo valida **(garantizando la integridad desde el propio Modelo y apoyado por la capa de negocio)** y el repositorio lo sincroniza al momento con el archivo `cuentas.json` para que no perdáis ni un céntimo.

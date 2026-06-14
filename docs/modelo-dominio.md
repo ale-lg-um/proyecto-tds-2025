@@ -39,7 +39,7 @@ Nuestro modelo no solo guarda datos, sino que sabe cómo comportarse gracias al 
 Nos hemos roto un poco la cabeza para que el sistema soporte distintas formas de pagar:
 * **CuentaPersonal**: Para llevar tus cuentas tú solo, sin líos con nadie más.
 * **CuentaCompartida**: La típica para viajes donde todo se divide a partes iguales entre los miembros.
-* **CuentaProporcional**: Esta es la avanzada. Cada uno tiene un porcentaje asignado y el sistema valida que la suma sea el 100% para que el reparto sea justo.
+* **CuentaProporcional**: Esta es la avanzada. Cada uno tiene un porcentaje asignado y **la propia entidad valida al instanciarse** que la suma sea exactamente el 100%, protegiendo su propia integridad para que el reparto sea siempre justo.
 
 ### 3.2. Validación con Estrategias
 Para las alertas, usamos el patrón **Strategy**. Así el sistema sabe si tiene que mirar el gasto de la semana o del mes sin llenar el código de condiciones raras.

@@ -40,7 +40,8 @@ classDiagram
 
     class CuentaProporcional {
         -Map~String, Double~ porcentajes
-        +calcularSaldos() Map
+        -validarPorcentajes(Map porcentajes)
+        #calcularCuotaTeorica(String miembro, double totalGastado) double
     }
 
     class Gasto {
