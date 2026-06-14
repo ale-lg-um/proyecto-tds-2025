@@ -233,7 +233,7 @@ public class VisualizacionController {
 		});
 
 		// DIBUJAR BAR CHART 
-		barChart.getData().clear();
+		/*barChart.getData().clear();
 		XYChart.Series<String, Number> series = new XYChart.Series<>();
 		series.setName("Gastos por Categoría");
 
@@ -241,38 +241,63 @@ public class VisualizacionController {
 			series.getData().add(new XYChart.Data<>(catName, total));
 		});
 
-		barChart.getData().add(series);
+		barChart.getData().add(series);*/
+		
+		barChart.getData().clear();
+
+		porCategoria.forEach((catName, total) -> {
+		    // 1. Creamos una serie INDIVIDUAL por cada categoría
+		    XYChart.Series<String, Number> seriesCat = new XYChart.Series<>();
+		    seriesCat.setName(catName); 
+		    seriesCat.getData().add(new XYChart.Data<>(catName, total));
+		    
+		    barChart.getData().add(seriesCat);
+		});
 
 		// Colorear las barras
-		for (XYChart.Data<String, Number> data : series.getData()) {
+		/*for (XYChart.Data<String, Number> data : series.getData()) {
 			javafx.scene.Node barra = data.getNode();
 			if (barra != null) {
 				String color = mapaColores.getOrDefault(data.getXValue(), "#808080");
 				barra.setStyle("-fx-bar-fill: " + color + ";");
 			}
+		}*/
+		
+		for (XYChart.Series<String, Number> serie : barChart.getData()) {
+		    String color = mapaColores.getOrDefault(serie.getName(), "#808080");
+		    for (XYChart.Data<String, Number> data : serie.getData()) {
+		        if (data.getNode() != null) {
+		            data.getNode().setStyle("-fx-bar-fill: " + color + ";");
+		        }
+		    }
 		}
 
 		// CORRECCIÓN DE LEYENDA 
 		Platform.runLater(() -> {
-			Node legend = pieChart.lookup(".chart-legend");
+			Node legendPie = pieChart.lookup(".chart-legend");
+		    colorearLeyenda(legendPie, mapaColores);
 
-			if (legend != null && legend instanceof Parent) {
-				for (Node item : ((Parent) legend).getChildrenUnmodifiable()) {
-					if (item instanceof Label) {
-						Label label = (Label) item;
-						String catName = label.getText();
-
-						if (mapaColores.containsKey(catName)) {
-							String color = mapaColores.get(catName);
-
-							if (label.getGraphic() != null) {
-								label.getGraphic().setStyle("-fx-background-color: " + color + ";");
-							}
-						}
-					}
-				}
-			}
+		    Node legendBar = barChart.lookup(".chart-legend");
+		    colorearLeyenda(legendBar, mapaColores);
 		});
+	}
+	
+	private void colorearLeyenda(Node legend, Map<String, String> mapaColores) {
+	    if (legend != null && legend instanceof Parent) {
+	        for (Node item : ((Parent) legend).getChildrenUnmodifiable()) {
+	            if (item instanceof Label) {
+	                Label label = (Label) item;
+	                String catName = label.getText();
+
+	                if (mapaColores.containsKey(catName)) {
+	                    String color = mapaColores.get(catName);
+	                    if (label.getGraphic() != null) {
+	                        label.getGraphic().setStyle("-fx-background-color: " + color + ";");
+	                    }
+	                }
+	            }
+	        }
+	    }
 	}
 
 	private void actualizarCalendario(List<Gasto> gastos) {
