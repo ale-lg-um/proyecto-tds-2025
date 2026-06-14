@@ -57,7 +57,7 @@ public class CuentaService {
 
 		case "Especial":
 
-			validarPorcentajes(porcentajes);
+			//validarPorcentajes(porcentajes);
 			nuevaCuenta = new CuentaProporcional(nombre, new ArrayList<>(porcentajes.keySet()),
 					new HashMap<>(porcentajes));
 			break;
@@ -69,7 +69,7 @@ public class CuentaService {
 		repositorio.save(nuevaCuenta);
 	}
 
-	private void validarPorcentajes(Map<String, Double> porcentajes) throws Exception {
+	/*private void validarPorcentajes(Map<String, Double> porcentajes) throws Exception {
 		if (porcentajes == null || porcentajes.isEmpty()) {
 			throw new Exception("Debe añadir miembros con sus porcentajes.");
 		}
@@ -80,7 +80,7 @@ public class CuentaService {
 		if (Math.abs(sumaTotal - 100.0) > 0.01) {
 			throw new Exception(String.format("Los porcentajes deben sumar 100%% (Actual: %.2f%%)", sumaTotal));
 		}
-	}
+	}*/
 
 	/////////////////////////////////////////////////////////////////////////////////////
 

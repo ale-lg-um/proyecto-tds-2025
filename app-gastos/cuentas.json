@@ -892,4 +892,34 @@
     "colorHex" : "#D3D3D3"
   } ],
   "tipo" : "PERSONAL"
+}, {
+  "id" : "0badb564-9eec-4f41-a3e7-23778e1b9f90",
+  "nombre" : "comp",
+  "gastos" : [ {
+    "id" : "6c30dafd-14c0-4b1d-973d-244863495d18",
+    "concepto" : "gasto",
+    "importe" : 15.0,
+    "fecha" : [ 2026, 6, 14 ],
+    "hora" : "13:12",
+    "categoria" : {
+      "nombre" : "General",
+      "descripcion" : "Gastos varios",
+      "colorHex" : "#D3D3D3"
+    },
+    "pagador" : "p2"
+  } ],
+  "alertas" : [ ],
+  "notificaciones" : [ ],
+  "categorias" : [ {
+    "nombre" : "General",
+    "descripcion" : "Gastos varios",
+    "colorHex" : "#D3D3D3"
+  } ],
+  "miembros" : [ "p1", "p2", "p3" ],
+  "porcentajes" : {
+    "p1" : 30.0,
+    "p2" : 60.0,
+    "p3" : 10.0
+  },
+  "tipo" : "ESPECIAL"
 } ]
