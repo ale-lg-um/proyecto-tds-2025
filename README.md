@@ -7,7 +7,7 @@ Este repositorio contiene el código fuente y la documentación del proyecto "Ge
 | Nombre Completo | Correo Electrónico | Subgrupo |
 | :--- | :--- | :---: |
 | Mario Franco Alcázar | m.francoalcazar@um.es | [1.2] |
-| Alejandro López Galián  | alejandro.l.g2@um.es / galatasari1970@gmail.com | [1.2] |
+| Alejandro López Galián  | alejandro.l.g2@um.es<br>galatasari1970@gmail.com | [1.2] |
 | Jaime Martínez Ríos | j.martinezrios@um.es | [1.2] |
 
 ---
