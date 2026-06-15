@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gestorgastos.controller.InicioController">
+
+   <children>
+      <VBox alignment="CENTER" layoutX="100.0" layoutY="30.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <!-- Título de la aplicación -->
+            <Label alignment="CENTER" styleClass="title-label" text="GESTOR DE GASTOS" />
+      
+            <!-- Campo de texto para el nombre -->
+            <TextField fx:id="usuarioField" prefWidth="300.0" promptText="Introduce tu nombre" styleClass="text-field" />
+      
+            <!-- Botón de entrar -->
+            <Button onAction="#handleEntrar" prefWidth="150.0" styleClass="button" text="Entrar" />
+            <Button fx:id="btnCreditos" alignment="CENTER" onAction="#creditos" prefHeight="50.0" prefWidth="150.0" styleClass="button" text="CREDITOS" />
+         </children>
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

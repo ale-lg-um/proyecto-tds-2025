@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER_LEFT" prefHeight="350" prefWidth="300" spacing="15" 
+      xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" 
+      stylesheets="@style.css"
+      fx:controller="gestorgastos.controller.FormularioCategoriaController">
+
+    <padding><Insets bottom="20" left="20" right="20" top="20" /></padding>
+
+    <Label style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Nueva Categoría" />
+
+    <VBox spacing="5">
+        <Label text="Nombre:" />
+        <TextField fx:id="txtNombre" promptText="Ej: Ocio, Comida..." />
+    </VBox>
+
+    <VBox spacing="5">
+        <Label text="Color Identificativo:" />
+        <ColorPicker fx:id="colorPicker" maxWidth="Infinity" />
+    </VBox>
+
+    <Label fx:id="lblError" textFill="RED" />
+    
+    <VBox VBox.vgrow="ALWAYS" />
+
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button onAction="#cancelar" text="Cancelar" />
+        <Button defaultButton="true" onAction="#guardar" text="Guardar" />
+    </HBox>
+</VBox>

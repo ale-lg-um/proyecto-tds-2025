@@ -1,0 +1,82 @@
+[
+    {
+        "Date": "5/2/2024 12:33",
+        "Account": "Normal",
+        "Category": "efectivo",
+        "Subcategory": "Comida",
+        "Note": "desayuno",
+        "Payer": "Me",
+        "Amount": 10.47,
+        "Currency": "EUR"
+    },
+    {
+        "Date": "7/6/2022 15:09",
+        "Account": "Compartida",
+        "Category": "tarjeta",
+        "Subcategory": "Ocio",
+        "Note": "cine",
+        "Payer": "Cristina",
+        "Amount": 22.00,
+        "Currency": "EUR"
+    },
+    {
+        "Date": "12/18/2025 21:02",
+        "Account": "Compartida",
+        "Category": "tarjeta",
+        "Subcategory": "Navidad",
+        "Note": "regalos",
+        "Payer": "Paquito",
+        "Amount": 57.86,
+        "Currency": "EUR"
+    },
+    {
+        "Date": "2/1/2023 10:45",
+        "Account": "Compartida2",
+        "Category": "efectivo",
+        "Subcategory": "Muebles",
+        "Note": "compraIkea",
+        "Payer": "Luis",
+        "Amount": 100.58,
+        "Currency": "EUR"
+    },
+    {
+        "Date": "2/15/2003 11:02",
+        "Account": "prueba",
+        "Category": "efectivo",
+        "Subcategory": "otono",
+        "Note": "abrigoCaro",
+        "Payer": "Me",
+        "Amount": 2000.00,
+        "Currency": "EUR"
+    },
+    {
+        "Date": "2/15/2023 11:06",
+        "Account": "prueba",
+        "Category": "tarjeta",
+        "Subcategory": "otono",
+        "Note": "baratillo",
+        "Payer": "Me",
+        "Amount": 50.00,
+        "Currency": "EUR"
+    },
+    {
+        "Date": "8/18/2000 12:22",
+        "Account": "Normal",
+        "Category": "efectivo",
+        "Subcategory": "Verano",
+        "Note": "chiringuito",
+        "Payer": "Me",
+        "Amount": 2.00,
+        "Currency": "EUR"
+    },
+    {
+        "Date": "8/18/2000 12:22",
+        "Account": "Normal",
+        "Category": "efectivo",
+        "Subcategory": "Verano",
+        "Note": "chiringuito2",
+        "Payer": "Me",
+        "Amount": 62.00,
+        "Currency": "EUR"
+    }
+]
